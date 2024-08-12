@@ -1,0 +1,226 @@
+---
+title: "Installing VS Code and Connecting it with Anaconda"
+lang: en-GB
+jupyter: python3
+highlight-style: arrow
+format: 
+    html:
+      toc: true
+      toc-depth: 1
+      number-sections: false
+editor:
+  render-on-save: true
+---
+
+# Introduction
+
+This tutorial will guide students new to computer programming through the
+process of installing Visual Studio Code (VS Code) and connecting it with
+Anaconda. We will cover each step in detail to ensure a smooth setup process.
+If you have any questions or encounter issues during the installation, please
+feel free to ask for help from me (<danilo.freire@emory.edu>) or the QTM350 teaching assistants.
+
+# Why VS Code?
+
+VS Code is a popular, free code editor developed by Microsoft. According to the [2023 Stack Overflow Developer Survey](https://survey.stackoverflow.co/2023/#section-most-popular-technologies-integrated-development-environment), VS Code is the most preferred integrated development environment (IDE) among developers. Here are some reasons to choose VS Code for Python development:
+
+- Extensive Features and Extensions: VS Code offers several built-in features such as syntax highlighting, IntelliSense, and debugging. It also features hundreds of extensions that can increase its functionality, such as [GitHub Copilot](https://github.com/features/copilot/).
+
+- Cross-Platform Compatibility: VS Code is available for Windows, macOS, and Linux, so you can use it regardless of your operating system.
+
+- Active Community and Support: The active community around VS Code means continuous updates and many  community-driven extensions now and in the future.
+
+- Integration with Git and Other Tools: VS Code seamlessly integrates with version control systems like Git (as [Microsoft owns GitHub](https://news.microsoft.com/announcement/microsoft-acquires-github/)), making it easier to manage your code repositories and collaborate with others.
+
+With that said, let us start the installation process.
+
+# Download and Install VS Code
+
+- Please visit the official Visual Studio Code website: <https://code.visualstudio.com/>.
+- Click on the "Download" button for your operating system (Windows, macOS, or Linux).
+
+![VS Code Website](images/vscode-download.png)
+
+## For Windows Users
+
+- Run the "VSCodeUserSetup-{version}.exe" file.
+
+![Windows Installation](images/windows01.png)
+
+- Accept the license agreement and click "Next".
+
+![License Agreement](images/windows02.png)
+
+- Choose the installation location (default is recommended) and click "Next".
+
+![Installation Location](images/windows03.png)
+
+- Select additional tasks if desired (e.g., adding "Open with Code" action) and click "Next".
+
+![Additional Tasks](images/windows05.png)
+
+- Click "Install" to begin the installation process.
+
+![Installation Progress](images/windows06.png)
+
+## For macOS Users
+
+- Open the downloaded .zip file and drag the VS Code application to the Applications folder.
+
+![Unzip file](images/macos01.png)
+
+![Drag to Applications folder](images/macos02.png)
+
+## For Linux Users
+
+- Follow the distribution-specific instructions provided on the [VS Code website](https://code.visualstudio.com/Download).
+
+## Launch VS Code
+
+- After installation, launch VS Code.
+- You should see the welcome screen with options to start a new project or open existing files.
+
+![VS Code Welcome Screen](images/vscode-screen.png)
+
+## Getting Started
+
+Microsoft has published a series of [introductory videos](https://code.visualstudio.com/docs/introvideos/basics) to help you get started with VS Code. You can also read the [official documentation](https://code.visualstudio.com/docs) for more detailed information.
+
+# Installing Anaconda
+
+Anaconda is a distribution of Python that includes many popular packages for data science and scientific computing. It also provides a convenient way to manage different Python environments.
+
+## Download Anaconda
+
+- Visit the Anaconda website: <https://www.anaconda.com/products/distribution>. You can skip the registration if you prefer.
+
+![Anaconda Website](images/anaconda01.png)
+
+- Click on the "Download" button for your operating system.
+
+![Download Anaconda](images/anaconda02.png)
+
+## For Windows Users
+
+- Choose "Just Me" for the installation type (recommended).
+
+![Anaconda Installation](images/anaconda-windows01.png)
+
+- Select the installation location (default is fine).
+
+![Anaconda Installation](images/anaconda-windows02.png)
+
+- In the "Advanced Options" section, check "Add Anaconda to my PATH environment variable" and "Register Anaconda as my default Python".
+
+![Advanced Options](images/anaconda-windows03.png)
+
+## For macOS Users
+
+- Open the downloaded .pkg file and follow the installation instructions. You can install Anaconda for all users.
+
+![Anaconda Installation](images/anaconda-macos01.png)
+
+- Follow the on-screen instructions, accepting the default options.
+
+![Anaconda Installation](images/anaconda-macos02.png)
+
+## For Linux Users
+
+- Please follow the distribution-specific instructions provided on the [Anaconda website](https://docs.anaconda.com/anaconda/install/linux/).
+
+## Verify Anaconda Installation
+
+- Open a new terminal or command prompt. On VS Code, you can do it by clicking on "Terminal" > "New Terminal" in the top menu.
+- Type `conda --version` and press Enter. You should see the Conda version number.
+- Type `python --version` and press Enter. You should see the Python version installed by Anaconda.
+
+![Verify Anaconda Installation](images/anaconda-verify.png)
+
+# Connecting VS Code with Anaconda
+
+Now that both VS Code and Anaconda are installed, we will connect them to use Anaconda's Python distribution within VS Code. If they are connected correctly, you should be able to see the Conda and Python versions again in the VS Code output window.
+
+## Install the Python and Jupyer Extensions in VS Code:
+
+- Open VS Code and click on the Extensions view icon on the left sidebar (it looks like four squares). Search for "Python" in the search bar.
+
+![Python Extension in VS Code](images/vscode-python-extension.png)
+
+- Find the [official Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) by Microsoft and click "Install".
+
+- Please also install the [Jupyter extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) to work with Jupyter notebooks.
+
+![Jupyter Extension in VS Code](images/vscode-jupyter-extension.png)
+
+## Select the Anaconda Python Interpreter:
+
+- Create a Python file in VS Code. Click on the "New File" button in the top left corner and save it with a `.py` extension. 
+
+![New Python File in VS Code](images/vscode-new-file.png)
+
+- Include the following code in the file:
+
+```{python}
+#| eval: false
+#| output: false
+import sys
+print(sys.version)
+print(sys.executable)
+```
+
+- Save the file again. Here I saved it as `testing-anaconda.py`.
+
+![Save Python File in VS Code](images/vscode-save-file.png)
+
+- Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (macOS) to open the Command Palette.
+
+![Command Palette in VS Code](images/vscode-command-palette.png)
+
+- Type "Python: Select Interpreter" and select it from the list.
+
+![Select Python Interpreter](images/vscode-select-interpreter.png)
+
+- Choose the Anaconda Python interpreter from the list. It should be labelled something like "Python 3.x.x ('base') Conda".
+
+## Verify the Connection:
+
+- Please click on the "Run" button at the top right corner of the editor to execute the code in your `.py` file. Select "Run Current File in Dedicated Terminal"
+
+![Run Python File in VS Code](images/vscode-run-file.png)
+
+- The output should show the Anaconda Python version and its location.
+
+![Python Output in VS Code](images/vscode-output.png)
+
+# Optional: GitHub Copilot
+
+[GitHub Copilot](https://github.com/features/copilot) is an AI-powered code
+completion tool that helps you write code faster and with fewer errors. It is
+available as an extension for VS Code. Detailed instructions are available on
+the [03-github-copilot-tutorial](https://github.com/danilofreire/qtm350/blob/main/tutorials/03-github-tutorial.pdf) tutorial in the course repository, but I will provide a brief overview here. Please also refer to <https://code.visualstudio.com/docs/copilot/getting-started-chat> for further instructions.
+
+To install GitHub Copilot, follow these steps:
+
+- First, sign up for a free educational license at <https://github.com/education/students>. This will give you access to GitHub Copilot and other GitHub features.
+
+- On the website, click on "Join GitHub Education" and follow the instructions to verify your student status. You will need to provide proof of enrollment, such as a school email address or a document from your institution. The educational license is valid for two years.
+
+- Once you have verified your student status, you can install GitHub Copilot in VS Code. Go to the Extensions view in VS Code (the square icon on the left sidebar) and search for [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot). Click on "Install". VS Code will install two extensions, GitHub Copilot and GitHub Copilot Chat.
+
+- After installing the extensions, you will need to sign in to your GitHub account in VS Code. Click on the GitHub icon in the left sidebar and follow the prompts to sign in.
+
+- Once you have signed in, you can start using GitHub Copilot. It will provide code suggestions as you type, based on the context of your code. You can accept the suggestions by pressing `Tab` or `Enter`. You can also use the Chat tab (the speech bubble icon) to ask questions in natural language, like you do with ChatGPT or other chatbots, and Copilot will provide code snippets in response.
+
+GitHub Copilot can be very helpful for writing code and answering questions, but it also makes mistakes. It is important to review the code suggestions and ensure they are correct before using them in your projects.
+
+# Conclusion
+
+You have now successfully installed Visual Studio Code and connected it with Anaconda. Remember to create and activate appropriate Conda environments for different projects to manage dependencies effectively.
+
+For further information and advanced usage, refer to the following resources:
+
+- VS Code Python Tutorial: <https://code.visualstudio.com/docs/python/python-tutorial>
+- Anaconda Documentation: <https://docs.anaconda.com/>
+- VS Code Documentation: <https://code.visualstudio.com/docs>
+
+Happy coding!

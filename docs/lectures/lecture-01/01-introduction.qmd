@@ -1,0 +1,343 @@
+---
+title: QTM 151 - Introduction to Statistical Computing II
+subtitle: Lecture 01 - Introduction and Course Overview
+date: 28 August, 2024
+date-format: "DD MMMM, YYYY"
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: "Department of Quantitative Theory and Methods <br> Emory University"
+format:
+  clean-revealjs:
+    self-contained: true
+    footer: "[Lecture 01](https://danilofreire.github.io/qtm151/lectures/lecture-01/01-introduction.html)"
+bibliography: references.bib
+transition: slide
+transition-speed: default
+scrollable: true
+editor:
+  render-on-save: true
+---
+
+```{r}
+#| echo: false
+#| results: hide 
+knitr::opts_chunk$set(echo = TRUE)
+# Function to check if a package is installed, and install it if not
+install_if_missing <- function(package) {
+  if (!require(package, character.only = TRUE)) {
+    install.packages(package, dependencies = TRUE)
+    library(package, character.only = TRUE)
+  }
+}
+
+# List of packages to ensure are installed and loaded
+packages <- c("emo", "fontawesome")
+
+# Apply the function to each package
+lapply(packages, install_if_missing)
+```
+
+# Welcome to QTM 151 - Introduction to Statistical Computing II! `{r} emo::ji('partying_face')` `{r} emo::ji('tada')` {background-color="#2d4563"}
+
+## Lecture Overview
+
+<br>
+
+- Introduction
+- Motivation
+- Class Logistics
+- Computing Set up
+
+## Course Materials
+
+### Important Links
+
+::: {style="font-size: 28px;"}
+`r fa('github')` Course repository: <https://github.com/danilofreire/qtm151>
+
+`r fa('globe')` Course website: <https://danilofreire.github.io/qtm151>
+
+This course is hosted on GitHub, where you will find lecture materials, code samples, our discussion space, assignments, and final project instructions. Canvas will be used for course management, including assignment submissions, grades, and announcements. Please familiarise yourself with both platforms, and reach out if you have any questions.
+
+::: {.callout-note}
+Please remember to check the course website regularly for updates and announcements.
+:::
+:::
+
+# Nice to meet you! {background-color="#2d4563"}
+
+## Instructor
+
+### A bit about me
+
+:::: {.columns}
+::: {.column}
+<img src="figures/profile.jpg" alt="Danilo Freire" width="200" height="200" align="center"/>
+
+::: {style="font-size: 26px;"}
+`r fa('envelope')` [danilo.freire@emory.edu](mailto:danilo.freire@emory.edu)
+
+`r fa('calendar')` <https://calendly.com/danilofreire/office-hours>
+
+`r fa('globe')` <https://danilofreire.github.io/>
+:::
+:::
+
+::: {.column}
+::: {style="font-size: 30px;"}
+`r fa('chalkboard-user')` Visiting Assistant Professor in the [QTM](https://qtm.emory.edu)
+
+`r fa('graduation-cap')` MA from the Graduate Institute Geneva, PhD from King's College London, Postdoc at Brown University, Senior Lecturer at the University of Lincoln, UK.
+
+`r fa('book-open')` Research interests: computational social science, experimental methods, policy evaluation, political violence, organised crime.
+:::
+:::
+::::
+
+## {background-image="figures/neymar.jpg" background-size="100%"}
+
+## {background-image="figures/carnaval.jpg" background-size="100%"}
+
+## {background-image="figures/sp.jpg" background-size="100%"}
+
+## {background-image="figures/montblanc.jpg" background-size="100%"}
+
+## {background-image="figures/buzz.webp" background-size="100%"}
+
+## {background-image="figures/moonwatch.jpg" background-size="100%"}
+
+## My teaching philosophy
+### What you can expect from me
+
+<br>
+
+- I love teaching and aim to make learning fun 
+- Classes where students participate are the best
+- Hands-on activities help you learn better
+- I am always available to help and answer questions. And I mean it
+- Your feedback helps me improve my teaching. Please let me know what is working and what is not
+
+## Teaching assistants
+
+<br>
+
+- The teaching assistants for this course will be confirmed soon
+
+- They will be answering questions during our lectures and holding office hours (see Canvas or the course website for office hours information)
+
+- They will also be grading your assignments and quizzes (with my oversight)
+
+- We are all here to help you! So feel free to ask questions during class, office hours, or via email `r emo::ji('smiling_face_with_smiling_eyes')`
+
+## Office hours: What for and what not for
+
+<br>
+
+- What office hours are meant for:
+  - Applying tools in practice
+  - Discussion of issues related to the assignments
+  - Boosting your knowledge of data science
+
+. . . 
+
+- What these sessions are [not]{.alert} meant for: 
+    - Solving the assignments for you
+    - Taking care of developing your coding skills
+
+## Class etiquette
+
+:::: {.columns}
+::: {.column width=70%}
+- Coding can be tough and push you out of your comfort zone. If the course pace is too fast, let us know. I expect your commitment, but [I do not want anyone to fail]{.alert}
+- You are all keen on data science, but your backgrounds vary. That is great! Some sessions might be more engaging than others. If you are bored, [help others]{.alert} or explore new data science areas
+- [Always be respectful]{.alert} to each other
+- [Ask questions]{.alert} whenever you need to!
+:::
+
+::: {.column width=30%}
+![](figures/stupid-questions.jpg)
+:::
+::::
+
+# Why Python and SQL? {background-color="#2d4563"}
+
+## Why Python
+### The world's most popular programming language
+
+::: {layout-ncol=2}
+![](figures/career.jpg)
+
+![](figures/popularity.jpg)
+:::
+
+## Why Python
+### Great community and easy to learn
+
+:::: {.columns}
+::: {.column width=43%}
+There are thousands of Python user groups worldwide 
+
+The Python community is very active and welcoming!
+![](figures/python-meetup.png)
+:::
+
+::: {.column width=57%}
+- Java: 
+```{java}
+public class Welcome {
+    public static void main(String[] args) {
+        System.out.println("Welcome to QTM151!");
+    }
+}
+
+```
+
+- Python:
+```{python}
+#| eval: false
+#| output: false
+#| python.reticulate: false
+print("Welcome to QTM151!")
+```
+:::
+::::
+
+## Why Python
+### Salaries are good!
+
+![](figures/salary.png)
+
+## Why SQL
+### The world's most popular database language
+
+:::: {.columns}
+::: {.column width=50%}
+- SQL is the standard language for relational database management systems
+- Easy to learn
+- Standardised
+- Manage huge amounts of data
+- Widely used in industry
+- Great for data analysis
+:::
+
+::: {.column width=50%}
+![](figures/sql.png){width=400px}
+![](figures/postgresql.webp){width=400px}
+:::
+::::
+
+## Why SQL
+### Salaries are good too!
+
+![](figures/sql-salary.png)
+
+# Course Logistics {background-color="#2d4563"}
+
+## Course Objectives
+
+1. Perform basic operations and write functions in Python
+2. Conduct data wrangling and manipulate data using Python libraries such as Pandas
+3. Merge and manage databases using SQL
+4. Create visualisations to effectively communicate data insights
+5. Implement linear models and understand the principles of time series analysis
+6. Use Jupyter Notebooks for reproducible research
+7. Develop problem-solving skills relevant to data analysis and statistical computing
+
+## Grades and Late Policy
+
+:::: {.columns}
+::: {.column width=50%}
+::: {style="font-size: 28px;"}
+- Assignments (x10): [50%]{.alert}​
+  - Practice class concepts​
+
+- Quizzes (x5): [30%]{.alert}​
+  - Questions are given in advance​
+  - Data is provided in the class​
+
+- Final Project: [20%​]{.alert}
+  - Will provide guidelines on Canvas​ and GitHub
+  - Due at the end of the semester​
+
+- Midsemester Survey: [+0.5% (Extra)]{.alert}
+
+- End of semester Survey: [+0.5% (Extra)]{.alert}
+:::
+:::
+
+::: {.column width=50%}
+::: {style="font-size: 28px;"}
+- All materials will be available on the course website​ and GitHub​ repository
+- Late assignments will automatically be graded for half-credit​
+- To account for unforeseen circumstances, we will drop the worst assignment and the worst quiz​
+- Watch out for the assignments to install software. You will need these to be able to use the lectures notes
+:::
+:::
+::::
+
+# Computing Set Up {background-color="#2d4563"}
+
+## Our Class in a Nutshell
+
+![](figures/nutshell.png)
+
+## Installing Python using Anaconda
+### Anaconda has (almost) all the libraries we need
+
+<br>
+
+- Follow the instructions [on our GitHub repository](https://github.com/danilofreire/qtm151/blob/main/tutorials/01-vscode-anaconda-tutorial.pdf) 
+- We are using Anaconda virtual environments for this class (I will cover this in more detail next class)​
+- For now: Anaconda comes with a Python installation​
+
+::: {.incremental}
+- Questions?
+:::
+
+## Installing VSCode and Connecting Anaconda​
+
+<br>
+
+- Follow the instructions [Installing Visual Studio Code and Connecting it with Anaconda](https://github.com/danilofreire/qtm151/blob/main/tutorials/01-vscode-anaconda-tutorial.pdf) from GitHub
+- For now: know that "base" is the Anaconda virtual environment that comes by default with the installation​
+- The next step is to check if the connection between VSCode and Anaconda worked -> [the `Python: Select Interpreter` option should include Python ("base")​]{.alert}
+- Next step: we will create a new folder for the QTM151 course and download our virtual GitHub folder and opening it in VSCode
+
+## {background-image="figures/github01.png" background-size="100%"}
+
+## {background-image="figures/github02.png" background-size="100%"}
+
+## Jupyter Notebooks
+
+:::: {.columns}
+::: {.column width=30%}
+::: {style="font-size: 26px;"}
+- We will use Jupyter Notebooks for our classes. We have [a tutorial on how to use them too](https://github.com/danilofreire/qtm151/blob/main/tutorials/02-jupyter-markdown-tutorial.pdf)
+- Jupyter Notebooks are a great way to combine code, text, and visualisations
+- It is encouraged that you bring your laptop to class
+- Lecture notes are designed to be follow-along. There will be many "try it yourself" exercises throughout the lectures!
+:::
+:::
+
+::: {.column width=70%}
+![](figures/jupyter.png)
+:::
+::::
+
+## Next Class
+
+::: {style="font-size: 28px;"}
+- Don't worry if you are not able to follow along with the installation instructions. We will have time to do this next class
+- We will start with the basics of Jupyter Notebooks
+- We will also cover the basics of Anaconda and VSCode
+- Please remember to check the course repository, mainly the tutorials: <https://github.com/danilofreire/qtm151> 
+- And please do not forget:
+  - Coding ability can be developed
+  - Academic skills and abilities are acquired through hard work, mistakes, and perseverance. Coding is no different
+  - My only goal here is that you learn the material. Please ask me questions! `{r} emo::ji('smiling_face_with_smiling_eyes')`
+:::
+
+# Questions? {background-color="#2d4563"}
+
+# Thank you very much for your attention! `{r} emo::ji ('smiley')` `{r} emo::ji ('partying_face')` {background-color="#2d4563"}

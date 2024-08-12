@@ -1,0 +1,193 @@
+---
+title: GitHub Review
+subtitle: Further details on GitHub and Anaconda
+date: 2024-09-04
+date-format: "DD MMMM, YYYY"
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: Department of Quantitative Theory and Methods <br> Emory University
+format:
+  clean-revealjs:
+    self-contained: true
+    footer: "[GitHub Review](https://danilofreire.github.io/qtm151/lectures/lecture-02/02-github-review.html)"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: jupyter
+editor:
+  render-on-save: true
+---
+
+# Lecture Overview {background-color="#2d4563"}
+
+## Learning Objectives
+### By the end of this lecture, you will be able to:
+
+<br>
+
+1. Understand the difference between cloning and forking a repository​
+2. Learn how to remove cloned repos​
+3. Understand the GitHub workflow: change, commit, push, fetch, pull​
+4. Learn how to keep a forked repository updated​
+5. Understand what a virtual environment in Anaconda is and how to create one if needed​
+
+## Software Installation
+### What we will use in this course
+
+::: {style="font-size: 26px;"}
+- First, please remember to create a GitHub account if you do not have one yet: <https://education.github.com/pack>. Use your Emory email address to get the GitHub Student Developer Pack for free. Then install the following software:
+
+- [Anaconda](https://www.anaconda.com/products/individual) (Python distribution)
+- [GitHub Desktop](https://desktop.github.com/) (Git user interface)
+- [Visual Studio Code](https://code.visualstudio.com/) (Code editor)
+
+- Also, please check the tutorials on the course repository: <https://github.com/danilofreire/qtm151/tutorials>. They will help you with the installation and setup of the software. 
+- If you have any questions, please let us know!
+:::
+
+# GitHub Review {background-color="#2d4563"}
+
+## How to access and edit a remote repository
+
+<br>
+
+- [Access]{.alert}: download a remote GitHub repository to your local computer to work on it​
+- [Edit]{.alert}: make local changes to the repository and update them to the cloud​
+
+There are two ways to access a repository:​
+
+- Cloning ​
+- Forking - We will use forking in this course​
+
+## Cloning
+
+:::: {.columns}
+::: {.column width=50%}
+- Makes a [local copy]{.alert} of a repository
+- Think of it as [downloading a repository]{.alert} onto your local computer
+- Unlike forks, [clones reference the original repository]{.alert}: you cannot push changes to it unless you have permissions from the owner
+- If you do have permissions, you can [overwrite]{.alert} the content of the remote repository
+:::
+
+::: {.column width=50%}
+![](figures/cloning.png)
+:::
+::::
+
+## Cloning example
+
+:::: {.columns}
+::: {.column width=50%}
+::: {style="font-size: 27px;"}
+- Example repo: <https://github.com/danilofreire/qtm151-example-repository>
+
+- We can clone the repo using GitHub desktop
+  - It [does not create a remote copy]{.alert} of the repo in my GitHub page​
+
+- If the users cloning the repo have [write access]{.alert} they can replace files and folders in the remote GitHub repo​
+
+- The purpose of cloning is often to [contribute directly to the original repo]{.alert}​ or [work offline]{.alert}
+:::
+:::
+
+::: {.column width=50%}
+![](figures/cloning-page.png)
+:::
+::::
+
+## Cloning example
+
+![](figures/cloning01.png)
+
+## Cloning example
+
+![](figures/cloning02.png)
+
+## Cloning example: GitHub Desktop
+
+:::: {.columns}
+::: {.column width=50%}
+![](figures/cloning-desktop01.png){width="80%"}
+:::
+
+::: {.column width=50%}
+![](figures/cloning-desktop02.png){width="90%"}
+:::
+::::
+
+![](figures/cloning-desktop03.png){width="60%"}
+
+# Questions about cloning? {background-color="#2d4563"}
+
+## Forking
+
+<br>
+
+- Creates [your own copy]{.alert} of a repository in your remote GitHub page​
+
+- Your own copy means that you will be able to [contribute changes to your copy of the repository without affecting the original repository!​]{.alert}
+
+- Often used to [create a personal version of a project for custom modifications]{.alert}
+  - You can then [submit a pull request]{.alert} to the original repository to suggest changes​
+
+## Forking
+
+![](figures/forking.png)
+
+## Forking example
+
+:::: {.columns}
+::: {.column width=50%}
+::: {style="font-size: 27px;"}
+- Example repo: <https://github.com/danilofreire/qtm151-example-repository>
+- We can fork the repo using the GitHub page
+  - It creates a remote copy of the repo on your GitHub
+  - You can then clone the repo to your local computer and work on it
+  - You can push changes to your remote repo
+  - See the [GitHub Tutorial](https://github.com/danilofreire/qtm151/blob/main/tutorials/03-github-tutorial.pdf) for more details
+:::
+:::
+
+::: {.column width=50%}
+![](figures/forking-page.png)
+:::
+::::
+
+## In our course
+
+![](figures/forking02.png)
+
+## In our course
+
+![](figures/forking03.png)
+
+## In our course
+
+![](figures/forking04.png)
+
+## Comparing cloning and forking
+
+<br>
+
+| Feature                | Cloning                                         | Forking                                        |
+|------------------------|-------------------------------------------------|------------------------------------------------|
+| **Local Copy**         | Yes                                             | No (initially only on GitHub)                  |
+| **Direct Collaboration** | Yes (if permissions allow)                     | No (requires pull requests)                    |
+| **Synchronisation**    | Yes (with the original repository)              | Yes (can fetch updates from the original)      |
+| **Control**            | Limited (depends on permissions)                | Full (over the forked copy)                    |
+| **Use Case**           | Contributing directly, local development        | Independent development, contributing via PRs  |
+| **Includes**           | All files, branches, commit history             | All files, commit history, but no issues or PRs|
+
+## Removing cloned and forked repositories
+
+<br>
+
+- If you cloned or forked a repository and no longer need it, [you can delete the local copy​]{.alert}
+- Deleting the local copy [does not affect the remote repository​]{.alert}
+- You can also delete the remote repository if you have write access to it​ ([be careful!]{.alert})
+
+# Questions about forking? {background-color="#2d4563"}
+
+# Great! Now let us see what Jupyter Notebooks are! {background-color="#2d4563"}
+
