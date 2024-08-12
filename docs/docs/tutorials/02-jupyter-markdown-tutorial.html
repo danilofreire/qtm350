@@ -279,7 +279,7 @@ window.Quarto = {
 </figure>
 </div>
 <p>Here you should enter the Python commands. For example, type the following lines of code in the code cell:</p>
-<div id="d1a85bf1" class="cell" data-execution_count="1">
+<div id="2aa65abe" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Welcome to QTM 350!"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span></span>
@@ -404,7 +404,7 @@ in [this notebook](https://github.com/danilofreire/qtm350/blob/main/tutorials/te
 <section id="step-1-import-pandas-and-create-a-dataframe" class="level4">
 <h4 class="anchored" data-anchor-id="step-1-import-pandas-and-create-a-dataframe">Step 1: Import pandas and create a DataFrame</h4>
 <p>You can create a dataframe by passing a dictionary to the <code>pd.DataFrame()</code> constructor:</p>
-<div id="9f06e3bf" class="cell" data-execution_count="2">
+<div id="ab822e1c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If necessary, install pandas and tabulate </span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># You should have pandas installed if you installed Anaconda, </span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># but if you do not, you can install both with the following terminal command:</span></span>
@@ -426,7 +426,7 @@ in [this notebook](https://github.com/danilofreire/qtm350/blob/main/tutorials/te
 <section id="step-2-convert-dataframe-to-markdown" class="level4">
 <h4 class="anchored" data-anchor-id="step-2-convert-dataframe-to-markdown">Step 2: Convert DataFrame to Markdown</h4>
 <p>Then you just need to call the <code>to_markdown()</code> method on the DataFrame:</p>
-<div id="0de57233" class="cell" data-execution_count="3">
+<div id="374c7664" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the DataFrame as a Markdown table, excluding the index</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>markdown_table <span class="op">=</span> df.to_markdown(index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(markdown_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -441,7 +441,7 @@ in [this notebook](https://github.com/danilofreire/qtm350/blob/main/tutorials/te
 <section id="step-3-display-in-jupyter-notebook" class="level4">
 <h4 class="anchored" data-anchor-id="step-3-display-in-jupyter-notebook">Step 3: Display in Jupyter Notebook</h4>
 <p>To display the Markdown table in a Jupyter Notebook cell, use the <code>display()</code> function from the <code>IPython.display</code> module:</p>
-<div id="db644b9b" class="cell" data-execution_count="4">
+<div id="94df19c0" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You should also have the IPython package installed if you installed Anaconda</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If not, you can install it with</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># conda install ipython</span></span>
@@ -465,7 +465,7 @@ in [this notebook](https://github.com/danilofreire/qtm350/blob/main/tutorials/te
 <section id="advanced-formatting" class="level3">
 <h3 class="anchored" data-anchor-id="advanced-formatting">Advanced Formatting</h3>
 <p>You can customise the Markdown table using various parameters of <code>to_markdown()</code>:</p>
-<div id="de325c12" class="cell" data-execution_count="5">
+<div id="8f5fc59d" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Customising the Markdown table using the to_markdown() method</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>markdown_table <span class="op">=</span> df.to_markdown(</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span><span class="va">False</span>,  <span class="co"># Don't include index</span></span>
@@ -480,7 +480,7 @@ in [this notebook](https://github.com/danilofreire/qtm350/blob/main/tutorials/te
 <section id="using-tabulate-for-enhanced-formatting" class="level3">
 <h3 class="anchored" data-anchor-id="using-tabulate-for-enhanced-formatting">Using tabulate for Enhanced Formatting</h3>
 <p>The <code>tabulate</code> library offers even more formatting options. While they are not necessary for basic tables, they can be useful for more complex tables. In our course, you will probably not need them, but I will show you how to use them for your reference. Please check their <a href="https://pypi.org/project/tabulate/">documentation</a> for more information.</p>
-<div id="7457a36b" class="cell" data-execution_count="6">
+<div id="52cdaae1" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>markdown_table <span class="op">=</span> tabulate(df, headers<span class="op">=</span><span class="st">'keys'</span>, tablefmt<span class="op">=</span><span class="st">'pipe'</span>, showindex<span class="op">=</span><span class="va">False</span>)</span>
@@ -500,7 +500,7 @@ in [this notebook](https://github.com/danilofreire/qtm350/blob/main/tutorials/te
 <section id="example-comprehensive-table-creation" class="level3">
 <h3 class="anchored" data-anchor-id="example-comprehensive-table-creation">Example: Comprehensive Table Creation</h3>
 <p>Here is a more comprehensive example incorporating various best practices:</p>
-<div id="578a3f9a" class="cell" data-execution_count="7">
+<div id="576a7a10" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import necessary packages</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display, Markdown</span>
