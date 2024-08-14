@@ -1,0 +1,36 @@
+---
+title: "Docker Tutorial"
+lang: en-GB
+author: 
+  - Danilo Freire\thanks{Visiting Assistant Professor, Department of Quantitative Theory and Methods, Emory University, \href{mailto:danilo.freire@emory.edu}{\texttt{danilo.freire@emory.edu}}, \url{https://danilofreire.github.io}.}
+appendix: false
+fontfamily: libertine
+monofont: inconsolata
+monofontoptions: scaled=.95
+fontsize: 12pt
+spacing: double
+geometry: 
+  - top=2cm
+  - bottom=2cm
+  - left=2cm
+  - right=2cm
+urlcolor: darkblue
+linkcolor: Mahogany
+citecolor: Mahogany
+jupyter: python3
+highlight-style: arrow
+pdf-engine: pdflatex
+format: 
+    pdf:
+      template: article-template.latex
+      toc: true
+      toc-depth: 2
+      number-sections: true
+editor:
+  render-on-save: true
+---
+
+\newpage
+
+# Introduction
+
