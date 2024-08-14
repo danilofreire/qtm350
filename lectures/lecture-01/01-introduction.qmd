@@ -1,7 +1,7 @@
 ---
 title: "Welcome to Data Science Computing!"
 subtitle: "Lecture 01: Introduction"
-date: "28-08-2024"
+date: "2024-08-26"
 date-format: "DD MMMM, YYYY"
 author:
   - name: Danilo Freire
@@ -208,7 +208,14 @@ Please introduce yourself, tell us your name, your major, one thing you really l
 
 ![](figures/venn-orig-5.png){ height=550px style="display: block; margin: auto;" }
 
+## Our focus! {transition="none"}
+
+![](figures/venn-focus.png){ height=550px style="display: block; margin: auto;" }
+
 ## Rise of the digital information age
+
+:::{style="margin-top: 40px;"}
+:::
 
 ![](figures/digital.jpeg){ width=110% style="display: block; margin: auto;" }
 
@@ -238,9 +245,69 @@ Please introduce yourself, tell us your name, your major, one thing you really l
 
 ![](figures/collab.png){ width=80% style="display: block; margin: auto;" }
 
-## As a consequence:
+# And what can we do with all these data? `r emo::ji('thinking_face')` {background-color="#2d4563"}
 
-:::: {style="font-size: 30px;"}
+## Scraping the web for social research
+
+:::{style="margin-top: 40px;"}
+:::
+
+![](figures/scrap.png)
+
+## Tackling social problems
+
+:::{style="margin-top: 40px;"}
+:::
+
+![](figures/social.png)
+
+## Reducing hate speech
+
+:::{style="margin-top: 40px;"}
+:::
+
+![](figures/hate.png)
+
+## Monitoring the effects of climate change on health
+
+:::{style="margin-top: 40px;"}
+:::
+
+![](figures/climate.png)
+
+## Calling bullsh*t when you see it
+
+:::{style="margin-top: 40px;"}
+:::
+
+::::{.columns}
+::: {.column width="30%"}
+:::{style="font-size: 20px;"}
+:::{style="margin-top: 40px;"}
+**Learn not to be fooled by**
+
+- big data
+- garbage data
+- garbage models
+- weird samples
+- claims of generality
+- implausibly large effect sizes
+- overfitted models
+
+And much more...
+:::
+:::
+:::
+
+::: {.column width="70%"}
+![](figures/bullshit.png)
+:::
+::::
+
+## And much more...
+
+::: {style="font-size: 30px;"}
+::: {style="margin-top: 40px;"}
 ::: {.incremental}
 - Abundance of data available for research and for governments to make better decisions
   - Opportunities for novel research questions
@@ -251,7 +318,8 @@ Please introduce yourself, tell us your name, your major, one thing you really l
   - Use of technology by malicious actors
   - Government use of technology to censor or monitor citizens
 :::
-::::
+:::
+:::
 
 # Course overview and logistics `r emo::ji('open_book')` `r emo::ji('books')` `r emo::ji('computer')` {background-color="#2d4563"}
 
