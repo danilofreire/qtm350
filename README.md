@@ -24,7 +24,7 @@ By the end of this course, students will be able to:
 
 This repository is organised as follows:
 
-- [`assignments/`](https://github.com/danilofreire/qtm350/tree/main/assigments): Contains all course assignments
+- [`assignments/`](https://github.com/danilofreire/qtm350/tree/main/assignments): Contains all course assignments
 - [`lectures/`](https://github.com/danilofreire/qtm350/tree/main/lectures): Includes lecture materials and code
 - [`quizzes/`](https://github.com/danilofreire/qtm350/tree/main/quizzes): Quiz materials
 - [`tutorials/`](https://github.com/danilofreire/qtm350/tree/main/tutorials): Step-by-step guides for the tools used in the course
