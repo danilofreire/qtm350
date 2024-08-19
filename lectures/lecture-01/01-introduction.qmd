@@ -507,9 +507,10 @@ And much more...
 ::: {style="margin-top: 40px;"}
 :::
 
-- **Windows:** Install [Bash for Windows](https://learn.microsoft.com/en-us/windows/wsl/install). Another good tutorial can be found [here](https://itsfoss.com/install-bash-on-windows/). You might also want to install [Chocolatey](https://chocolatey.org/) (they offer a free and open-source version)
-- **Mac:** Install [Homebrew](https://brew.sh/) and [Oh My Zsh](https://ohmyz.sh/)
-- **Linux:** None (you should be good to go)
+- **Windows:** Please install [Windows Subsystem for Linux (bash)](https://learn.microsoft.com/en-us/windows/wsl/install). Another good tutorial can be found [here](https://itsfoss.com/install-bash-on-windows/). [FAQ available here](https://learn.microsoft.com/en-us/windows/wsl/faq). 
+  - [Tip]{.alert}: [VS Code](https://code.visualstudio.com/) is a great code editor for Windows and it [already includes a terminal](https://code.visualstudio.com/docs/terminal/getting-started)
+- **Mac:** None, but you can install [iTerm2](https://iterm2.com/), [Homebrew](https://brew.sh/) and [Oh My Zsh](https://ohmyz.sh/) for a better experience
+- **Linux:** None, you should be good to go
 
 ## Other tools
 

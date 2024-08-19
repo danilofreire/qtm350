@@ -1,0 +1,1017 @@
+---
+title: QTM 350 - Data Science Computing
+subtitle: "Lecture 02: Computational Literacy"
+date: 2024-09-04
+date-format: "DD MMMM, YYYY"
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: Department of Quantitative Theory and Methods <br> Emory University
+format:
+  clean-revealjs:
+    self-contained: true
+    footer: "[Comp. Literacy](https://danilofreire.github.io/qtm151/lectures/lecture-02/02-computational-literacy.html)"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: knitr
+editor:
+  render-on-save: true
+---
+
+```{r setup, include=FALSE}
+# figures formatting setup
+options(htmltools.dir.version = FALSE)
+library(knitr)
+opts_chunk$set(
+  prompt = T,
+  fig.align="center", #fig.width=6, fig.height=4.5, 
+  # out.width="748px", #out.length="520.75px",
+  dpi=300, #fig.path='Figs/',
+  cache=T, #echo=F, warning=F, message=F
+  engine.opts = list(bash = "-l")
+  )
+
+## Next hook based on this SO answer: https://stackoverflow.com/a/39025054
+knit_hooks$set(
+  prompt = function(before, options, envir) {
+    options(
+      prompt = if (options$engine %in% c('sh','bash', 'zsh')) '$ ' else 'R> ',
+      continue = if (options$engine %in% c('sh','bash', 'zsh')) '$ ' else '+ '
+      )
+})
+
+packages <- c("tidyverse", "emo", "fontawesome")
+
+for (package in packages) {
+  if (!require(package, character.only = TRUE)) {
+    install.packages(package, dependencies = TRUE)
+    library(package, character.only = TRUE)
+  }
+}
+```
+
+# Recap and lecture overview `r emo::ji('books')`{background-color="#2d4563"}
+
+## Course information
+
+:::: {.columns}
+::: {.column}
+<img src="figures/profile.jpg" alt="Danilo Freire" width="200" height="200" align="center"/>
+
+::: {style="font-size: 26px;"}
+`r fa('envelope')` [danilo.freire@emory.edu](mailto:danilo.freire@emory.edu)
+
+`r fa('globe')` <https://danilofreire.github.io/qtm350>
+
+`r fa('github')` <https://github.com/danilofreire/qtm350>
+:::
+:::
+
+::: {.column}
+- [Instructor]{.alert}: Danilo Freire
+- [Lectures]{.alert}: Mondays and Wednesdays, 2:30-3:45pm
+- [Office hours]{.alert}: At any time, just send me an email in advance
+- Please remember to [check the course repository regularly](https://github.com/danilofreire/qtm350) for updates and announcements `r emo::ji('winking_face')`
+:::
+::::
+
+## Course information
+
+:::{style="margin-top:40px;"}
+:::
+
+:::::{.incremental}
+:::: {.columns}
+::: {.column width="50%"}
+::: {style="font-size: 24px;"}
+- The course focuses on three key areas of data science: [reliability]{.alert}, [reproducibility]{.alert}, and [robustness]{.alert}
+- Main topics: [command line and shell scripting (terminal),]{.fragment .fade-in} [version control (git and GitHub),]{.fragment .fade-in} [reproducible reports (Quarto and Jupyter Notebooks),]{.fragment .fade-in} [data wrangling and storage (Python and SQL),]{.fragment .fade-in} [data visualisation (Python),]{.fragment .fade-in} [AI-paired programming (Copilot),]{.fragment .fade-in} [introduction to containers (Docker),]{.fragment .fade-in} [and parallel computing (Python)]{.fragment .fade-in}
+:::
+:::
+
+::: {.column width="50%"}
+::: {style="font-size: 24px;"}
+- [Grading]{.alert}: 
+  - 50% assignments (10x)
+  - 30% in-class quizzes (5x)
+  - 20% final project
+
+:::{style="margin-top:10px;"}
+:::
+- You can discuss assignments with your classmates, but please [submit your own work]{.alert}
+- [AI is allowed]{.alert} in all assignments and quizzes
+- [Late submissions]{.alert} will be penalised by 10% per day
+- To accommodate any challenges, I will [drop the lowest assignment and quiz grades]{.alert}
+- Additional information will be made available on the [course repository](https://github.com/danilofreire/qtm350)
+:::
+:::
+::::
+:::::
+
+# Questions about the course organisation? {background-color="#2d4563"}
+
+## Software installation
+
+:::{style="margin-top:40px;"}
+:::
+
+:::::{style="font-size: 24px;"}
+:::: {.columns}
+::: {.column}
+- As we discussed in the first lecture, you will need to install the following software:
+
+- A terminal
+  - You can install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) if you are using Windows. Or you can use [VS Code's](https://code.visualstudio.com/) built-in terminal
+  - Mac users already have a terminal. I suggest you install [iTerm2](https://iterm2.com/), [Homebrew](https://brew.sh/) and [Oh My Zsh](https://ohmyz.sh/) for a better experience
+  - Linux users are good to go
+:::
+
+::: {.column}
+- [Git](https://git-scm.com/downloads)
+- [GitHub](https://github.com)
+- [Anaconda](https://www.anaconda.com/products/individual) (or regular Python)
+- [Quarto](https://quarto.org/docs/get-started/index.html)
+- [PostgreSQL](https://www.postgresql.org/download)
+- [Docker](https://docs.docker.com/get-docker)
+- [VS Code](https://code.visualstudio.com/) (optional, but strongly recommended)
+:::
+::::
+
+:::{style="margin-top:40px;"}
+:::
+
+:::{.callout-tip}
+- Please check the [installation tutorials](https://danilofreire.github.io/qtm350/tutorials/tutorials.html) for more information
+- If you have any questions, please let me know!
+:::
+:::::
+
+## Learning objectives
+### By the end of this lecture, you will be able to:
+
+:::{style="margin-top:40px;"}
+:::
+
+1. Learn how computers work from the ground up, starting with binary code
+2. Get familiar with other key computer encodings like hexadecimal, ASCII, and Unicode
+3. Learn about the pioneers of computing and the development of Assembly language
+4. Understand the difference between low-level and high-level programming languages and when to use each
+
+# Let's get started! `r emo::ji('rocket')` `r emo::ji('computer')` {background-color="#2d4563"}
+
+# Brief history of computing {background-color="#2d4563"}
+
+## The first computers
+
+:::{style="margin-top:40px;"}
+:::
+
+::::: {.columns}
+:::: {.column width="50%"}
+- Historically, [a computer was a person who makes calculations]{.alert}, especially with a calculating machine
+- To do calculations we use numbers. How to represent them?
+  - Fingers 
+  - Pebbles
+  - [Strings (Inca Khipu)](https://www.ecb.torontomu.ca/~elf/abacus/inca-khipu.html)
+  - [Abacus](https://en.wikipedia.org/wiki/Abacus)
+::::
+
+:::: {.column width="50%"}
+:::{style="font-size: 20px;"}
+![](figures/abacus.jpg)
+Video: [How to use an abacus](https://youtu.be/SkUdjlQy3rk&t=176)
+:::
+::::
+:::::
+
+## Four-species mechanical calculators
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+![](figures/mechanical-calculator.jpg)
+:::
+
+::: {.column width="50%"}
+- The [first mechanical calculator](https://www.arithmeum.uni-bonn.de/en/collection/exhibit-of-the-month/archive/01-the-first-mechanical-calculating-machine-for-all-four-arithmetic-operations-by-gottfried-wilhelm-leibniz.html) capable of performing all four basic arithmetic operations (addition, subtraction, multiplication, and division)
+
+- Invented by [Gottfried Wilhelm Leibniz](https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz) in 1694
+
+- If you took a statistics course before the late 1970s, you likely used this type of [mechanical calculator](https://en.wikipedia.org/wiki/Mechanical_calculator) for your computations
+:::
+::::
+
+## Silicon-based computers
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+![](figures/transistor.gif)
+:::
+
+::: {.column width="50%"}
+:::{style="font-size: 26px;"}
+The 1970s marked the transition from mechanical to electronic:
+
+:::{.incremental}
+- [Transistors](https://en.wikipedia.org/wiki/Transistor) act as switches for electronic signals
+- [Integrated circuits](https://en.wikipedia.org/wiki/Integrated_circuit) combine multiple transistors on a single chip
+- [Microprocessors](https://en.wikipedia.org/wiki/Microprocessor) are integrated circuits that contain the functions of a computer's central processing unit (CPU)
+- They follow the [Von Neumann architecture](https://en.wikipedia.org/wiki/Von_Neumann_architecture)
+:::
+:::
+:::
+::::
+
+## Von Neumann Architecture 
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+![](figures/neumann.webp)
+:::
+
+::: {.column width="50%"}
+:::{style="font-size: 24px;"}
+- The [Von Neumann Architecture](https://en.wikipedia.org/wiki/Von_Neumann_architecture) stores both program instructions and data together in a slow storage medium, such as a [hard disk](https://en.wikipedia.org/wiki/Hard_disk_drive), and transfers them to faster [RAM](https://en.wikipedia.org/wiki/Random-access_memory) for execution by the [CPU](https://en.wikipedia.org/wiki/Central_processing_unit)
+- This is the basis for [almost all modern computers]{.alert}
+- When proposed in 1945, this architecture was revolutionary, as [programs were previously seen as part of the machine](https://en.wikipedia.org/wiki/History_of_computing_hardware), distinct from the data they operated on
+:::
+:::
+::::
+
+## Von Neumann Architecture 
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+![](figures/von-neumann-architecture.webp)
+:::
+
+::: {.column width="50%"}
+:::{style="font-size: 22px;"}
+- Advantages:
+  - Efficient memory use, with less need for separate areas
+  - Flexibility in data storage and manipulation
+  - Simplicity in design and operation
+
+- Disadvantages:
+  - [Von Neumann bottleneck](https://en.wikipedia.org/wiki/Von_Neumann_architecture#Von_Neumann_bottleneck): Limits computing performance due to sequential processing of instructions and data through a single bus
+  - The CPU often waits for data due to its faster processing speed compared to memory transfer rates
+  - [Harvard architecture](https://en.wikipedia.org/wiki/Harvard_architecture) is an alternative that separates data and instruction memory
+:::
+:::
+::::
+
+# Data representation {background-color="#2d4563"}
+
+## Computers run on 0s and 1s
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+:::{style="font-size: 24px;"}
+- Computers represent everything by using [0s and 1s]{.alert}
+- Transistors act as [switches]{.alert}, with 1 for high voltage level and 0 for low voltage level
+- Computers use binary because transistors are [easy to fabricate]{.alert} in silicon and can be densely packed on a chip
+
+:::{.incremental}
+- _But how does this work?_
+- How can we represent text, images, and videos using only 0s and 1s?
+- This leads us to [abstraction]{.alert}: representing ideas at different
+  levels of detail by identifying what is essential
+- We will use abstraction to translate 0s and 1s to decimal numbers, then
+  translate those numbers to other types
+:::
+:::
+:::
+
+::: {.column width="50%"}
+![](figures/binary-rain.gif)
+:::
+::::
+
+## Converting coins to dollars
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+![](figures/coins.png)
+:::
+
+::: {.column width="50%"}
+:::{style="font-size: 24px;"}
+- We can convert between number systems by translating a value from one system to the other
+- For example, the coins on the left represent the same value as $0.87
+- Using pictures is clunky. Let's make a new representation system for coins
+:::
+:::
+::::
+
+## Converting coins to dollars
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+![](figures/coins.png)
+:::
+
+::: {.column width="50%"}
+:::{style="font-size: 24px;"}
+- To represent coins, we will make a number with four digits 
+- The first represents quarters, the second dimes, the third nickels, and the fourth pennies
+  - c3102 =
+  - 3 x $0.25 + 1 x $0.10 + 0 x $0.05 + 2 x $0.01 =
+  - $0.87
+
+![](figures/qdnp.png){width=50%}
+:::
+:::
+::::
+
+## Converting dollars to coins
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+![](figures/coins.png)
+:::
+
+::: {.column width="50%"}
+:::{.incremental}
+- How do we convert money from dollars to coins? Assume we want to [minimise
+  the number of coins used]{.alert}
+- For example, what is $0.59 in coin representation? Use the same four-digit
+  system: quarters, dimes, nickels, and pennies
+
+- $0.59 = 2 x $0.25 + 0 x $0.10 + 1 x $0.05 + 4 x $0.01 = c2014
+:::
+:::
+::::
+
+## Quick questions!
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+- [Think-Pair-Share]{.alert}: do the following conversions
+
+- What is c1112 in dollars?
+
+- What is $0.61 in coin representation?  
+:::
+
+::: {.column width="50%"}
+::: {.incremental}
+Solutions:
+
+- c1112 = $0.42 = 1 x $0.25 + 1 x $0.10 + 1 x $0.05 + 2 x $0.01
+
+- $0.61 = c2101 = 2 x $0.25 + 1 x $0.10 + 0 x $0.05 + 1 x $0.01
+:::
+:::
+::::
+
+## Number systems – binary
+
+:::{style="margin-top:40px;"}
+:::
+
+:::{.incremental}
+:::{style="font-size: 24px;"}
+- Now let us go back to computers! `r emo::ji('computer')`
+- We can represent numbers using only 0s and 1s with the binary number system
+- Instead of counting the number of 1s, 5s, 10s, and 25s coins you need, count
+  the number of 1s, 2s, 4s, 8s, etc
+- Why these numbers? They are [powers of 2]{.alert}. This is a number in [base
+  2]{.alert}
+
+- A [single binary digit is a bit]{.alert}, e.g., 101 has three bits
+- An [8-bit group is called a byte]{.alert}, e.g., 10101010
+- Binary numbers grow as follows:
+  - 0 represents zero
+  - 1 represents one
+  - 10 represents two
+  - 100 represents four
+  - 1000 represents eight, and so on…
+:::
+:::
+
+## Quick question!
+
+:::{style="margin-top:40px;"}
+:::
+
+- [Think-Pair-Share]{.alert}: what is the binary representation of the decimal
+  number 3?
+
+:::{.fragment .fade-in fragment-index=1}
+A) 101
+:::
+
+:::{.fragment .fade-in fragment-index=2}
+:::{.fragment .highlight-red fragment-index=5}
+B) 11
+:::
+:::
+
+:::{.fragment .fade-in fragment-index=3}
+C) 111
+:::
+
+:::{.fragment .fade-in fragment-index=4}
+D) 010
+:::
+
+## Your turn!
+
+[Practice Exercise 01]{.alert}: 
+
+1. What binary number represents 5?
+
+2. What binary number represents 7?
+
+3. What binary number represents 9?
+
+4. What binary number represents 11?
+
+## Convert binary to decimal
+
+:::{style="margin-top:40px;"}
+:::
+
+To convert a binary number to decimal, just add each power of 2 that is
+represented by a 1.
+
+:::{style="font-size: 26px;"}
+- For example, 00011000 = 16 + 8 = 24
+
+| 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
+|-----|----|----|----|----|---|---|---|
+|  0  | 0  | 0  | 1  | 1  | 0 | 0 | 0 |
+
+
+<br>
+
+- Another example: 10010001 = 128 + 16 + 1 = 145
+
+| 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
+|-----|----|----|----|----|---|---|---|
+|  1  | 0  | 0  | 1  | 0  | 0 | 0 | 1 |
+
+:::
+
+# So far, so good? `r emo::ji('smiley')` {background-color="#2d4563"}
+
+# Binary and abstraction {background-color="#2d4563"}
+
+## Binary and abstraction
+
+<br>
+
+- Now that we can represent numbers using binary, [we can represent everything
+  computers store using binary]{.alert}
+- We just need to use [abstraction]{.alert} to interpret bits or numbers in particular ways
+- Let us consider colours, images, and text
+
+## Images as collections of colours
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="60%"}
+![](figures/mona-lisa.png)
+:::
+
+::: {.column width="40%"}
+:::{style="font-size: 28px; margin-top: 40px;"}
+:::{.incremental}
+- What if we want to represent an image? How can we convert that to numbers?
+- First, break the image down into a grid of colours, where each dot of color has a distinct hue 
+- A dot of color in this context is called a [pixel](https://en.wikipedia.org/wiki/Pixel)
+- Now we just need to represent a single color (a pixel) as a number!
+:::
+:::
+:::
+::::
+
+## Images as collections of colours
+### RGB colour model
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="60%"}
+![](figures/rgb.png)
+:::
+
+::: {.column width="40%"}
+:::{style="font-size: 24px; margin-top: 40px;"}
+:::{.incremental}
+- The [RGB colour model](https://en.wikipedia.org/wiki/RGB_color_model) is
+  widely used in digital displays
+- Each pixel is represented by three numbers, each ranging from 0 to 255
+- The first number represents the amount of red, the second the amount of
+  green, and the third the amount of blue
+- 00000000 is no r/g/b and 11111111 is very r/g/b! 
+- You can try different colours [here](https://www.w3schools.com/colors/colors_rgb.asp)
+:::
+:::
+:::
+::::
+
+## Number systems – Hexadecimal
+### What is hexadecimal?
+
+:::{style="margin-top:20px;"}
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+![](figures/hexadecimal.png)
+:::
+
+::: {.column width="50%"}
+:::{style="font-size: 22px; margin-top: 20px;"}
+:::{.incremental}
+- When we represent values with multiple bytes, it can be hard to distinguish where numbers begin and end
+- [Hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) is a number system with 16 digits: 0123456789**ABCDEF**
+- It is used to represent binary numbers in a more compact way
+- Each hex digit corresponds to 4 binary bits, making it a shorthand for binary:
+  - 0000 = 0
+  - 0001 = 1
+  - 0010 = 2
+  - ...
+  - 1110 = E
+  - 1111 = F
+:::
+:::
+:::
+::::
+
+## Binary to hex conversion
+
+:::{style="margin-top:40px;"}
+:::
+
+- Convert binary to hex by grouping into blocks of four bits.
+- Example: Binary `1001 1110 0000 1010` converts to Hex `9E0A`.
+
+<br>
+
+:::{.fragment .fade-in}
+[Practice Exercise 02]{.alert}:
+
+1. Convert the decimal number 13 to binary.
+
+2. Convert the decimal number 13 to hexadecimal. 
+:::
+
+## Hexadecimal and HTML
+### Hex and RGB
+
+:::{style="margin-top:40px;" .incremental}
+- HTML uses hexadecimal to represent colours
+- Six-digit hex numbers specify colours:
+  - FFFFFF = White
+  - 000000 = Black
+
+- Each pair of digits represents a colour component (RGB).
+
+- Each color channel typically has a range from 0 to 255 (in 8-bit systems), which gives a total of 256 intensity levels for each primary color.
+
+- When you combine the three channels, you get a possible color palette of $256^3$ or about 16.7 million colours
+:::
+
+## Represent text as individual characters
+### Characters and glyphs
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="60%"}
+![](figures/glyph.png)
+:::
+
+::: {.column width="40%"}
+:::{style="font-size: 24px; margin-top: 40px;"}
+:::{.incremental}
+- Next, how do we represent text?
+- First, we break it down into smaller parts, like with images. In this case,
+  we can break text down into [individual characters]{.alert}
+- A **character** is the smallest component of text, like A, B, or /.
+- A [**glyph**](https://en.wikipedia.org/wiki/Glyph) is the graphical representation of a character.
+- In programming, the display of glyphs is typically handled by GUI (Graphical
+  User Interface) toolkits or font renderers
+:::
+:::
+:::
+::::
+
+## Represent text as individual characters
+### Lookup tables
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="60%"}
+![](figures/ascii-art-homer.jpg){width="70%"}
+:::
+
+::: {.column width="40%"}
+:::{style="font-size: 22px; margin-top: 40px;"}
+:::{.incremental}
+- For example, the text "Hello World" becomes `H, e, l, l, o, space, W, o, r, l, d` 
+- Unlike colours, characters do not have a logical connection to numbers
+- To represent characters as numbers, we use a [lookup table]{.alert} called
+  [ASCII](https://en.wikipedia.org/wiki/ASCII)
+- ASCII stands for American Standard Code for Information Interchange
+- As long as every computer uses the same lookup table, computers can always translate a set of numbers into the same set of characters
+:::
+:::
+:::
+::::
+
+## ASCII is nothing but a simple lookup table
+### Yes, really!
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="40%"}
+For basic characters, we can use the encoding system called ASCII. This maps
+the numbers 0 to 255 to characters. Therefore, one character is represented by
+one byte
+
+Check it out here: [ASCII Table](https://www.asciitable.com/)
+:::
+
+::: {.column width="60%"}
+![](figures/ascii-table.png)
+:::
+::::
+
+## ASCII is nothing but a simple lookup table
+### Translation
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="40%"}
+:::{style="font-size: 38px;"}
+"Hello World" =
+
+`01001000
+01100101
+01101100
+01101100
+01101111
+00100000
+01010111
+01101111
+01110010
+01101100
+01100100`
+:::
+:::
+
+::: {.column width="60%"}
+![](figures/ascii-table.png)
+:::
+::::
+
+
+## Your turn!
+### Practice Exercise 03
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="40%"}
+:::{style="font-size: 38px;"}
+- Translate the following binary into ASCII text:
+
+`01011001
+01100001
+01111001`
+:::
+:::
+
+::: {.column width="60%"}
+![](figures/ascii-table.png)
+:::
+::::
+
+
+## ASCII Limitations
+
+:::{style="margin-top:40px; font-size: 24px;"}
+
+- ASCII only includes unaccented characters.
+- Languages requiring accented characters cannot be represented.
+- Even English needs characters like ‘é’ for words such as ‘café’.
+
+:::{style="margin-top:20px;"}
+- To address this, [Unicode](https://en.wikipedia.org/wiki/Unicode) was developed
+- Unicode is a superset of ASCII that includes characters from all languages, as well as symbols and emojis
+- The Unicode system represents every character that can be typed into a
+  computer. It uses up to 5 bytes, which can represent up to 1 trillion
+  characters! 
+- UTF-8 stands for Transformation Format 8-bit
+
+- Find all the Unicode characters here: <https://symbl.cc/en/unicode-table/>
+  - "Danilo" in Unicode: `\u0044\u0061\u006e\u0069\u006c\u006f`
+  - "QTM 350" in Unicode: `\u0051\u0054\u004d\u0020\u0033\u0035\u0030`
+    
+- Decoder: <https://symbl.cc/en/tools/decoder/>
+:::
+:::
+
+# Questions? `r emo::ji('thinking_face')` {background-color="#2d4563"}
+
+# Programming languages and the genesis of programming `r emo::ji('glowing_star')` `r emo::ji('input_latin_lowercase')` `r emo::ji('snake')` {background-color="#2d4563"}
+
+## The genesis of programming
+### Zuse's computers
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+![](figures/z3.JPG)
+:::
+
+::: {.column width="50%"}
+:::{style="font-size: 24px; margin-top: 40px;"}
+- [Konrad Zuse](https://en.wikipedia.org/wiki/Konrad_Zuse) was a German
+  engineer and computer pioneer
+- He created the first programmable computer, the
+  [Z3](https://en.wikipedia.org/wiki/Z3_(computer)), in 1941
+- The Z3 was the first computer to use [binary arithmetic]{.alert} and read binary instructions from punch tape
+- Example: Z4 had 512 bytes of memory
+- Zuse also created the first high-level programming language,
+  [Plankalkül](https://en.wikipedia.org/wiki/Plankalk%C3%BCl)
+:::
+:::
+::::
+
+## What is Assembly language?
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="60%"}
+![](figures/assembly.png)
+:::
+
+::: {.column width="40%"}
+:::{style="font-size: 24px; margin-top: 40px;"}
+- [Assembly language](https://en.wikipedia.org/wiki/Assembly_language) is a
+  low-level programming language that allows writing machine code in human-readable text
+- Each instruction corresponds to a single machine code instruction
+- The first assemblers were human!
+- Programmers wrote assembly code, which secretaries transcribed to binary for machine processing
+:::
+:::
+::::
+
+## Some curious facts about Assembly!
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="60%"}
+![Margaret Hamilton and the Apollo 11 code](figures/apollo11a.jpg)
+:::
+
+::: {.column width="40%"}
+:::{style="font-size: 22px; margin-top: 40px;"}
+- The [Apollo 11](https://en.wikipedia.org/wiki/Apollo_11) mission to the moon
+  was programmed in assembly language
+- The code is available here: <https://github.com/chrislgarry/Apollo-11> (good
+  luck reading it! `r emo::ji('grinning_face_with_sweat')`)
+
+- One of the files is the `BURN_BABY_BURN--MASTER_IGNITION_ROUTINE.agc` `r emo::ji('fire')` `r emo::ji('rocket')`
+
+- But if Assembly is so fast and efficient, why don't we use it all the time?
+:::
+:::
+::::
+
+## Low-level vs high-level languages
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+:::{style="font-size: 24px;"}
+- [Low-level
+  languages](https://en.wikipedia.org/wiki/Low-level_programming_language) are
+  closer to machine code and are harder to read and write
+- [High-level languages](https://en.wikipedia.org/wiki/High-level_programming_language)
+  abstract from hardware details and are portable across different systems
+
+:::{style="margin-top:10px;"}
+:::
+
+- **Compiled Languages:** Convert code to binary instructions before execution (e.g., `C++`, `Fortran`, `Go`).
+- **Interpreted Languages:** Run inside a program that interprets and executes commands immediately (e.g., `R`, `Python`).
+:::
+:::
+
+::: {.column width="50%"}
+![](figures/high-low-languages.png)
+:::
+::::
+
+## Low-level vs high-level languages
+### Code that is worth a thousand words
+
+:::{style="margin-top:40px;"}
+:::
+
+:::: {.columns}
+::: {.column width="50%"}
+:::{style="font-size: 24px;"}
+- "Hello, World!" in machine code:
+
+```{assembly}
+#| echo: TRUE
+#| eval: FALSE
+
+48 65 6C 6C 6F 2C 20 57 6F 72 6C 64 21 
+```
+
+- "Hello, World!" in
+  [Assembly](https://en.wikipedia.org/wiki/Assembly_language) (x86 Assembly for Linux)
+
+```{assembly}
+#| echo: true
+#| eval: false
+
+section .data
+    message db 'Hello, World!', 10    ; 10 is the ASCII code for newline
+
+section .text
+    global _start
+
+_start:
+    mov eax, 4          ; system call number for write
+    mov ebx, 1          ; file descriptor 1 is stdout
+    mov ecx, message    ; address of string to output
+    mov edx, 14         ; number of bytes
+    int 0x80            ; call kernel
+
+    mov eax, 1          ; system call number for exit
+    xor ebx, ebx        ; exit status 0
+    int 0x80            ; call kernel
+```
+
+:::
+:::
+
+::: {.column width="50%"}
+:::{style="font-size: 24px;"}
+- "Hello, World!" in
+  [Python](https://en.wikipedia.org/wiki/Python_(programming_language)):
+
+```{R}
+#| echo: true
+#| eval: false
+print("Hello, World!")
+```
+:::
+:::
+::::
+
+# Summary `r emo::ji('light_bulb')` {background-color="#2d4563"}
+
+## Summary
+
+:::{style="margin-top:40px;"}
+:::
+
+:::{style="font-size: 24px;"}
+- **Computational Literacy**: Binary and hexadecimal numbers, characters (ASCII, Unicode), and distinction between high vs low-level programming languages
+- **Early Computing**: Konrad Zuse's pioneering work with programmable digital computers and the use of binary arithmetic
+- **Assembly Language**: The initial approach to programming using human-readable instructions for machine code
+- **Calculators**: The evolution from Leibniz’s four-species calculating machine to modern electronic computing
+- **Silicon Microchip Computers**: The 1970s revolution with transistors, integrated circuits, and the emergence of Von Neumann architecture
+- **Modern Programming Languages**: From low-level assembly languages to high-level languages like `Python`; distinction between compiled and interpreted languages
+:::
+
+## Next class
+
+:::{style="margin-top:40px;"}
+:::
+
+::::{.incremental}
+:::{style="font-size: 28px;"}
+- We will learn about the [command
+  line](https://en.wikipedia.org/wiki/Command-line_interface) and [shell
+  scripting](https://en.wikipedia.org/wiki/Shell_script) in the terminal
+- Please have your [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
+  or [iTerm2](https://iterm2.com/) installed, and we will start coding!
+- If you have VS Code, that's even better! `r emo::ji('winking_face')`
+- Please check the [installation
+  tutorials](https://danilofreire.github.io/qtm350/tutorials/tutorials.html)
+  for more information, and let me know if you have any questions `r emo::ji('smiley')`
+
+:::{style="margin-top:30px;"}
+:::
+
+- [Assignment 01](https://github.com/danilofreire/qtm350/blob/main/assignments/01-assignment.ipynb) is already online. Please check it out! Due date: 11 September 2024.
+:::  
+::::
+
+# Thank you very much and see you next class! `r emo::ji('smiling_face_with_smiling_eyes')` `r emo::ji('folded_hands')` {background-color="#2d4563"}
+
+## Solution - Practice Exercise 01 {#sec-solution01}
+
+:::{style="font-size: 24px; margin-top: 40px;"}
+
+1. What binary number represents 5?
+  - In binary, the number 5 is represented as 101, which equates to $(1 \times 2^2) + (0 \times 2^1) + (1 \times 2^0)$.
+
+2. What binary number represents 7?
+  -  In binary, the number 7 is represented as 111, which equates to $(1 \times 2^2) + (1 \times 2^1) + (1 \times 2^0)$.
+
+3. What binary number represents 9?
+  - In binary, the number 9 is represented as 1001, which equates to $(1 \times 2^3) + (0 \times 2^2) + (0 \times 2^1) + (1 \times 2^0)$.
+
+4. What binary number represents 11?
+  - In binary, the number 11 is represented as 1011, which equates to $(1 \times 2^3) + (0 \times 2^2) + (1 \times 2^1) + (1 \times 2^0)$.
+:::
+
+## Solution - Practice Exercise 02 {#sec-solution02}
+
+:::{style="font-size: 22px; margin-top: 40px;"}
+
+1. Decimal 13 is `1101` in binary.
+  - Break it down: $13 = (1 \times 2^3) + (1 \times 2^2) + (0 \times 2^1) + (1 \times 2^0)$.
+
+2. Binary 1101 is `D` in hexadecimal.
+  - Group the binary into blocks of four: `1101`.
+  - Convert each block to hex: `1101` (binary) = `D` (hex).
+  - Let's take a closer look at how to convert the binary number `1101` to hexadecimal:
+  - Start with the binary number: `1101`
+  - Convert it to decimal by summing the powers of 2:
+    - $1 \times 2^3$ = 8
+    - $1 \times 2^2$ = 4
+    - $0 \times 2^1$ = 0
+    - $1 \times 2^0$ = 1
+    
+- Add the decimal values: $8 + 4 + 0 + 1 = 13$
+- The decimal number `13` corresponds to the hexadecimal number `D`.
+- Therefore, binary `1101` is `D` in hexadecimal.
+:::
+
+## Solution - Practice Exercise 03 {#sec-solution03}
+
+:::{style="font-size: 24px; margin-top: 40px;"}
+- Step 1: Identify the binary strings: `01011001 01100001 01111001`
+
+- Step 2: Convert each binary string to its decimal equivalent
+  - 01011001 = 89
+  - 01100001 = 97
+  - 01111001 = 121
+
+- Step 3: Map each decimal value to its corresponding ASCII character
+  - 89 = Y
+  - 97 = a
+  - 121 = y
+
+- Step 4: Combine the ASCII characters to form the final text
+  - Result: Yay
+:::
+
