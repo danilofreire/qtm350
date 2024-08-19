@@ -1206,7 +1206,7 @@ vignettes/*.pdf
 .Renviron
 
 # pkgdown site
-docs/
+# docs/
 
 # translation temp files
 po/*~
@@ -1603,7 +1603,8 @@ TSWLatexianTemp*
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -1906,3 +1907,4 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/latex,linux,macos,python,r,vim,windows
 
+.DS_Store
