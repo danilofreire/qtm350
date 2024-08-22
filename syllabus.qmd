@@ -4,7 +4,7 @@ title: "QTM 350 - Data Science Computing"
 
 # Course Description
 
-Welcome to [QTM 350](https://github.com/danilofreire/qtm350)! This course introduces key tools in modern data science, focusing on three essential aspects: reliability, reproducibility, and robustness. We will cover command line interfaces and [vim](https://www.vim.org/), version control with [Git](https://git-scm.com/) and [GitHub](https://github.com/), and literate programming using [Quarto](https://quarto.org/) and [Jupyter Notebooks](https://jupyter.org/). You will also learn about data storage and manipulation with [SQL](https://www.w3schools.com/sql/) and [Pandas](https://pandas.pydata.org/), data visualisation using [Matplotlib](https://matplotlib.org/), [Seaborn](https://seaborn.pydata.org/) and [plotnine](https://plotnine.readthedocs.io/), and parallel computing with [Dask](https://www.dask.org/). We will explore artificial intelligence-assisted programming with [GitHub Copilot](https://github.com/features/copilot) and finish with [Docker](https://www.docker.com/) and containerisation. 
+Welcome to [QTM 350](https://github.com/danilofreire/qtm350)! This course introduces key tools in modern data science, focusing on three essential aspects: reliability, reproducibility, and robustness. We will cover command line interfaces and [vim](https://www.vim.org/), version control with [Git](https://git-scm.com/) and [GitHub](https://github.com/), and literate programming using [Quarto](https://quarto.org/) and [Jupyter Notebooks](https://jupyter.org/). You will also learn about data storage and manipulation with [SQL](https://www.w3schools.com/sql/) and [Pandas](https://pandas.pydata.org/), and parallel computing with [Dask](https://www.dask.org/). We will explore artificial intelligence-assisted programming with [GitHub Copilot](https://github.com/features/copilot) and finish with [Docker](https://www.docker.com/) and containerisation. 
 
 By working with real-world datasets and problems, students will gain hands-on experience using these tools and methods to extract insights from data. This course will develop technical skills and critical thinking needed to solve complex data challenges. Upon completion, students will be prepared to confidently apply these tools to their own research and professional work.
 
@@ -12,11 +12,12 @@ By working with real-world datasets and problems, students will gain hands-on ex
 
 By the end of this course, students will be able to:
 
-- Use data science tools for project collaboration and version control
-- Apply advanced techniques for data storage, manipulation, and querying
-- Create clear data visualisations and write well-documented code
-- Use AI tools to help with programming tasks
-- Understand the basics of containerisation and parallel computing
+- Use the command line interface to manage files and directories.
+- Work with version control systems to track changes in code and collaborate with others.
+- Create reproducible reports and presentations.
+- Use AI tools to assist with programming tasks.
+- Apply advanced techniques for data storage, manipulation, and querying.
+- Understand the basics of containerisation and parallel computing.
  
 # Course Requirements
 
@@ -105,7 +106,7 @@ Emory University welcomes students from around the country and the world, and th
 
 # Assignments and Grading Policy
 
-**Problem Sets (50%).** There will be ten problem sets throughout the course. These assignments are designed to reinforce concepts covered in lectures and readings, and to provide hands-on practice with statistical programming. Problem sets will include a mix of theoretical questions and practical applications. They will be assigned regularly and must be completed individually. You may discuss your work with other colleagues as long as you do not copy entire sentences, just changing a few words. If you worked with other students, please write down their names on your assignment. Please also acknowledge any sources you used in your work, including textbooks, articles, and AI resources. *Any assignment submitted after the due date/time will automatically be graded for half points*. To accommodate unexpected circumstances, your lowest assignment grade will be automatically dropped at the end of the semester. *The same applies to in-class quizzes*. Please submit all assignments in Jupyter Notebook format (`.ipynb`) via Canvas until midnight on the due date.
+**Problem Sets (50%).** There will be ten problem sets throughout the course. These assignments are designed to reinforce concepts covered in lectures and readings, and to provide hands-on practice with statistical programming. Problem sets will include a mix of theoretical questions and practical applications. They will be assigned regularly and must be completed individually. You may discuss your work with other colleagues as long as you do not copy entire sentences, just changing a few words. If you worked with other students, please write down their names on your assignment. Please also acknowledge any sources you used in your work, including textbooks, articles, and AI resources. *Any assignment submitted after the due date/time will automatically be graded for half points*. To accommodate unexpected circumstances, your lowest assignment grade will be automatically dropped at the end of the semester. *The same applies to in-class quizzes*. Please submit all assignments as Jupyter Notebooks (`.ipynb`) or `.pdf` files via Canvas or email until midnight on the due date.
 
 **Class Quizzes (30%).** Students will also take five in-class quizzes throughout the semester. These quizzes will be based on the lectures from the previous weeks. They will be designed to test your understanding of the material and your ability to apply the concepts to new problems. Quizzes will be open-book and open-notes, and students have 50 minutes to complete them. You are **not** allowed to use AI tools. They are individual assessments, and students are not allowed to discuss the questions with their colleagues in class. 
 
@@ -121,7 +122,7 @@ Each student's final grade will be based on the following after rounding up to t
 
 # Course Outline and Suggested Readings
 
-The lecture notes cover all the necessary material for the course, and the weekly suggested readings are recommended for those who want to deepen their understanding of the course topics. As mentioned above, the course outline is subject to change, and I will update the syllabus if needed. Please remember to check the course [GitHub repository](https://github.com/danilofreire/qtm151) regularly.
+The lecture notes cover all the necessary material for the course, and the weekly suggested readings are recommended for those who want to deepen their understanding of the course topics. As mentioned above, the course outline is subject to change, and I will update the syllabus if needed. Please remember to check the course [GitHub repository](https://github.com/danilofreire/qtm350) regularly. Lecture notes, assignments, and other materials will be posted there as the course progresses.
 
 ## Module 01: Introduction to Python, Jupyter, and GitHub
 
@@ -131,9 +132,9 @@ The lecture notes cover all the necessary material for the course, and the weekl
 - Lecture 01: [Welcome to QTM 350 - Introduction](https://danilofreire.github.io/qtm350/lectures/lecture-01/01-introduction.html).
 - [Course Tutorials: How to Install Anaconda, Jupyter, PostgreSQL, VSCode, and Open a Free Educational Account on GitHub](https://github.com/danilofreire/qtm350/tutorials).
 
-Weekly suggested readings:
+Suggested references:
 
-- Cleveland, W. S. (2001). [Data Science: An Action Plan for Expanding the Technical Areas of the Field of Statistics](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1751-5823.2001.tb00477.x). International Statistical Review, 69(1), 21-26.
+- Cleveland, W. S. (2001). [Data science: An action plan for expanding the technical areas of the field of statistics](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1751-5823.2001.tb00477.x). International Statistical Review, 69(1), 21-26.
 - Donoho, D. (2017). [50 Years of Data Science](https://www.tandfonline.com/doi/full/10.1080/10618600.2017.1384734). Journal of Computational and Graphical Statistics, 26(4), 745-766.
 - Breiman, L. (2001). [Statistical Modeling: The Two Cultures (with Comments and a Rejoinder by the Author)](https://projecteuclid.org/journals/statistical-science/volume-16/issue-3/Statistical-Modeling--The-Two-Cultures-with-comments-and-a/10.1214/ss/1009213726.full). Statistical Science, 16(3), 199-231.
 - Brady, H. E. (2019). [The Challenge of Big Data and Data Science](https://www.annualreviews.org/content/journals/10.1146/annurev-polisci-090216-023229). Annual Review of Political Science, 22(1), 297-323.
@@ -146,154 +147,180 @@ Weekly suggested readings:
 - Lecture 02: [Computational Literacy](https://danilofreire.github.io/qtm350/lectures/lecture-02/02-computational-literacy.html).
 - **Assignment 01:** [Problem Set 01](https://github.com/danilofreire/qtm350/blob/main/assignments/01-assignment.ipynb)
 
-Weekly suggested readings:
+Suggested references:
 
-- 
-- [Markdown Guide](https://www.markdownguide.org/basic-syntax/).
+- Campbell-Kelly, M., Aspray, W. F., Yost, J. R., Tinn, H., & Díaz, G. C. (2023). [Computer: A History of the Information Machine](https://doi.org/10.4324/9781003263272). Routledge.
+- Shalf, J. (2020). [The Future of Computing beyond Moore’s Law](https://royalsocietypublishing.org/doi/full/10.1098/rsta.2019.0061). Philosophical Transactions of the Royal Society A, 378(2166), 20190061.
+- Al-Hashimi, H. M. (2023). [Turing, von Neumann, and The Computational Architecture of Biological Machines](https://www.pnas.org/doi/abs/10.1073/pnas.2220022120). Proceedings of the National Academy of Sciences, 120(25), e2220022120.
+- Wing, J. M. (2006). [Computational Thinking](https://www.cs.cmu.edu/~15110-s13/Wing06-ct.pdf). Communications of the ACM, 49(3), 33-35.
+- Videos: [David J. Malan - Abstraction](https://www.youtube.com/watch?v=6V1sr0XV_Ng), [Khan Academy - Hexadecimal Number System](https://www.youtube.com/watch?v=4EJay-6Bioo), [Matthias Wandel - Marble Adding Machine](https://youtu.be/GcDshWmhF4A), [Crash Course - Early Computing](https://www.youtube.com/watch?v=O5nskjZ_GoI) and [Electronic Computing](https://www.youtube.com/watch?v=LN0ucKNX0hc) (the last two are quite entertaining!).
 
-## Module 02: Python Data Types and Controlling Flows
+## Module 02: Introduction to the Command Line Interface and Version Control
 
 ### Monday September 09:
 
-- Lecture 03: [Variables and Lists](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-03/03-variables-lists.ipynb).
+- Lecture 03: The command line interface (CLI), shell basics, and file management.
+
+Suggested references:
+
+- Janssens, J. (2021). [Data science at the command line: Obtain, scrub, explore, and model data with Unix power tools (2nd ed.)](https://jeroenjanssens.com/dsatcl/). O'Reilly Media.
+- Levy, J. (2024). [The art of command line](https://github.com/jlevy/the-art-of-command-line). GitHub.
+- Healy, K. (2019). [The Plain Person's Guide to Plain Text Social Science](https://plain-text.co/). Chapters 1-5.
 
 ### Wednesday, September 11:
 
-- Lecture 04: [Mathematical Operations, Arrays, and Random Numbers](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-04/04-maths-arrays-random.ipynb).
+- Lecture 04: Command line tools, text files, scripting, and basics of Vim.
 - **Assignment 01 due (5%).**
-- **Assignment 02:** [Problem Set 02](https://github.com/danilofreire/qtm151/blob/main/assignments/02-assignment.ipynb).
+- **Assignment 02:** Problem Set 02.
 
-Weekly suggested readings:
+Suggested references:
 
-- [Real Python: Python Data Types](https://realpython.com/python-data-types/).
-- [Python Documentation: An Informal Introduction to Python](https://docs.python.org/3/tutorial/introduction.html).
-- [NumPy Documentation: Quickstart Tutorial](https://numpy.org/doc/stable/user/quickstart.html).
-- [Programiz: Math Operations in Python](https://www.programiz.com/python-programming/operators).
-- Matthes, E. (2019). Python Crash Course: A Hands-On, Project-Based Introduction to Programming (2nd ed.). No Starch Press. [Chapter 02](https://nostarch.com/download/PCC3e_ch2sample_8.17.22.pdf).
-- Severance, C. (2016). Python for Everybody: Exploring Data in Python 3. CreateSpace Independent Publishing Platform. [Chapters 3-11](https://www.py4e.com/lessons) (Note: Read only the chapters which interest you).
+- Kerr, D. (2024). [Effective Shell](https://effective-shell.com/).
+- Irianto, I. (2021). [Learn Vim (the Smart Way)](https://github.com/iggredible/Learn-Vim).
+- Neil, D. (2015). [Practical Vim: Edit Text at the Speed of Thought](https://pragprog.com/titles/dnvim2/practical-vim-second-edition/). Pragmatic Bookshelf.
+- Videos: [freeCodeCamp - Command line crash course](https://www.youtube.com/watch?v=yz7nYlnXLfE&pp=ygUXaG93IHRvIHVzZSBjb21tYW5kIGxpbmU%3D), [Percy Grunwald - Absolute beginner guide to the macOS terminal](https://www.youtube.com/watch?v=aKRYQsKR46I&pp=ygUcdGVybWluYWwgZm9yIGJlZ2lubmVycyBtYWNvcw%3D%3D), [NetworkChuck - 50 macOS tips and tricks using terminal](https://www.youtube.com/watch?v=qOrlYzqXPa8&pp=ygUcdGVybWluYWwgZm9yIGJlZ2lubmVycyBtYWNvcw%3D%3D)
 
 ### Monday, September 16:
 
-- Lecture 05: [Boolean Variables and If/Else Statements](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-05/05-boolean-if-else.ipynb).
+- Lecture 05: Version control with git and GitHub.
+
+Suggested references:
+
+- Chacon, S. and Straub, B. (2014). [Pro Git](https://git-scm.com/book/en/v2). Apress. (Instructor's note: this is _the book_ on Git).
+- GitHub tutorials: [GitHub skills](https://skills.github.com/) (recommended), [Git guides](https://github.com/git-guides), [GitHub learning lab](https://lab.github.com/), [Best practices for repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/best-practices-for-repositories).
 
 ### Wednesday, September 18:
 
-- Lecture 06: [While Loops and For Loops](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-06/06-while-for.ipynb).
+- Lecture 06: More GitHub: pull requests, issues, pages, and collaboration features.
 - **Assignment 02 due (5%).**
-- **Assignment 03:** [Problem Set 03](https://github.com/danilofreire/qtm151/blob/main/assignments/03-assignment.ipynb).
+- **Assignment 03:** Problem Set 03.
 
-Weekly suggested readings:
+Suggested references:
 
-- [Real Python: Conditional Statements in Python](https://realpython.com/python-conditional-statements/).
-- [Python Official Documentation: More Control Flow Tools](https://docs.python.org/3/tutorial/controlflow.html).
-- [Python Official Documentation: Compound Statements](https://docs.python.org/3/reference/compound_stmts.html).
-- [Real Python: Python 'while' Loops (Indefinite Iteration)](https://realpython.com/python-while-loop/). 
-- [Real Python: Python 'for' Loops (Definite Iteration)](https://realpython.com/python-for-loop/).
-- [W3Schools: Python While Loops](https://www.w3schools.com/python/python_while_loops.asp).
-- Sweigart, A. (2019). Automate the Boring Stuff with Python: Practical Programming for Total Beginners (2nd ed.). No Starch Press. [Chapter 02: Flow Control](https://automatetheboringstuff.com/2e/chapter2/).
-
-## Module 03: Writing and Running Functions
+- Perez-Riverol, Y., Gatto, L., Wang, R., Sachsenberg, T., Uszkoreit, J., Leprevost, F. da V., Fufezan, C., Ternent, T., Eglen, S. J., Katz, D. S., Pollard, T. J., Konovalov, A., Flight, R. M., Blin, K., & Vizcaíno, J. A. (2016). [Ten Simple Rules for Taking Advantage of Git and GitHub](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004947). PLOS Computational Biology, 12(7), e1004947.
+- Beckman, M. D., Çetinkaya-Rundel, M., Horton, N. J., Rundel, C. W., Sullivan, A. J., & Tackett, M. (2021). [Implementing version control with git and GitHub as a learning objective in statistics and data science courses](https://www.tandfonline.com/doi/pdf/10.1080/10691898.2020.1848485). Journal of Statistics and Data Science Education, 29(sup1), S132-S144.
+- Escamilla, E., Klein, M., Cooper, T., Rampin, V., Weigle, M. C., & Nelson, M. L. (2022). [The Rise of GitHub in Scholarly Publications](https://arxiv.org/abs/2208.04895). arXiv preprint arXiv:2208.04895.
 
 ### Monday, September 23:
 
-- Lecture 07: [Applications 1: Simulation Studies](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-07/07-applications-simulation.ipynb).
+- Lecture 07: **Quiz 01: git and Github (6%)**.
+
+## Module 03: Literate Programming with Markdown, Quarto, and Jupyter
 
 ### Wednesday, September 25:
 
-- Lecture 08: [Functions and Arguments](https://danilofreire.github.io/qtm151/lectures/lecture-08/08-functions-arguments.ipynb).
+- Lecture 08: Using Markdown, Jupyter, and Quarto for Reproducible Reports.
 - **Assignment 03 due (5%).**
-- **Assignment 04:** [Problem Set 04](https://github.com/danilofreire/qtm151/blob/main/assignments/04-assignment.ipynb).
+- **Assignment 04:** Problem Set 04.
 
-Weekly suggested readings:
+Suggested references:
 
-- [NumPy Random Module Tutorial](https://www.w3schools.com/python/numpy/numpy_random.asp).
-- [Python Functions](https://www.w3schools.com/python/python_functions.asp).
-- [Real Python: Defining Functions in Python](https://realpython.com/defining-your-own-python-function/).
-- [Python Tutorial for Beginners: Functions](https://www.youtube.com/watch?v=9Os0o3wzS_I).
+- [Quarto official website](https://quarto.org/).
+- Awesome Quarto: <https://github.com/mcanouil/awesome-quarto>. Note: this repository contains dozens of tutorials, examples, and resources. 
+- Çetinkaya-Rundel, M. & Lowndes, J. S. (2022) [Keynote talk: Hello Quarto: Share • Collaborate • Teach • Reimagine](https://www.youtube.com/watch?v=p7Hxu4coDl8). [Slides](https://mine.quarto.pub/hello-quarto/#/hello-quarto-title) and [source code](https://github.com/mine-cetinkaya-rundel/hello-quarto). This is one of the nicest Quarto presentations I have seen.
+- [Getting Started with Quarto (YouTube)](https://www.youtube.com/watch?v=_f3latmOhew&t=2s). Note: Posit (formerly RStudio) has a series of tutorials on Quarto on their YouTube channel. You can find their playlist [here](https://www.youtube.com/playlist?list=PL9HYL-VRX0oQI8fVioFxMTBrViFnRX_Df).
+- [Markdown Guide](https://www.markdownguide.org/basic-syntax/).
+- [Jupyter Notebooks Documentation](https://jupyter.org/).
+- [Codecademy - How to use Jupyter Notebooks](https://www.codecademy.com/article/how-to-use-jupyter-notebooks)
+- [Course tutorial: Jupyter and Markdown](https://danilofreire.github.io/qtm350/tutorials/02-jupyter-markdown-tutorial.html)
 
 ### Monday, September 30:
 
-- Lecture 09: [Global and Local Variables](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-09/09-global-local.ipynb).
+- Lecture 09: Presentations with Quarto and GitHub Pages.
+
+Suggested references:
+
+- [Quarto Documentation - Presentations](https://quarto.org/docs/presentations/) and [Websites](https://quarto.org/docs/websites/).
+- [GitHub Pages Documentation](https://docs.github.com/en/pages).
+- French, J. (2023). [Creating Websites with Quarto and GitHub Pages (YouTube Playlist)](https://www.youtube.com/playlist?list=PLkrJrLs7xfbXcEKhTCKRSr2VXH4yiBeXo).
+- Taylor, I. (2022). [Publishing a Quarto Site to GitHub Pages](https://www.ianmtaylor.net/posts/2022/deploy-quarto-to-github-pages/)
 
 ### Wednesday, October 02:
 
-- Lecture 10: [**Quiz 01: Application 02 - Operations over Multiple Datasets (6%)**](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-10/10-operations-multiple-datasets.ipynb).
-- **Assignment 05:** [Problem Set 05](https://github.com/danilofreire/qtm151/blob/main/assignments/05-assignment.ipynb).
-
-### Friday, October 04: (exceptionally)
-
+- Lecture 10: **Quiz 02: Literate Programming (6%)**.
+- **Assignment 05:** Problem Set 05.
 - **Assignment 04 due (5%).**
 
-Weekly suggested readings:
-
-- [Programiz: Python Variable Scope (With Examples)](https://www.programiz.com/python-programming/global-local-nonlocal-variables).
-- [NumPy Documentation: Indexing on `ndarrays`](https://numpy.org/doc/stable/user/basics.indexing.html).
-- [Pandas Documentation: How do I Select a Subset of a `DataFrame`?](https://pandas.pydata.org/pandas-docs/stable/getting_started/intro_tutorials/03_subset_data.html).
+## Module 04: AI-Assisted Programming
 
 ### Monday, October 07:
 
-- Lecture 11: [Subsetting Data](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-11/11-subsetting-data.ipynb).
+- Lecture 11: Introduction to AI-Assisted Programming and Chatbots.
 
-Weekly suggested readings:
+Suggested references:
 
-- McKinney, W. (2022). Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython (3rd ed.). O'Reilly Media. [Chapter 05: Getting Started with Pandas](https://wesmckinney.com/book/pandas-basics).
-- VanderPlas, J. (2016). Python Data Science Handbook: Essential Tools for Working with Data. O'Reilly Media. [Section 3.2: Data Indexing and Selection](https://jakevdp.github.io/PythonDataScienceHandbook/03.02-data-indexing-and-selection.html).
-- [Real Python: Linear Regression in Python](https://realpython.com/linear-regression-in-python/)
-- [Towards Data Science: Linear Regression in Python](https://towardsdatascience.com/linear-regression-using-python-b136c91bf0a2).
-- Sheppard, K. (2023). Introduction to Python for Econometrics, Statistics and Data Analysis (5th ed.). University of Oxford. [Chapter 21: Statistical Analysis with `statsmodels`](https://www.kevinsheppard.com/files/teaching/python/notes/python_introduction_2021.pdf).
-
-## Module 04: Data Manipulation with Pandas
+- Cihon, P. & Demirer, M. (2023). [How AI-powered software development may affect labor markets](https://www.brookings.edu/articles/how-ai-powered-software-development-may-affect-labor-markets/). Brookings Institution
+- Poldrack, R. A., Lu, T., & Beguš, G. (2023). [AI-assisted Coding: Experiments with GPT-4](https://arxiv.org/abs/2304.13187). arXiv preprint arXiv:2304.13187.
+- Lau, S & Guo, P. (2023). [From "Ban It Till We Understand It" to "Resistance is Futile": How University Programming Instructors Plan to Adapt as More Students Use AI Code Generation and Explanation Tools such as ChatGPT and GitHub Copilot](https://dl.acm.org/doi/fullHtml/10.1145/3568813.3600138). In Proceedings of the 2023 ACM Conference on International Computing Education Research V.1 (ICER '23 V1), August 07--11, 2023, Chicago, IL, USA. ACM, New York, NY, USA 16 Pages.
+- [Linus Torvalds Discusses the Impact of AI on Programming (YouTube)](https://www.youtube.com/watch?v=VHHT6W-N0ak).
 
 ### Wednesday, October 09:
 
-- Lecture 12: [Application 03: Linear Models](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-12/12-linear-models.ipynb). 
+- Lecture 12: AI-Assisted Programming with GitHub Copilot.
 - **Assignment 05 due (5%).**
-- **Assignment 06:** [Problem Set 06](https://github.com/danilofreire/qtm151/blob/main/assignments/06-assignment.ipynb).
+- **Assignment 06:** Problem Set 06.
+ 
+Suggested references:
+
+- [GitHub Copilot Documentation](https://docs.github.com/en/copilot).
+- [Using GitHub Copilot in your IDE: Tips, Tricks, and Best Practices](https://github.blog/developer-skills/github/how-to-use-github-copilot-in-your-ide-tips-tricks-and-best-practices/)
+- [Using GitHub Copilot in the Command Line](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-command-line)
+- [Coding with an AI Pair Programmer: Getting Started with GitHub Copilot
+  (YouTube)](https://www.youtube.com/watch?v=dhfTaSGYQ4o)
+- [GitHub Copilot YouTube Playlist](https://www.youtube.com/playlist?list=PL0lo9MOBetEHEHi9h0k_lPn0XZdEeYZDS)
+- Labadze, L., Grigolia, M., & Machaidze, L. (2023). [Role of AI Chatbots in Education: Systematic Literature Review](https://link.springer.com/article/10.1186/s41239-023-00426-1). International Journal of Educational Technology in Higher Education, 20(1), 56.
+## Module 05: Data Manipulation with Python
 
 ### Monday, October 14: Fall Break (no class)
 
 ### Wednesday, October 16:
 
-- Lecture 13: [Creating and Replacing Variables](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-13/13-creating-replacing-variables.ipynb).
+- Lecture 13: Python Data Types, Boolean Logic, and Control Structures.
 - **Assignment 06 due (5%).**
-- **Assignment 07:** [Problem Set 07](https://github.com/danilofreire/qtm151/blob/main/assignments/07-assignment.ipynb).
+- **Assignment 07:** Problem Set 07.
 
-Weekly suggested readings:
+Suggested references:
 
-- [Python for Data Analysis: Data Cleaning and Preparation](https://wesmckinney.com/book/data-cleaning).
-- [Codedamn: How to use the Replace function in Python](https://codedamn.com/news/python/how-to-use-the-replace-function-in-python).
+- [Python Documentation: An Informal Introduction to Python](https://docs.python.org/3/tutorial/introduction.html).
+- [Python Documentation: More Control Flow Tools](https://docs.python.org/3/tutorial/controlflow.html).
+- [Python Documentation: Compound Statements](https://docs.python.org/3/reference/compound_stmts.html).
+- [NumPy Documentation: Quickstart Tutorial](https://numpy.org/doc/stable/user/quickstart.html).
+- [Programiz: Math Operations in Python](https://www.programiz.com/python-programming/operators).
+- Matthes, E. (2019). Python Crash Course: A Hands-On, Project-Based Introduction to Programming (2nd ed.). No Starch Press. [Chapter 02](https://nostarch.com/download/PCC3e_ch2sample_8.17.22.pdf).
+- Severance, C. (2016). Python for Everybody: Exploring Data in Python 3. CreateSpace Independent Publishing Platform. [Chapters 3-11](https://www.py4e.com/lessons) (Note: Read only the chapters which interest you).
 
 ### Monday, October 21:
 
-- Lecture 14: [**Quiz 2: Application 4: Random Assignment (6%)**](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-14/14-random-assignment.ipynb).
+- Lecture 14: Pandas for Data Analysis: Loading, Cleaning, and Exploring Data.
 
 ### Wednesday, October 23:
 
-- Lecture 15: [Aggregating Data](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-15/15-aggregating-data.ipynb).
+- Lecture 15: Pandas for Data Analysis: Data Wrangling and Aggregating.
 - **Assignment 07 due (5%).**
-- **Assignment 08:** [Problem Set 08](https://github.com/danilofreire/qtm151/blob/main/assignments/08-assignment.ipynb).
+- **Assignment 08:** Problem Set 08.
 
-Weekly suggested readings:
+Suggested references:
 
+- McKinney, W. (2022). Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython (3rd ed.). O'Reilly Media. [Chapter 05: Getting Started with Pandas](https://wesmckinney.com/book/pandas-basics).
 - VanderPlas, J. (2016). Python Data Science Handbook: Essential Tools for Working with Data. O'Reilly Media. [Chapter 3: Data Manipulation with Pandas](https://jakevdp.github.io/PythonDataScienceHandbook/03.00-introduction-to-pandas.html).
 - McKinney, W. (2022). Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython (3rd ed.). O'Reilly Media. [Chapter 07: Data Cleaning and Preparation](https://wesmckinney.com/book/data-cleaning).
 - [DataCamp: Pandas Tutorial: DataFrames in Python](https://www.datacamp.com/tutorial/pandas-tutorial-dataframe-python).
 - [Real Python: Pandas Tutorial: DataFrames in Python](https://realpython.com/pandas-dataframe/).
 
-## Module 05: Data Manipulation with SQL
-
 ### Monday, October 28:
 
-- Lecture 16: [Merging Data](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-16/16-merging-data.ipynb).
+- Lecture 16: **Quiz 03: Python for Data Analysis (6%)**.
+
+## Module 06: Introduction to SQL Databases 
 
 ### Wednesday, October 30:
 
-- Lecture 17: [Introduction to SQL](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-17/17-introduction-sql.ipynb).
+- Lecture 17: Introduction to PostgreSQL: Data Types, Tables, and Queries.
 - **Assignment 08 due (5%).**
-- **Assignment 09:** [Problem Set 09](https://github.com/danilofreire/qtm151/blob/main/assignments/09-assignment.ipynb).
-- **Instructions for the Final Project:** [Final Project](https://github.com/danilofreire/qtm151/blob/main/final-project).
+- **Assignment 09:** Problem Set 09.
+- **Instructions for the Final Project**.
 
-Weekly suggested readings:
+Suggested references:
 
 - [Mode Analytics: SQL Tutorial](https://mode.com/sql-tutorial/).
 - [Real Python: SQL Databases and SQLite](https://realpython.com/python-sql-libraries/).
@@ -304,73 +331,72 @@ Weekly suggested readings:
 
 ### Monday, November 04:
 
-- Lecture 18: [**Quiz 3: Application 5: Practicing Chaining (6%)**](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-18/18-chaining.ipynb).
+- Lecture 18: Importing SQL Data into Python.
 
 ### Wednesday, November 06:
 
-- Lecture 19: [Import SQL Data into Python](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-19/19-sql-python.ipynb).
+- Lecture 19: Merging Tables in SQL.
 - **Assignment 09 due (5%).**
-- **Assignment 10:** [Problem Set 10](https://github.com/danilofreire/qtm151/blob/main/assignments/10-assignment.ipynb).
+- **Assignment 10:** Problem Set 10.
 
-Weekly suggested readings:
+Suggested references:
 
 - [Pandas Documentation: SQL Databases](https://pandas.pydata.org/docs/user_guide/io.html#sql-queries).
 - [Real Python: Working with SQLite Databases Using Python and Pandas](https://realpython.com/python-sql-libraries/).
 - [Mode Analytics: SQL Joins](https://mode.com/sql-tutorial/sql-joins/).
 - [PostgreSQL Documentation: Joins Between Tables](https://www.postgresql.org/docs/current/tutorial-join.html).
 
-## Module 06: Time Series and Panel Data
-
 ### Monday, November 11:
 
-- Lecture 20: [Merging Tables in SQL](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-20/20-sql-merging.ipynb).
+- Lecture 20: **Quiz 04: SQL Databases (6%)**.
+
+## Module 07: Parallel Computing
 
 ### Wednesday, November 13:
 
-- Lecture 21: [Time Series Analysis](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-21/21-time-series.ipynb).
+- Lecture 21: Parallel Computing with Dask.
 - **Assignment 10 due (5%).**
 
-Weekly suggested readings:
+Suggested references:
 
-- [W3 School: SQL Joins](https://www.w3schools.com/sql/sql_join.asp).
-- VanderPlas, J. (2016). Python Data Science Handbook: Essential Tools for Working with Data. O'Reilly Media. [Section 3.11: Working with Time Series](https://jakevdp.github.io/PythonDataScienceHandbook/03.11-working-with-time-series.html).
-- McKinney, W. (2022). Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython (3rd ed.). O'Reilly Media. [Chapter 11: Time Series](https://wesmckinney.com/book/time-series).
-- [Pandas Documentation: Time Series / Date functionality](https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html).
+- [Dask Documentation](https://docs.dask.org/en/latest/)
+- [Dask Tutorial](https://tutorial.dask.org/)
+- [Coiled - Intro to Dask Tutorial (YouTube)](https://www.youtube.com/watch?v=z18qjLu-Mw4&list=PLeDTMczuyDQ8S73cdc0PrnTO80kfzpgz2&pp=iAQB).
+- Rocklin, M. (2017). [Dask: Flexible Library for Parallel Computing in Python](https://proceedings.scipy.org/articles/Majora-7b98e3ed-013). In Proceedings of the 16th Python in Science Conference (Vol. 126, p. 130).
 
 ### Monday, November 18:
 
-- Lecture 22: [**Quiz 4: Application 6: Practice SQL Queries (6%)**](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-22/22-sql-queries.ipynb).
+- Lecture 22: Application: Parallelising Data Analysis with Dask and AutoML.
+
+Suggested references:
+
+- [Dask Documentation: Machine Learning](https://ml.dask.org/).
+- He, X., Zhao, K., & Chu, X. (2021). [AutoML: A Survey of the State-of-The-Art](https://www.sciencedirect.com/science/article/abs/pii/S0950705120307516). Knowledge-based systems, 212, 106622.
+- [TPOT Documentation](https://epistasislab.github.io/tpot/).
+
+## Module 08: Containers and Reproducibility
 
 ### Wednesday, November 20:
 
-- Lecture 23: [Pivot Tables](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-23/23-pivot-tables.ipynb).
+- Lecture 23: Dependency Management, Virtual Environments, and Containers.
 
-Weekly suggested readings:
+Suggested references:
 
-- VanderPlas, J. (2016). Python Data Science Handbook: Essential Tools for Working with Data. O'Reilly Media. [Section 3.9: Pivot Tables](https://jakevdp.github.io/PythonDataScienceHandbook/03.09-pivot-tables.html).
-- [Pandas Documentation: Reshaping and Pivot Tables](https://pandas.pydata.org/pandas-docs/stable/user_guide/reshaping.html).
-- [Analytics Vidhya: Create Pivot Table Using Pandas in Python](https://www.analyticsvidhya.com/blog/2020/03/pivot-table-pandas-python/).
-- [Real Python: How to Create Pivot Tables With `pandas`](https://realpython.com/how-to-pandas-pivot-table/).
-
-## Module 07: Text Data and Advanced Plots
+- [Docker Documentation](https://docs.docker.com/)
 
 ### Monday, November 25:
 
-- Lecture 24: [**Quiz 5: Application 8: Time Data, Panel Data, and Plots (6%)**](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-24/24-time-panel-plots.ipynb).
+- Lecture 24: Docker for Data Science.
 
 ### Wednesday, November 27: Thanksgiving Break (no class)
 
 ### Monday, December 02:
 
-- Lecture 25: [Manipulating Text Data](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-25/25-text-data.ipynb).
+- Lecture 25: **Quiz 05: Dask, Docker and Containers (6%)**.
 
 ### Wednesday, December 04:
 
-- Lecture 26: [Advanced Plots](https://github.com/danilofreire/qtm151/blob/main/lectures/lecture-26/26-advanced-plots.ipynb).
-
-Weekly suggested readings:
-
-- [Real Python: Python String Formatting Best Practices](https://realpython.com/python-string-formatting/).
+- Lecture 26: Review and Final Project Discussion.
 
 ### Monday, December 09:
 

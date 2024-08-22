@@ -32,8 +32,8 @@ By the end of this course, students will be able to:
 - Work with version control systems to track changes in code and collaborate with others.
 - Create reproducible reports and presentations.
 - Use AI tools to assist with programming tasks.
-- Apply advanced techniques for data storage, manipulation, and querying
-- Understand the basics of containerisation and parallel computing
+- Apply advanced techniques for data storage, manipulation, and querying.
+- Understand the basics of containerisation and parallel computing.
  
 # Course Requirements
 
@@ -148,7 +148,7 @@ The lecture notes cover all the necessary material for the course, and the weekl
 - Lecture 01: [Welcome to QTM 350 - Introduction](https://danilofreire.github.io/qtm350/lectures/lecture-01/01-introduction.html).
 - [Course Tutorials: How to Install Anaconda, Jupyter, PostgreSQL, VSCode, and Open a Free Educational Account on GitHub](https://github.com/danilofreire/qtm350/tutorials).
 
-Suggested readings:
+Suggested references:
 
 - Cleveland, W. S. (2001). [Data science: An action plan for expanding the technical areas of the field of statistics](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1751-5823.2001.tb00477.x). International Statistical Review, 69(1), 21-26.
 - Donoho, D. (2017). [50 Years of Data Science](https://www.tandfonline.com/doi/full/10.1080/10618600.2017.1384734). Journal of Computational and Graphical Statistics, 26(4), 745-766.
@@ -177,7 +177,7 @@ Suggested references:
 
 - Lecture 03: The command line interface (CLI), shell basics, and file management.
 
-Suggested readings:
+Suggested references:
 
 - Janssens, J. (2021). [Data science at the command line: Obtain, scrub, explore, and model data with Unix power tools (2nd ed.)](https://jeroenjanssens.com/dsatcl/). O'Reilly Media.
 - Levy, J. (2024). [The art of command line](https://github.com/jlevy/the-art-of-command-line). GitHub.
@@ -200,7 +200,7 @@ Suggested references:
 
 - Lecture 05: Version control with git and GitHub.
 
-Suggested readings:
+Suggested references:
 
 - Chacon, S. and Straub, B. (2014). [Pro Git](https://git-scm.com/book/en/v2). Apress. (Instructor's note: this is _the book_ on Git).
 - GitHub tutorials: [GitHub skills](https://skills.github.com/) (recommended), [Git guides](https://github.com/git-guides), [GitHub learning lab](https://lab.github.com/), [Best practices for repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/best-practices-for-repositories).
@@ -211,7 +211,7 @@ Suggested readings:
 - **Assignment 02 due (5%).**
 - **Assignment 03:** Problem Set 03.
 
-Suggested readings:
+Suggested references:
 
 - Perez-Riverol, Y., Gatto, L., Wang, R., Sachsenberg, T., Uszkoreit, J., Leprevost, F. da V., Fufezan, C., Ternent, T., Eglen, S. J., Katz, D. S., Pollard, T. J., Konovalov, A., Flight, R. M., Blin, K., & Vizcaíno, J. A. (2016). [Ten Simple Rules for Taking Advantage of Git and GitHub](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004947). PLOS Computational Biology, 12(7), e1004947.
 - Beckman, M. D., Çetinkaya-Rundel, M., Horton, N. J., Rundel, C. W., Sullivan, A. J., & Tackett, M. (2021). [Implementing version control with git and GitHub as a learning objective in statistics and data science courses](https://www.tandfonline.com/doi/pdf/10.1080/10691898.2020.1848485). Journal of Statistics and Data Science Education, 29(sup1), S132-S144.
@@ -229,7 +229,7 @@ Suggested readings:
 - **Assignment 03 due (5%).**
 - **Assignment 04:** Problem Set 04.
 
-Suggested readings:
+Suggested references:
 
 - [Quarto official website](https://quarto.org/).
 - Awesome Quarto: <https://github.com/mcanouil/awesome-quarto>. Note: this repository contains dozens of tutorials, examples, and resources. 
@@ -244,7 +244,7 @@ Suggested readings:
 
 - Lecture 09: Presentations with Quarto and GitHub Pages.
 
-Suggested readings:
+Suggested references:
 
 - [Quarto Documentation - Presentations](https://quarto.org/docs/presentations/) and [Websites](https://quarto.org/docs/websites/).
 - [GitHub Pages Documentation](https://docs.github.com/en/pages).
@@ -263,7 +263,7 @@ Suggested readings:
 
 - Lecture 11: Introduction to AI-Assisted Programming and Chatbots.
 
-Suggested readings:
+Suggested references:
 
 - Cihon, P. & Demirer, M. (2023). [How AI-powered software development may affect labor markets](https://www.brookings.edu/articles/how-ai-powered-software-development-may-affect-labor-markets/). Brookings Institution
 - Poldrack, R. A., Lu, T., & Beguš, G. (2023). [AI-assisted Coding: Experiments with GPT-4](https://arxiv.org/abs/2304.13187). arXiv preprint arXiv:2304.13187.
@@ -276,7 +276,7 @@ Suggested readings:
 - **Assignment 05 due (5%).**
 - **Assignment 06:** Problem Set 06.
  
-Suggested readings:
+Suggested references:
 
 - [GitHub Copilot Documentation](https://docs.github.com/en/copilot).
 - [Using GitHub Copilot in your IDE: Tips, Tricks, and Best Practices](https://github.blog/developer-skills/github/how-to-use-github-copilot-in-your-ide-tips-tricks-and-best-practices/)
@@ -295,7 +295,7 @@ Suggested readings:
 - **Assignment 06 due (5%).**
 - **Assignment 07:** Problem Set 07.
 
-Weekly suggested readings:
+Suggested references:
 
 - [Python Documentation: An Informal Introduction to Python](https://docs.python.org/3/tutorial/introduction.html).
 - [Python Documentation: More Control Flow Tools](https://docs.python.org/3/tutorial/controlflow.html).
@@ -315,7 +315,7 @@ Weekly suggested readings:
 - **Assignment 07 due (5%).**
 - **Assignment 08:** Problem Set 08.
 
-Weekly suggested readings:
+Suggested references:
 
 - McKinney, W. (2022). Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython (3rd ed.). O'Reilly Media. [Chapter 05: Getting Started with Pandas](https://wesmckinney.com/book/pandas-basics).
 - VanderPlas, J. (2016). Python Data Science Handbook: Essential Tools for Working with Data. O'Reilly Media. [Chapter 3: Data Manipulation with Pandas](https://jakevdp.github.io/PythonDataScienceHandbook/03.00-introduction-to-pandas.html).
@@ -336,7 +336,7 @@ Weekly suggested readings:
 - **Assignment 09:** Problem Set 09.
 - **Instructions for the Final Project**.
 
-Weekly suggested readings:
+Suggested references:
 
 - [Mode Analytics: SQL Tutorial](https://mode.com/sql-tutorial/).
 - [Real Python: SQL Databases and SQLite](https://realpython.com/python-sql-libraries/).
@@ -355,7 +355,7 @@ Weekly suggested readings:
 - **Assignment 09 due (5%).**
 - **Assignment 10:** Problem Set 10.
 
-Weekly suggested readings:
+Suggested references:
 
 - [Pandas Documentation: SQL Databases](https://pandas.pydata.org/docs/user_guide/io.html#sql-queries).
 - [Real Python: Working with SQLite Databases Using Python and Pandas](https://realpython.com/python-sql-libraries/).
@@ -373,7 +373,7 @@ Weekly suggested readings:
 - Lecture 21: Parallel Computing with Dask.
 - **Assignment 10 due (5%).**
 
-Weekly suggested readings:
+Suggested references:
 
 - [Dask Documentation](https://docs.dask.org/en/latest/)
 - [Dask Tutorial](https://tutorial.dask.org/)
@@ -384,7 +384,7 @@ Weekly suggested readings:
 
 - Lecture 22: Application: Parallelising Data Analysis with Dask and AutoML.
 
-Suggested readings:
+Suggested references:
 
 - [Dask Documentation: Machine Learning](https://ml.dask.org/).
 - He, X., Zhao, K., & Chu, X. (2021). [AutoML: A Survey of the State-of-The-Art](https://www.sciencedirect.com/science/article/abs/pii/S0950705120307516). Knowledge-based systems, 212, 106622.
@@ -396,7 +396,7 @@ Suggested readings:
 
 - Lecture 23: Dependency Management, Virtual Environments, and Containers.
 
-Weekly suggested readings:
+Suggested references:
 
 - [Docker Documentation](https://docs.docker.com/)
 
@@ -417,4 +417,3 @@ Weekly suggested readings:
 ### Monday, December 09:
 
 - **Final Project due (20%).**
-
