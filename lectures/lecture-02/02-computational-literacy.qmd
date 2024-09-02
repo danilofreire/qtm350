@@ -1,4 +1,4 @@
-https://aeon.co/essays/folktales-like-philosophy-startle-us-into-rethinking-our-values?utm_source=Aeon+Newsletter&utm_campaign=cb24973619-EMAIL_CAMPAIGN_2024_08_30&utm_medium=email&utm_term=0_-e088b817f1-%5BLIST_EMAIL_ID%5D--0
+---
 title: QTM 350 - Data Science Computing
 subtitle: "Lecture 02: Computational Literacy"
 date: 2024-09-04
