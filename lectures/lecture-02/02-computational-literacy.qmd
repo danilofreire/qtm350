@@ -1,4 +1,4 @@
----
+https://aeon.co/essays/folktales-like-philosophy-startle-us-into-rethinking-our-values?utm_source=Aeon+Newsletter&utm_campaign=cb24973619-EMAIL_CAMPAIGN_2024_08_30&utm_medium=email&utm_term=0_-e088b817f1-%5BLIST_EMAIL_ID%5D--0
 title: QTM 350 - Data Science Computing
 subtitle: "Lecture 02: Computational Literacy"
 date: 2024-09-04
@@ -143,6 +143,7 @@ for (package in packages) {
 
 :::{.callout-tip}
 - Please check the [installation tutorials](https://danilofreire.github.io/qtm350/tutorials/tutorials.html) for more information
+- You can also get help from the [Student Tech Support](https://ats.emory.edu/sdl/StudentTechnologySupport/index.html)
 - If you have any questions, please let me know!
 :::
 :::::
@@ -910,9 +911,12 @@ _start:
 #| eval: false
 print("Hello, World!")
 ```
+
 :::
 :::
 ::::
+
+# Question: Is Natural Language Programming the Future of High-Level Languages? `r emo::ji('robot')` {background-color="#2d4563"}
 
 # Summary `r emo::ji('light_bulb')` {background-color="#2d4563"}
 
