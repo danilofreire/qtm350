@@ -1,10 +1,8 @@
 # QTM 350 - Data Science Computing
 
-[`Lectures`](#lectures) | [`Summary`](#summary) |
-[`About`](#about) | [`Credits`](#credits)
+[`Lectures`](#lectures) | [`Summary`](#summary) | [`Credits`](#credits)
 
 ## Lectures
-
 
 1. Introduction \[[**.html**](https://danilofreire.github.io/qtm350/lectures/lecture-01/01-introduction.html) | [**.qmd**](https://github.com/danilofreire/qtm350/blob/main/lectures/lecture-01/01-introduction.qmd)\]
 
@@ -16,7 +14,7 @@
 
 This is a course taught by [Danilo Freire](https://danilofreire.github.io) at [Emory University](https://www.emory.edu). It introduces essential tools in modern data science, emphasising reliability, reproducibility, and robustness. The curriculum covers command line interfaces, vim, version control with Git and GitHub, and literate programming using Quarto and Jupyter Notebooks. Students will also learn about data storage and manipulation with SQL and Pandas, parallel computing with Dask, AI-assisted programming with GitHub Copilot, and containerisation using Docker.
 
-### Main learning objectives
+### Learning objectives
 
 The goals of this course are to provide students with the skills to:
 
