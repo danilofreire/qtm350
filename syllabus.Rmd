@@ -175,12 +175,12 @@ Suggested references:
 
 ### Monday September 09:
 
-- Lecture 03: The command line interface (CLI), shell basics, and file management.
+- Lecture 03: [The Command Line Interface (CLI), Shell Basics, and File Management](https://danilofreire.github.io/qtm350/lectures/lecture-03/03-command-line-interface.html).
 
 Suggested references:
 
-- Janssens, J. (2021). [Data science at the command line: Obtain, scrub, explore, and model data with Unix power tools (2nd ed.)](https://jeroenjanssens.com/dsatcl/). O'Reilly Media.
-- Levy, J. (2024). [The art of command line](https://github.com/jlevy/the-art-of-command-line). GitHub.
+- Janssens, J. (2021). [Data Science at the Command Line: Obtain, Scrub, Explore, and Model Data with Unix Power Tools (2nd ed.)](https://jeroenjanssens.com/dsatcl/). O'Reilly Media.
+- Levy, J. (2024). [The Art of Command Line](https://github.com/jlevy/the-art-of-command-line). GitHub.
 - Healy, K. (2019). [The Plain Person's Guide to Plain Text Social Science](https://plain-text.co/). Chapters 1-5.
 
 ### Wednesday, September 11:
