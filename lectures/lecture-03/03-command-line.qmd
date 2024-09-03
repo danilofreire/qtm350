@@ -1,507 +1,640 @@
 ---
-title: 
-subtitle: A minimal and elegant presentation theme
+title: QTM 350 - Data Science Computing
+subtitle: "Lecture 03: Command Line Interface"
 date: 2024-09-09
 date-format: "DD MMMM, YYYY"
 author:
   - name: Danilo Freire
-    orcid: 0000-0002-4712-6810
-    email: dfreire@lincoln.ac.uk
-    affiliations: University of Lincoln
+    email: danilo.freire@emory.edu
+    affiliations: Department of Quantitative Theory and Methods <br> Emory University
 format:
   clean-revealjs:
     self-contained: true
-    footer: "[My Presentation](https://danilofreire.github.io/)"
-bibliography: references.bib
+    footer: "[Command Line](https://danilofreire.github.io/qtm350/lectures/lecture-03/03-command-line.html)"
 transition: slide
 transition-speed: default
 scrollable: true
-engine: jupyter
+engine: knitr
 editor:
   render-on-save: true
 ---
 
-## Example slide
+```{r setup, include=FALSE}
+# figures formatting setup
+options(htmltools.dir.version = FALSE)
+library(knitr)
+opts_chunk$set(
+  prompt = T,
+  fig.align="center", #fig.width=6, fig.height=4.5, 
+  # out.width="748px", #out.length="520.75px",
+  dpi=300, #fig.path='Figs/',
+  cache=T, #echo=F, warning=F, message=F
+  engine.opts = list(bash = "-l")
+  )
 
-### This is a subtitle
+## Next hook based on this SO answer: https://stackoverflow.com/a/39025054
+knit_hooks$set(
+  prompt = function(before, options, envir) {
+    options(
+      prompt = if (options$engine %in% c('sh','bash', 'zsh')) '$ ' else 'R> ',
+      continue = if (options$engine %in% c('sh','bash', 'zsh')) '$ ' else '+ '
+      )
+})
 
-Before we dive a bit deeper, here is a simple example of the
-[clean theme](https://github.com/grantmcdermott/quarto-revealjs-clean)
-in action. 
+options(repos = c(CRAN = "https://cran.rstudio.com/"))
 
-- No pictures or anything fancy. Just text for the moment.
+packages <- c("tidyverse", "emo", "fontawesome", "reticulate")
 
-:::{.incremental}
-Next, we'll take a brief tour of some theme components.
-
-- We'll use the same basic
-structure as the
-[original LaTeX slides](https://raw.githack.com/kylebutts/templates/master/latex-slides/auxiliary/slides.pdf).
-- Note that the [_full suite_](https://quarto.org/docs/presentations/revealjs/)
-of Reveal.js features are available for this Quarto implementation,
-even if we don't cover everything here.
-:::
-
-## Before you proceed...
-
-### Requirements for the coding examples in this demo
-
-:::{.callout-note}
-## R libraries
-
-While the clean theme is language agnostic, we will use several R coding
-examples in this demo to highlight some advanced theme features.
-
-You will need the following libraries if you'd like to render the template
-"as-is":
-
-```{.r}
-install.packages(c("modelsummary", "gt", "fixest", "pdftools", "tinytex", "threejs"))
+for (package in packages) {
+  if (!require(package, character.only = TRUE)) {
+    install.packages(package, dependencies = TRUE)
+    library(package, character.only = TRUE)
+  }
+}
 ```
+
+# Recap and lecture overview `r emo::ji('books')`{background-color="#2d4563"}
+
+## Brief recap of last class
+### Early computing and data representation
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+
+:::{.columns}
+:::{.column width="50%"}
+- Computers evolved from [people to mechanical calculators to silicon-based machines]{.alert}
+- Modern computers use the [Von Neumann architecture]{.alert}, storing both instructions and data in memory
+- Computers represent data using [binary (base 2) numbers]{.alert} made up of 0s and 1s
+- A [bit]{.alert} is a single binary digit; [8 bits make a byte]{.alert}
+- [Hexadecimal (base 16)]{.alert} is a compact way to represent binary, with each hex digit corresponding to 4 bits
+- [Abstraction]{.alert} allows representing complex data like images and text using numbers
 :::
 
-
-:::{.callout-note}
-## TinyTex
-
-While reveal.js presentations are HTML format, we will show an example of how to 
-embed LaTeX tables as images. This requires a working Tex distribution, of which
-TinyTex provides by far the easiest and lightest integration with Quarto. More
-details [here](https://quarto.org/docs/output-formats/pdf-engine.html).
-
-```{.bash}
-quarto install tinytex
-```
+:::{.column width="50%"}
+![](figures/hexadecimal.png)
+:::
+:::
 :::
 
-# Components {background-color="#2d4563"}
+## Brief recap of last class
+### Representing images, colours and text
 
-## Components
+:::{style="margin-top: 30px; font-size: 24px;"}
 
-### Ordered and Unordered Lists
+:::{.columns}
+:::{.column width="50%"}
+- Images can be broken down into a [grid of coloured pixels]{.alert}
+- Colours are represented using the [RGB model]{.alert}, with each colour channel (red, green, blue) ranging from 0-255
+- 8-bit color uses 256 levels per channel, allowing for over [16 million possible colors]{.alert}
+- Text is broken into [individual characters]{.alert}, with each character mapped to a number using an encoding like [ASCII]{.alert}
+- [ASCII is a simple lookup table]{.alert} mapping the numbers 0-255 to characters
+- [Unicode]{.alert} extends ASCII to support accented characters and symbols from all languages
+:::
 
-:::: {.columns}
+:::{.column width="50%"}
+![](figures/rgb.png)
+:::
+:::
+:::
+
+## Brief recap of last class
+### Programming languages
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+
+:::{.columns}
+:::{.column width="50%"}
+- [Konrad Zuse]{.alert} created the first programmable computers and high-level programming language in the 1940s
+- [Assembly]{.alert} allows writing human-readable instructions that map closely to machine code
+- [High-level languages like Python]{.alert} abstract away hardware details and are more portable across systems
+- [Low-level languages]{.alert} are harder to read and write but very fast and efficient
+- [Compiled languages]{.alert} are converted to machine code before execution; [interpreted languages]{.alert} are executed on the fly
+:::
+
+:::{.column width="50%"}
+![](figures/high-low-languages.png)
+:::
+:::
+:::
+
+## Today's lecture
+### Command line: the old school way of interacting with computers
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+
+:::{.columns}
+:::{.column width="50%"}
+- Today, we will learn about the [command line]{.alert}, a text-based interface to interact with computers
+- We will learn about [basic commands]{.alert} to navigate the file system, create and delete files, and run programs
+- We will also learn about [shell scripting]{.alert}, a way to automate tasks using the command line
+- The command line is still widely used in data science and programming, especially for [remote servers]{.alert}, [cloud computing]{.alert}, and [automation]{.alert}
+:::
+
+:::{.column width="50%"}
+![](figures/cli.png)
+:::
+:::
+:::
+
+# Questions? `r emo::ji('nerd')`{background-color="#2d4563"}
+
+# What is the command line? `r emo::ji('computer')`{background-color="#2d4563"}
+
+## A computer in a nutshell
+### Operating system
+
+:::{style="font-size: 22px;"}
+:::{.columns}
 
 ::: {.column width="50%"}
-Here we have an unordered list.
+![](figures/kernel-and-user-space.png)
+Credit [Dave Kerr](https://effective-shell.com/part-2-core-skills/what-is-a-shell/)
+:::
 
-:::{.incremental}
-- first item
-    - sub-item
-- second item
+::: {.column width="50%"}
+- The [operating system (OS)]{.alert} is system software that interfaces with (and manages access to) a computer's hardware. It also provides software resources
+- The OS is divided into the [kernel and user space]{.alert}
+- The [kernel]{.alert} is the core of the OS. It's responsible for interfacing with hardware (drivers), managing resources etc. Running software in the kernel is *extremely* sensitive! That's why users are kept away from it!
+- The [user space]{.alert} provides an interface for users, who can run
+  programs/applications on the machine. Hardware access of programmes (e.g., memory usage) is managed by the kernel. Programmes in user space are essentially in sandboxes, which sets a limit to how much damage they can do.
+:::
+:::
+:::
+
+## A computer in a nutshell
+### Kernels and shells
+
+:::{style="font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+![](figures/kernel-and-user-space.png)
+![](figures/walnut.jpeg){width=25%}
+Credit [Dave Kerr](https://effective-shell.com/part-2-core-skills/what-is-a-shell/)/[Kkchaudhary11](https://commons.wikimedia.org/w/index.php?curid=49069244)
+:::
+
+::: {.column width="50%"}
+- The [shell]{.alert} is just a general name for any user space program that allows access to resources in the system, via some kind of interface
+- Shells come in many different flavours but are generally provided to aid a human operator in accessing the system. This could be interactively, by **typing at a terminal**, or via **scripts**, which are files that contain a sequence of commands
+- Modern computers use [graphical user interfaces (GUIs)]{.alert} as the standard tool for human-computer interaction
+- [Why "kernel" and "shell"?]{.alert} The kernel is the soft, edible part of a nut or seed, which is surrounded by a shell to protect it. Useful metaphor, _innit_?
+:::
+:::
+:::
+
+## Interacting with the shell
+### Terminals
+
+:::{style="font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+![](figures/diagram3-terminal-and-shell.png)
+Credit [Dave Kerr](https://effective-shell.com/part-2-core-skills/what-is-a-shell/)
+:::
+
+:::{.column width="50%"}
+- Things are still a bit more complicated
+- We're not directly interacting with the "shell" but using a [terminal]{.alert}
+- A terminal is just a program that [reads input]{.alert} from the keyboard, [passes that input]{.alert} to another programme, and [displays the results]{.alert} on the screen
+- A shell program on its own does not do this - it requires a terminal as an interface
+- [Why "terminal"?]{.alert} Back in the old days (before computer screen existed), terminal machines (hardware!) were used to let humans interface with large machines ("mainframes"). Often many terminals were connected to a single machine
+- When you want to work with a computer in a data center (or remotely in cloud computing), you'll still do pretty much the same
+:::
+:::
+:::
+
+## Interacting with the shell
+### Command line
+
+:::{style="font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+![](figures/diagram3-terminal-and-shell.png)
+Credit [Dave Kerr](https://effective-shell.com/part-2-core-skills/what-is-a-shell/)
+:::
+
+:::{.column width="50%"}
+- Terminals are really quite simple - they're just interfaces.
+- The first thing that a terminal program will do is run a shell program - a program that we can use to operate the computer.
+- [Back to the shell:]{.alert} the shell usually takes input
+
+  - Interactively from the user via the terminal's **command line**.
+  - Executes scripts (without command line).
+- In interactive mode the shell then returns output
+
+  - To the terminal where it is printed/shown.
+  - To files or other locations.
+
+- The command line (or command prompt) represents what is shown and entered in the terminal. They can be [customised](https://ohmyz.sh/) (e.g., with color highlighting) to make interaction more convenient.
+:::
+:::
+:::
+
+## Shell variants
+### Bash, Zsh, and others
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+![](figures/runningbashscript.png)
+:::
+
+:::{.column width="50%"}
+-   It is important to note that there are [many different shell programmes]{.alert}, and they [differ in terms of functionality](https://en.wikipedia.org/wiki/Comparison_of_command_shells)
+-   On most Unix-like systems, the default shell is a program called [**bash**](https://en.wikipedia.org/wiki/Bash_(Unix_shell)), which stands for "Bourne Again Shell"
+-   Other examples are the [Z Shell](https://en.wikipedia.org/wiki/Z_shell) (or zsh; default on MacOS), [Windows Command Prompt](https://en.wikipedia.org/wiki/Cmd.exe) (cmd.exe, the default CLI on MS Windows), [Windows PowerShell](https://en.wikipedia.org/wiki/PowerShell), [C Shell](https://en.wikipedia.org/wiki/C_shell), and many more
+-   When a terminal opens, it will immediately start the user's preferred shell programme. (This can be [changed](https://effective-shell.com/part-1-transitioning-to-the-shell/getting-started/).)
+:::
+:::
+:::
+
+# Why bother with the shell? `r emo::ji('man_shrugging')` {background-color="#2d4563"}
+
+## Why bother with the shell?
+
+:::{style="margin-top: 30px;"}
+
+:::{.columns}
+:::{.column width="50%"}
+:::{.fragment .fade-in}
+**Why should you use this...**
+
+![](figures/zsh-screenshot.png)
 :::
 :::
 
 ::: {.column width="50%"}
-And next we have an ordered one.
+:::{.fragment .fade-in}
+**... instead of this?**
 
+![](figures/macos-finder-screenshot.jpeg)
+:::
+:::
+:::
+:::
+
+## Why bother with the shell?
+### The programmer's best friend
+
+:::{style="margin-top: 30px; font-size: 23px;"}
 :::{.incremental}
-1. first item
-    i) sub-item
-2. second item
+1.  [Speed.]{.alert} Typing is fast: A skilled shell user can manipulate a system at dazzling speeds just using a keyboard. Typing commands is generally much faster than exploring through user interfaces with a mouse.
+
+2.  [Power.]{.alert} Both for executing commands and for fixing problems. There are some things you just can't do in an IDE or GUI. It also avoids memory complications associated with certain applications and/or IDEs.
+
+3.  [Reproducibility.]{.alert} Scripting is reproducible, while clicking is not.
+
+4.  [Portability.]{.alert} A shell can be used to interface to almost any type of computer, from a mainframe to a Raspberry Pi, in a very similar way. The shell is often the only game in town for high performance computing (interacting with servers and super computers).
+
+5.  [Automation.]{.alert} Shells are programmable: Working in the shell allows you to program workflows, that is create scripts to automate time-consuming or repetitive processes.
+
+6.  [Become a marketable data scientist.]{.alert} Modern programming is often polyglot. The shell provides a common interface for tooling. Modern solutions are often built to run in containers on Linux. In this environment shell knowledge has become very valuable. In short, [the shell is having a renaissance](https://effective-shell.com/part-1-transitioning-to-the-shell/the-renaissance-of-the-shell/) in the age of data science.
 :::
 :::
-::::
 
-## Components
+# The Unix philosophy {background-color="#2d4563"}
 
-### Alerts & Cross-refs 
+## The Unix philosophy
 
-To emphasize specific words or text, you can:
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.incremental}
+The shell tools that we're going to be using have their roots in the [Unix](https://en.wikipedia.org/wiki/Unix) family of operating systems originally developed at Bells Labs in the 1970s.
 
-- Use the default `.alert` class, e.g. [important note]{.alert}.
-- Use the `.fg` class for custom colour, e.g. [important note]{.fg style="--col: #e64173"}.
-- Use the `.bg` class for custom background, e.g. [important note]{.bg style="--col: #f3769c"}.
+Besides paying homage, acknowledging the Unix lineage is important because these tools still embody the "[Unix philosophy](https://en.wikipedia.org/wiki/Unix_philosophy)":
 
-## Components
-### Animate elements with `.fragment`
+> **Do One Thing And Do It Well**
 
-Fragments are a way to animate elements onto the slide.
+By pairing and chaining well-designed individual components, we can build powerful and much more complex larger systems.
 
-::: {.fragment}
-Fade in
+You can see why the Unix philosophy is also referred to as "minimalist and modular".
+
+Again, this philosophy is very clearly expressed in the design and functionality of the Unix shell.
+:::
 :::
 
-::: {.fragment .semi-fade-out}
-Semi fade out
+## Things to use the shell for
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.incremental}
+- Navigating the file system
+- Version control with Git
+- Renaming and moving files
+- Finding things on your computer
+- Writing and running code
+- Installing and updating software
+- Monitoring system resources
+- Connecting to cloud environments
+- Running analyses ("jobs") on super computers
+- ... and much more!
+:::
 :::
 
-::: {.fragment .fade-out}
-Fade out
+# Shell basics `r emo::ji('spiral_shell')` `r emo::ji('nerd')` {background-color="#2d4563"}
+
+## Shell: First look
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+
+Let's open up our shell!
+
+A convenient way to do this is through [VSCode's built-in Terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+
+Click on the **View** menu, then **Terminal**. You can also use the shortcut `Ctrl`+` ` (backtick).
+
+Your system default shell is loaded. To find out what that is, type `echo $SHELL` in the terminal.
+
+```{bash, echo=TRUE}
+echo $SHELL
+```
+
+It's [Z shell](https://ohmyz.sh/) in my case.
+
+Of course, it's always possible to open up the Shell directly if you prefer. It's your turn!
+
+- [Linux](https://www.wikihow.com/Open-a-Terminal-Window-in-Ubuntu)
+
+- [Mac](https://www.techwalla.com/articles/how-to-open-terminal-on-a-macbook)
+
+- [Windows](https://www.howtogeek.com/265900/everything-you-can-do-with-windows-10s-new-bash-shell/)
 :::
 
-::: {.fragment .highlight-red}
-Highlight red
+## Shell: First look
+
+:::{style="margin-top: 30px; font-size: 27px;"}
+You should see something like:
+
+```{bash, eval=FALSE, echo=TRUE}
+ username@hostname:~$
+```
+
+This is shell-speak for: "Who am I and where am I?" (Type in `$ whoami` without the leading dollar sign to confirm)
+
+- `username` denotes a specific user (one of potentially many on this computer).
+
+- `@hostname` denotes the name of the computer or server.
+
+- `:~` denotes the directory path (where `~` signifies the user's home directory).
+
+- `$` (or maybe `%`) denotes the start of the command prompt.
+
+    - (For a special "superuser" called root, the dollar sign will change to a `#`).
+
+```{bash, echo=TRUE}
+whoami
+pwd
+```
+
+
 :::
 
-<!-- Add vertical space using <br> tag -->
+## Useful keyboard shortcuts
+
+-   `Tab` completion.
+
+-   Use the `↑` (and `↓`) keys to scroll through previous commands.
+
+-   `Ctrl`+`→` (and `Ctrl`+`←`) to skip whole words at a time.
+
+-   `Ctrl`+`a` moves the cursor to the beginning of the line.
+
+-   `Ctrl`+`e` moves the cursor to the end of the line.
+
+-   `Ctrl`+`k` deletes everything to the right of the cursor.
+
+-   `Ctrl`+`u` deletes everything to the left of the cursor.
+
+-   `Ctrl`+`Shift`+`c` to copy and `Ctrl`+`Shift`+`v` to paste (or just `⌘`+ `c/v` on a Mac).
+
+-   `Ctrl`+`l` clears your terminal.
+
+# Syntax {background-color="#2d4563"}
+
+## Syntax
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+All Bash commands have the same basic syntax:
+
+[**command option(s) argument(s)**]{.alert}
+
+**Examples:**
+
+```{bash, eval=FALSE, echo=TRUE}
+# list files in the Documents directory 
+# with human-readable sizes
+
+ls -lh ~/Documents 
+```
+
 <br>
 
-## Components
-### Nested fragments
+```{bash, eval=FALSE, echo=TRUE}
+# sort the file and remove duplicates
 
-Fragments can also be nested.
+sort -u file.txt 
+```
+:::
 
-[
-[Fade in]{.fragment .fade-in fragment-index=1}
-[> Highlight red]{.fragment .highlight-red fragment-index=3}
-[> Highlight blue]{.fragment .highlight-blue fragment-index=4}
-[> Semi fade out]{.fragment .semi-fade-out fragment-index=5}
-]{.fragment .fade-in fragment-index=2}
+:::{.column width="50%"}
+**Commands**
 
-::: {.fragment .fade-in}
-::: {.fragment .highlight-red}
-::: {.fragment .semi-fade-out}
-Fade in > Highlight red > Semi fade out
+- You don't always need options or arguments.
+
+- For example:
+    - `$ ls ~/Documents/` and `$ ls -lh` are both valid commands that will yield output.
+
+- However, you always need a command.
 :::
 :::
 :::
 
-## Components
+## Syntax
 
-### Cross-references & Citations {#sec-crossref}
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+All Bash commands have the same basic syntax:
 
-To cross-reference, you have several options, for example:
+command [option(s)]{.alert} argument(s)
 
-- Beamer-like `.button` class provided by this theme, e.g. [[Appendix]{.button}](#sec-appendix)
-- Quarto's native cross-ref syntax, e.g., "See @sec-appendix."
-  
-Citations follow the standard
-[Quarto format](https://quarto.org/docs/authoring/footnotes-and-citations.html#citations)
-and be sourced from BibLaTex, BibTeX, or CLS files. For example:
+**Examples:**
 
- - [Topic 1:]{.alert} Spatial Frictions [@Fajgelbaum_Morales_Serrato_Zidar_2018; @Hsieh_Moretti_2019; @Moretti_2011]
+```{bash, eval=FALSE, echo=TRUE}
+# list files in the Documents directory 
+# with human-readable sizes
 
-- [Topic 2:]{.alert} Blah [@Suárez_Serrato_Zidar_2016]
+ls -lh ~/Documents 
+```
 
-## Components
+<br>
 
-### Blocks
+```{bash, eval=FALSE, echo=TRUE}
+# sort the file and remove duplicates
 
-Quarto provides
-[dedicated environments](https://quarto.org/docs/authoring/cross-references.html#theorems-and-proofs)
-for theorems, lemmas, and so forth. 
-
-But in presentation format, it's arguably more effective just to use a
-[Callout Block](https://quarto.org/docs/authoring/callouts.html).
-
-:::{.callout-note}
-## Regression Specification
-
-The main specification is as follows:
-
-$$
-y_{it} = X_{it} \beta + \mu_i + \varepsilon_{it}
-$$
+sort -u file.txt 
+```
 :::
 
-## Components
+:::{.column style="width: 40%; font-size: 20px;"}
+**Options** (also called **Flags**)
 
-### Multicolumn I: Text only
+-   Start with a dash. Usually one letter.
 
-:::: {.columns}
+-   Multiple options can be chained under a single dash.
+
+    ```{bash, eval=FALSE, echo=TRUE}
+    ls -l -a -h /var/log ## This works
+    ls -lah /var/log ## So does this
+    ```
+
+-   An exception is with (rarer) options requiring two dashes.
+
+    ```{bash, eval=FALSE, echo=TRUE}
+    ls --group-directories-first --human-readable /var/log
+    ```
+
+-   `l`: Use a long listing format. This option shows detailed information about the files and directories
+
+-   `h`: With `-l`, print sizes in human-readable format (e.g., KB, MB)
+
+-   `u`: Unique, it filters out the duplicate entries in the output
+
+-   Think it's difficult to memorize what the individual letters stand for? [You're totally right!]{.alert}
+:::
+:::
+:::
+
+## Syntax
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+All Bash commands have the same basic syntax:
+
+command option(s) [argument(s)]{.alert}
+
+**Examples:** 
+
+```{bash, eval=FALSE, echo=TRUE}
+$ ls -lh ~/Documents/
+```
+
+<br>
+
+```{bash, eval=FALSE, echo=TRUE}
+$ sort -u file.txt
+```
+:::
 
 ::: {.column width="50%"}
-#### Column 1
+**Arguments**
 
-Here is a long sentence that will wrap onto the next line as it hits the column
-width, and continue this way until it stops.
+-   Tell the command *what* to operate on.
+
+-   Totally depends on the command what legit inputs are.
+
+-   Can be a file, path, a set of files and folders, a string, and more
+
+-   Sometimes more than just one argument is needed:
+
+    ```{bash, eval=FALSE, echo=TRUE}
+    mv figs/cat.png best-figs/cat02.png
+    ```
+:::
+:::
+:::
+
+# Help! `r emo::ji('help')` `r emo::ji('anguished_face')` {background-color="#2d4563"}
+
+## Multiple ways to get help
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+-   The `man` tool can be used to look at the manual page for a topic.
+
+-   The `man` pages are grouped into sections, we can see them with `man man`.
+
+-   The [`cht.sh`](https://cht.sh/) website can be used directly from the shell to get help on tools. Run it like this: `curl cht.sh/command`
+![](figures/chtsh.png)
 :::
 
 ::: {.column width="50%"}
-#### Column 2
-
-Some other text in another column.
-
-A second paragraph.
+![](figures/beatles-help.jpeg)
+:::
+:::
 :::
 
-::::
+## Multiple ways to get help
 
-Multicolumn support is very flexible and we can continue with a single full
-span column in the same slide.
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+- You can also install the [`tldr` tool](https://github.com/tldr-pages/tldr) which provides simplified help pages for common commands. Run it like this: `tldr command`
 
-## Components
-
-### Multicolumn II: Text and figures
-
-:::: {.columns}
-
-::: {.column width="50%"}
-![](images/kanagawa.jpg)
+```{bash, echo=TRUE}
+tldr ls
+```
 :::
 
 ::: {.column width="50%"}
+![](figures/beatles-help.jpeg)
 
-#### Text about the figure
-
-- A point about the figure that is potentially important.
-- Another point about the figure that is also potentially important.
+- For more info on how to get help, see [here](https://effective-shell.com/part-1-transitioning-to-the-shell/getting-help/).
+:::
+:::
 :::
 
-::::
+## Getting help with man
 
-Note that sub- and multi-panel figures are also natively supported by Quarto.
-See [here](https://quarto.org/docs/authoring/figures.html#subfigures).
+:::{style="margin-top: 30px; font-size: 24px;"}
 
-## Components
+The `man` command ("manual pages") is your friend if you need help.
 
-### Multicolumn III: Code and output
-
-```{r}
-#| echo: false
-#| label: fig-pairs
-#| fig-cap: "Pairwise scatterplot" 
-#| fig-asp: 1
-#| output-location: column
-
-palette("Classic Tableau")
-
-par(
-  family = "HersheySans",
-  las = 1, pch = 19, cex = 1.5
-)
-
-pairs(
-  iris[,1:4],
-  col=iris$Species
-)
-```
-
-## Components {.scrollable}
-
-### Multicolumn IV: Code and output with `tabset`
-
-::: {.panel-tabset}
-
-#### Output 
-```{r}
-#| echo: false
-#| eval: true
-#| label: fig-tabset
-#| fig-cap: "Pairwise scatterplot" 
-#| fig-asp: 1
-#| out-width: 90%
-palette("Classic Tableau")
-
-par(
-  family = "HersheySans",
-  las = 1, pch = 19, cex = 1.5
-)
-
-pairs(
-  iris[,1:4],
-  col=iris$Species
-)
-```
-
-#### Code
-
-```{r}
-#| echo: true
-#| eval: false
-#| label: fig-tabset2
-#| output-location: default
-
-palette("Classic Tableau")
-
-par(
-  family = "HersheySans",
-  las = 1, pch = 19, cex = 1.5
-)
-
-pairs(
-  iris[,1:4],
-  col=iris$Species
-)
+```{bash, echo=TRUE}
+man ls
 ```
 :::
 
-# Tables {background-color="#2d4563"}
+## Getting help with man
 
-## Tables 
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+Manual pages are shown in the shell *pager*. Here are the essentials to navigate through contents presented in the pager:
 
-### Regression example
+-   `d` - Scroll down half a page
 
-Quarto offers excellent
-[table support](https://quarto.org/docs/authoring/tables.html),
-with further customization via user libraries. Let's illustrate with a
-regression example:
+-   `u` - Scroll up half a page
 
-```{r}
-#| echo: true
+-   `j` / `k` - Scroll down or up a line. You can also use the arrow keys for this
 
-library(fixest)
+-   `q` - Quit
 
-mods = feols(
-  rating ~ complaints + privileges + learning + csw0(raises + critical) + advance,
-  data = attitude
-)
+-   `/pattern` - Search for text provided as "pattern"
 
-dict = c("rating"     = "Overall Rating",
-         "complaints" = "Handling of Complaints",
-         "privileges" = "No Special Priviledges",
-         "learning"   = "Opportunity to Learn",
-         "raises"     = "Performance-Based Raises",
-         "critical"   = "Too Critical",
-         "advance"    = "Advancement")
-```
+-   `n` - When searching, find the next occurrence
 
-## Regression table
+-   `N` - When searching, find the previous occurrence
 
-### modelsummary
-
-If you use `modelsummary` with this Quarto theme, we advise setting the `gt`
-backend for a cleaner aesthetic. More details
-[here](https://vincentarelbundock.github.io/modelsummary/articles/appearance.html).
-
-```{r}
-#| echo: true
-#| output-location: slide
-
-library(modelsummary)
-options(modelsummary_factory_default = "gt")
-
-modelsummary(
-  setNames(mods, c("(1)", "(2)")),
-  coef_map = dict, stars = TRUE,
-  gof_omit = "Adj|IC|F|Log|RMSE"
-  ) |>
-  gt::tab_spanner(
-    label = "Dependent variable: Overall Rating",
-    columns = 2:3
-  )
-```
-
-## Regression table
-
-### etable
-
-`fixest`'s powerful native tabling functions were designed for LaTeX output. But we
-can use the `markdown = TRUE` option to make them work with this theme too. 
-(Details
-[here](https://lrberge.github.io/fixest/articles/etable_new_features.html).) Quick notes:
-
- - Install the `tinytex` & `pdftools` packages first.
- - Set the R chunk option `output: asis`. 
-
-````
-```{{r}}
-#| output: asis
-
-setFixest_etable(markdown = TRUE, drop = "Constant")
-setFixest_dict(dict)
-
-etable(mods, highlight = .("se" = "complaints"))
-```
-````
-
-## Regression table
-
-### etable (cont.)
-
-```{r}
-#| output: asis
-
-setFixest_etable(markdown = TRUE, drop = "Constant")
-setFixest_dict(dict)
-
-etable(mods, highlight = .("se" = "complaints"), arraystretch = 1.5)
-```
-
-# Figures {background-color="#193C4D"}
-
-## Figure
-
-![](images/kanagawa.jpg)
-
-## Figure
-
-### Full-size Figures
-
-You can use the `{.background-image}` container environment to completely fill
-the slide background with an image.
-
-Ideally, your figure will be the same aspect ratio as the screen that you're presenting on.
-
-- This can be a bit tricky because of the dynamic nature of reveal.js / HTML. But it's probably something close to 16:9.
-- Aspect ratio can also matter for a regular full-frame images (previous slide).
-
-## {background-image="images/kanagawa169.jpg" background-size="100%"}
-
-## Interactive plots
-
-```{r}
-#| out-width: 75%
-
-library(threejs)
-
-# Approximate locations as factors
-data(flights)
-dest = factor(sprintf("%.2f:%.2f", flights[,3], flights[,4]))
-
-# A table of destination frequencies
-freq = sort(table(dest), decreasing=TRUE)
-
-# The most frequent destinations in these data
-frequent_destinations = names(freq)[1:10]
-
-# Subset the flight data by destination frequency
-idx = dest %in% frequent_destinations
-frequent_flights = flights[idx, ]
-
-# Lat/long and counts of frequent flights
-ll = unique(frequent_flights[, 3:4])
-
-# Plot frequent destinations as bars, and the flights to and from
-# them as arcs. Adjust arc width and color by frequency.
-globejs(lat=ll[, 1], long=ll[, 2], arcs=frequent_flights,
-        # bodycolor="#aaaaff", arcsHeight=0.3, arcsLwd=2,
-        bodycolor="#fff", arcsHeight=0.3, arcsLwd=2,
-        arcsColor="#ffff00", arcsOpacity=0.15,
-        atmosphere=TRUE, color="#fff", pointsize=0.5)
-```
-
-_Note: Simple flight data example using `threejs`. There are many interactive
-plotting options beyond this.
-(More [details](https://quarto.org/docs/interactive/).)_
-
-# Summary {background-color="#193C4D"}
-
-## Summary
-
-### A minimal and elegant presentation theme
-
-
-The Quarto reveal.js [clean theme](grantmcdermott/quarto-revealjs-clean) aims to
-be a minimal and elegant presention theme.
-
-We have highlighted some theme-specific components. But all of the regular reveal.js functionality is supported ([chalkboard](https://quarto.org/docs/presentations/revealjs/presenting.html#chalkboard), etc.)
-
-Install the theme:
-
-```{.bash}
-quarto install extension grantmcdermott/quarto-revealjs-clean
-```
-
-Use these demo slides as a template:
-
-```{.bash}
-quarto use template grantmcdermott/quarto-revealjs-clean-demo
-```
-
-## References
-
-::: {#refs}
+-   These and other `man` tricks are detailed in the help pages (hit "h" when you're in the pager for an overview).
 :::
 
-## Appendix {#sec-appendix}
+:::{.column width="50%"}
+![](figures/rtfm-bayeux.png)
+RTFM
 
-```{r}
-#| label: tbl-attsum
-#| tbl-cap: Summary of the base R `attitude` dataset
+**Always check the documentation!**
+:::
+:::
+:::
 
-modelsummary::datasummary_skim(attitude)
-```
+## Help practice!
 
-[[Back to main]{.button}](#sec-crossref)
+:::{style="margin-top: 30px;"}
+
+- In your Terminal, access the `man` and explore the document. I want you to share with a colleague your first impression and five commands you found interesting.
+
+- Please present your own (first impression + five commands) and colleague (first impression and five commands) views in the lecture quiz!
+:::
+
