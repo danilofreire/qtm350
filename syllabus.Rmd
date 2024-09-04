@@ -82,7 +82,7 @@ This course is designed to be self-contained, providing all the necessary resour
 
 # Course Information
 
-We will meet every Monday and Wednesday from 14:30 to 15:45 at [XXXXX](https://quantitative.emory.edu). It is important that you read the materials before class. All information about the course is available on the course's GitHub repository at <https://github.com/danilofreire/qtm350>. While I will try to adhere to the course schedule as much as possible, I also want to adapt to your learning pace and style. The syllabus and course plan may change in the semester. Again, please check [the course repository](https://github.com/danilofreire/qtm350) regularly to check for updates. I will also announce any changes in class and via email.
+We will meet every Monday and Wednesday from 14:30 to 15:45 in the [Maths and Science Centre - E208](https://maps.app.goo.gl/wLPSNiTSSXbizqsF8). It is important that you read the materials before class. All information about the course is available on the course's GitHub repository at <https://github.com/danilofreire/qtm350>. While I will try to adhere to the course schedule as much as possible, I also want to adapt to your learning pace and style. The syllabus and course plan may change in the semester. Again, please check [the course repository](https://github.com/danilofreire/qtm350) regularly to check for updates. I will also announce any changes in class and via email.
 
 # Software
 
