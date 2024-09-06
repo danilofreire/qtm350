@@ -125,7 +125,7 @@ for (package in packages) {
 :::{.columns}
 :::{.column width="50%"}
 - Today, we will learn about the [command line]{.alert}, a text-based interface to interact with computers
-- We will learn about [basic commands]{.alert} to navigate the file system, create and delete files, and run programs
+- We will learn some [basic commands]{.alert} to navigate the file system, create and delete files, and run programs
 - We will also learn about [shell scripting]{.alert}, a way to automate tasks using the command line
 - The command line is still widely used in data science and programming, especially for [remote servers]{.alert}, [cloud computing]{.alert}, and [automation]{.alert}
 :::
