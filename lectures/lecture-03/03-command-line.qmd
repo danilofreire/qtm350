@@ -14,10 +14,43 @@ format:
 transition: slide
 transition-speed: default
 scrollable: true
-engine: jupyter
+engine: knitr
 editor:
   render-on-save: true
 ---
+
+```{r setup, include=FALSE}
+# figures formatting setup
+options(htmltools.dir.version = FALSE)
+library(knitr)
+opts_chunk$set(
+  prompt = T,
+  fig.align="center", #fig.width=6, fig.height=4.5, 
+  # out.width="748px", #out.length="520.75px",
+  dpi=300, #fig.path='Figs/',
+  cache=T, #echo=F, warning=F, message=F
+  engine.opts = list(bash = "-l")
+  )
+
+## Next hook based on this SO answer: https://stackoverflow.com/a/39025054
+knit_hooks$set(
+  prompt = function(before, options, envir) {
+    options(
+      prompt = if (options$engine %in% c('sh','bash', 'zsh')) '$ ' else 'R> ',
+      continue = if (options$engine %in% c('sh','bash', 'zsh')) '$ ' else '+ '
+      )
+})
+
+options(repos = c(CRAN = "https://cran.rstudio.com/"))
+packages <- c("knitr", "rmarkdown", "fontawesome")
+
+for (package in packages) {
+  if (!require(package, character.only = TRUE)) {
+    install.packages(package, dependencies = TRUE)
+    library(package, character.only = TRUE)
+  }
+}
+```
 
 # Recap and lecture overview 📚 {background-color="#2d4563"}
 
@@ -213,7 +246,7 @@ Credit [Dave Kerr](https://effective-shell.com/part-2-core-skills/what-is-a-shel
 :::
 :::
 
-# Why bother with the shell? 🤷 {background-color="#2d4563"}
+# Why bother with the shell? 🤷🏻‍♂️ {background-color="#2d4563"}
 
 ## Why bother with the shell?
 
@@ -308,7 +341,10 @@ Click on the **View** menu, then **Terminal**. You can also use the shortcut ``C
 
 Your system default shell is loaded. To find out what that is, type `echo $SHELL` in the terminal.
 
-```{bash, echo=TRUE}
+```{bash}
+#| echo: true
+#| eval: true
+
 echo $SHELL
 ```
 
@@ -338,7 +374,9 @@ Feel free to check our class tutorial on [how to set up your shell in VS Code](h
 :::{.column width="50%"}
 Open your terminal and type the following commands (without the `$`):
 
-```{bash, eval=FALSE, echo=TRUE}
+```{bash}
+#| echo: true
+#| eval: false
 echo $SHELL 
 whoami 
 pwd 
@@ -358,7 +396,9 @@ Share your results with a colleague (or the class)!
 :::{style="margin-top: 30px; font-size: 27px;"}
 You should see something like:
 
-```{bash, eval=FALSE, echo=TRUE}
+```{bash}
+#| echo: true
+#| eval: false
  username@hostname:~$
 ```
 
@@ -374,7 +414,9 @@ This is shell-speak for: "Who am I and where am I?"
 
     - (For a special "superuser" called root, the dollar sign will change to a `#`).
 
-```{bash, echo=TRUE}
+```{bash}
+#| echo: true
+#| eval: true
 whoami
 pwd
 ```
@@ -393,7 +435,9 @@ All bash commands have the same basic syntax:
 
 **Examples:**
 
-```{bash, eval=FALSE, echo=TRUE}
+```{bash}
+#| echo: true
+#| eval: false
 # list files in the Documents directory 
 # with human-readable sizes
 
@@ -402,7 +446,9 @@ ls -lh ~/Documents
 
 <br>
 
-```{bash, eval=FALSE, echo=TRUE}
+```{bash}
+#| echo: true
+#| eval: false
 # sort the file and remove duplicates
 
 sort -u file.txt 
@@ -433,7 +479,9 @@ command [option(s)]{.alert} argument(s)
 
 **Examples:**
 
-```{bash, eval=FALSE, echo=TRUE}
+```{bash}
+#| echo: true
+#| eval: false
 # list files in the Documents directory 
 # with human-readable sizes
 
@@ -442,7 +490,9 @@ ls -lh ~/Documents
 
 <br>
 
-```{bash, eval=FALSE, echo=TRUE}
+```{bash}
+#| echo: true
+#| eval: false
 # sort the file and remove duplicates
 
 sort -u file.txt 
@@ -456,16 +506,20 @@ sort -u file.txt
 
 -   Multiple options can be chained under a single dash.
 
-    ```{bash, eval=FALSE, echo=TRUE}
-    ls -l -a -h /var/log # This works
-    ls -lah /var/log # So does this
-    ```
+```{bash}
+#| echo: true
+#| eval: false
+ls -l -a -h /var/log # This works
+ls -lah /var/log # So does this
+```
 
 -   An exception is with (rarer) options requiring two dashes.
 
-    ```{bash, eval=FALSE, echo=TRUE}
-    ls --group-directories-first --human-readable /var/log
-    ```
+```{bash}
+#| echo: true
+#| eval: false
+ls --group-directories-first --human-readable /var/log
+```
 
 -   `l`: Use a long listing format. This option shows detailed information about the files and directories
 
@@ -489,13 +543,20 @@ command option(s) [argument(s)]{.alert}
 
 **Examples:** 
 
-```{bash, eval=FALSE, echo=TRUE}
+```{bash}
+#| echo: true
+#| eval: false
+# list files in the Documents directory 
+# with human-readable sizes
 $ ls -lh ~/Documents/
 ```
 
 <br>
 
-```{bash, eval=FALSE, echo=TRUE}
+```{bash}
+#| echo: true
+#| eval: false
+# sort the file and remove duplicates
 $ sort -u file.txt
 ```
 :::
@@ -511,9 +572,11 @@ $ sort -u file.txt
 
 -   Sometimes more than just one argument is needed:
 
-    ```{bash, eval=FALSE, echo=TRUE}
-    mv figs/cat.png best-figs/cat02.png
-    ```
+```{bash}
+#| echo: true
+#| eval: false
+mv figs/cat.png best-figs/cat02.png
+```
 :::
 :::
 :::
@@ -546,7 +609,8 @@ $ sort -u file.txt
 :::{.column width="50%"}
 - You can also install the [`tldr` tool](https://github.com/tldr-pages/tldr) which provides simplified help pages for common commands. Run it like this: `tldr command`
 
-```{bash, echo=TRUE}
+```{bash}
+#| echo: true
 tldr ls
 ```
 :::
@@ -565,7 +629,8 @@ tldr ls
 
 The `man` command ("manual pages") is your friend if you need help.
 
-```{bash, echo=TRUE}
+```{bash}
+#| echo: true
 man ls
 ```
 :::
@@ -601,7 +666,9 @@ Manual pages are shown in the shell. Here are the essentials to navigate through
 :::{style="margin-top: 30px; font-size: 26px;"}
 Partner up and choose a command from the list below. Use `man` to complete these tasks:
 
-```{bash, eval=FALSE, echo=TRUE}
+```{bash}
+#| echo: true
+#| eval: false
 # Choose one:
 ls, cd, cp, mv, rm, mkdir, rmdir, touch, cat, find
 ```
@@ -650,7 +717,8 @@ Key navigation commands are:
 -   `pwd` to print (the current) working directory.
 -   `cd` to change directory.
 
-```{bash, echo=TRUE}
+```{bash}
+#| echo: true
 pwd
 ```
 
@@ -664,21 +732,24 @@ Let's try it out!
 
 Accessing the `figures/` directory:
 
-```{bash, echo=TRUE}
+```{bash}
+#| echo: true
 cd ./figures # Change to the figures directory
 pwd
 ```
 
 Now, let's go back to the previous directory:
 
-```{bash, echo=TRUE}
+```{bash}
+#| echo: true
 cd ../ # Go back to the previous directory
 pwd
 ```
 
 Back two directories:
 
-```{bash, echo=TRUE}
+```{bash}
+#| echo: true
 cd ../../ # Go back two directories
 pwd
 ```
