@@ -15,6 +15,7 @@ When submitting, please name your files as follows: `assignment-01-your-name.ipy
 | Session | Topic | Assignment | Submission Deadline |
 |---------|-------|------------|---------------------|
 | 02 | [Computational Literacy](https://danilofreire.github.io/qtm350/lectures/lecture-02/02-computational-literacy.html) | [Assignment 01](01-assignment.ipynb) | 2024-09-11 |
+| 03 | [Command Line Interface](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-03/03-command-line.html) | [Assignment 02](02-assignment.ipynb) | 2024-09-18 |
 
 ## In-Class Quizzes
 
