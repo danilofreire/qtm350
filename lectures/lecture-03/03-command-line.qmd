@@ -499,7 +499,7 @@ sort -u file.txt
 ```
 :::
 
-:::{.column style="width: 40%; font-size: 20px;"}
+:::{.column style="width: 40%; font-size: 18px;"}
 **Options** (also called **Flags**)
 
 -   Start with a dash. Usually one letter.
@@ -822,10 +822,8 @@ Follow these steps to practice using basic shell commands. Type each command
 and observe the results.
 
 1. Open your terminal and navigate to your home directory: `cd ~`
-2. Create a new directory called "practice" and change into it: `mkdir practice
-   && cd practice`
-3. Create two empty files called "file1.txt" and "file2.txt": `touch file1.txt
-   file2.txt`
+2. Create a new directory called "practice" and change into it: `mkdir practice && cd practice`
+3. Create two empty files called "file1.txt" and "file2.txt": `touch file1.txt file2.txt`
 4. List the contents of the directory: `ls`
 5. Move file2.txt to a new name (rename), file3.txt: `mv file2.txt file3.txt`
 6. List the contents again to verify the change, then return to the home
