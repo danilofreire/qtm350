@@ -179,7 +179,8 @@ ls ./copies/figures/
 ## Move (and rename): `mv`
 
 :::{style="margin-top: 30px; font-size: 25px;"}
-The syntax for moving is `$ mv object path/newobjectname`
+- The syntax for moving is `$ mv object path/newobjectname`
+  - The `newobjectname` is optional, but if you don't provide it, the object will be moved to the new location with the same name
 
 ```{bash, echo=TRUE}
 ## Move a file to see how it works
@@ -187,7 +188,7 @@ mv ./test.txt ./copies/
 ls ./copies
 ```
 
-Note that "moving" an object within the same directory, but with specifying `newobjectname`, is effectively the same as renaming it.
+- Again, note that "moving" an object within the same directory, but with specifying `newobjectname`, is effectively the same as renaming it
 
 ```{bash, eval=TRUE, echo=TRUE}
  ## Rename test02.txt to test03.txt
@@ -232,11 +233,8 @@ ls figures/tim??.jpg
 
 :::{style="margin-top: 30px; font-size: 22px;"}
 - The last command to mention is `find`
-
 - This can be used to locate files and directories based on a variety of criteria; from pattern matching to object properties
-
 - The basic syntax is `find path -options`
-
 - For example, to find all files in the current directory with the extension `.qmd`, we would do:
 
 ```{bash, echo=TRUE}
@@ -245,10 +243,18 @@ find . -iname "*.qmd"
 ```
 - The `iname` option is case-insensitive, while `name` is case-sensitive
 - We can also use `-size` to find files based on their size
+  - Use capital `K` for kilobytes, `M` for megabytes, and `G` for gigabytes
 
 ```{bash, echo=TRUE}
 # Find files larger than 200 KB
 find . -size +200k 
+```
+
+- To search for directories, you can use the `-type` option:
+
+```{bash, echo=TRUE}
+# Find all directories in the parent directory
+find ../ -type d
 ```
 :::
 
