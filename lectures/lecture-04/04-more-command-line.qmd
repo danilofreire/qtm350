@@ -40,6 +40,7 @@ editor:
 
 :::{.column width="50%"}
 ![](figures/bash.png)
+![](figures/linux-bash.png)
 :::
 :::
 :::
@@ -247,21 +248,21 @@ find . -iname "*.qmd"
 
 ```{bash, echo=TRUE}
 # Find files larger than 200 KB
-find . -size +200k 
+find . -size +200k | sort # Sort the output 
 ```
 
 - To search for directories, you can use the `-type` option:
 
 ```{bash, echo=TRUE}
 # Find all directories in the parent directory
-find ../ -type d
+find ../ -type d | sort # Sort the output
 ```
 :::
 
 # File management exercise 📂 {background-color="#2d4563"}
 
 ## File management exercise {#sec-exercise-01}
-### I will show you some tips after the exercise
+### I will show you some time-saving tips after the exercise
 
 :::{style="margin-top: 30px; font-size: 25px;"}
 :::{.columns}
@@ -289,6 +290,7 @@ project/
 :::{.column width="50%"}
 - Now do the following:
 
+- Create the folders and files as described
 - Rename "raw_data.csv" to "input_data.csv"
 - Copy all Python files in the "scripts" directory and to a new directory called "backup" inside the "project" directory
 - Remove the "notes.txt" file from the "docs" directory
@@ -321,7 +323,13 @@ touch project/scripts/{processing,analysis,visualisation}.py
 touch project/data/data{1..5}.csv
 touch project/docs/{readme.md,notes.txt}
 ls project/data
+```
+
+```{bash, echo=TRUE, eval=TRUE}
 ls project/scripts
+```
+
+```{bash, echo=TRUE, eval=TRUE}
 ls project/docs
 ```
 :::
@@ -381,19 +389,23 @@ rm -rf project && rm -rf book
 
 ## Counting text: `wc`
 
-:::{style="margin-top: 30px; font-size: 24px;"}
+:::{style="margin-top: 30px; font-size: 22px;"}
 - You can use the `wc` command to count:
   - The lines of text
   - The number of words
   - The number of characters
 
-- Let's demonstrate with a text file containing all of Shakespeare's Sonnets. [Source](http://www.gutenberg.org/cache/epub/1041/pg1041.txt)
+- Let's demonstrate with a text file containing all of Shakespeare's Sonnets. [Source](http://www.gutenberg.org/cache/epub/1041/pg1041.txt).
 
 ```{bash, echo=TRUE}
 wc sonnets.txt
 ```
 
 The character count is actually higher than we'd get if we count by hand, because `wc` counts the invisible newline character `\n`.
+:::
+
+:::{.callout-note}
+Download the `sonnet.txt` file at <https://github.com/danilofreire/qtm350/blob/main/lectures/lecture-04/sonnets.txt>. Click on "Download raw file".
 :::
 
 ## Read text: `cat`
@@ -404,7 +416,6 @@ The character count is actually higher than we'd get if we count by hand, becaus
 - The simplest way to read in text is with the `cat` ("concatenate") command. Note that `cat` will read in *all* of the text. You can scroll back up in your shell window, but this can still be a pain.
 - Again, let's demonstrate using Shakespeare's Sonnets. (This will overflow the slide.)
 - We use the `-n` flag to show line numbers:
-- We can also use the `less` command to scroll through the text file. This is particularly useful for large files
 :::
 
 :::{.column width="50%"}
@@ -506,9 +517,10 @@ grep -rl "pasta" ./meals/
 - Go to the terminal and navigate to the directory where you saved the file
 - Then try to do the following:
   - Find all lines in sonnets.txt that contain the word "time" 
-  - View all lines from line 20 backwards in sonnets.txt
+  - View the last 20 lines in sonnets.txt
   - Count the number of lines and words in sonnets.txt
-  - Find all lines in sonnets.txt that start with "But"  [[Appendix 02]{.button}](#sec-appendix-02)
+  - [Tricky question:]{.alert} Find all lines in sonnets.txt that [start]{.alert} with "and" 
+  - [Super tricky question:] Find all lines in sonnets.txt that start with "and" _and_ "And"  [[Appendix 02]{.button}](#sec-appendix-02)
 :::
 
 ## Manipulate text: `sed`
@@ -573,7 +585,7 @@ sed '/Project Gutenberg/d' sonnets.txt
 :::{style="margin-top: 30px; font-size: 24px;"}
 :::{.columns}
 :::{.column width="50%"}
--   You have learned about pipes (`%>%`) in R already
+-   You have learned about pipes (`%>%`, `|>`) in R already
 -   Understanding the concept of pipelines in the shell, as well as how input and output work for command line programs is critical to be able to use the shell effectively
 -   Think again of the Unix philosophy of "doing one thing, but doing it well" and combining multiple of these modules
 -   Also, often you'll want to dump output in a file as part of your workflow
@@ -634,7 +646,15 @@ cat survive.txt
 - An example with commands we have already seen:
 
 ```{bash, echo=TRUE}
-cat sonnets.txt | grep "Shall I compare thee" | wc
+# Read the sonnet.txt file, find all lines that contain the word "time", and count the number of lines and words
+cat sonnets.txt | grep "time" | wc -lw
+```
+
+-   The `|` operator takes the output of the command on the left and uses it as input for the command on the right
+
+```{bash, echo=TRUE}
+# Another example: find all lines in sonnets.txt that contain the word "love" and print the first 5 lines
+cat sonnets.txt | grep "love" | head -n 5
 ```
 :::
 
@@ -752,13 +772,13 @@ chmod +x create_project.sh
 :::{style="margin-top: 30px; font-size: 26px;"}
 :::{.columns}
 :::{.column width="50%"}
-I hope that I've given you a sense of how the shell works and how powerful it is. My main goal has been to "demystify" the shell, so that you aren't intimidated when we use shell commands later on.
+I hope that I've given you a sense of how the shell works and how powerful it is. My main goal has been to "demystify" the shell, so that you aren't intimidated when we use shell commands later on
 
 We didn't cover many things in detail:
 
--   User roles and file permissions, environment variables, SSH, memory management (e.g. [top](https://ss64.com/bash/top.html) and [htop](https://hisham.hm/htop/)), GNU parallel, etc.
+-   User roles and file permissions, environment variables, SSH, memory management (e.g. [top](https://ss64.com/bash/top.html) and [htop](https://hisham.hm/htop/)), GNU parallel, etc
 
--   Automation; see [here](https://stat545.com/automation-overview.html), [here](https://books.ropensci.org/drake/index.html), and [here](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf) are great places to start learning about automation on your own.
+-   Automation; see [here](https://stat545.com/automation-overview.html), [here](https://books.ropensci.org/drake/index.html), and [here](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf) are great places to start learning about automation on your own
 :::
 
 :::{.column width="50%"}
@@ -809,6 +829,8 @@ If you want to dig deeper, check out
 
 ## Appendix 01: Solution to the exercise {#sec-appendix-01}
 
+:::{style="margin-top: 30px; font-size: 21px;"}
+
 ```{bash, echo=TRUE}
 # Create the project structure
 mkdir -p project/{scripts,data,docs}
@@ -836,6 +858,7 @@ rm -rf project
 ```
 
 [[Back to the main text]{.button}](#sec-exercise-01)
+:::
 
 ## Appendix 02: Solution to the exercise {#sec-appendix-02}
 
@@ -861,8 +884,14 @@ wc -lw sonnets.txt
 ## Appendix 02: Solution to the exercise
 
 ```{bash, echo=TRUE}
-# Find all lines in sonnets.txt that start with "But"
-grep -n "But" sonnets.txt
+# Find all lines in sonnets.txt that start with "and"
+grep -n "^and" sonnets.txt
+```
+
+```{bash, echo=TRUE}
+# Find all lines in sonnets.txt that start with "and" and "And"
+# You have to include the -i flag to ignore case!
+grep -in "^and" sonnets.txt
 ```
 
 [[Back to the main text]{.button}](#sec-exercise-02)
