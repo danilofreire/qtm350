@@ -1,0 +1,751 @@
+---
+title: QTM 350 - Data Science Computing
+subtitle: Lecture 05 - Git and GitHub
+date: 2024-09-16
+date-format: "DD MMMM, YYYY"
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: Emory University
+format:
+  clean-revealjs:
+    self-contained: true
+    footer: "[Git and GitHub](https://danilofreire.github.io/)"
+bibliography: references.bib
+transition: slide
+transition-speed: default
+scrollable: true
+engine: jupyter
+editor:
+  render-on-save: true
+---
+
+# Nice to see you all again! 😊 {background-color="#2d4563"}
+
+# Recap and lecture overview 📚 {background-color="#2d4563"}
+
+## Recap of our last lecture
+### In our last class, we covered
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.colunms}
+:::{.column size="50%"}
+- Essential navigation commands: `ls`, `cd`, `pwd`
+- Useful directory shortcuts: `~` (home), `.` (current), `..` (parent directory)
+- File manipulation commands: `touch`, `mkdir`, `rm`, `rmdir`
+- File content commands: `cat`, `head`, `tail`
+- Wildcards for efficient file matching: `*` (any characters), `?` (any single character)
+- Batch operations with `{}`
+- Chaining commands with && and ||
+- Text manipulation tools: 
+  - `wc`, `grep`, `sed`
+:::
+
+:::{.column size="50%"}
+![](figures/home.jpg){width="80%"}
+:::
+:::
+:::
+
+## Today's lecture
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.colunms}
+:::{.column size="50%"}
+- Learn how to think in terms of projects
+- Introduction to version control systems
+- What is Git and why use it?
+- How to add, commit, and push changes to a repository
+- GitHub and its role in collaborative projects
+- How to fork, clone, and create pull requests
+- How to resolve conflicts
+- Best practices for using Git and GitHub
+:::
+
+:::{.column size="50%"}
+![](figures/git.png)
+![](figures/github.png)
+:::
+:::
+:::
+
+# Project management 📂 {background-color="#2d4563"}
+
+## Taming chaos
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.colunms}
+::: {.column width="50%"}
+In the data science workflow, there are [two sorts of surprises and cognitive stress]{.alert}:
+
+:::{.incremental}
+1. Analytical (often good)
+2. Infrastructural (almost always bad)
+:::
+
+:::{.incremental}
+- [Analytical surprise]{.alert} is when you learn something from or about the data.
+
+- [Infrastructural surprise]{.alert} is when you discover that:
+
+- You can't find what you did before.
+- The analysis code breaks.
+- The report doesn't compile.
+- The collaborator can't run your code.
+
+- Good project management lets you focus on the [right kind of stress]{.alert}.
+:::
+:::
+
+::: {.column width="50%" layout-valign="center"}
+![](figures/pippi-langstrumpf.gif){width="80%"}
+:::
+:::
+:::
+
+## Keeping Future-you happy
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.incremental}
+- It’s often tempting to set up a project assuming that you will be the only person working on it, e.g. as homework.
+- [That’s almost never true]{.alert}.
+- Coauthors and collaborators happen to the best of us.
+- Even if not, there's someone else who you always have to keep happy: [Future-you]{.alert}.
+- Future-you is really the one you organise your projects for.
+- Most importantly, they are who will enjoy the fruits of your data science labour, or have to fight back your chaos.
+- So, [be kind to Future-you]{.alert}. Establish a good workflow. You'll thank yourself later.
+
+:::{style="text-align: center;"}
+![](figures/fox.png){width="40%"}
+:::
+:::
+:::
+
+## Project setup 👷🏻‍♀️👷🏽‍♂️
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column size="50%"}
+You should [always]{.alert} think in terms of projects.
+
+A project is a [self-contained unit of data science work]{.alert} that can be
+
+:::{.incremental}
+- Shared (e.g., with collaborators)
+- Recreated by others (including Future-you)
+- Packaged (e.g., as a report)
+- Dumped (exported or archived)
+:::
+:::
+
+:::{.column size="50%"}
+:::{.fragment .fade-in}
+A project contains:
+
+:::{.incremental}
+- [Content]{.alert}, e.g., raw data, processed data, scripts, functions, documents and other output
+
+- [Metadata]{.alert}, e.g., information about tools for running it (required libraries, compilers), version history
+:::
+
+:::{style="margin-top: 20px;"}
+:::{.fragment .fade-in}
+For R projects for example:
+
+- Projects are folders/directories.
+- Metadata is the [RStudio project](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) (`.Rproj`) files (perhaps augmented with the output of [renv](https://rstudio.github.io/renv/articles/renv.html) for dependency management) and `.git`.
+:::
+:::
+:::
+:::
+:::
+:::
+
+## Project setup: Directories
+### Recommendations
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column size="50%"}
+- One parent folder contains [everything]{.alert} inside it.
+- You decide what goes in the project folder. The project dictates the structure.
+- Keep [input separate from output]{.alert}. Definitely separate raw from processed data!
+- [All internal paths are relative]{.alert}. Absolute paths are bad paths. Don't feed functions with paths like `"/Users/me/data/thing.csv"`.
+- Those paths will not work outside your computer (or maybe not even there, some days/weeks/months ahead).
+:::
+
+:::{.column size="50%"}
+![](figures/rproject-setup.png){width="300"}
+:::
+:::
+:::
+
+## Project setup: Scripts
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column size="50%"}
+- Scripts are the [glue]{.alert} that holds your project together.
+- They should be [readable]{.alert} and [reproducible]{.alert}.
+- Names should [only include letters and numbers]{.alert} with dashes `-` or underscores `_` to separate words.
+- Use numbering to indicate the order in which files should be run:
+  - `00-setup.py`
+  - `01-import-data.py`
+  - `02-preprocess-data.py`
+
+- Write short, modular scripts. Every script serves a purpose in your pipeline.
+- Put the setup first (e.g., `library()` and `source()`).
+- [Always comment more than you usually do]{.alert}.
+:::
+
+:::{.column size="50%"}
+![](figures/file_management.png){width="70%"}
+:::
+:::
+:::
+
+# Version control systems 🔄 {background-color="#2d4563"}
+
+## What is version control?
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column size="50%"}
+:::{.incremental}
+- Version Control is a way to [track your files]{.alert}
+- It is usually saved in [a series of snapshots and branches]{.alert}, which you can move back and forth between
+- Version Control allows you to view how project has progressed over time
+- It allows you to:
+  - Distribute your file changes over time
+  - Prevent against data loss/damage by creating backup snapshots
+  - Manage complex project structures (e.g. Linux)
+:::
+:::
+
+:::{.column size="50%"}
+![](figures/01-version-control.png){width="70%"}
+:::
+:::
+:::
+
+## Why version control?
+
+:::{style="margin-top: 30px; font-size: 24px; text-align: center;"}
+![](http://phdcomics.com/comics/archive/phd101212s.gif){width="40%"}
+:::
+
+## More reasons to use version control
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column size="50%"}
+**Have you ever...**
+
+- Changed your code, realised it was a mistake and wanted to revert back?
+- Lost code or had a backup that was too old?
+- Wanted to see the difference between different versions of your code?
+- Wanted to review the history of some code?
+- Wanted to submit a change to someone else's code?
+- Wanted to see how much work is being done, when, and by whom?
+
+[Version control can help with all of these]{.alert}.
+:::
+
+:::{.column size="50%"}
+![](figures/version-control-joke-2.jpeg){width="70%"}
+:::
+:::
+:::
+
+# Git and GitHub 🐙 {background-color="#2d4563"}
+
+## What is Git?
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column size="50%"}
+![](figures/git.png){width="30%"}
+
+- Git is a [distributed version control system]{.alert}.
+- Imagine if your Dropbox and the "Track changes" feature in MS Word had a baby.
+- In fact, it's even better than that because [Git is optimised for code]{.alert}
+- There is a learning curve, but it's worth it.
+- Being familiar with [Git is taken for granted]{.alert} when you interact with other data scientists.
+- It is [not the only version control software](https://en.wikipedia.org/wiki/Comparison_of_version-control_software), but certainly the most popular one.
+- According to [StackOverflow's 2022 Developer Survey](https://survey.stackoverflow.co/2022/#version-control-systems), about 94% of developers use Git.
+:::
+
+:::{.column size="50%"}
+![](figures/github.png){width="45%"}
+
+- [Git and GitHub are distinct things]{.alert}.
+- [GitHub is an online hosting platform]{.alert} that allows you to host your code online.
+- It relies on Git and makes some of its functionality more accessible.
+- Also, it provides many more useful features to collaborate with others. 
+- Just like we don't *need* Rstudio to run R code, we don't *need* GitHub to use Git... But it will make our lives easier.
+:::
+:::
+:::
+
+## Git: some background
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+::: {.column width="50%"}
+**Where does Git come from?**
+
+- Git was created in 2005 by Linux creator [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds).
+- The initial motivation was to have a non-proprietary version control system to manage Linux kernel development.
+- Check out this (quite opinionated) [talk by Linus Torvalds on Git](https://www.youtube.com/watch?v=4XpnKHJAok8) two years after its creation.
+- There are many [Git GUIs](https://en.wikipedia.org/wiki/Comparison_of_Git_GUIs), giving you the option to use git without the shell (often with reduced functionality). Popular choices are the [GitHub Desktop](https://desktop.github.com/), and the [integration with VS Code](https://code.visualstudio.com/docs/editor/versioncontrol).
+:::
+
+::: {.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/git-vscode.png){width="50%"}
+:::
+:::
+:::
+:::
+
+## GitHub: some background
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column size="50%"}
+**Where does GitHub come from?**
+
+- GitHub was created in 2008 and is now owned by Microsoft.
+- GitHub offers various subscription plans and has expanded its services beyond hosting Git-based version control.
+- GitHub is also widely used to document scientific projects, host websites, and more.
+- GitHub is a [social network for developers]{.alert}. It's like Facebook, but for code.
+- [I'm a big fan of GitHub!]{.alert}. [My website](https://danilofreire.github.io/) and, as you know, [this course](https://danilofreire.github.io/qtm350) are hosted on there.
+:::
+
+:::{.column size="50%"}
+- [Please create an educational account](https://github.com/education/students) to get free access to GitHub Pro. Use your Emory email address.
+- You will receive a [GitHub Student Developer Pack](https://education.github.com/pack) with many freebies, including [GitHub Copilot](https://copilot.github.com/), which is an AI tool that helps you write code.
+- We will talk about Copilot in a future lecture, but you can start using it now.
+
+:::{style="text-align: center;"}
+![](figures/professorcat.png){width="40%"}
+:::
+:::
+:::
+:::
+
+## Second step: install Git
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+Again, Git is an independent piece of software. You need to have it installed on your machine to call it from the command line or VS Code
+
+Chances are that that's already the case. Here's how you can check using the command line:
+
+```{verbatim}
+which git
+```
+
+And here's how you can check the version:
+
+```{verbatim}
+git --version
+```
+
+If you want to install (or update) Git on your Mac/Linux machine, I recommend using [Homebrew](https://brew.sh/), "the missing package manager for macOS (or Linux)":
+
+```{verbatim}
+brew install git
+```
+
+To install/update Git for Windows, check out [happygitwithr.com](https://happygitwithr.com/install-git.html).
+:::
+
+## Third step: introduce yourself to Git
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+This is particularly important when you work with Git but without the GitHub overhead. The idea is to define how your commits are labelled. Others should easily identify your commits as coming from you.
+
+Have you already introduced yourself to Git? Find it out:
+
+```{verbatim}
+git config --list
+```
+
+Still have to introduce yourself? To that end, we set our user name and email address like this:
+
+```{verbatim}
+git config --global user.name 'danilofreire'
+git config --global user.email 'danilo.freire@emory.edu'
+```
+
+The user name can be (but does not have to be) your GitHub user name. The email address should definitely be the one associated with your GitHub account.
+
+Check out [these setup instructions](https://swcarpentry.github.io/git-novice/02-setup.html) from [Software Carpentry](https://software-carpentry.org/about/) to learn about more configuration options.
+:::
+
+# Git from the shell 🐚 {background-color="#2d4563"}
+
+## Repositories
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column size="50%"}
+- Repositories, usually called ‘repos’, store the full history and source control of a project.
+- They can either be hosted locally, or on a shared server, such as `GitHub`.
+- Most repositories are stored on `GitHub`, while core contributors make copies of the repository on their machine and update the repository using the `push/pull` system.
+- Any repository stored somewhere other than locally is called a ‘remote repository’.
+:::
+
+:::{.column size="50%"}
+:::{style="text-align: center;"}
+![](figures/03-version-control.png){width="60%"}
+:::
+:::
+:::
+:::
+
+## {background-image="figures/qtm350-repo.png"}
+
+## Repos vs Directories
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column size="50%"}
+- Repositories are [timelines of the entire project]{.alert}, including all changes made previously.
+- Directories, or ‘working directories’ are projects at their [current state in time]{.alert}.
+- Any local directory interacting with a repository is technically a repository itself, however, it is better to call these directories ‘local repositories’, as they are instances of a remote repository.
+:::
+
+::: {.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/04-version-control.png){width="100%"}
+:::
+:::
+::: 
+:::
+
+## Workflow Diagram
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column size="50%"}
+- This diagram shows a little bit about how the basic Git workflow process works
+- The staging area is the bundle of all the modifications to the project that are going to be committed.
+- A ‘commit’ is similar to taking a snapshot of the current state of the project, then storing it on a timeline.
+:::
+
+::: {.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/05-version-control.jpg){width="50%"}
+:::
+:::
+::: 
+:::
+
+## Main Git commands
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column size="50%"}
+- `git init`: Initialises a new Git repository.
+- `git clone`: Copies an existing Git repository.
+- `git add`: Adds changes to the staging area.
+- `git commit`: Commits changes to the repository.
+- `git push`: Pushes changes to a remote repository.
+- `git pull`: Pulls changes from a remote repository.
+- `git status`: Shows the status of the working directory.
+- `git log`: Shows the commit history.
+- `git branch`: Shows the branches in the repository.
+- `git checkout`: Switches branches.
+
+[Git documentation](https://git-scm.com/doc)
+:::
+
+:::{.column size="50%"}
+:::{style="text-align: center;"}
+![](figures/commands.webp){width="90%"}
+:::
+:::
+:::
+:::
+
+# Hands-on: Git and GitHub 🤲🏽 {background-color="#2d4563"}
+
+## Let's create a repository together
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Let's create a new repository on GitHub from scratch!
+- We will create it in our local machine and push it to GitHub.
+- Next class, I will show you how to clone it and make changes.
+- We will also learn how to create branches, merge them, and resolve conflicts.
+
+:::{.fragment .fade-in}
+:::{style="text-align: center; font-size: 30px;"}
+[Let's do it!]{.alert} 🚀
+:::
+:::
+:::
+
+## Creating a new repository
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column size="50%"}
+1. I will create a new folder/directory in my computer: `my_project` 
+2. Open the `bash/zsh` Terminal and go to the `my_project` directory
+3. I will copy the `my_project` directory path into a text document 
+4. I will try to add this folder to the `staging area`.
+
+```{verbatim}
+mkdir my-project
+cd my-project
+git add .
+```
+5. Error!
+
+:::{.fragment .fade-in}
+6. We need to initialise the repository. [Do not do that in your home directory!]{.alert}
+
+```{verbatim}
+git init
+```
+:::
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/terminal.png){width="130%"}
+:::
+::: 
+:::
+:::
+
+## Adding/Removing files from the repo
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column size="50%"}
+1. Check the `staging area` status.
+
+```{verbatim}
+git status
+```
+
+2. Let's add a `01-cleaning-data.py` file to the `staging area`. Then, check its status.
+
+```{verbatim}
+touch 01-cleaning-data.py
+git add 01-cleaning-data.py
+git status
+```
+:::
+
+::: {.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/terminal02.png){width="100%"}
+:::
+::: 
+:::
+:::
+
+## Adding/Removing files from the repo
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column size="50%"}
+3. Now let's create more files and add them to the `staging area`.
+
+```{verbatim}
+touch 02-exploratory-data-analysis.py
+touch 03-modelling.py
+touch 04-visualisation.py
+git add .
+git status
+```
+:::
+
+::: {.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/terminal03.png){width="100%"}
+:::
+:::
+:::
+:::
+
+## Adding/Removing files from the repo
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column size="50%"}
+4. In the directory, let's delete the `04-visualisation.py` file and check the status:
+
+```{verbatim}
+rm -f 04-visualisation.py
+git status
+```
+:::
+
+::: {.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/terminal04.png){width="100%"}
+:::
+:::
+:::
+::: 
+
+## First commit
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column size="50%"}
+7. (cont.) In the directory, let's do our "initial commit" :
+
+```{verbatim}
+git commit -m "initial commit"
+```
+:::
+
+::: {.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/terminal05.png){width="100%"}
+::: 
+:::
+:::
+:::
+
+## First Commit
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column size="50%"}
+8. To check all commits in your `repo`:
+
+```{verbatim}
+git log
+```
+
+- Most important things here are:   
+  - commit id;
+  - date/time;
+  - branch;
+  - commit message;
+:::
+
+::: {.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/terminal06.png){width="100%"}
+::: 
+:::
+:::
+:::
+
+## Git Checkout
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column size="50%"}
+1. First, let's make new commits in our repo:
+
+```{verbatim}
+touch 04-new-visualisation.py # new file
+touch 05-comments.py # new file
+git add . # add files to the staging area
+git commit -m "adding files" # new commit
+echo "Hello you" >> 05-comments.py # edit file
+git add . # add files to the staging area
+git commit -m "editing 05-comments.py". # new commit
+rm -f 05-comments.py # delete file
+git commit -a -m "deleting 05-comments.py" # new commit
+git log  # lets check
+```
+:::
+
+::: {.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/terminal07.png){width="100%"}
+:::
+:::
+::: 
+:::
+
+## Hands on! Git Checkout
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column size="50%"}
+2. We use `checkout` to go back in time to a given commit. Let's go back to the "initial commit":
+
+```{verbatim}
+git checkout 470636f38e409f4f322c48183e19633ebb550625
+```
+
+- Check the folder!
+- `04-visualisation.py` is back!
+- [Important]{.alert}: doing this does not delete our commits. We just move back in time!
+::: 
+
+::: {.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/terminal08.png){width="200%"}
+:::
+:::
+::: 
+:::
+
+## Git Checkout
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column size="50%"}
+3. To "go back to the future", the most recent commit, we just need to go back to the main branch:
+
+```{verbatim}
+git checkout main
+git log
+```
+- Check the `folder/directory` again!
+- `04-visualisation.py` is gone and `04-new-visualisation.py` is back!
+::: 
+
+::: {.column width="50%"}
+![](figures/terminal09.png){width="100%"}
+:::
+:::
+::: 
+
+## Next steps 🙂
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- [Phew!]{.alert} That was a lot of work! 😅
+- Next class we will see how we can create branches and merge them.
+- We will also learn how to resolve conflicts and push our changes to GitHub.
+- For now, let's keep our `my_project` folder and we will use it in our next class.
+- You can try to create a repository on GitHub and push your changes there! 🤓
+- [Questions?]{.alert}
+:::
+
+## Summary 📝
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column size="50%"}
+Today we learned about:
+
+- The importance of project management
+- The benefits of version control systems
+- What is Git and why use it
+- Why GitHub is a great tool for collaborative projects
+- The main Git commands
+- The difference between repositories and directories
+- How to add, remove, commit, and check changes in a repository
+:::
+
+:::{.column size="50%"}
+![](figures/spy.png){width="100%"}
+:::
+:::
+:::
+
+# Questions? 🤓 {background-color="#2d4563"}
+
+# Thank you very much and see you soon! 😊🙏🏻 {background-color="#2d4563"}
