@@ -1908,3 +1908,4 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/latex,linux,macos,python,r,vim,windows
 
 .DS_Store
+default.profraw
