@@ -132,7 +132,7 @@ Today we will cover
   - `remote`: tells Git we are adding a remote repository
   - `add`: adds a new remote repository
   - `origin`: the name of the remote repository
-  -  https://github.com/danilofreire/my-project.git is the URL of the remote repository
+  -  `https://github.com/danilofreire/my-project.git` is the URL of the remote repository
 - `git branch -M master`: renames the branch to `master`
 - `git push -u origin master`: pushes the changes to the remote repository
 :::
