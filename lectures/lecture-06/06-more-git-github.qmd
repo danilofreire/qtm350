@@ -62,9 +62,9 @@ Today we will cover
 - How to use `.gitignore` to avoid tracking certain files
 - Creating and managing branches
 - How to `clone` and `fork` repositories on GitHub
-- Syncing forked repositories with `upstream` and on GitHub
+- Syncing forked repositories on GitHub
 - How to create `issues` and `pull requests` on GitHub
-- Other cool GitHub features, such as Gists, Pages, and Actions
+- Other cool GitHub features, such as Gists, Pages, Actions, and CLI
 - If time allows, we will also see what GitHub Copilot does
 :::
 
