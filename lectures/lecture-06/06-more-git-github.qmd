@@ -59,7 +59,6 @@ editor:
 Today we will cover
 
 - How to `push` and `pull` changes to and from remote repositories
-- How to use `git stash` to save changes temporarily
 - How to use `.gitignore` to avoid tracking certain files
 - Creating and managing branches
 - How to `clone` and `fork` repositories on GitHub
