@@ -578,6 +578,25 @@ sed '/Project Gutenberg/d' sonnets.txt
 :::
 :::
 
+## Nano: a CLI-based text editor
+### For when you need to make quick edits
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+-   Sometimes you need to make quick edits to a file, but you don't want to open a full-fledged text editor like `vim` or `VS Code`
+-  For this, you can use `nano`, a simple text editor that runs in the terminal
+-  To open a file in `nano`, simply type `nano filename`
+-  You can then use the arrow keys to navigate, and `Ctrl + O` to save and `Ctrl + X` to exit
+- For more information, check out the [GNU documentation](https://www.nano-editor.org/dist/v2.9/nano.html)
+:::
+
+:::{.column width="50%"}
+![](figures/nano.png)
+:::
+:::
+:::
+
 # Redirects, pipes, and loops 🔁 {background-color="#2d4563"}
 
 ## Redirects, pipes, and loops
