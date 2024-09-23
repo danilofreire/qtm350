@@ -124,7 +124,7 @@ Emory University welcomes students from around the country and the world, and th
 
 **Problem Sets (50%).** There will be ten problem sets throughout the course. These assignments are designed to reinforce concepts covered in lectures and readings, and to provide hands-on practice with statistical programming. Problem sets will include a mix of theoretical questions and practical applications. They will be assigned regularly and must be completed individually. You may discuss your work with other colleagues as long as you do not copy entire sentences, just changing a few words. If you worked with other students, please write down their names on your assignment. Please also acknowledge any sources you used in your work, including textbooks, articles, and AI resources. *Any assignment submitted after the due date/time will automatically be graded for half points*. To accommodate unexpected circumstances, your lowest assignment grade will be automatically dropped at the end of the semester. *The same applies to in-class quizzes*. Please submit all assignments as Jupyter Notebooks (`.ipynb`) or `.pdf` files via Canvas or email until midnight on the due date.
 
-**Class Quizzes (30%).** Students will also take five in-class quizzes throughout the semester. These quizzes will be based on the lectures from the previous weeks. They will be designed to test your understanding of the material and your ability to apply the concepts to new problems. Quizzes will be open-book and open-notes, and students have 50 minutes to complete them. You are **not** allowed to use AI tools. They are individual assessments, and students are not allowed to discuss the questions with their colleagues in class. 
+**Class Quizzes (30%).** Students will also take five in-class quizzes throughout the semester. These quizzes will be based on the lectures from the previous weeks. They will be designed to test your understanding of the material and your ability to apply the concepts to new problems. Quizzes will be open-book and open-notes, and students have 50 minutes to complete them. They are individual assessments, and students are not allowed to discuss the questions with their colleagues in class. 
 
 **Final Project (20%).** The final project will consist of a short report, created using Jupyter and using one of the datasets shared on the course [GitHub repository](https://github.com/danilofreire/qtm151/tree/main/final-project). Further instructions will be provided in class. The final project will be due on the last day of class.
 
@@ -132,9 +132,14 @@ Emory University welcomes students from around the country and the world, and th
 
 Each student's final grade will be based on the following after rounding up to the nearest point:
 
-| Grade | A       | A-      | B+      | B       | B-      | C       | D       | F    |
-|-------|---------|---------|---------|---------|---------|---------|---------|------|
-| Range | 91%–100%| 86%–90% | 81%–85% | 76%–80% | 71%–75% | 66%–70% | 60%–65% | <60% |
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+\hline
+Grade & A & A- & B+ & B & B- & C & D & F \\ \hline
+Range & 91\%–100\% & 86\%–90\% & 81\%–85\% & 76\%–80\% & 71\%–75\% & 66\%–70\% & 60\%–65\% & <60\% \\ \hline
+\end{tabular}
+\end{table}
 
 # Course Outline and Suggested Readings
 
@@ -188,7 +193,7 @@ Suggested references:
 
 - Lecture 04: Command line tools, text files, scripting, and basics of Vim.
 - **Assignment 01 due (5%).**
-- **Assignment 02:** Problem Set 02.
+- **Assignment 02:** [Problem Set 02](https://github.com/danilofreire/qtm350/blob/main/assignments/02-assignment.ipynb).
 
 Suggested references:
 
@@ -199,7 +204,7 @@ Suggested references:
 
 ### Monday, September 16:
 
-- Lecture 05: Version control with git and GitHub.
+- Lecture 05: [Version control with git and GitHub](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-05/05-git-github.html).
 
 Suggested references:
 
@@ -208,9 +213,9 @@ Suggested references:
 
 ### Wednesday, September 18:
 
-- Lecture 06: More GitHub: pull requests, issues, pages, and collaboration features.
+- Lecture 06: [More GitHub: pull requests, issues, pages, and collaboration features](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-06/06-more-git-github.html).
 - **Assignment 02 due (5%).**
-- **Assignment 03:** Problem Set 03.
+- **Assignment 03:** [Problem Set 03](https://github.com/danilofreire/qtm350/blob/main/assignments/03-assignment.ipynb).
 
 Suggested references:
 
@@ -220,7 +225,7 @@ Suggested references:
 
 ### Monday, September 23:
 
-- Lecture 07: **Quiz 01: git and Github (6%)**.
+- Lecture 07: [Quiz 01: git and Github (6%)](https://github.com/danilofreire/qtm350-quiz01/tree/main).
 
 ## Module 03: Literate Programming with Markdown, Quarto, and Jupyter
 
@@ -228,7 +233,7 @@ Suggested references:
 
 - Lecture 08: Using Markdown, Jupyter, and Quarto for Reproducible Reports.
 - **Assignment 03 due (5%).**
-- **Assignment 04:** Problem Set 04.
+- **Assignment 04:** [Problem Set 04](https://github.com/danilofreire/qtm350/blob/main/assignments/04-assignment.ipynb).
 
 Suggested references:
 
