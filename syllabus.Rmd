@@ -231,7 +231,7 @@ Suggested references:
 
 ### Wednesday, September 25:
 
-- Lecture 08: Using Markdown, Jupyter, and Quarto for Reproducible Reports.
+- Lecture 08: [Using Quarto for Reproducible Reports](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-08/08-quarto.html)
 - **Assignment 03 due (5%).**
 - **Assignment 04:** [Problem Set 04](https://github.com/danilofreire/qtm350/blob/main/assignments/04-assignment.ipynb).
 
