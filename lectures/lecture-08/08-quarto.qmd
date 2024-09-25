@@ -251,7 +251,7 @@ flowchart LR
 
 :::{.column width="50%"}
 - Quarto files have the `.qmd` extension
-- You can write Python code in Quarto files, but you need to use the `.ipynb` extension
+- You can write Python code in `.qmd` files, but you can also render Jupyter notebooks (`.ipynb`) in Quarto with [some YAML configuration](https://quarto.org/docs/tools/jupyter-lab.html)
 - Quarto files are converted to Markdown files, which are then converted to many formats using [Pandoc](https://pandoc.org/)
 - Pandoc is a universal document converter that can convert files from one format to another
 - Pandoc can convert Markdown files to PDF, Word, HTML, and many other formats
