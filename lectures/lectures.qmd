@@ -113,7 +113,7 @@ Suggested references:
 
 #### Monday, September 30:
 
-- Lecture 09: Presentations with Quarto and GitHub Pages.
+- Lecture 09: [Writing Documents, Presentations, and Websites with Quarto](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-09/09-more-quarto.html).
 
 Suggested references:
 

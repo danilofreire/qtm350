@@ -185,7 +185,7 @@ Suggested references:
 
 ### Monday, September 16:
 
-- Lecture 05: [Version control with git and GitHub](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-05/05-git-github.html).
+- Lecture 05: [Version control with Git and GitHub](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-05/05-git-github.html).
 
 Suggested references:
 
@@ -206,7 +206,7 @@ Suggested references:
 
 ### Monday, September 23:
 
-- Lecture 07: [Quiz 01: git and Github (6%)](https://github.com/danilofreire/qtm350-quiz01/).
+- Lecture 07: [Quiz 01: Git and Github (6%)](https://github.com/danilofreire/qtm350-quiz01/).
 
 ## Module 03: Literate Programming with Markdown, Quarto, and Jupyter
 
@@ -229,7 +229,7 @@ Suggested references:
 
 ### Monday, September 30:
 
-- Lecture 09: Presentations with Quarto and GitHub Pages.
+- Lecture 09: [Writing Documents, Presentations, and Websites with Quarto](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-09/09-more-quarto.html).
 
 Suggested references:
 
