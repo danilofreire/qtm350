@@ -212,7 +212,7 @@ Suggested references:
 
 ### Wednesday, September 25:
 
-- Lecture 08: [Using Quarto for Reproducible Reports](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-08/08-quarto.html)
+- Lecture 08: [Using Quarto for Reproducible Reports](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-08/08-quarto.html).
 - **Assignment 03 due (5%).**
 - **Assignment 04:** [Problem Set 04](https://github.com/danilofreire/qtm350/blob/main/assignments/04-assignment.ipynb).
 
@@ -230,14 +230,14 @@ Suggested references:
 ### Monday, September 30:
 
 - Lecture 09: [Writing Documents, Presentations, and Websites with Quarto](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-09/09-more-quarto.html).
-- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=b3cb9962-bfcd-4b44-a3f4-4357b1442eda&hostId=05eb977d-4f8a-440e-9e45-95212b29d103)
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=b3cb9962-bfcd-4b44-a3f4-4357b1442eda&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 
 Suggested references:
 
 - [Quarto Documentation - Presentations](https://quarto.org/docs/presentations/) and [Websites](https://quarto.org/docs/websites/).
 - [GitHub Pages Documentation](https://docs.github.com/en/pages).
 - French, J. (2023). [Creating Websites with Quarto and GitHub Pages (YouTube Playlist)](https://www.youtube.com/playlist?list=PLkrJrLs7xfbXcEKhTCKRSr2VXH4yiBeXo).
-- Taylor, I. (2022). [Publishing a Quarto Site to GitHub Pages](https://www.ianmtaylor.net/posts/2022/deploy-quarto-to-github-pages/)
+- Taylor, I. (2022). [Publishing a Quarto Site to GitHub Pages](https://www.ianmtaylor.net/posts/2022/deploy-quarto-to-github-pages/).
 
 ### Wednesday, October 02:
 
