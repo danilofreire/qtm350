@@ -390,7 +390,7 @@ format:
 :::{style="margin-top: 30px; font-size: 24px;"}
 - Let's see together two examples of slides created with Quarto
 
-- First, a simple example with text and images: <https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-09/simple-slides.html>
+- First, a simple example with text and images: <https://rawcdn.githack.com/danilofreire/qtm350/545939d5b14a7596fa6b726dc00ea6825bad321d/lectures/lecture-09/simple-slides.html>
 - The code is available here: <https://raw.githubusercontent.com/danilofreire/qtm350/main/lectures/lecture-09/simple-slides.qmd>
 
 - I have also created a template with a more complex layout: <https://github.com/danilofreire/quarto-presentation>
