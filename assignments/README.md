@@ -14,9 +14,11 @@ When submitting, please name your files as follows: `assignment-01-your-name.ipy
 
 | Session | Topic | Assignment | Submission Deadline |
 |---------|-------|------------|---------------------|
-| 02 | [Computational Literacy](https://danilofreire.github.io/qtm350/lectures/lecture-02/02-computational-literacy.html) | [Assignment 01](01-assignment.ipynb) | 2024-09-11 |
-| 03 | [Command Line Interface](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-03/03-command-line.html) | [Assignment 02](02-assignment.ipynb) | 2024-09-18 |
+| 02 | [Computational Literacy](https://danilofreire.github.io/qtm350/lectures/lecture-02/02-computational-literacy.html) | [Assignment 01](https://github.com/danilofreire/qtm350/blob/main/assignments/01-assignment.ipynb) | 2024-09-11 |
+| 03 | [Command Line Interface](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-03/03-command-line.html) | [Assignment 02](https://github.com/danilofreire/qtm350/blob/main/assignments/02-assignment.ipynb) | 2024-09-18 |
 | 05 | [Version control with git and GitHub](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-05/05-git-github.html) | [Assignment 03](https://github.com/danilofreire/qtm350/blob/main/assignments/03-assignment.ipynb) | 2024-09-25 |
+| 05 | [Version control with git and GitHub](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-05/05-git-github.html) | [Assignment 04](https://github.com/danilofreire/qtm350/blob/main/assignments/04-assignment.ipynb) | 2024-10-02 |
+| 09 | [Writing Documents, Presentations, and Websites with Quarto](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-09/09-more-quarto.html) | [Assignment 05](https://github.com/danilofreire/qtm350/blob/main/assignments/05-assignment.ipynb) | 2024-10-09 |
 
 ## In-Class Quizzes
 
