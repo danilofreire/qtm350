@@ -43,16 +43,18 @@ editor:
 :::{style="margin-top: 30px; font-size: 24px;"}
 :::{.columns}
 :::{.column width="50%"}
+:::{.incremental}
 - I haven't graded Quiz 2 yet, but I have seen most of your projects...
-- ... and I was very happy with what I saw! 😊
+- ... and I'm happy with them! 😊
 - Many of you wrote and published the website successfully, which is great!
 - You indeed used different themes and styles, and the analyses were correct
 - However, I noticed a few common mistakes that I'd like to address 😉
 :::
+:::
 
 :::{.column width="50%"}
 :::{.incremental}
-- Most the mistakes were actually [not related to this course's content at all!]{.alert}
+- Most of the mistakes were actually [not related to this course's content at all!]{.alert}
 - They were mainly about something that is very important in computing in general...
   - [Folder structure!]{.alert}
 - Other common mistakes were:
@@ -154,7 +156,7 @@ editor:
 - LLMs are trained on large corpora of text data (e.g., books, articles, websites, etc.), and they learn to predict [the next word in a sentence]{.alert}
 - For code, they are trained on large repositories like GitHub and use Natural Language Processing (NLP) to understand the context and generate code snippets
 - Which means that they are particularly good at writing Python or JavaScript, but they can also help with other languages
-- For a very good introduction to LLMs, I recommend [this article](https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/) by Stephen Wolfram
+- For a very good introduction to LLMs, I strongly recommend [this article](https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/) by [Stephen Wolfram](https://en.wikipedia.org/wiki/Stephen_Wolfram)
 :::
 
 :::{.column width="50%"}
@@ -224,16 +226,21 @@ Source: [Taulli (2024)](https://www.oreilly.com/library/view/ai-assisted-program
 :::{style="margin-top: 30px; font-size: 22px;"}
 :::{.columns}
 :::{.column width="50%"}
+:::{.incremental}
 - Models use [backpropagation](https://en.wikipedia.org/wiki/Backpropagation) to update their parameters based on the errors in their predictions
-- Backpropagation is a [gradient descent](https://en.wikipedia.org/wiki/Gradient_descent) algorithm that adjusts the weights of the model to minimise the loss function
+  - Backpropagation is a [gradient descent](https://en.wikipedia.org/wiki/Gradient_descent) algorithm that adjusts the weights of the model to minimise the loss function
 - They also use several methods to prevent overfitting, such as [dropout](https://en.wikipedia.org/wiki/Dropout_(neural_networks))
+  - Dropout refers to randomly "dropping out", or omitting, units (both hidden and visible) during the training process of a neural network
 - After initial training, the model can be [fine-tuned on specific datasets]{.alert} to improve its performance in particular domains, such as programming 
   - Often done by [poorly paid workers in developing countries](https://time.com/6247678/openai-chatgpt-kenya-workers/)
+:::
 :::
 
 :::{.column width="50%"}
 :::{style="text-align: center;"}
-![](figures/overfitting.jpg)
+![](figures/dropout.png)
+
+![](figures/overfitting.jpg){width="80%"}
 :::
 :::
 :::
@@ -522,11 +529,11 @@ Source: <https://help.openai.com/en/articles/6654000-best-practices-for-prompt-e
 :::{style="margin-top: 30px; font-size: 22px;"}
 :::{.columns}
 :::{.column width="50%"}
-- We will look into Copilot in more detail in the next lecture, but I wanted to make sure we all have it installed and ready to go 😉
+- We will look into Copilot in more detail in the next lecture, but I just want to make sure we all have it installed and ready to go 😉
 - First, it is a good idea to have [VS Code](https://code.visualstudio.com/) installed on your computer
 - Then, you can install the [GitHub Copilot extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) from the VS Code marketplace
 - You will need to [sign in with your GitHub account](https://github.com) to use Copilot
-- Copilot works in the CLI as well, and you can install it using [this guide](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-command-line). You need to install the [GitHub CLI](https://cli.github.com/) first
+- Copilot works in the CLI as well, and you can install it using [this guide](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-command-line). You need to install [GitHub CLI](https://cli.github.com/) first
 - Take some time to install and play around with Copilot before the next lecture 😃
 - Please let me know if you have any questions or issues!
 :::
