@@ -28,7 +28,7 @@ This repository is organised as follows:
 - [`lectures/`](https://github.com/danilofreire/qtm350/tree/main/lectures): Includes lecture materials and code
 - [`tutorials/`](https://github.com/danilofreire/qtm350/tree/main/tutorials): Step-by-step guides for the tools used in the course
 - [`README.md`](https://github.com/danilofreire/qtm350/blob/main/README.md): This file, providing an overview of the course and repository
-- [`syllabus.pdf`](https://github.com/danilofreire/qtm350/blob/main/syllabus.pdf): Course syllabus in PDF format
+- [`syllabus.pdf`](https://github.com/danilofreire/qtm350/blob/main/syllabus/syllabus.pdf): Course syllabus in PDF format
 
 The course website is available at <https://danilofreire.github.io/qtm350/>.
 
@@ -36,7 +36,7 @@ The course website is available at <https://danilofreire.github.io/qtm350/>.
 
 If you encounter any issues with the course materials or have questions about the content, please:
 
-1. Check the [course syllabus](https://github.com/danilofreire/qtm350/blob/main/syllabus.pdf) and this README for relevant information
+1. Check the [course syllabus](https://github.com/danilofreire/qtm350/blob/main/syllabus/syllabus.pdf) and this README for relevant information
 2. Review the [lecture materials](https://github.com/danilofreire/qtm350/tree/main/lectures) and [tutorials](https://github.com/danilofreire/qtm350/tree/main/tutorials) in the repository
 3. Consult with your classmates or post in the [course discussion forum](https://github.com/danilofreire/qtm350/discussions)
 4. Attend office hours or schedule an appointment with the instructor
