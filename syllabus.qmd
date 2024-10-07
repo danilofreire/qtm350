@@ -249,7 +249,7 @@ Suggested references:
 
 ### Monday, October 07:
 
-- Lecture 11: Introduction to AI-Assisted Programming and Chatbots.
+- Lecture 11: [Introduction to AI-Assisted Programming and Chatbots](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-11/11-ai-programming.html).
 
 Suggested references:
 
