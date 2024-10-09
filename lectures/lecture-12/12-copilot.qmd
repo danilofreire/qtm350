@@ -557,7 +557,7 @@ def is_even(number):
 
 ## Example 06: Fix code 🛠
 
-:::️{style="margin-top: 40px; font-size: 21px; text-align: center;"}
+:::{style="margin-top: 40px; font-size: 21px; text-align: center;"}
 ![](figures/copilot-fix.png){width="80%"}
 :::
 
