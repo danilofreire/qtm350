@@ -652,7 +652,7 @@ def is_even(number):
 :::
 
 :::{.column width="50%"}
-:::{style="text-align: center;"}
+:::{style="text-align: center; margin-top: -50px;"}
 ![](figures/ai-tools.png)
 :::
 :::
