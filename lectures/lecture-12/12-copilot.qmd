@@ -428,7 +428,7 @@ echo ". `"$GH_COPILOT_PROFILE`"" >> $PROFILE
 
 :::{style="margin-top: 40px; font-size: 21px;"}
 - Let's start with `gh copilot explain` to get an explanation of a command
-- This command searches for log files and then searches within them for the word 'error'.
+- The command below searches for log files and then searches within them for the word `error`
   - `find / -name '*.log' -exec grep 'error' {} +`
 
 :::{style="text-align: center;"}
