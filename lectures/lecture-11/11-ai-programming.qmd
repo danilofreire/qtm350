@@ -1,7 +1,7 @@
 ---
 title: QTM 350 - Data Science Computing
 subtitle: "Lecture 11 - Introduction to AI-Assisted Programming"
-date: 2024-08-07
+date: 2024-10-07
 date-format: "DD MMMM, YYYY"
 author:
   - name: Danilo Freire
@@ -27,7 +27,6 @@ engine: jupyter
 revealjs-plugins:
   - drop
   - fontawesome
-  - revealjs-text-resizer
 filters:
   - pyodide
 editor:
