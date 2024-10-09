@@ -260,7 +260,7 @@ Suggested references:
 
 ### Wednesday, October 09:
 
-- Lecture 12: AI-Assisted Programming with GitHub Copilot.
+- Lecture 12: [AI-Assisted Programming with GitHub Copilot](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-12/12-copilot.html).
 - **Assignment 05 due (5%).**
 - **Assignment 06:** Problem Set 06.
  
@@ -273,6 +273,7 @@ Suggested references:
   (YouTube)](https://www.youtube.com/watch?v=dhfTaSGYQ4o)
 - [GitHub Copilot YouTube Playlist](https://www.youtube.com/playlist?list=PL0lo9MOBetEHEHi9h0k_lPn0XZdEeYZDS)
 - Labadze, L., Grigolia, M., & Machaidze, L. (2023). [Role of AI Chatbots in Education: Systematic Literature Review](https://link.springer.com/article/10.1186/s41239-023-00426-1). International Journal of Educational Technology in Higher Education, 20(1), 56.
+
 ## Module 05: Data Manipulation with Python
 
 ### Monday, October 14: Fall Break (no class)
