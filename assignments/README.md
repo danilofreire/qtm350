@@ -19,7 +19,7 @@ When submitting, please name your files as follows: `assignment-01-your-name.ipy
 | 05 | [Version control with git and GitHub](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-05/05-git-github.html) | [Assignment 03](https://github.com/danilofreire/qtm350/blob/main/assignments/03-assignment.ipynb) | 2024-09-25 |
 | 05 | [Version control with git and GitHub](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-05/05-git-github.html) | [Assignment 04](https://github.com/danilofreire/qtm350/blob/main/assignments/04-assignment.ipynb) | 2024-10-02 |
 | 09 | [Writing Documents, Presentations, and Websites with Quarto](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-09/09-more-quarto.html) | [Assignment 05](https://github.com/danilofreire/qtm350/blob/main/assignments/05-assignment.ipynb) | 2024-10-09 |
-| 12 | [AI-Assisted Programming with GitHub Copilot](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-12/12-copilot.html) | [Assignment 05](https://github.com/danilofreire/qtm350/blob/main/assignments/06-assignment.ipynb) | 2024-10-16 |
+| 12 | [AI-Assisted Programming with GitHub Copilot](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-12/12-copilot.html) | [Assignment 06](https://github.com/danilofreire/qtm350/blob/main/assignments/06-assignment.ipynb) | 2024-10-16 |
 
 ## In-Class Quizzes
 
