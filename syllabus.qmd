@@ -281,6 +281,7 @@ Suggested references:
 ### Wednesday, October 16:
 
 - Lecture 13: [Python Data Types, Boolean Logic, and Control Structures](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-13/13-python-intro.html).
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=668187b3-ea1e-43d4-89f2-bd0f06aeb4a0&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 - **Assignment 06 due (5%).**
 - **Assignment 07:** Problem Set 07.
 
