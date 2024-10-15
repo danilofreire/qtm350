@@ -165,7 +165,7 @@ Suggested references:
 
 #### Wednesday, October 16:
 
-- Lecture 13: Python Data Types, Boolean Logic, and Control Structures.
+- Lecture 13: [Python Data Types, Boolean Logic, and Control Structures](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-13/13-python-intro.html).
 - **Assignment 06 due (5%).**
 - **Assignment 07:** Problem Set 07.
 
