@@ -1,0 +1,1506 @@
+---
+title: QTM 350 - Data Science Computing
+subtitle: Lecture 13 - Python Data Types, Boolean Logic, and Control Structures
+date: 2024-10-16
+date-format: "DD MMMM, YYYY"
+author:
+  - name: Danilo Freire
+    orcid: 0000-0002-4712-6810
+    affiliations: Emory University
+format:
+  clean-revealjs:
+    self-contained: true
+    footer: "[Python Intro](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-13/13-python-intro.html)"
+    drop:
+      shortcut: "`"
+      button: true
+      engine: pyodide
+      pyodide:
+        packages:
+          - matplotlib
+          - numpy
+          - pandas
+transition: slide
+transition-speed: default
+scrollable: true
+engine: jupyter
+revealjs-plugins:
+  - drop
+  - fontawesome
+filters:
+  - pyodide
+editor:
+  render-on-save: true
+---
+
+# Nice to see you all again! <br> How was the break? 🍂 {background-color="#2d4563"}
+
+# Brief recap of last class 📚 {background-color="#2d4563"}
+
+## What did we learn?
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We have learned a lot of things so far! 🤓
+- Command line, Git, GitHub, Quarto, AI tools, and more! 💻
+- We are now ready to start learning a bit of Python! 🐍
+- We will have three sessions on Python
+- Many of you are already familiar with Python, so this will be a review for you
+- For those who are not, don't worry! We will start from the basics! 😉
+- Let's get started! 🚀
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/python.svg)
+:::
+:::
+:::
+:::
+
+## Installing Python - Anaconda
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- There are several ways to [install Python](https://www.python.org/downloads/)
+- I recommend that you install [Anaconda](https://www.anaconda.com/products/distribution)
+- It is free, well-maintained, and comes with many useful packages for data science
+- You can install it on Windows, Mac, and Linux
+- Follow the instructions on the website
+- Our course website has a detailed guide on installing Anaconda and integrating it with VSCode. [You can find the tutorial here](https://danilofreire.github.io/qtm350/tutorials/01-vscode-anaconda-tutorial.html). Feel free to check it out! 📚
+- If you have any questions, let me know! 😉
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/anaconda.png)
+
+<https://www.anaconda.com/download>
+:::
+:::
+:::
+:::
+
+## Python basics
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Python is a high-level, interpreted, and general-purpose programming language
+- It is widely used in data science, machine learning, web development, and more
+- We will use it in this course to analyse data, interact with SQL databases, and parallel computing
+- Python is known for its simplicity and readability
+
+```{python}
+#| echo: true
+#| eval: true 
+print("Hello, world!")
+```
+
+- There are also thousands of libraries available for Python, such as [NumPy](https://numpy.org/), [Pandas](https://pandas.pydata.org/), [Matplotlib](https://matplotlib.org/), and [Scikit-learn](https://scikit-learn.org/), which are widely used in data science
+:::
+
+:::{.column width="50%"}
+- Python is an [object-oriented](https://realpython.com/python3-object-oriented-programming/) language, which means that everything in Python is an object (e.g., variables, functions, classes)
+- Objects can be manipulated, and they have attributes and methods
+- Python is also a dynamically typed language, which means that you don't need to declare the type of a variable before using it
+- Python is famous for its [somewhat idyosincratic syntax](https://python.plainenglish.io/10-quirks-and-idiosyncrasies-of-python-c7a6c1ed51d5), which includes [using indentation (4 spaces) to define code blocks](https://note.nkmk.me/en/python-indentation-usage/), [zero-based indexing](https://python-history.blogspot.com/2013/10/why-python-uses-0-based-indexing.html), and [unconventional slicing notation](https://stackoverflow.com/questions/509211/understanding-slice-notation)
+
+```{python}
+#| echo: true
+#| eval: false
+# Space indentation 
+if 5 > 2:
+    print("Five is greater than two!")
+```
+
+```{python}
+#| echo: true
+#| eval: true 
+# Slicing notation
+a = "Hello, World!"
+print(a[2:5])
+```
+:::
+:::
+:::
+
+## Python data types
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Python has several built-in data types, with the most common being:
+  - `int` (integer): whole numbers (e.g., 1, 2, 3)
+  - `float` (floating-point number): numbers with decimal points (e.g., 1.0, 2.5, 3.14)
+  - `str` (string): text (e.g., "Hello, world!")
+  - `bool` (boolean): logical values (e.g., True, False)
+  - `list`: ordered, mutable collection of items (e.g., [1, 2, 3])
+  - `tuple`: ordered, immutable collection of items (e.g., (1, 2, 3))
+  - `dict` (dictionary): unordered collection of key-value pairs (e.g., {"name": "Alice", "age": 25})
+  - `set`: unordered collection of unique items (e.g., {1, 2, 3})
+:::
+
+:::{.column width="50%"}
+- You can check the type of a variable using the `type()` function
+
+```{python}
+#| echo: true
+#| eval: true
+x = 5 
+print(type(x)) 
+```
+
+- You can convert between data types using the `int()`, `float()`, `str()`, `bool()`, `list()`, `tuple()`, `dict()`, and `set()` functions
+
+```{python}
+#| echo: true
+#| eval: true
+x = 5
+y = float(x)
+print(y)
+```
+:::
+:::
+:::
+
+## Variables and values in Python
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [Values]{.alert}: pieces of data a computer programme works with
+  - Examples: numbers (42), text ("Hello!")
+  - Different types: integers, strings, etc.
+
+- [Variables]{.alert}: names that refer to values
+  - In maths/stats: often `x`, `y`
+  - In Python: more descriptive names possible: `age`, `name`, etc
+
+- [Variable naming rules]{.alert}:
+  - Must start with a letter or underscore
+  - Can include letters, numbers, underscores
+  - Cannot be Python reserved words (e.g. `for`, `while`, `class`)
+  - Case-sensitive (`myVar` ≠ `myvar`)
+:::
+
+:::{.column width="50%"}
+- Think of variables as boxes holding information
+  - Can contain single numbers, vectors, strings, etc
+
+![](figures/variables.png)
+
+- Use assignment operator (`=`) to assign values to variables
+  - Example: `x = 42`
+
+- Best practices for variable names:
+  - Use descriptive names
+  - Avoid overwriting built-in functions or keywords
+:::
+:::
+:::
+
+## Arithmetic operators
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Python supports several arithmetic operators, including:
+  - `+` (addition)
+  - `-` (subtraction)
+  - `*` (multiplication)
+  - `/` (division)
+  - `//` (floor division)
+  - `%` (modulus)
+  - `**` (exponentiation)
+- Let's have a go at applying these operators to numeric types and observe the results
+
+```{python}
+#| echo: true
+#| eval: true
+1 + 2 + 3 + 4 + 5  # add
+```
+
+```{python}
+#| echo: true
+#| eval: true
+2 * 3.14159  # multiply
+```
+
+```{python}
+#| echo: true
+#| eval: true
+2 ** 10  # exponent
+```
+:::
+
+:::{.column width="50%"}
+- Division may produce a different `dtype` than expected, it will change `int` to `float`
+
+```{python}
+#| echo: true
+#| eval: true
+int_2 = 2
+type(int_2)
+type(int_2 / int_2)
+```
+
+- The syntax `//` allows us to do "integer division" (aka "floor division") and retain the `int` data type, it always rounds down
+
+```{python}
+#| echo: true
+#| eval: true
+int(101 / 2)
+```
+
+- The `%` "modulus" operator gives us the remainder after division
+
+```{python}
+#| echo: true
+#| eval: true
+101 % 2
+```
+:::
+:::
+:::
+
+## None
+
+:::{style="margin-top: 30px; font-size: 25px;"}
+- `None` is a special constant in Python that represents the absence of a value
+- It is often used to represent missing data or as a placeholder
+
+```{python}
+#| echo: true
+#| eval: true
+x = None
+print(x)
+```
+
+```{python}
+#| echo: true
+#| eval: true
+type(x)
+```
+
+- `None` works with complex data types as well
+
+```{python}
+#| echo: true
+#| eval: true
+x = [None, 2, 3]
+
+for i in x:
+    print(i)
+```
+:::
+
+## Strings
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Text is stored as a data type called a `string` 
+- We can think of a string as a [sequence of characters]{.alert}
+- Strings can be enclosed in single quotes (`'...'`) or double quotes (`"..."`)
+
+```{python}
+#| echo: true
+#| eval: true
+x = "Hello, world!"
+print(x)
+```
+
+```{python}
+#| echo: true
+#| eval: true
+y = 'Hello, world!'
+print(y)
+```
+
+- There's no difference between the two methods, but there are cases where having both is useful! 
+:::
+
+:::{.column width="50%"}
+- We also have triple double quotes, which are typically used for function documentation, e.g., `"""This function adds two numbers"""`
+- If the string contains a quotation or apostrophe, we can use a combination of single and double quotes to define the string
+
+```{python}
+#| echo: true
+#| eval: true
+z = "Alice's cat"
+print(z)
+```
+
+```{python}
+#| echo: true
+#| eval: true
+quote = 'Donald Knuth: "Premature optimisation is the root of all evil."'
+quote
+```
+:::
+:::
+:::
+
+## Boolean logic
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Boolean logic is a branch of algebra that deals with true and false values
+- In Python, we have two boolean values: `True` and `False`
+
+```{python}
+#| echo: true
+#| eval: true
+the_truth = True
+the_truth
+```
+
+```{python}
+#| echo: true
+#| eval: true
+type(the_truth)
+```
+
+```{python}
+#| echo: true
+#| eval: true
+lies = False
+lies
+```
+
+```{python}
+#| echo: true
+#| eval: true
+type(lies)
+```
+:::
+
+## Comparison operators
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We can use boolean operators to compare values and return boolean values
+- The main boolean operators are:
+  - `==` (equal)
+  - `!=` (not equal)
+  - `>` (greater than)
+  - `<` (less than)
+  - `>=` (greater than or equal to)
+  - `<=` (less than or equal to)
+  - `is` (identity)
+  - `not` (negation)
+  - `in` (membership)
+:::
+
+:::{.column width="50%"}
+- Some examples
+
+```{python}
+#| echo: true
+#| eval: true
+2 < 3
+```
+
+```{python}
+#| echo: true
+#| eval: true
+"AI" == "Solve all the world's problems"
+```
+
+```{python}
+#| echo: true
+#| eval: true
+2 != "2"
+```
+
+```{python}
+#| echo: true
+#| eval: true
+2 == 2.0
+```
+
+```{python}
+#| echo: true
+#| eval: true
+2 is 2
+```
+
+```{python}
+#| echo: true
+#| eval: true
+2 is not 3
+```
+
+```{python}
+#| echo: true
+#| eval: true
+"AI" in "AI will solve all the world's problems"
+```
+:::
+:::
+:::
+
+## Boolean operators
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We can combine boolean values using boolean operators
+- The main boolean operators are:
+  - `and` (logical and)
+  - `or` (logical or)
+  - `not` (logical not)
+- The `and` operator returns `True` if both operands are `True`
+- The `or` operator returns `True` if at least one operand is `True`
+- The `not` operator returns `True` if the operand is `False`
+:::
+
+:::{.column width="50%"}
+- Some examples
+
+```{python}
+#| echo: true
+#| eval: true
+True and True
+```
+
+```{python}
+#| echo: true
+#| eval: true
+True and False
+```
+
+```{python}
+#| echo: true
+#| eval: true
+True or False
+```
+
+```{python}
+#| echo: true
+#| eval: true
+not True
+```
+
+```{python}
+#| echo: true
+#| eval: true
+not not True
+```
+
+```{python}
+#| echo: true
+#| eval: true
+("Python 2" != "Python 3") and (2 <= 3)
+```
+:::
+:::
+:::
+
+## Lists and tuples
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Lists and tuples are ordered collections of items
+- Lists are mutable, while tuples are immutable
+- We will start with lists
+- Lists are defined using square brackets (`[]`)
+
+```{python}
+#| echo: true
+#| eval: true
+my_list = [1, 2, "THREE", 4, 0.5]
+my_list
+```
+
+```{python}
+#| echo: true
+#| eval: true
+type(my_list)
+```
+
+- Lists can hold any datatype - even other lists!
+
+```{python}
+#| echo: true
+#| eval: true
+another_list = [1, "two", [3, 4, "five"], True, None, {"key": "value"}]
+another_list
+```
+
+- You can get the length of a list using the `len()` function
+
+```{python}
+#| echo: true
+#| eval: true
+len(another_list)
+```
+:::
+
+:::{.column width="50%"}
+- Tuples look similar to lists, but they are defined using parentheses (`()`) and are immutable
+- Tuples are often used to store related pieces of information, such as coordinates
+
+```{python}
+#| echo: true
+#| eval: true
+today = (1, 2, "THREE", 4, 0.5)
+today
+```
+
+```{python}
+#| echo: true
+#| eval: true
+type(today)
+```
+
+```{python}
+#| echo: true
+#| eval: true
+len(today)
+```
+:::
+:::
+:::
+
+## Indexing and slicing
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We can access individual items in a list or tuple using indexing
+- [Indexing starts at 0]{.alert}
+- We can also access multiple items using slicing
+- Slicing uses the syntax `start:stop:step`
+
+```{python}
+#| echo: true
+#| eval: true
+my_list = [1, 2, "THREE", 4, 0.5]
+my_list[0]
+```
+
+```{python}
+#| echo: true
+#| eval: true
+my_list[2]
+```
+
+```{python}
+#| echo: true
+#| eval: true
+my_list[-1]
+```
+
+```{python}
+#| echo: true
+#| eval: true
+my_list[1:3]
+```
+:::
+
+:::{.column width="50%"}
+- Note from the above that the start of the slice is inclusive and the end is exclusive
+- So `my_list[1:3]` fetches elements 1 and 2, [but not 3]{.alert}
+
+- Strings behave the same as lists and tuples when it comes to indexing and slicing
+- Remember, we think of them as a [sequence of characters]{.alert}
+
+```{python}
+#| echo: true
+#| eval: true
+alphabet = "abcdefghijklmnopqrstuvwxyz"
+alphabet[0]
+```
+
+```{python}
+#| echo: true
+#| eval: true
+alphabet[1:3]
+```
+
+```{python}
+#| echo: true
+#| eval: true
+alphabet[-1]
+```
+
+```{python}
+#| echo: true
+#| eval: true
+alphabet[:5]
+```
+:::
+:::
+:::
+
+## List methods
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Lists have several methods that allow us to manipulate them
+- Some common methods include:
+  - `append()`: add an item to the end of the list
+  - `insert()`: add an item at a specific position
+  - `remove()`: remove an item by value
+  - `pop()`: remove an item by index
+  - `reverse()`: reverse the list
+:::
+
+:::{.column width="50%"}
+- Let's see some examples
+
+```{python}
+#| echo: true
+#| eval: true
+my_list = [1, 2, "THREE", 4, 0.5]
+my_list.append("six")
+my_list
+```
+
+```{python}
+#| echo: true
+#| eval: true
+my_list.insert(2, "two")
+my_list
+```
+
+```{python}
+#| echo: true
+#| eval: true
+my_list.remove("two")
+my_list
+```
+
+```{python}
+#| echo: true
+#| eval: true
+my_list.pop(2)
+my_list
+```
+
+```{python}
+#| echo: true
+#| eval: true
+my_list.reverse()
+my_list
+```
+:::
+:::
+:::
+
+## Sets
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Sets are unordered collections of unique items
+- Sets are defined using curly braces (`{}`)
+- Sets do not allow duplicates
+- We can perform set operations, such as union, intersection, and difference
+- Sets are mutable, but their items must be immutable
+- We can convert lists to sets using the `set()` function
+:::
+
+:::{.column width="50%"}
+- Some examples
+
+```{python}
+#| echo: true
+#| eval: true
+my_set = {1, 2, 3, 4, 5}
+my_set
+```
+
+```{python}
+#| echo: true
+#| eval: true
+my_set.add(6)
+my_set
+```
+
+```{python}
+#| echo: true
+#| eval: true
+my_set.add(6)
+my_set
+```
+
+```{python}
+#| echo: true
+#| eval: true
+my_list = [1, 2, 3, 4, 5, 5]
+my_set = set(my_list)
+my_set
+```
+
+```{python}
+#| echo: true
+#| eval: true
+my_set2 = {4, 5, 6, 7, 8}
+my_set.union(my_set2)
+```
+
+```{python}
+#| echo: true
+#| eval: true
+my_set.intersection(my_set2)
+```
+:::
+:::
+:::
+
+## String methods
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Strings also have several methods for manipulation
+- Some common methods include:
+  - `upper()`: convert to uppercase
+  - `lower()`: convert to lowercase
+  - `strip()`: remove leading and trailing whitespace
+  - `replace()`: replace a substring
+  - `split()`: split the string into a list
+:::
+
+:::{.column width="50%"}
+- Let's see some examples
+- Note that strings are immutable, so these methods return new strings
+- The original string is not modified
+
+```{python}
+#| echo: true
+#| eval: true
+x = " Hello, world! "
+x.upper()
+```
+
+```{python}
+#| echo: true
+#| eval: true
+x.lower()
+```
+
+```{python}
+#| echo: true
+#| eval: true
+x.strip()
+```
+
+```{python}
+#| echo: true
+#| eval: true
+x.replace("world", "Python")
+```
+
+```{python}
+#| echo: true
+#| eval: true
+x.split(",")
+```
+
+```{python}
+#| echo: true
+#| eval: true
+x.strip().split(" ") # chaining methods
+```
+:::
+:::
+:::
+
+## String formatting
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Python has ways of creating strings by "filling in the blanks" and formatting them nicely 
+- This is helpful for when you want to print statements that include variables or statements
+- There are a few ways of doing this but I use and recommend `f-strings` which were introduced in Python 3.6
+- All you need to do is put the letter `f` out the front of your string and then you can include variables with curly-bracket notation `{}`
+
+```{python}
+#| echo: true
+#| eval: true
+name = "Alice"
+age = 25
+f"My name is {name} and I am {age} years old."
+```
+:::
+
+:::{.column width="50%"}
+```{python}
+#| echo: true
+#| eval: true
+name = "Newborn Baby"
+age = 4 / 12
+day = 20
+month = 3
+year = 2020
+template_new = f"Hello, my name is {name}. I am {age:.2f} years old. I was born on {day}/{month:02}/{year}."
+template_new
+```
+- The `:.2f` notation is a way of formatting the number to two decimal places
+- The `:02` notation is a way of formatting the number to two digits, with leading zeros if necessary
+- More on string formatting [here](https://docs.python.org/3.4/library/string.html#format-specification-mini-language)
+:::
+:::
+:::
+
+## Dictionaries
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Dictionaries are unordered collections of [key-value pairs]{.alert}
+- Dictionaries are defined using curly braces (`{}`)
+- We can access values using keys
+- Dictionaries are mutable
+- We can convert lists of tuples to dictionaries using the `dict()` function
+
+```{python}
+#| echo: true
+#| eval: true
+my_dict = {"name": "Alice",
+           "age": 25, 
+           "city": "Atlanta"}
+my_dict
+```
+:::
+
+:::{.column width="50%"}
+```{python}
+#| echo: true
+#| eval: true
+my_dict["name"]
+```
+
+```{python}
+#| echo: true
+#| eval: true
+my_dict["age"]
+```
+
+```{python}
+#| echo: true
+#| eval: true
+my_dict["city"]
+```
+
+```{python}
+#| echo: true
+#| eval: true
+my_dict["city"] = "New York"
+my_dict
+```
+
+```{python}
+#| echo: true
+#| eval: true
+my_dict["country"] = "USA"
+my_dict
+```
+
+```{python}
+#| echo: true
+#| eval: true
+my_dict.keys()
+```
+
+```{python}
+#| echo: true
+#| eval: true
+my_dict.values()
+```
+:::
+:::
+:::
+
+## Empties
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Sometimes you'll want to create empty objects that will be filled later on
+- For lists, tuples, and sets, you can create an empty object using `[]`, `()`, and `{}` respectively
+- You can also create them using the `list()`, `tuple()`, and `set()` functions
+- For dictionaries, you can create an empty object using `{}` or `dict()`
+- For strings, you can create an empty string using `""` or `str()`
+
+```{python}
+#| echo: true
+#| eval: true
+empty_list = []
+print(empty_list)
+```
+
+```{python}
+#| echo: true
+#| eval: true
+empty_list = list()
+print(empty_list)
+```
+:::
+
+:::{.column width="50%"}
+```{python}
+#| echo: true
+#| eval: true
+empty_dict = {}
+print(empty_dict)
+```
+
+```{python}
+#| echo: true
+#| eval: true
+empty_dict = dict()
+print(empty_dict)
+```
+
+- You get the idea! 😉
+:::
+:::
+:::
+
+# Conditional statements 🚦 {background-color="#2d4563"}
+
+## Conditional statements
+### If, elif, else
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Conditional statements allow us to execute different blocks of code based on whether a condition is `True` or `False`
+- The main conditional statements in Python are:
+  - `if`: execute a block of code if a condition is `True`
+  - `elif`: execute a block of code if the previous condition is `False` and the current condition is `True`
+  - `else`: execute a block of code if all previous conditions are `False`
+  - The syntax is `if condition:`
+  - The code block is defined by indentation
+  - You can have multiple `elif` statements
+  - You can have zero or one `else` statement
+:::
+
+## If statements
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+![](figures/if-statement.jpg)
+:::
+
+:::{.column width="50%"}
+![](figures/if-statement-code.png)
+:::
+:::
+:::
+
+## If statements
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Let's see an example
+
+```{python}
+#| echo: true
+#| eval: true
+name = "Danilo"
+
+if name.lower() == "danilo":
+    print("That's my name too!")
+elif name.lower() == "juan":
+    print("That's a nice name!")
+else:
+    print(f"Hello {name}! That's a cool name!")
+print("Nice to meet you!")
+```
+
+- Note that the `elif` and `else` blocks are optional
+- You can have as many `elif` blocks as you want
+- The `if` statement evaluates the condition `name.lower() == "danilo"`
+- If the condition is `True`, the code block under the `if` statement is executed
+:::
+
+:::{.column width="50%"}
+- If the condition is `False`, the code block under the `elif` statement is executed
+- If all conditions are `False`, the code block under the `else` statement is executed
+- The code block is defined by indentation (4 spaces)
+- The `print("Nice to meet you!")` statement is executed regardless of the condition
+
+```{python}
+#| echo: true
+#| eval: true
+name = "David"
+
+if name.lower() == "danilo":
+    print("That's my name too!")
+elif name.lower() == "juan":
+    print("That's a nice name!")
+else:
+    print(f"Hello {name}! That's a cool name!")
+print("Nice to meet you!")
+```
+:::
+:::
+:::
+
+## Nested if statements
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- You can nest `if` statements inside other `if` statements
+- This allows you to create more complex conditions
+- The code block is defined by indentation, as usual
+
+```{python}
+#| echo: true
+#| eval: true
+name = "Danilo"
+age = 42
+
+if name.lower() == "danilo":
+    if age >= 18:
+        print("Welcome, Danilo! You are an adult!")
+    else:
+        print("Welcome, Danilo! You are a minor!")
+else:
+    print(f"Hello {name}!")
+```
+:::
+
+## Inline if statements
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- You can use inline `if` statements to execute a single line of code based on a condition
+- The syntax is `value = true_value if condition else false_value`
+
+```{python}
+#| echo: true
+#| eval: true
+words = ["the", "list", "of", "words"]
+
+x = "long list" if len(words) > 10 else "short list"
+x
+```
+
+- The code is equivalent to
+
+```{python}
+#| echo: true
+#| eval: true
+words = ["the", "list", "of", "words"]
+
+if len(words) > 10:
+    x = "long list"
+else:
+    x = "short list"
+x
+```
+:::
+
+## Truth value testing
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- In Python, any object can be tested for truth value
+- The following objects are considered `False`:
+  - `None`
+  - `False`
+  - Zero of any numeric type (e.g., `0`, `0.0`, `0j`)
+  - Empty sequences (e.g., `[]`, `()`, `{}`, `""`)
+  - Empty sets and dictionaries
+- All other objects are considered `True`
+- This is useful when you want to check if a variable is empty, such as when you perform some data cleaning and want to remove missing values
+:::
+
+:::{.column width="50%"}
+- Let's see some examples using `if` statements
+
+```{python}
+#| echo: true
+#| eval: true
+x = 0
+
+if x:
+    print("True")
+else:
+    print("False")
+```
+
+```{python}
+#| echo: true
+#| eval: true
+x = 1
+
+if x:
+    print("True")
+else:
+    print("False")
+```
+:::
+:::
+:::
+
+# For loops 🔄 {background-color="#2d4563"}
+
+## For loops
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- For loops allow us to iterate over a sequence of items
+
+```{python}
+#| echo: true
+#| eval: true
+for n in [2, 7, -1, 5]:
+    print(f"The number is {n} and its square is {n**2}")
+print("I'm outside the loop!")
+```
+:::
+
+:::{.column width="50%"}
+- The syntax is
+
+```python
+for item in sequence:
+    # code block
+``` 
+
+- The code block is defined by indentation (4 spaces)
+- The `item` variable takes on each value in the `sequence` in turn
+- The `sequence` can be a list, tuple, set, dictionary, range, or string
+- Colon `:` ends the first line of the loop
+- The `item` variable can be any name you want
+:::
+:::
+:::
+
+## For loops and `range()`
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- A very common pattern is to use for with the `range()` 
+- `range()` gives you a sequence of integers up to some value (non-inclusive of the end-value) and is typically used for looping
+
+```{python}
+#| echo: true
+#| eval: true
+range(5)
+```
+
+```{python}
+#| echo: true
+#| eval: true
+for i in range(5):
+    print(i)
+```
+
+```{python}
+#| echo: true
+#| eval: true
+for i in range(1, 6):
+    print(i)
+```
+:::
+
+:::{.column width="50%"}
+- The `range()` function can take up to three arguments: `start`, `stop`, and `step`
+- The default value for `start` is `0`
+- The default value for `step` is `1`
+- The `stop` value is non-inclusive
+
+```{python}
+#| echo: true
+#| eval: true
+for i in range(1, 10, 2):
+    print(i)
+```
+
+```{python}
+#| echo: true
+#| eval: true
+for i in range(10, 1, -2):
+    print(i)
+```
+
+- The `range()` function is very useful for creating loops that iterate a specific number of times
+:::
+:::
+:::
+
+## Nested for loops
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- You can nest `for` loops inside other `for` loops
+- This allows you to create more complex loops or iterate over multi-dimensional data structures
+- The code block is defined by indentation, as usual
+
+```{python}
+#| echo: true
+#| eval: true
+for x in [1, 2, 3]:
+    for y in ["a", "b", "c"]:
+        print((x, y))
+```
+
+- The `print((x, y))` statement is executed for each combination of `x` and `y`
+- There are other clever ways of doing these kind of thing in Python
+- When looping over objects, you want want to use `zip()` or `enumerate()`
+- More information on these functions [here](https://realpython.com/python-enumerate/) and [here](https://realpython.com/python-zip-function/)
+:::
+
+## `while` loops
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- `while` loops allow us to execute a block of code as long as a condition is `True`
+- The syntax is `while condition:`
+
+```{python}
+#| echo: true
+#| eval: true
+n = 10
+
+while n > 0:
+    print(n)
+    n -= 1
+print("Blast off!")
+```
+
+- The `n -= 1` statement decrements the value of `n` by 1
+- The loop continues until `n` is less than or equal to 0
+:::
+
+:::{.column width="50%"}
+- Be careful with `while` loops, as they can run indefinitely if the condition is never `False`!
+- You can use `break` to exit a loop prematurely
+
+```{python}
+#| echo: true
+#| eval: true
+n = 10
+
+while n > 0:
+    print(n)
+    if n == 5:
+        break
+    n -= 1
+print("Blast off!")
+```
+:::
+:::
+:::
+
+## Comprehensions
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Comprehensions are a concise way to create lists, sets, and dictionaries based on existing sequences
+- List are the most common, though
+- They provide a more readable and often more efficient alternative to using loops and conditional statements
+
+```{python}
+#| echo: true
+#| eval: true
+squares = [x**2 for x in range(10)]
+squares
+```
+
+- This is equivalent to
+
+```{python}
+#| echo: true
+#| eval: true
+squares = []
+for x in range(10):
+    squares.append(x**2)
+squares
+```
+:::
+
+:::{.column width="50%"}
+- The syntax is `[expression for item in sequence]`
+- You can also add an `if` statement to filter the items
+- The syntax is `[expression for item in sequence if condition]`
+
+```{python}
+#| echo: true
+#| eval: true
+even_squares = [x**2 for x in range(10) if x % 2 == 0]
+even_squares
+```
+
+- Which is equivalent to
+
+```{python}
+#| echo: true
+#| eval: true
+even_squares = []
+for x in range(10):
+    if x % 2 == 0:
+        even_squares.append(x**2)
+even_squares
+```
+:::
+:::
+:::
+
+# Functions 🛠️ {background-color="#2d4563"}
+
+## Functions
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Functions are the building blocks of Python programmes
+- They allow you to encapsulate code and reuse it
+- Functions are defined using the `def` keyword
+- The syntax is `def function_name(parameters):`, then the code block (indented)
+
+```{python}
+#| echo: true
+#| eval: true
+def greet(name):
+    return f"Hello, {name}!"
+
+greet("Alice")
+```
+:::
+
+:::{.column width="50%"}
+- The `return` statement exits the function and returns a value
+- The `name` variable is a parameter
+- Parameters are the inputs to the function (you can have multiple parameters)
+- The `greet("Alice")` statement calls the function with the argument `"Alice"`
+
+```{python}
+#| echo: true
+#| eval: true
+def square(n):
+    n_squared = n**2
+    return n_squared
+
+square(5)
+```
+:::
+:::
+:::
+
+## Namespaces
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Python has several types of namespaces
+- The ones that we use more often are:
+  - [Local namespace]{.alert}: variables defined inside a function
+  - [Global namespace]{.alert}: variables defined outside a function
+  - [Built-in namespace]{.alert}: variables that are built into Python (e.g., `print()`, `len()`)
+- Variables defined inside a function are local to that function and cannot be accessed outside the function
+
+```{python}
+#| echo: true
+#| eval: true
+def cat_string(str1, str2):
+    string = str1 + str2
+    return string
+
+cat_string('My name is ', 'Danilo')
+```
+
+```{python}
+#| echo: true
+#| eval: true
+# print(string) # it will raise an error
+```
+:::
+
+:::{.column width="50%"}
+- Global variables [can be accessed]{.alert} inside a function
+- However, you should avoid using them if possible, as it can make your code harder to read and debug
+  
+```{python}
+#| echo: true
+#| eval: true
+## define global variable
+my_var = 2
+## define function
+def add_two(x):
+    ## references my_var
+    return x + my_var
+
+add_two(2)
+
+## print my_var
+print(my_var)
+```
+:::
+:::
+:::
+
+## Lambda functions
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Our last topic is lambda functions
+- Lambda functions are small, anonymous functions, which are defined using the `lambda` keyword
+- They are usually short and simple (only one line of code), and are sometimes used as arguments to higher-order functions
+
+```{python}
+#| echo: true
+#| eval: true
+add_two = lambda x: x + 2
+
+add_two(2)
+```
+:::
+
+:::{.column width="50%"}
+- The syntax is `lambda parameters: expression`
+- You can have multiple parameters
+- You can also have multiple expressions, but only one expression can be returned
+
+```{python}
+#| echo: true
+#| eval: true
+add = lambda x, y: x + y
+print(add(3, 5)) 
+```
+
+```{python}
+#| echo: true
+#| eval: true
+maximum = lambda x, y: x if x > y else y
+print(maximum(10, 20))
+```
+:::
+:::
+:::
+
+# Summary 📚 {background-color="#2d4563"}
+
+## Summary
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- We covered the very basics of Python programming
+- We learned about data types, operators, and conditional statements
+- We also learned about loops, functions, and comprehensions
+- This is just the tip of the iceberg! 🐍
+- Next steps: practice, practice, practice! 🤓
+- Exercises available [here](https://www.w3schools.com/python/default.asp), [here](https://www.practicepython.org/), and [here](https://pychallenger.com/)
+- Next class, we will review `numpy` and `pandas` 📊
+- If you have any questions, feel free to ask! 🙋‍♂️
+:::
+
+# And that's it for today! 🎉 {background-color="#2d4563"}
+
+# Thank you for your attention! <br> Have a great rest of your day! 🌞 {background-color="#2d4563"}
