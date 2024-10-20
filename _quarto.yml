@@ -24,6 +24,8 @@ website:
         text: Tutorials
       - href: assignments/assignments.qmd
         text: Assignments
+      - href: https://danilofreire.github.io/qtm350/jupyter
+        text: Jupyter Lite
       - href: LICENSE.html
         text: " "
   page-footer: 
