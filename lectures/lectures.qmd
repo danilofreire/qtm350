@@ -182,7 +182,7 @@ Suggested references:
 
 #### Monday, October 21:
 
-- Lecture 14: Pandas for Data Analysis: Loading, Cleaning, and Exploring Data.
+- Lecture 14: [Introduction to Pandas](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-14/14-pandas.html).
 
 #### Wednesday, October 23:
 
