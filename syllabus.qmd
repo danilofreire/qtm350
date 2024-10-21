@@ -298,6 +298,7 @@ Suggested references:
 ### Monday, October 21:
 
 - Lecture 14: [Introduction to Pandas](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-14/14-pandas.html).
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=1e70681f-4a2f-4a98-b2b8-e02006f05a65&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 
 ### Wednesday, October 23:
 
