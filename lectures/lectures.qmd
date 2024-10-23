@@ -188,6 +188,7 @@ Suggested references:
 #### Wednesday, October 23:
 
 - Lecture 15: [Pandas for Data Analysis: Data Wrangling and Aggregating](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-15/15-wrangling-aggregating.html).
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=50a9780c-8eff-4487-8a13-ae7e2ea6a87c&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 - **Assignment 07 due (5%).**
 - **Assignment 08:** Problem Set 08.
 
