@@ -187,7 +187,7 @@ Suggested references:
 
 #### Wednesday, October 23:
 
-- Lecture 15: Pandas for Data Analysis: Data Wrangling and Aggregating.
+- Lecture 15: [Pandas for Data Analysis: Data Wrangling and Aggregating](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-15/15-wrangling-aggregating.html).
 - **Assignment 07 due (5%).**
 - **Assignment 08:** Problem Set 08.
 
