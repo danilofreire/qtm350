@@ -323,7 +323,7 @@ Suggested references:
 
 ### Wednesday, October 30:
 
-- Lecture 17: Introduction to PostgreSQL: Data Types, Tables, and Queries.
+- Lecture 17: [Introduction to PostgreSQL: Data Types, Tables, and Queries](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-17/17-introduction-sql.html).
 - **Assignment 08 due (5%).**
 - **Assignment 09:** Problem Set 09.
 - **Instructions for the Final Project**.
