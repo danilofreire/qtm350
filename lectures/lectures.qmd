@@ -224,7 +224,8 @@ Suggested references:
 
 #### Monday, November 04:
 
-- Lecture 18: Importing SQL Data into Python.
+- Lecture 18: [SQL in Python: Connecting to Databases with Pandas](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-18/18-sql-python.html).
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=96842352-f74d-4a4b-8833-2c134d27502c&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 
 #### Wednesday, November 06:
 
