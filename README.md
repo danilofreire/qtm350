@@ -46,6 +46,9 @@ cd docs/jupyter
 pip install -r requirements.txt
 jupyter lite build
 mv _output/* ./
+git add ../../docs/jupyter -f
+git commit -m "update JupyterLite page"
+git push
 ```
 
 For further information on how to build a website with Quarto, please refer to
