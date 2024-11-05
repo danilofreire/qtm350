@@ -1,0 +1,2844 @@
+{
+  "data": {
+    "dask_labextension": {
+      "": {
+        "domain": "dask_labextension",
+        "language": "es-ES",
+        "plural_forms": "nplurals=2; plural=(n != 1);",
+        "version": "jupyterlab"
+      },
+      "schema\u0004Dask Dashboard": [
+        "Tablero de Dask"
+      ],
+      "schema\u0004Settings for the Dask Dashboard plugin.": [
+        "Configuraci\u00f3n para la extensi\u00f3n del Tablero de Dask."
+      ],
+      "settings\u0004Auto-Start Client": [
+        "Autoiniciar Cliente"
+      ],
+      "settings\u0004Dask Dashboard": [
+        "Tablero de Dask"
+      ],
+      "settings\u0004Default URL for the Dask Dashboard Webserver": [
+        "URL por defecto para el Servidor web del Tablero de Dask"
+      ]
+    },
+    "jupyter_archive": {
+      "": {
+        "domain": "jupyter_archive",
+        "language": "es-ES",
+        "plural_forms": "nplurals=2; plural=(n != 1);",
+        "version": "jupyterlab"
+      },
+      "Download As": [
+        "Descargar como"
+      ],
+      "Download Current Folder As": [
+        "Descargar carpeta actual como"
+      ],
+      "Download Current Folder as an Archive": [
+        "Descargar la carpeta actual como un archivo"
+      ],
+      "Download as an Archive": [
+        "Descargar como un archivo"
+      ],
+      "schema\u0004Archive handler options.": [
+        "Opciones del gestor de archivos."
+      ],
+      "settings\u0004Archive format": [
+        "Formato de archivo"
+      ],
+      "settings\u0004Archive format for compressing folder; one of [null (submenu), 'zip', 'tgz', 'tar.gz', 'tbz', 'tbz2', 'tar.bz', 'tar.bz2', 'txz', 'tar.xz']": [
+        "Formato de archivo para comprimir carpeta; opci\u00f3n unica de [null (submenu), 'zip', 'tgz', 'tar.gz', 'tbz', 'tbz2', 'tar.bz', 'tar.bz2', 'txz', 'tar.xz']"
+      ],
+      "settings\u0004Download Hidden Files": [
+        "Descargar archivos ocultos"
+      ],
+      "settings\u0004Whether or not to add hidden files to the archive when downloading; one of ['true', 'false']": [
+        "A\u00f1adir o no archivos ocultos al archivo al descargar; opci\u00f3n \u00fanica en ['true', 'false']"
+      ]
+    },
+    "jupyter_collaboration": {
+      "": {
+        "domain": "jupyter_collaboration",
+        "language": "es-ES",
+        "plural_forms": "nplurals=2; plural=(n != 1);",
+        "version": "jupyterlab"
+      }
+    },
+    "jupyter_resource_usage": {
+      "": {
+        "domain": "jupyter_resource_usage",
+        "language": "es-ES",
+        "plural_forms": "nplurals=2; plural=(n != 1);",
+        "version": "jupyterlab"
+      }
+    },
+    "jupyterlab": {
+      "": {
+        "domain": "jupyterlab",
+        "language": "es-ES",
+        "plural_forms": "nplurals=2; plural=(n != 1);",
+        "version": "jupyterlab"
+      },
+      "\nConnected: %1": [
+        "\nConectado: %1"
+      ],
+      "\nCreated: %1": [
+        "\nCreado: %1"
+      ],
+      "\nLast Execution: %1": [
+        "\n\u00daltima ejecuci\u00f3n: %1"
+      ],
+      "\nModified: %1": [
+        "\nModificado: %1"
+      ],
+      "\nPath: %1": [
+        "\nRuta: %1"
+      ],
+      "\nSize: %1": [
+        "\nTama\u00f1o: %1"
+      ],
+      "\nWritable: %1": [
+        "\nEscribible: %1"
+      ],
+      "\"%1\" already exists, overwrite?": [
+        "El archivo ya existe %1, \u00bf desea sobrescribir?"
+      ],
+      "\"%1\" already exists. Do you want to replace it?": [
+        "\"%1\" ya existe. \u00bfDesea reemplazarlo?"
+      ],
+      "\"%1\" is not a valid name for a file. Names must have nonzero length, and cannot include \"/\", \"\\\", or \":\"": [
+        "\"%1\" no es un nombre v\u00e1lido para un archivo. Los nombres deben tener una longitud no nula y no pueden incluir \"/\", \"\\\" o \":\""
+      ],
+      "%1 Item": [
+        "%1 elemento",
+        "%1 elementos"
+      ],
+      "%1 Terminals, %2 Kernel sessions": [
+        "%1 terminales, %2 sesiones del Kernel"
+      ],
+      "%1 log entries for %2": [
+        "%1 entradas de registro para %2"
+      ],
+      "%1 new messages, %2 log entries for %3": [
+        "%1 mensajes nuevos, %2 entradas de registro para %3"
+      ],
+      "A connection to the Jupyter server could not be established.\nJupyterLab will continue trying to reconnect.\nCheck your network connection or Jupyter server configuration.\n": [
+        "No se ha podido establecer una conexi\u00f3n con el servidor de Jupyter.\nJupyterLab seguir\u00e1 intentando reconectar.\nCompruebe su conexi\u00f3n de red o la configuraci\u00f3n del servidor de Jupyter.\n"
+      ],
+      "ABOUT PROJECT JUPYTER": [
+        "SOBRE EL PROYECTO JUPYTER"
+      ],
+      "About %1": [
+        "Acerca de %1"
+      ],
+      "About the %1 Kernel": [
+        "Sobre el Kernel %1"
+      ],
+      "Activate Command Palette": [
+        "Activar paleta de comandos"
+      ],
+      "Activate Next Tab": [
+        "Activar la Siguiente Pesta\u00f1a"
+      ],
+      "Activate Next Tab Bar": [
+        "Activar Barra de la Pesta\u00f1a Siguiente"
+      ],
+      "Activate Previous Tab": [
+        "Activar la Pesta\u00f1a Anterior"
+      ],
+      "Activate Previous Tab Bar": [
+        "Activar Barra de la Pesta\u00f1a Anterior"
+      ],
+      "Activate Previously Used Tab": [
+        "Activar la pesta\u00f1a usada anteriormente"
+      ],
+      "Add Checkpoint": [
+        "A\u00f1adir un punto de control"
+      ],
+      "Add Tag": [
+        "A\u00f1adir etiqueta"
+      ],
+      "Advanced Settings Editor": [
+        "Editor de Configuraci\u00f3n Avanzada"
+      ],
+      "Any errors will be listed here": [
+        "Todos los errores se listar\u00e1n aqu\u00ed"
+      ],
+      "Are you sure that you want to run arbitrary Javascript within your JupyterLab session?": [
+        "\u00bfEst\u00e1 seguro que desea ejecutar Javascript arbitrario en su sesi\u00f3n de JupyterLab?"
+      ],
+      "Are you sure you want to close \"%1\"?": [
+        "\u00bfEst\u00e1s seguro de que quieres cerrar \"%1\"?"
+      ],
+      "Are you sure you want to close all open tabs?": [
+        "\u00bfRealmente desea cerrar todas las pesta\u00f1as abiertas?"
+      ],
+      "Are you sure you want to delete %1": [
+        "Est\u00e1 seguro que quiere eliminar %1"
+      ],
+      "Are you sure you want to exit JupyterLab?\n\nAny unsaved changes will be lost.": [
+        "\u00bfEst\u00e1 seguro que desea salir de JupyterLab?\n\nCualquier cambio no guardado se perder\u00e1."
+      ],
+      "Are you sure you want to permanently delete the %1 selected item?": [
+        "\u00bfEst\u00e1s seguro que deseas eliminar definitivamente el elemento seleccionado %1?",
+        "\u00bfEst\u00e1s seguro que deseas eliminar definitivamente los elementos seleccionados %1?"
+      ],
+      "Are you sure you want to permanently delete: %1?": [
+        "\u00bfEst\u00e1s seguro que deseas eliminar definitivamente %1?"
+      ],
+      "Are you sure you want to permanently shut down all running kernels?": [
+        "\u00bfEst\u00e1s seguro de que quieres apagar permanentemente todos los n\u00facleos en ejecuci\u00f3n?"
+      ],
+      "Are you sure you want to permanently shut down all running terminals?": [
+        "\u00bfEst\u00e1 seguro de que desea cerrar permanentemente todas las terminales en ejecuci\u00f3n?"
+      ],
+      "Are you sure you want to reload the %1 from the disk?": [
+        "\u00bfEst\u00e1 seguro que desea recargar el %1 desde el disco?"
+      ],
+      "Autosave Documents": [
+        "Auto-guardar documentos"
+      ],
+      "Breakpoints": [
+        "Puntos de quiebre"
+      ],
+      "Build": [
+        "Compilar"
+      ],
+      "Build Complete": [
+        "Compilado completo"
+      ],
+      "Build Failed": [
+        "Error al compilar"
+      ],
+      "Build Recommended": [
+        "Construcci\u00f3n recomendada"
+      ],
+      "Build successfully completed, reload page?": [
+        "\u00bfCompilado correctamente completado, recargar p\u00e1gina?"
+      ],
+      "CONTRIBUTOR LIST": [
+        "LISTA DE COLABORADORES"
+      ],
+      "CSV File": [
+        "Archivo CSV"
+      ],
+      "Cancel": [
+        "Cancelar"
+      ],
+      "Cannot Download": [
+        "No es posible descargar"
+      ],
+      "Cannot Reload": [
+        "No se puede Recargar"
+      ],
+      "Cannot Revert": [
+        "No se puede revertir"
+      ],
+      "Cannot Save": [
+        "No se puede guardar"
+      ],
+      "Cannot open": [
+        "No se pudo abrir"
+      ],
+      "Cannot upload file (>%1 MB). %2": [
+        "No se puede subir el archivo (>%1 MB). %2"
+      ],
+      "Cell not executed due to pending input": [
+        "Celda no ejecutada debido a una entrada pendiente"
+      ],
+      "Cell type": [
+        "Tipo de celda"
+      ],
+      "Change Kernel\u2026": [
+        "Cambiar int\u00e9rprete"
+      ],
+      "Change interface language?": [
+        "\u00bfCambiar el idioma de la interfaz?"
+      ],
+      "Change kernel for %1": [
+        "Cambiar kernel por %1"
+      ],
+      "Change text editor syntax highlighting": [
+        "Cambiar el resaltado de sintaxis del editor de texto"
+      ],
+      "Change to Code Cell Type": [
+        "Cambiar a celda de tipo c\u00f3digo"
+      ],
+      "Change to Heading 1": [
+        "Cambiar a encabezado de nivel 1"
+      ],
+      "Change to Heading 2": [
+        "Cambiar a encabezado de nivel 2"
+      ],
+      "Change to Heading 3": [
+        "Cambiar a encabezado de nivel 3"
+      ],
+      "Change to Heading 4": [
+        "Cambiar a encabezado de nivel 4"
+      ],
+      "Change to Heading 5": [
+        "Cambiar a encabezado de nivel 5"
+      ],
+      "Change to Heading 6": [
+        "Cambiar a encabezado de nivel 6"
+      ],
+      "Change to Markdown Cell Type": [
+        "Cambiar a celda de tipo markdown"
+      ],
+      "Change to Raw Cell Type": [
+        "Cambiar a celda de tipo sin procesar"
+      ],
+      "Clear": [
+        "Limpiar"
+      ],
+      "Clear All": [
+        "Borrar todo"
+      ],
+      "Clear Console Cells": [
+        "Nueva consola para el cuaderno"
+      ],
+      "Clear Log": [
+        "Borrar el registro"
+      ],
+      "Clear Workspace": [
+        "Limpiar espacio de trabajo"
+      ],
+      "Click on a function to see documentation.": [
+        "Haga clic en una funci\u00f3n para ver la documentaci\u00f3n."
+      ],
+      "Close": [
+        "Cerrar"
+      ],
+      "Close All": [
+        "Cerrar todo"
+      ],
+      "Close All Other Tabs": [
+        "Cerrar las dem\u00e1s pesta\u00f1as"
+      ],
+      "Close All Tabs": [
+        "Cerrar Todas las Pesta\u00f1as"
+      ],
+      "Close Tab": [
+        "Cerrar Pesta\u00f1a"
+      ],
+      "Close Tabs to Right": [
+        "Cerrar Pesta\u00f1as a la Derecha"
+      ],
+      "Close and Shut Down": [
+        "Cerrar y apagar"
+      ],
+      "Close and Shut Down\u2026": [
+        "Cerrar y apagar\u2026"
+      ],
+      "Code": [
+        "C\u00f3digo"
+      ],
+      "Collapse All Code": [
+        "Contraer todo el c\u00f3digo"
+      ],
+      "Collapse All Outputs": [
+        "Contraer todos los resultados"
+      ],
+      "Collapse Selected Code": [
+        "Contraer el c\u00f3digo seleccionado"
+      ],
+      "Collapse Selected Outputs": [
+        "Contraer todos los resultados"
+      ],
+      "Command Palette": [
+        "Paleta de comandos"
+      ],
+      "Commands": [
+        "Comandos"
+      ],
+      "Commands (%1)": [
+        "Comandos (%1)"
+      ],
+      "Commit changes to data": [
+        "Confirmar cambios a los datos"
+      ],
+      "Complete!": [
+        "\u00a1Finalizado!"
+      ],
+      "Console": [
+        "Ejecutar el texto seleccionado o la l\u00ednea actual en la consola"
+      ],
+      "Console %1": [
+        "Consola %1"
+      ],
+      "Continue": [
+        "Continuar"
+      ],
+      "Copy": [
+        "Copiar"
+      ],
+      "Copy Download Link": [
+        "Copiar el enlace de descarga"
+      ],
+      "Copy Path": [
+        "Copiar Ruta"
+      ],
+      "Copy Shareable Link": [
+        "Copiar enlace para compartir"
+      ],
+      "Copy the selected cells": [
+        "Copiar las celdas seleccionadas"
+      ],
+      "Could not find path: %1": [
+        "No se pudo encontrar la ruta: %1"
+      ],
+      "Create Console for Editor": [
+        "Crear consola para el editor"
+      ],
+      "Create a new markdown file": [
+        "Crear un nuevo archivo markdown"
+      ],
+      "Create a new notebook": [
+        "Crear una nueva vista para el resultado"
+      ],
+      "Create a new text file": [
+        "Crear un nuevo archivo de texto"
+      ],
+      "Critical": [
+        "Cr\u00edtico"
+      ],
+      "Cut": [
+        "Cortar"
+      ],
+      "Cut the selected cells": [
+        "Cortar las celdas seleccionadas"
+      ],
+      "Dark": [
+        "Oscuro"
+      ],
+      "Debug": [
+        "Depurar"
+      ],
+      "Debugger": [
+        "Depurador"
+      ],
+      "Decrease Code Font Size": [
+        "Reducir tama\u00f1o de fuente del c\u00f3digo"
+      ],
+      "Decrease Content Font Size": [
+        "Reducir Tama\u00f1o de Fuente del Contenido"
+      ],
+      "Decrease Font Size": [
+        "Disminuir tama\u00f1o de fuente"
+      ],
+      "Decrease Terminal Font Size": [
+        "Reducir tama\u00f1o de fuente de la terminal"
+      ],
+      "Decrease Text Editor Font Size": [
+        "Disminuir tama\u00f1o de fuente del editor de texto"
+      ],
+      "Decrease UI Font Size": [
+        "Reducir tama\u00f1o de fuente de la interfaz"
+      ],
+      "Delete": [
+        "Eliminar"
+      ],
+      "Delete %1": [
+        "Eliminar %1"
+      ],
+      "Delimiter: ": [
+        "Delimitador: "
+      ],
+      "Deselect All Cells": [
+        "Deseleccionar todas las celdas"
+      ],
+      "Directory": [
+        "Directorio"
+      ],
+      "Directory not found": [
+        "Directorio no encontrado"
+      ],
+      "Directory not found: \"%1\"": [
+        "Directorio no encontrado: \"%1\""
+      ],
+      "Directory: %1\n": [
+        "Directorio: %1\n"
+      ],
+      "Disable": [
+        "Deshabilitar"
+      ],
+      "Disable Debugger": [
+        "Deshabilitar Depurador"
+      ],
+      "Disable Scrolling for Outputs": [
+        "Deshabilitar el desplazamiento para los resultados"
+      ],
+      "Discard": [
+        "Desechar"
+      ],
+      "Discover": [
+        "Descubrir"
+      ],
+      "Dismiss": [
+        "Cerrar"
+      ],
+      "Distrust HTML": [
+        "No confiar en HTML"
+      ],
+      "Do you want to leave without saving?": [
+        "\u00bfQuieres cerrar sin guardar?"
+      ],
+      "Document is read-only": [
+        "El documento es de s\u00f3lo lectura"
+      ],
+      "Download": [
+        "Descargar"
+      ],
+      "Download the file to your computer": [
+        "Descargar el archivo a su ordenador"
+      ],
+      "Duplicate": [
+        "Duplicar"
+      ],
+      "Enable": [
+        "Habilitar"
+      ],
+      "Enable Debugger": [
+        "Habilitar Depurador"
+      ],
+      "Enable Extension Manager": [
+        "Habilitar el administrador de extensiones"
+      ],
+      "Enable Extension Manager?": [
+        "\u00bfHabilitar el administrador de extensiones?"
+      ],
+      "Enable Scrolling for Outputs": [
+        "Habilitar el desplazamiento para los resultados"
+      ],
+      "Enter Command Mode": [
+        "Entrar a modo de comandos"
+      ],
+      "Enter Edit Mode": [
+        "Entrar a modo de edici\u00f3n"
+      ],
+      "Error\u0004Launcher Error": [
+        "Error del lanzador"
+      ],
+      "Error Loading Theme": [
+        "Error al cargar el Tema"
+      ],
+      "Error Registering Plugins": [
+        "Error al Registrar Plugins"
+      ],
+      "Error Starting Kernel": [
+        "Error al iniciar Kernel"
+      ],
+      "Error message:": [
+        "Mensaje de error:"
+      ],
+      "Executable Script": [
+        "Script Ejecutable"
+      ],
+      "Execute with Enter": [
+        "Ejecutar con Enter"
+      ],
+      "Execute with Shift+Enter": [
+        "Ejecutar con Shift+Enter"
+      ],
+      "Expand All Code": [
+        "Expandir todo el c\u00f3digo"
+      ],
+      "Expand All Outputs": [
+        "Expandir todos los resultados"
+      ],
+      "Expand Selected Code": [
+        "Expandir el c\u00f3digo seleccionado"
+      ],
+      "Expand Selected Outputs": [
+        "Expandir las celdas de resultado seleccionadas"
+      ],
+      "Extend Selection Above": [
+        "Extender la selecciona encima"
+      ],
+      "Extend Selection Below": [
+        "Extender la selecciona debajo"
+      ],
+      "Extend Selection to Bottom": [
+        "Extender la selecciona hasta el final"
+      ],
+      "Extend Selection to Top": [
+        "Extender la selecciona hasta el inicio"
+      ],
+      "Extension Installation Error": [
+        "Error de instalaci\u00f3n de la extensi\u00f3n"
+      ],
+      "Extension Manager": [
+        "Administrador de Extensiones"
+      ],
+      "File Browser": [
+        "Explorador de archivos"
+      ],
+      "File Browser (%1)": [
+        "Explorador de archivos (%1)"
+      ],
+      "File Changed": [
+        "Archivo modificado"
+      ],
+      "File Load Error for %1": [
+        "Error al cargar el archivo para %1"
+      ],
+      "File Operations": [
+        "Operaciones de Archivos"
+      ],
+      "File Overwrite?": [
+        "\u00bfSobrescribir archivo?"
+      ],
+      "File Path": [
+        "Ruta del archivo"
+      ],
+      "File Save Error for %1": [
+        "Error al guardar archivo para %1"
+      ],
+      "Files still uploading": [
+        "Los archivos todav\u00eda se est\u00e1n cargando"
+      ],
+      "Filter files by name": [
+        "Buscar archivos por nombre"
+      ],
+      "Find": [
+        "Buscar"
+      ],
+      "Find Next": [
+        "Buscar Siguiente"
+      ],
+      "Find Previous": [
+        "Buscar Anterior"
+      ],
+      "Find and Replace\u2026": [
+        "Buscar y reemplazar\u2026"
+      ],
+      "Find\u2026": [
+        "Buscar\u2026"
+      ],
+      "Flip image horizontally": [
+        "Voltear la imagen horizontalmente"
+      ],
+      "Flip image vertically": [
+        "Voltear imagen verticalmente"
+      ],
+      "For Notebook:": [
+        "Para el Notebook:"
+      ],
+      "For Notebook: %1": [
+        "Para el Cuaderno: %1"
+      ],
+      "Go to Line": [
+        "Ir a la L\u00ednea"
+      ],
+      "Go to Line\u2026": [
+        "Ir a la l\u00ednea\u2026"
+      ],
+      "Go to line number between 1 and %1": [
+        "Ir al n\u00famero de l\u00ednea entre 1 y %1"
+      ],
+      "Go to line number\u2026": [
+        "Ir al n\u00famero de l\u00ednea\u2026"
+      ],
+      "HTML File": [
+        "Archivo HTML"
+      ],
+      "Handle Local Link": [
+        "Manejar Enlace Local"
+      ],
+      "Help": [
+        "Ayuda"
+      ],
+      "Hub Control Panel": [
+        "Panel de control"
+      ],
+      "Image": [
+        "Imagen"
+      ],
+      "Image Viewer": [
+        "Visor de im\u00e1genes"
+      ],
+      "Increase Code Font Size": [
+        "Aumentar tama\u00f1o de fuente de c\u00f3digo"
+      ],
+      "Increase Content Font Size": [
+        "Aumentar Tama\u00f1o de Fuente del Contenido"
+      ],
+      "Increase Font Size": [
+        "Aumentar tama\u00f1o de fuente"
+      ],
+      "Increase Terminal Font Size": [
+        "Aumentar tama\u00f1o de fuente de la terminal"
+      ],
+      "Increase Text Editor Font Size": [
+        "Aumentar tama\u00f1o de fuente del editor de texto"
+      ],
+      "Increase UI Font Size": [
+        "Aumentar tama\u00f1o de fuente de la interfaz"
+      ],
+      "Indent with Tab": [
+        "Indentar usando tabulaci\u00f3n"
+      ],
+      "Inherit": [
+        "Heredar"
+      ],
+      "Insert Cell Above": [
+        "Insertar celda encima"
+      ],
+      "Insert Cell Below": [
+        "Insertar celda debajo"
+      ],
+      "Insert Line Break": [
+        "Insertar salto de l\u00ednea"
+      ],
+      "Insert a cell below": [
+        "Insertar celda debajo"
+      ],
+      "Inspect Variable": [
+        "Inspeccionar Variable"
+      ],
+      "Install": [
+        "Instalar"
+      ],
+      "Installed": [
+        "Instalado"
+      ],
+      "Interrupt Kernel": [
+        "Interrumpir el int\u00e9rprete"
+      ],
+      "Interrupt the kernel": [
+        "Interrumpir el n\u00facleo"
+      ],
+      "Invert Colors": [
+        "Invertir colores"
+      ],
+      "JSON File": [
+        "Archivo JSON"
+      ],
+      "JavaScript output is disabled in JupyterLab": [
+        "Salida JavaScript est\u00e1 desactivada en JupyterLab"
+      ],
+      "Jupyter Reference": [
+        "Referencia de Jupyter"
+      ],
+      "JupyterLab Dark": [
+        "JupyterLab modo oscuro"
+      ],
+      "JupyterLab FAQ": [
+        "Preguntas frecuentes de JupyterLab"
+      ],
+      "JupyterLab Light": [
+        "JupyterLab modo claro"
+      ],
+      "JupyterLab Reference": [
+        "Referencia de JupyterLab"
+      ],
+      "JupyterLab build is suggested:": [
+        "Se sugiere compilar JupyterLab:"
+      ],
+      "JupyterLab workspace File": [
+        "Archivo de espacio de trabajo JupyterLab"
+      ],
+      "Keep Waiting": [
+        "Seguir Esperando"
+      ],
+      "Kernel %1": [
+        "N\u00facleo %1"
+      ],
+      "Kernel Id:": [
+        "Id del Kernel:"
+      ],
+      "Kernel Name:": [
+        "Nombre del Kernel:"
+      ],
+      "Kernel Operations": [
+        "Operaciones del kernel"
+      ],
+      "Kernel Restarting": [
+        "Reinicio del Kernel"
+      ],
+      "Kernel Terminating": [
+        "El kernel est\u00e1 cerr\u00e1ndose"
+      ],
+      "Kernel: %1": [
+        "N\u00facleo: %1"
+      ],
+      "Large file size warning": [
+        "Advertencia de tama\u00f1o de archivo demasiado grande"
+      ],
+      "Last Checkpoint: %1": [
+        "\u00daltimo Punto de Control: %1"
+      ],
+      "Last Modified": [
+        "\u00daltima modificaci\u00f3n"
+      ],
+      "Last Saved: %1\n": [
+        "\u00daltimo guardado: %1\n"
+      ],
+      "Launcher": [
+        "Lanzador"
+      ],
+      "Light": [
+        "Claro"
+      ],
+      "Line Numbers": [
+        "N\u00fameros de l\u00ednea"
+      ],
+      "Live updating code documentation from the active kernel": [
+        "Actualizacion en vivo de la documentacion del codigo en el kernel activo"
+      ],
+      "Loading\u2026": [
+        "Cargando\u2026"
+      ],
+      "Log Console": [
+        "Consola de registro"
+      ],
+      "Log Level:": [
+        "Nivel de registro:"
+      ],
+      "Log Out": [
+        "Cerrar sesi\u00f3n"
+      ],
+      "Log level": [
+        "Nivel de registro"
+      ],
+      "Log out of JupyterLab": [
+        "Cerrar sesi\u00f3n en JupyterLab"
+      ],
+      "Log out of the Hub": [
+        "Cerrar sesi\u00f3n del Hub"
+      ],
+      "Log: %1": [
+        "Registro: %1"
+      ],
+      "Main Area": [
+        "\u00c1rea Principal"
+      ],
+      "Markdown File": [
+        "Archivo Markdown"
+      ],
+      "Markdown Preview": [
+        "Vista previa de Markdown"
+      ],
+      "Markdown Reference": [
+        "Referencia de Markdown"
+      ],
+      "Match Brackets": [
+        "Coincidir Corchetes"
+      ],
+      "Merge Selected Cells": [
+        "Unir las celdas seleccionadas"
+      ],
+      "Mode: %1": [
+        "Modo: %1"
+      ],
+      "Move Error": [
+        "Error al mover"
+      ],
+      "Name": [
+        "Nombre"
+      ],
+      "Name:": [
+        "Nombre:"
+      ],
+      "Name: %1": [
+        "Nombre: %1"
+      ],
+      "Name: %1\n": [
+        "Nombre: %1\n"
+      ],
+      "Name: %1\nPath: %2\n": [
+        "Nombre: %1 Ruta: %2\n"
+      ],
+      "Neither theme %1 nor default %2 loaded.": [
+        "No se carg\u00f3 ni el tema %1 ni el %2 predeterminado."
+      ],
+      "New Console": [
+        "Nueva consola para el cuaderno"
+      ],
+      "New Console for Activity": [
+        "Nueva consola para actividad"
+      ],
+      "New Console for Notebook": [
+        "Nueva consola para el cuaderno"
+      ],
+      "New File": [
+        "Archivo nuevo"
+      ],
+      "New Folder": [
+        "Carpeta nueva"
+      ],
+      "New Launcher": [
+        "Nuevo lanzador"
+      ],
+      "New Markdown File": [
+        "Nuevo archivo Markdown"
+      ],
+      "New Name": [
+        "Nuevo nombre"
+      ],
+      "New Notebook": [
+        "Nueva consola para el cuaderno"
+      ],
+      "New Terminal": [
+        "Nueva Terminal"
+      ],
+      "New Text File": [
+        "Nuevo Archivo de Texto"
+      ],
+      "New View for %1": [
+        "Nueva Vista para %1"
+      ],
+      "Next": [
+        "Siguiente"
+      ],
+      "No Kernel": [
+        "Sin Kernel"
+      ],
+      "No browser for path": [
+        "No hay navegador para la ruta"
+      ],
+      "No context found for current widget!": [
+        "No se encontr\u00f3 ning\u00fan contexto para el widget actual!"
+      ],
+      "No data!": [
+        "\u00a1No hay datos!"
+      ],
+      "No entries": [
+        "No hay entradas"
+      ],
+      "No errors found": [
+        "No se encontraron errores"
+      ],
+      "No log messages.": [
+        "No hay mensajes de registro."
+      ],
+      "No properties to inspect.": [
+        "No hay propiedades para inspeccionar."
+      ],
+      "No source selected.": [
+        "No hay fuente seleccionada."
+      ],
+      "Note: To disable a system default shortcut,\ncopy it to User Preferences and add the\n\"disabled\" key, for example:\n{\n    \"command\": \"application:activate-next-tab\",\n    \"keys\": [\n        \"Ctrl Shift ]\"\n    ],\n    \"selector\": \"body\",\n    \"disabled\": true\n}\n\nList of commands followed by keyboard shortcuts:\n%1\n\nList of keyboard shortcuts:": [
+        "Nota: Para deshabilitar un atajo de teclado por defecto del sistema,\nc\u00f3pialo a Preferencias de Usuario y agrega la tecla\n\"disabled\". Por ejemplo:\n{\n    \"command\": \"application:activate-next-tab\",\n    \"keys\": [\n        \"Ctrl Shift ]\"\n    ],\n    \"selector\": \"body\",\n    \"disabled\": true\n}\n\nLista de comandos seguida de atajos de teclado:\n%1\n\nLista de atajos de teclado:"
+      ],
+      "Notebook": [
+        "Cuaderno"
+      ],
+      "Notebook Cell Operations": [
+        "Operaciones con Celdas de Cuadernos"
+      ],
+      "Notebook Operations": [
+        "Operaciones con Cuadernos"
+      ],
+      "Notebook Tools": [
+        "Herramientas del Cuaderno"
+      ],
+      "Notebook converted": [
+        "Cuaderno convertido"
+      ],
+      "Notebook is already trusted": [
+        "Este cuaderno ya es de confianza"
+      ],
+      "Notebook is in %1 mode": [
+        "El Cuaderno es en modo %1"
+      ],
+      "OK": [
+        "Aceptar"
+      ],
+      "Open": [
+        "Abrir"
+      ],
+      "Open %1": [
+        "Abrir %1"
+      ],
+      "Open Edit Menu": [
+        "Abrir Men\u00fa Editar"
+      ],
+      "Open Error": [
+        "Error al abrir"
+      ],
+      "Open File Menu": [
+        "Abrir Men\u00fa de Archivo"
+      ],
+      "Open First Menu": [
+        "Abrir Primer Men\u00fa"
+      ],
+      "Open Help Menu": [
+        "Abrir Men\u00fa de Ayuda"
+      ],
+      "Open Kernel Menu": [
+        "Abrir Men\u00fa del Kernel"
+      ],
+      "Open Path": [
+        "Abrir Ruta"
+      ],
+      "Open Run Menu": [
+        "Abrir Men\u00fa Ejecutar"
+      ],
+      "Open Settings Menu": [
+        "Abrir Men\u00fa de Ajustes"
+      ],
+      "Open Tabs": [
+        "Pesta\u00f1as abiertas"
+      ],
+      "Open Tabs Menu": [
+        "Abrir Men\u00fa de Pesta\u00f1as"
+      ],
+      "Open View Menu": [
+        "Abrir Men\u00fa Ver"
+      ],
+      "Open from Path\u2026": [
+        "Abrir desde Ruta\u2026"
+      ],
+      "Open from path": [
+        "Abrir desde Ruta"
+      ],
+      "Open in New Browser Tab": [
+        "Abrir en una Nueva Pesta\u00f1a del Navegador"
+      ],
+      "Open in the Main Area": [
+        "Abrir en el \u00e1rea principal"
+      ],
+      "Open the Hub control panel in a new browser tab": [
+        "Abrir el panel de control de Hub en una nueva pesta\u00f1a del navegador"
+      ],
+      "Other": [
+        "Otro"
+      ],
+      "Overrides for the default viewers for file types.\nSpecify a mapping from file type name to document viewer name, for example:\n\ndefaultViewers: {\n  markdown: \"Markdown Preview\"\n}\n\nIf you specify non-existent file types or viewers, or if a viewer cannot\nopen a given file type, the override will not function.\n\nAvailable viewers:\n%1\n\nAvailable file types:\n%2": [
+        "Reemplazo de los visores predeterminados para tipos de archivo.\nEspecifique un mapeo del nombre del tipo de archivo al nombre del visor del documento, por ejemplo:\n\ndefaultViewers: {\n   markdown: \"Vista previa de Markdown\"\n}\n\nSi especifica tipos de archivos o visores que no existen, o si un visor no puede\nabre un tipo de archivo determinado, la anulaci\u00f3n no funcionar\u00e1.\n\nVisores disponibles\n%1\n\nTipos de archivo disponibles:\n%2"
+      ],
+      "Overwrite": [
+        "Sobrescribir"
+      ],
+      "Overwrite file?": [
+        "\u00bfSobrescribir el archivo?"
+      ],
+      "PDF File": [
+        "Archivo PDF"
+      ],
+      "Paste": [
+        "Pegar"
+      ],
+      "Paste cells from the clipboard": [
+        "Pegar celdas del portapapeles"
+      ],
+      "Path": [
+        "Ruta"
+      ],
+      "Path Not Found": [
+        "Ruta No Encontrada"
+      ],
+      "Path:": [
+        "Ruta:"
+      ],
+      "Please confirm you want to shut down JupyterLab.": [
+        "Por favor, confirme que deseas cerrar JupyterLab."
+      ],
+      "Presentation Mode": [
+        "Modo de presentaci\u00f3n"
+      ],
+      "Property Inspector": [
+        "Inspector de propiedades"
+      ],
+      "Python File": [
+        "Archivo Python"
+      ],
+      "R File": [
+        "Archivo R"
+      ],
+      "ReStructured Text": [
+        "Texto Reestructurado"
+      ],
+      "Read-only": [
+        "S\u00f3lo lectura"
+      ],
+      "Reason given:": [
+        "Raz\u00f3n dada:"
+      ],
+      "Reconnect to Kernel": [
+        "Reconectar al Kernel"
+      ],
+      "Redo": [
+        "Rehacer"
+      ],
+      "Redo Cell Operation": [
+        "Rehacer operaci\u00f3n de celda"
+      ],
+      "Refresh File List": [
+        "Refrescar Lista de Archivos"
+      ],
+      "Refresh List": [
+        "Refrescar lista"
+      ],
+      "Refresh Terminal": [
+        "Actualizar terminal"
+      ],
+      "Refresh the current terminal session": [
+        "Actualizar la sesi\u00f3n de terminal actual"
+      ],
+      "Reload": [
+        "Recargar"
+      ],
+      "Reload %1 from Disk": [
+        "Recargar %1 desde el Disco"
+      ],
+      "Reload Without Saving": [
+        "Recargar sin guardar"
+      ],
+      "Reload contents from disk": [
+        "Recargar contenido desde el Disco"
+      ],
+      "Remove All Breakpoints": [
+        "Eliminar todos los puntos de interrupci\u00f3n"
+      ],
+      "Rename": [
+        "Renombrar"
+      ],
+      "Rename Error": [
+        "Error de renombrado"
+      ],
+      "Rename File": [
+        "Renombrar archivo"
+      ],
+      "Render All Markdown Cells": [
+        "Renderizar todas las celdas con contenido markdown"
+      ],
+      "Renderer Failure: %1": [
+        "Error del renderizador: %1"
+      ],
+      "Replace": [
+        "Reemplazar"
+      ],
+      "Replace All": [
+        "Reemplazar Todo"
+      ],
+      "Replace Selection in Console": [
+        "Reemplazar selecci\u00f3n en la consola"
+      ],
+      "Replace Selection in Editor": [
+        "Reemplazar selecci\u00f3n en el editor"
+      ],
+      "Replace Selection in Notebook Cell": [
+        "Operaciones con Celdas de Cuadernos"
+      ],
+      "Request that the Hub restart this server": [
+        "Solicite que el Hub reinicie este servidor"
+      ],
+      "Rerender HTML Document": [
+        "Redibujar documento HTML"
+      ],
+      "Reset Application State": [
+        "Reiniciar estado de la aplicaci\u00f3n"
+      ],
+      "Reset Image": [
+        "Reiniciar imagen"
+      ],
+      "Restart": [
+        "Reiniciar"
+      ],
+      "Restart Kernel and Clear\u2026": [
+        "Reiniciar Kernel y Limpiar\u2026"
+      ],
+      "Restart Kernel and Debug\u2026": [
+        "Reiniciar N\u00facleo y Depurador\u2026"
+      ],
+      "Restart Kernel and Run All": [
+        "Reiniciar el Kernel y ejecutar todo"
+      ],
+      "Restart Kernel and Run All Cells\u2026": [
+        "Reiniciar int\u00e9rprete y ejecutar todas las celdas"
+      ],
+      "Restart Kernel and Run up to Selected Cell\u2026": [
+        "Reiniciar el Kernel y ejecutar hasta la Celda Seleccionada\u2026"
+      ],
+      "Restart Kernel?": [
+        "Reiniciar Kernel?"
+      ],
+      "Restart Kernel\u2026": [
+        "Reiniciar el int\u00e9rprete"
+      ],
+      "Restart Server": [
+        "Reiniciar Servidor"
+      ],
+      "Restart the kernel": [
+        "Reiniciar el n\u00facleo"
+      ],
+      "Restart the kernel, then re-run the whole notebook": [
+        "Reinicia el kernel y vuelve a ejecutar el cuaderno completo"
+      ],
+      "Reveal.js Slides": [
+        "Diapositivas Reveal.js"
+      ],
+      "Revert": [
+        "Revertir"
+      ],
+      "Revert %1 to checkpoint": [
+        "Revertir %1 al punto de control"
+      ],
+      "Revert User Settings": [
+        "Revertir preferencias de usuario"
+      ],
+      "Revert changes to data": [
+        "Revertir cambios a los datos"
+      ],
+      "Revert contents to previous checkpoint": [
+        "Revertir contenido al punto de control anterior"
+      ],
+      "Rotate Clockwise": [
+        "Girar en sentido horario"
+      ],
+      "Rotate Counterclockwise": [
+        "Girar en sentido anti horario"
+      ],
+      "Run": [
+        "Ejecutar"
+      ],
+      "Run All": [
+        "Ejecutar todo"
+      ],
+      "Run All Above Selected Cell": [
+        "Ejecutar todo por encima de la celda seleccionada"
+      ],
+      "Run All Cells": [
+        "Ejecutar todas las celdas"
+      ],
+      "Run All Code": [
+        "Ejecutar Todo el C\u00f3digo"
+      ],
+      "Run Cell (forced)": [
+        "Ejecutar Celda (forzada)"
+      ],
+      "Run Cell (unforced)": [
+        "Ejecutar Celda (no forzada)"
+      ],
+      "Run First Enabled Command": [
+        "Ejecutar Primer Comando Activado"
+      ],
+      "Run Selected": [
+        "Ejecutar seleccionados"
+      ],
+      "Run Selected Cell and All Below": [
+        "Ejecutar las celdas seleccionadas y todas las que siguen debajo"
+      ],
+      "Run Selected Text or Current Line in Console": [
+        "Ejecutar el texto seleccionado o la l\u00ednea actual en la consola"
+      ],
+      "Run the selected cells and advance": [
+        "Ejecutar las celdas seleccionadas y avanzar"
+      ],
+      "Running Terminals and Kernels": [
+        "Terminales y Kernels en ejecuci\u00f3n"
+      ],
+      "SEARCH": [
+        "BUSCAR"
+      ],
+      "Save": [
+        "Guardar"
+      ],
+      "Save %1": [
+        "Guardar %1"
+      ],
+      "Save %1 As\u2026": [
+        "Guardar %1 como\u2026"
+      ],
+      "Save All": [
+        "Guardar todo"
+      ],
+      "Save Current Workspace": [
+        "Guardar espacio de trabajo actual"
+      ],
+      "Save Failed": [
+        "Error al guardar"
+      ],
+      "Save User Settings": [
+        "Guardar preferencias de usuario"
+      ],
+      "Save all open documents": [
+        "Guardar todos los documentos abiertos"
+      ],
+      "Save and Export Notebook: %1": [
+        "Guardar y Exportar Notebook: %1"
+      ],
+      "Save and Reload": [
+        "Guardar y recargar"
+      ],
+      "Save and create checkpoint": [
+        "Guardar y crear punto de control"
+      ],
+      "Save as": [
+        "Guardar como"
+      ],
+      "Save changes in \"%1\" before closing?": [
+        "\u00bfGuardar cambios en \"%1\" antes de cerrar?"
+      ],
+      "Save the notebook contents and create checkpoint": [
+        "Guardar el contenido del cuaderno y crear un punto de control"
+      ],
+      "Save with new path": [
+        "Guardar con nueva ruta"
+      ],
+      "Save your work": [
+        "Guarde su trabajo"
+      ],
+      "Saving completed": [
+        "Guardado completado"
+      ],
+      "Saving failed": [
+        "Error al guardar"
+      ],
+      "Saving started": [
+        "Iniciando guardado"
+      ],
+      "Scope": [
+        "Alcance"
+      ],
+      "Search Results": [
+        "Resultados de B\u00fasqueda"
+      ],
+      "Search on File Names": [
+        "Buscar por nombre de archivo"
+      ],
+      "Select": [
+        "Seleccionar"
+      ],
+      "Select All": [
+        "Seleccionar todo"
+      ],
+      "Select All Cells": [
+        "Seleccionar todas las celdas"
+      ],
+      "Select Cell Above": [
+        "Seleccionar celda encima"
+      ],
+      "Select Cell Below": [
+        "Seleccionar celda debajo"
+      ],
+      "Select Kernel": [
+        "Seleccione Kernel"
+      ],
+      "Select a kernel that supports debugging to enable debugger": [
+        "Seleccionar un n\u00facleo que soporte depuraci\u00f3n para habilitar el depurador"
+      ],
+      "Select a plugin from the list to view and edit its preferences.": [
+        "Selecciona un plugin de la lista para ver y editar sus preferencias."
+      ],
+      "Select current running or last run cell": [
+        "Seleccione la \u00faltima celda de ejecuci\u00f3n o la actual"
+      ],
+      "Select kernel for:": [
+        "Seleccionar kernel para:"
+      ],
+      "Server Connection Error": [
+        "Error de Conexi\u00f3n del Servidor"
+      ],
+      "Server stopped": [
+        "Servidor detenido"
+      ],
+      "Server unavailable or unreachable": [
+        "Servidor no disponible o no accesible"
+      ],
+      "Set Log Level to %1": [
+        "Establecer el nivel de registro a %1"
+      ],
+      "Set the terminal theme": [
+        "Establecer el tema de la terminal"
+      ],
+      "Settings": [
+        "Configuraci\u00f3n"
+      ],
+      "Shift+Right Click for Browser Menu": [
+        "May\u00fas+Clic derecho para el Men\u00fa del Navegador"
+      ],
+      "Show Active File in File Browser": [
+        "Mostrar Archivo Activo en el Explorador de Archivos"
+      ],
+      "Show All Kernel Activity": [
+        "Mostrar toda la actividad del Kernel"
+      ],
+      "Show Contextual Help": [
+        "Mostrar Ayuda Contextual"
+      ],
+      "Show Hidden Files": [
+        "Mostrar Archivos Ocultos"
+      ],
+      "Show Left Sidebar": [
+        "Mostrar barra lateral izquierda"
+      ],
+      "Show Line Numbers": [
+        "Mostar n\u00fameros de l\u00ednea"
+      ],
+      "Show Log Console": [
+        "Mostrar consola de registro"
+      ],
+      "Show Markdown Editor": [
+        "Mostrar editor de Markdown"
+      ],
+      "Show Markdown Preview": [
+        "Mostrar vista previa de Markdown"
+      ],
+      "Show Right Sidebar": [
+        "Mostrar barra lateral derecha"
+      ],
+      "Show Status Bar": [
+        "Mostrar barra de estado"
+      ],
+      "Show in File Browser": [
+        "Mostrar en el explorador de archivos"
+      ],
+      "Shut Down": [
+        "Apagar"
+      ],
+      "Shut Down All": [
+        "Apagar todo"
+      ],
+      "Shut Down All Kernels\u2026": [
+        "Apagar todos los n\u00facleos\u2026"
+      ],
+      "Shut Down All?": [
+        "\u00bfApagar todo?"
+      ],
+      "Shut Down Kernel": [
+        "Apagar Kernel"
+      ],
+      "Shut down JupyterLab": [
+        "Cerrar JupyterLab"
+      ],
+      "Shut down all kernels?": [
+        "\u00bfApagar todos los n\u00facleos?"
+      ],
+      "Shut down the console?": [
+        "\u00bfCerrar la consola?"
+      ],
+      "Shut down the notebook?": [
+        "\u00bfApagar el cuaderno?"
+      ],
+      "Shutdown Terminal": [
+        "Apagar Terminal"
+      ],
+      "Shutdown confirmation": [
+        "Confirmaci\u00f3n de cierre"
+      ],
+      "Simple": [
+        "Sencillo"
+      ],
+      "Simple Interface": [
+        "Interfaz simple"
+      ],
+      "Simple Interface (%1)": [
+        "Interfaz simple (%1)"
+      ],
+      "Source": [
+        "Fuente"
+      ],
+      "Spaces": [
+        "Espacios"
+      ],
+      "Split Cell": [
+        "Dividir la celda"
+      ],
+      "Start Other Kernel": [
+        "Iniciar otro Kernel"
+      ],
+      "Start Preferred Kernel": [
+        "Iniciar el Kernel preferido"
+      ],
+      "Start a new terminal session": [
+        "Iniciar una nueva sesi\u00f3n de terminal"
+      ],
+      "Step In": [
+        "Entrar"
+      ],
+      "Step Out": [
+        "Salir"
+      ],
+      "Switch Sidebar Side": [
+        "Cambiar lado de la barra lateral"
+      ],
+      "Switch kernel": [
+        "Cambiar el n\u00facleo"
+      ],
+      "System Defaults": [
+        "Valores por defecto del sistema"
+      ],
+      "TSV File": [
+        "Archivo TSV"
+      ],
+      "Table View": [
+        "Vista de Tabla"
+      ],
+      "Table of Contents": [
+        "Tabla de contenido"
+      ],
+      "Terminals": [
+        "Terminales"
+      ],
+      "Terminate": [
+        "Terminar"
+      ],
+      "Text": [
+        "Texto"
+      ],
+      "Text Editor": [
+        "Editor de texto"
+      ],
+      "Text File": [
+        "Archivo de Texto"
+      ],
+      "Thanks for trying out JupyterLab's extension manager.\nThe JupyterLab development team is excited to have a robust\nthird-party extension community.\nHowever, we cannot vouch for every extension,\nand some may introduce security risks.\nDo you want to continue?": [
+        "Gracias por probar el administrador de extensiones de JupyterLab.\nEl equipo de desarrollo de JupyterLab est\u00e1 encantado de tener una robusta\ncomunidad de extensiones de terceros.\nSin embargo, no podemos responder por cada extensi\u00f3n,\ny algunos pueden introducir riesgos de seguridad.\n\u00bfDesea continuar?"
+      ],
+      "The checkpoint was last updated at: ": [
+        "El punto de control fue actualizado por \u00faltima vez en: "
+      ],
+      "The file size is %1 MB. Do you still want to upload it?": [
+        "El tama\u00f1o del archivo es de %1 MB. \u00bfDeseas cargarlo?"
+      ],
+      "The kernel for %1 appears to be terminating. You can not run any cell for now.": [
+        "El kernel de %1 parece estar cerr\u00e1ndose. No puedes ejecutar ninguna celda por ahora."
+      ],
+      "The kernel for %1 appears to have died. It will restart automatically.": [
+        "El n\u00facleo para %1 parece haber muerto. Se reiniciar\u00e1 autom\u00e1ticamente."
+      ],
+      "The path: %1 was not found. JupyterLab redirected to: %2": [
+        "La ruta: %1 no fue encontrada. JupyterLab redirigido a: %2"
+      ],
+      "Theme": [
+        "Tema"
+      ],
+      "Theme Scrollbars": [
+        "Tema"
+      ],
+      "This HTML output contains inline scripts. Are you sure that you want to run arbitrary Javascript within your JupyterLab session?": [
+        "Esta salida de HTML contiene scripts en l\u00ednea. \u00bfEst\u00e1 seguro que desea ejecutar Javascript arbitrario en su sesi\u00f3n de JupyterLab?"
+      ],
+      "This cannot be undone.": [
+        "Esto no se puede deshacer."
+      ],
+      "This notebook has been converted from an newer notebook format (v%1)\nto the current notebook format (v%2).\nThe next time you save this notebook, the current notebook format (v%2) will be used.\nSome features of the original notebook may not be available.' To preserve the original format version,\nclose the notebook without saving it.": [
+        "Este cuaderno se ha convertido de un formato de cuaderno anterior (v%1)\nal formato de cuaderno actual (v%2).\nLa pr\u00f3xima vez que guarde este cuaderno, se usar\u00e1 el formato actual (v%2) del cuaderno.\n'Las versiones m\u00e1s antiguas de Jupyter pueden no ser capaces de leer el nuevo formato.' Para conservar la versi\u00f3n del formato original, cierre el cuaderno sin guardarlo."
+      ],
+      "This notebook has been converted from an older notebook format (v%1)\nto the current notebook format (v%2).\nThe next time you save this notebook, the current notebook format (v%2) will be used.\n'Older versions of Jupyter may not be able to read the new format.' To preserve the original format version,\nclose the notebook without saving it.": [
+        "Este notebook ha sido convertido de un formato de notebook anterior (v%1)\nal formato de notebook actual (v%2).\nLa pr\u00f3xima vez que guardes este notebook, se usar\u00e1 el formato actual (v%2) del notebook.\n'Versiones m\u00e1s antiguas de Jupyter pueden no ser capaces de leer el nuevo formato.' Para conservar el formato original, cierre el cuaderno sin guardarlo."
+      ],
+      "To use JupyterLab again, you will need to relaunch it.": [
+        "Para usar JupyterLab de nuevo, tendr\u00e1s que volver a lanzarlo."
+      ],
+      "Tree View": [
+        "Vista de \u00c1rbol"
+      ],
+      "Trust HTML": [
+        "Confiar en HTML"
+      ],
+      "Trust HTML File": [
+        "Confiar en archivo HTML"
+      ],
+      "Trust Notebook": [
+        "Confiar en el cuaderno"
+      ],
+      "Trust this notebook?": [
+        "\u00bfConfiar en este cuaderno?"
+      ],
+      "Undo": [
+        "Deshacer"
+      ],
+      "Undo Cell Operation": [
+        "Deshacer operaci\u00f3n de celda"
+      ],
+      "Uninstall": [
+        "Desinstalar"
+      ],
+      "Upload": [
+        "Cargar"
+      ],
+      "Upload Files": [
+        "Cargar archivos"
+      ],
+      "Uploading\u2026": [
+        "Cargando\u2026"
+      ],
+      "Use Kernel from Other Session": [
+        "Usar Kernel de otra sesi\u00f3n"
+      ],
+      "Use Kernel from Preferred Session": [
+        "Usar Kernel de Sesi\u00f3n preferida"
+      ],
+      "Use Terminal Theme: %1": [
+        "Usar tema de la terminal: %1"
+      ],
+      "Use Theme: %1": [
+        "Usar tema: %1"
+      ],
+      "User Preferences": [
+        "Preferencias del usuario"
+      ],
+      "Version %1": [
+        "Versi\u00f3n %1"
+      ],
+      "Warning": [
+        "Advertencia"
+      ],
+      "Width of the output in side-by-side mode": [
+        "Ancho de la salida en modo lado a lado"
+      ],
+      "Word Wrap": [
+        "Ajuste de l\u00ednea"
+      ],
+      "Workspace loader": [
+        "Cargador de espacio de trabajo"
+      ],
+      "Wrap Words": [
+        "Ajuste de l\u00edneas"
+      ],
+      "YAML File": [
+        "Archivo YAML"
+      ],
+      "You have shut down the Jupyter server. You can now close this tab.": [
+        "Has apagado el servidor de Jupyter. Ahora puedes cerrar esta pesta\u00f1a."
+      ],
+      "You have unsaved changes.": [
+        "Hay cambios sin guardar."
+      ],
+      "You will lose any unsaved changes.": [
+        "Perder\u00e1 cualquier cambio no guardado."
+      ],
+      "Your changes were not saved.": [
+        "Los cambios no han sido guardados."
+      ],
+      "Your server at %1 is not running.\nWould you like to restart it?": [
+        "Su servidor en %1 no est\u00e1 funcionando.\n\u00bfDesea reiniciarlo?"
+      ],
+      "Zoom In": [
+        "Acercar"
+      ],
+      "Zoom Out": [
+        "Alejar"
+      ],
+      "codemirror": [
+        "CodeMirror"
+      ],
+      "default": [
+        "por defecto"
+      ],
+      "menu\u0004Edit": [
+        "Editar"
+      ],
+      "menu\u0004File": [
+        "Archivo"
+      ],
+      "menu\u0004Help": [
+        "Ayuda"
+      ],
+      "menu\u0004Language": [
+        "Idioma"
+      ],
+      "menu\u0004New": [
+        "Nuevo"
+      ],
+      "menu\u0004Open With": [
+        "Abrir Con"
+      ],
+      "menu\u0004Save and Export Notebook As\u2026": [
+        "Guardar y Exportar Notebook Como\u2026"
+      ],
+      "menu\u0004Settings": [
+        "Configuraci\u00f3n"
+      ],
+      "menu\u0004Text Editor Indentation": [
+        "Indentaci\u00f3n del editor de texto"
+      ],
+      "menu\u0004Text Editor Syntax Highlighting": [
+        "Resaltado de sintaxis del editor de texto"
+      ],
+      "menu\u0004Text Editor Theme": [
+        "Tema del editor de texto"
+      ],
+      "menu\u0004Theme": [
+        "Tema"
+      ],
+      "menu\u0004View": [
+        "Ver"
+      ],
+      "pipe": [
+        "tuber\u00eda"
+      ],
+      "schema\u0004Application Commands": [
+        "Comandos de aplicaci\u00f3n"
+      ],
+      "schema\u0004Application Context Menu": [
+        "Men\u00fa contextual de la aplicaci\u00f3n"
+      ],
+      "schema\u0004Application commands settings.": [
+        "Configuraci\u00f3n de los comandes de la aplicaci\u00f3n."
+      ],
+      "schema\u0004Cell Toolbar": [
+        "Barra de herramientas de celdas"
+      ],
+      "schema\u0004Cell Toolbar Settings.": [
+        "Ajuste de la barra de herramienta de celdas."
+      ],
+      "schema\u0004Code Console": [
+        "Consola de c\u00f3digo"
+      ],
+      "schema\u0004Code Console Foreign plugin": [
+        "Plugin externo de la consola de c\u00f3digo"
+      ],
+      "schema\u0004Code Console Foreign plugin settings.": [
+        "Configuraci\u00f3n de plugin externo de la consola de c\u00f3digo."
+      ],
+      "schema\u0004Code Console settings.": [
+        "Ajustes de consola de c\u00f3digo."
+      ],
+      "schema\u0004CodeMirror": [
+        "CodeMirror"
+      ],
+      "schema\u0004Command Palette": [
+        "Paleta de comandos"
+      ],
+      "schema\u0004Command palette settings.": [
+        "Ajustes de la paleta de comandos."
+      ],
+      "schema\u0004Console Completer": [
+        "Completador de Consola"
+      ],
+      "schema\u0004Console Tooltips": [
+        "Consejos de Consola"
+      ],
+      "schema\u0004Console completer settings.": [
+        "Configuraci\u00f3n del completador de c\u00f3nsola."
+      ],
+      "schema\u0004Console tooltip settings.": [
+        "Ajustes de los consejos de consola."
+      ],
+      "schema\u0004Debugger": [
+        "Depurador"
+      ],
+      "schema\u0004Debugger settings": [
+        "Configuraci\u00f3n del depurador"
+      ],
+      "schema\u0004Document Manager": [
+        "Gestor de documentos"
+      ],
+      "schema\u0004Document Manager settings.": [
+        "Ajustes del gestor de documentos."
+      ],
+      "schema\u0004Document Search": [
+        "B\u00fasqueda de documentos"
+      ],
+      "schema\u0004Document search plugin.": [
+        "Complemento de b\u00fasqueda de documentos."
+      ],
+      "schema\u0004Extension Manager": [
+        "Gestor de extensiones"
+      ],
+      "schema\u0004Extension manager settings.": [
+        "Configuraci\u00f3n del gestor de extensiones."
+      ],
+      "schema\u0004File Browser": [
+        "Explorador de archivos"
+      ],
+      "schema\u0004File Browser Download": [
+        "Descarga del explorador de ficheros"
+      ],
+      "schema\u0004File Browser Download settings.": [
+        "Configuraci\u00f3n de descarga del explorador de ficheros."
+      ],
+      "schema\u0004File Browser Open Browser Tab": [
+        "Pesta\u00f1a abierta del explorador de ficheros"
+      ],
+      "schema\u0004File Browser Open Browser Tab settings.": [
+        "Configuraci\u00f3n de pesta\u00f1a abierta del explorador de ficheros."
+      ],
+      "schema\u0004File Browser Open With": [
+        "Apertura de ficheros del explorador"
+      ],
+      "schema\u0004File Browser Open With settings.": [
+        "Configuraci\u00f3n de apertura de ficheros del explorador."
+      ],
+      "schema\u0004File Browser Widget": [
+        "Widget del explorador de ficheros"
+      ],
+      "schema\u0004File Browser settings.": [
+        "Configuraci\u00f3n del navegador de archivos."
+      ],
+      "schema\u0004File Browser widget settings.": [
+        "Configuraci\u00f3n de widget del explorador."
+      ],
+      "schema\u0004File Editor Completer": [
+        "Completador del editor de archivos"
+      ],
+      "schema\u0004File Editor Tooltips": [
+        "Consejos del editor de archivos"
+      ],
+      "schema\u0004File editor completer settings.": [
+        "Configuraci\u00f3n de consejos del editor de archivos."
+      ],
+      "schema\u0004File editor tooltip settings.": [
+        "Ajustes de consejos del editor de archivos."
+      ],
+      "schema\u0004Image Viewer": [
+        "Visor de im\u00e1genes"
+      ],
+      "schema\u0004Image viewer settings.": [
+        "Configuraci\u00f3n del visor de im\u00e1genes."
+      ],
+      "schema\u0004Inspector settings.": [
+        "Configuraci\u00f3n del inspector."
+      ],
+      "schema\u0004JupyterLab Shell": [
+        "Terminal de JupyterLab"
+      ],
+      "schema\u0004JupyterLab context menu settings.": [
+        "Configuraci\u00f3n del men\u00fa contextual de JupyterLab."
+      ],
+      "schema\u0004Keyboard Shortcuts": [
+        "Atajos de teclado"
+      ],
+      "schema\u0004Keyboard shortcut settings.": [
+        "Ajustes de atajos de teclado."
+      ],
+      "schema\u0004Language": [
+        "Idioma"
+      ],
+      "schema\u0004Language settings.": [
+        "Configuraci\u00f3n de idioma."
+      ],
+      "schema\u0004Launcher": [
+        "Lanzador"
+      ],
+      "schema\u0004Launcher settings.": [
+        "Ajustes del lanzador."
+      ],
+      "schema\u0004Log Console": [
+        "Consola de registro"
+      ],
+      "schema\u0004Log Console settings.": [
+        "Configuraci\u00f3n de la consola de registro."
+      ],
+      "schema\u0004Main JupyterLab menu settings.": [
+        "Configuraci\u00f3n del men\u00fa principal de JupyterLab."
+      ],
+      "schema\u0004Main Menu": [
+        "Men\u00fa principal"
+      ],
+      "schema\u0004Markdown Viewer": [
+        "Visor de markdown"
+      ],
+      "schema\u0004Markdown viewer settings.": [
+        "Ajustes de visor de markdown."
+      ],
+      "schema\u0004Notebook": [
+        "Cuaderno"
+      ],
+      "schema\u0004Notebook Completer": [
+        "Completado de Cuadernos"
+      ],
+      "schema\u0004Notebook Tooltips": [
+        "Herramientas del Cuaderno"
+      ],
+      "schema\u0004Notebook completer settings.": [
+        "Configuraci\u00f3n del completado de Cuadernos."
+      ],
+      "schema\u0004Notebook settings.": [
+        "Ajustes del cuaderno."
+      ],
+      "schema\u0004Notebook tooltip settings.": [
+        "Configuraci\u00f3n de la descripci\u00f3n de Cuadernos."
+      ],
+      "schema\u0004Print": [
+        "Imprimir"
+      ],
+      "schema\u0004Print settings.": [
+        "Opciones de Impresi\u00f3n."
+      ],
+      "schema\u0004Setting Editor": [
+        "Editor de Ajustes"
+      ],
+      "schema\u0004Setting editor settings.": [
+        "Configuraci\u00f3n del editor de ajustes."
+      ],
+      "schema\u0004Status Bar": [
+        "Barra de Estado"
+      ],
+      "schema\u0004Status Bar settings.": [
+        "Ajustes de la barra de estado."
+      ],
+      "schema\u0004Terminal settings.": [
+        "Ajustes de la terminal."
+      ],
+      "schema\u0004Text Editor": [
+        "Editor de texto"
+      ],
+      "schema\u0004Text editor settings for all CodeMirror editors.": [
+        "Configuraci\u00f3n del editor de texto para todos los editores de CodeMirror."
+      ],
+      "schema\u0004Text editor settings.": [
+        "Configuraci\u00f3n del editor de texto."
+      ],
+      "schema\u0004Theme": [
+        "Tema"
+      ],
+      "schema\u0004Theme manager settings.": [
+        "Ajustes del administrador de temas."
+      ],
+      "schema\u0004Workspaces": [
+        "Espacios de Trabajo"
+      ],
+      "schema\u0004Workspaces settings.": [
+        "Ajuste de espacios de trabajo."
+      ],
+      "settings\u0004An item is defined by a 'name', a 'command' name, and an 'icon' name": [
+        "Un elemento est\u00e1 definido por un 'nombre', un nombre de 'comando', y un nombre de 'icono'"
+      ],
+      "settings\u0004Application Context Menu": [
+        "Men\u00fa contextual de la aplicaci\u00f3n"
+      ],
+      "settings\u0004Autosave Documents": [
+        "Auto-guardar documentos"
+      ],
+      "settings\u0004Autosave Interval": [
+        "Intervalo de Autoguardado"
+      ],
+      "settings\u0004CodeMirror": [
+        "CodeMirror"
+      ],
+      "settings\u0004Command arguments": [
+        "Argumentos del comando"
+      ],
+      "settings\u0004Command id": [
+        "Identificaci\u00f3n del comando"
+      ],
+      "settings\u0004Debugger": [
+        "Depurador"
+      ],
+      "settings\u0004Document Manager": [
+        "Gestor de documentos"
+      ],
+      "settings\u0004Editor": [
+        "Editor"
+      ],
+      "settings\u0004Editor Configuration": [
+        "Configuraci\u00f3n del editor"
+      ],
+      "settings\u0004Enable/disable styling of the application scrollbars": [
+        "Habilita/deshabilita el estilo de las barras de desplazamiento de la aplicaci\u00f3n"
+      ],
+      "settings\u0004Extension Manager": [
+        "Gestor de extensiones"
+      ],
+      "settings\u0004File browser toolbar items": [
+        "Elementos de barra de herramientas del explorador"
+      ],
+      "settings\u0004Filter directories": [
+        "Filtrar directorios"
+      ],
+      "settings\u0004Filter on file name with a fuzzy search": [
+        "Filtrar por nombre de fichero con una b\u00fasqueda difusa"
+      ],
+      "settings\u0004Font Family": [
+        "Familia de Fuente"
+      ],
+      "settings\u0004Font Size": [
+        "Tama\u00f1o de fuente"
+      ],
+      "settings\u0004Hidden mode of main panel widgets": [
+        "Modo oculto de los widgets del panel principal"
+      ],
+      "settings\u0004Hide Front Matter": [
+        "Ocultar Parte Delantera"
+      ],
+      "settings\u0004If defined, it will override the command icon": [
+        "Si se define, se reemplazar\u00e1 el \u00edcono del comando"
+      ],
+      "settings\u0004If defined, it will override the command label": [
+        "Si se define, se reemplazar\u00e1 la etiqueta del comando"
+      ],
+      "settings\u0004Item icon id": [
+        "Id del \u00edcono del elemento"
+      ],
+      "settings\u0004Item label": [
+        "Etiqueta del elemento"
+      ],
+      "settings\u0004Item rank": [
+        "Rango del objeto"
+      ],
+      "settings\u0004Item type": [
+        "Tipo de elemento"
+      ],
+      "settings\u0004Line Height": [
+        "Espaciado de L\u00edneas"
+      ],
+      "settings\u0004Line Width": [
+        "Ancho de l\u00ednas"
+      ],
+      "settings\u0004List of toolbar items": [
+        "Lista de elementos de la barra de herramientas"
+      ],
+      "settings\u0004Markdown Viewer": [
+        "Visor de markdown"
+      ],
+      "settings\u0004Max acceptable difference, in milliseconds, between last modified timestamps on disk and client": [
+        "M\u00e1xima diferencia aceptable, en milisegundos, entre la \u00faltima modificaci\u00f3n en disco y el cliente"
+      ],
+      "settings\u0004Menu icon id": [
+        "Identificaci\u00f3n del \u00edcono del men\u00fa"
+      ],
+      "settings\u0004Menu items": [
+        "Elementos del men\u00fa"
+      ],
+      "settings\u0004Menu label": [
+        "Etiqueta del men\u00fa"
+      ],
+      "settings\u0004Menu rank": [
+        "Rango de men\u00fa"
+      ],
+      "settings\u0004Menu unique id": [
+        "Identificaci\u00f3n \u00fanica del men\u00fa"
+      ],
+      "settings\u0004Mnemonic index for the label": [
+        "\u00cdndice mnem\u00f3nico para la etiqueta"
+      ],
+      "settings\u0004Modal Command Palette": [
+        "Paleta model de comandos"
+      ],
+      "settings\u0004Navigate to current directory": [
+        "Ir al directorio actual"
+      ],
+      "settings\u0004Note: To disable a context menu item,\ncopy it to User Preferences and add the\n\"disabled\" key. The following example will disable Download item on files:\n{\n  \"contextMenu\": [\n    {\n      \"command\": \"filebrowser:download\",\n      \"selector\": \".jp-DirListing-item[data-isdir=\\\"false\\\"]\",\n      \"disabled\": true\n    }\n  ]\n}\n\nContext menu description:": [
+        "Nota: Para deshabilitar un elemento del men\u00fa contextual,\nc\u00f3pielo en Preferencias de usuario y agregue el\ntecla \"deshabilitada\". El siguiente ejemplo deshabilitar\u00e1 el elemento Descargar en archivos:\n{\n  \"contextMenu\": [\n    {\n      \"command\": \"filebrowser:download\",\n      \"selector\": \".jp-DirListing-item[data-isdir=\\\"false\\\"]\",\n      \"disabled\": true\n    }\n  ]\n}"
+      ],
+      "settings\u0004Note: To disable a toolbar item,\ncopy it to User Preferences and add the\n\"disabled\" key. The following example will disable the uploader button:\n{\n  \"toolbar\": [\n    {\n      \"name\": \"uploader\",\n      \"disabled\": true\n    }\n  ]\n}\n\nToolbar description:": [
+        "Nota: Para deshabilitar un elemento de la barra de herramientas,\nc\u00f3pielo en Preferencias de usuario y agregue la\ntecla \"deshabilitada\". El siguiente ejemplo deshabilitar\u00e1 el bot\u00f3n de subida:\n{\n  \"toolbar\": [\n    {\n      \"name\": \"uploader\",\n      \"disabled\": true\n    }\n  ]\n}\n\nDescripci\u00f3n de la barra de herramientas:"
+      ],
+      "settings\u0004Note: To disable a toolbar item,\ncopy it to User Preferences and add the\n\"disabled\" key. Toolbar description:": [
+        "Nota: Para deshabilitar un elemento de la barra de herramientas,\nc\u00f3pielo a Preferencias de usuario y agregue la clave\n\"deshabilitada\". Descripci\u00f3n de la barra de herramientas:"
+      ],
+      "settings\u0004Override theme CSS variables by setting key-value pairs here": [
+        "Sobrescribe las variables del tema CSS estableciendo pares de clave-valor aqu\u00ed"
+      ],
+      "settings\u0004Render Timeout": [
+        "Tiempo limite de desplegado"
+      ],
+      "settings\u0004Scroll behavior": [
+        "Comportamiento de desplazamiento"
+      ],
+      "settings\u0004Scrollbar Theming": [
+        "Tema de las barras de desplazamiento"
+      ],
+      "settings\u0004Selected Theme": [
+        "Tema seleccionado"
+      ],
+      "settings\u0004Show hidden files": [
+        "Mostrar archivos ocultos"
+      ],
+      "settings\u0004Show last modified column": [
+        "Mostrar columna de \u00faltima modificaci\u00f3n"
+      ],
+      "settings\u0004Status Bar": [
+        "Barra de Estado"
+      ],
+      "settings\u0004Submenu definition": [
+        "Definici\u00f3n del submen\u00fa"
+      ],
+      "settings\u0004Table of Contents": [
+        "Tabla de contenido"
+      ],
+      "settings\u0004The CSS selector for the context menu item.": [
+        "El selector CSS para el elemento de men\u00fa contextual."
+      ],
+      "settings\u0004The application context menu.": [
+        "El men\u00fa contextual de la aplicaci\u00f3n."
+      ],
+      "settings\u0004The font family used to render markdown.\nIf `null`, value from current theme is used.": [
+        "La familia de fuentes utilizada para desplegar markdown.\nSi es `null`, se utilizar\u00e1 el valor del tema actual."
+      ],
+      "settings\u0004The line height used to render markdown.\nIf `null`, value from current theme is used.": [
+        "La altura de l\u00edneas utilizada para el desplegar markdown.\nSi el valor es `null`, el valor del tema actual ser\u00e1 usado."
+      ],
+      "settings\u0004The render timeout in milliseconds.": [
+        "Tiempo de espera de desplegado en milisegundos."
+      ],
+      "settings\u0004The size in pixel of the font used to render markdown.\nIf `null`, value from current theme is used.": [
+        "El tama\u00f1o en pixeles de la fuente utilizada para desplegar markdown.\nSi el valor es `null`, el valor del tema actual ser\u00e1 usado."
+      ],
+      "settings\u0004The text line width expressed in CSS ch units.\nIf `null`, lines fit the viewport width.": [
+        "El ancho de l\u00edneas de texto expresado en unidades ch de CSS.\nSi el valor es `null`, el ancho de las lineas abarcar\u00e1 la vista."
+      ],
+      "settings\u0004Theme": [
+        "Tema"
+      ],
+      "settings\u0004Theme CSS Overrides": [
+        "Sobrescritura del tema CSS"
+      ],
+      "settings\u0004Theme Manager": [
+        "Gestor de temas"
+      ],
+      "settings\u0004Unique name": [
+        "Nombre \u00fanico"
+      ],
+      "settings\u0004Whether the command palette should be modal or in the left panel.": [
+        "Si la paleta de comandos debe ser modal o en el panel izquierdo."
+      ],
+      "settings\u0004Whether the item is disabled or not": [
+        "Si el elemento est\u00e1 desactivado o no "
+      ],
+      "settings\u0004Whether the item is ignored or not": [
+        "Indica si el elemento es ignorado o no"
+      ],
+      "settings\u0004Whether the menu is disabled or not": [
+        "Indica si el men\u00fa est\u00e1 deshabilitado o no"
+      ],
+      "settings\u0004Whether to apply fuzzy algorithm while filtering on file names": [
+        "Indica si se debe aplicar un algoritmo difuso en el filtrado de nombres de ficheros"
+      ],
+      "settings\u0004Whether to apply the search on directories": [
+        "Indica si se aplica la b\u00fasqueda en directorios"
+      ],
+      "settings\u0004Whether to automatically navigate to a document's current directory": [
+        "Indica si se debe ir autom\u00e1ticamente al directorio actual del documento"
+      ],
+      "settings\u0004Whether to hide YAML front matter.\nThe YAML front matter must be placed at the top of the document,\nstarted by a line of three dashes (---) and ended by a line of\nthree dashes (---) or three points (...).": [
+        "\u00bfOcultar la parte delantera YAML?\nLa parte delantera de YAML debe colocarse en la parte superior del documento,\niniciando con una l\u00ednea de tres guiones (---) y terminando con una l\u00ednea de\ntres guiones (---) o tres puntos (...)."
+      ],
+      "settings\u0004Whether to show the last modified column": [
+        "Indica si se debe mostrar la \u00faltima columna modificada"
+      ],
+      "settings\u0004font-family": [
+        "tipo de fuente"
+      ],
+      "settings\u0004font-size": [
+        "tama\u00f1o de la fuente"
+      ],
+      "showErrorMessage\u0004\"%1\" is not a valid name for a file. Names must have nonzero length, and cannot include \"/\", \"\\\", or \":\"": [
+        "\"%1\" no es un nombre v\u00e1lido de archivo. Los nombres deben tener una longitud mayor a cero y no pueden incluir \"/\", \"\\\" ni \":\""
+      ],
+      "showErrorMessage\u0004Delete Failed": [
+        "Error al eliminar"
+      ],
+      "showErrorMessage\u0004Duplicate file": [
+        "Archivo duplicado"
+      ],
+      "showErrorMessage\u0004Error while copying/moving files": [
+        "Error al copiar/mover archivos"
+      ],
+      "showErrorMessage\u0004Open directory": [
+        "Abrir directorio"
+      ],
+      "showErrorMessage\u0004Paste Error": [
+        "Error al Pegar"
+      ],
+      "showErrorMessage\u0004Rename Error": [
+        "Error de renombrado"
+      ],
+      "showErrorMessage\u0004Shut down kernel": [
+        "Apagar el kernel"
+      ],
+      "showErrorMessage\u0004Upload Error": [
+        "Error al cargar"
+      ],
+      "tab": [
+        "pesta\u00f1a"
+      ],
+      "waiting for fonts": [
+        "esperando las fuentes"
+      ]
+    },
+    "jupyterlab_git": {
+      "": {
+        "domain": "jupyterlab_git",
+        "language": "es-ES",
+        "plural_forms": "nplurals=2; plural=(n != 1);",
+        "version": "jupyterlab"
+      },
+      " Help ": [
+        " Ayuda "
+      ],
+      "Add": [
+        "Agregar"
+      ],
+      "Add Remote Repository": [
+        "A\u00f1adir Repositorio Remoto"
+      ],
+      "Add a Git remote repository": [
+        "Agregar un repositorio remoto"
+      ],
+      "Add a remote repository": [
+        "Agregar un repositorio remoto"
+      ],
+      "Are you sure you want to ignore all %1 files within this git repository?": [
+        "\u00bfEst\u00e1 seguro de que desea ignorar todos los archivos %1 dentro de este repositorio de git?"
+      ],
+      "Are you sure you want to mark this file as resolved with merge conflicts?": [
+        "\u00bfEst\u00e1 seguro que desea marcar este archivo como resuelto con conflictos de merge?"
+      ],
+      "Are you sure you want to permanently delete the following files?               This action cannot be undone.": [
+        "\u00bfEst\u00e1 seguro que desea eliminar permanentemente los siguientes archivos? Esta acci\u00f3n no se puede deshacer."
+      ],
+      "Are you sure you want to permanently discard changes to the following files?               This action cannot be undone.": [
+        "\u00bfEst\u00e1 seguro de que desea descartar permanentemente los cambios en los siguientes archivos? Esta acci\u00f3n no se puede deshacer."
+      ],
+      "CLONE": [
+        "CLONAR"
+      ],
+      "CURRENT": [
+        "ACTUAL"
+      ],
+      "Cancel": [
+        "Cancelar"
+      ],
+      "Clone": [
+        "Clonar"
+      ],
+      "Clone a Repository": [
+        "Clonar un repositorio"
+      ],
+      "Clone a repo": [
+        "Clonar un repositorio"
+      ],
+      "Clone a repository from a URL": [
+        "Clonar un repositorio desde un URL"
+      ],
+      "Cloning...": [
+        "Clonando..."
+      ],
+      "Cloning\u2026": [
+        "Clonando\u2026"
+      ],
+      "Commit from the Commit Box": [
+        "Confirma desde la Celda de Confirmaci\u00f3n"
+      ],
+      "Conflicted": [
+        "En conflicto"
+      ],
+      "Control character": [
+        "Car\u00e1cter de control"
+      ],
+      "Create an empty Git repository or reinitialize an existing one": [
+        "Crear un repositorio Git vac\u00edo o reinicializar uno existente"
+      ],
+      "Creating branch\u2026": [
+        "Creando rama\u2026"
+      ],
+      "DISMISS": [
+        "DESCARTAR"
+      ],
+      "Delete": [
+        "Eliminar"
+      ],
+      "Delete Files": [
+        "Eliminar archivos"
+      ],
+      "Delete these files": [
+        "Eliminar estos archivos"
+      ],
+      "Delete this file": [
+        "Eliminar este archivo"
+      ],
+      "Deleting %1 failed.": [
+        "Eliminaci\u00f3n de %1 ha fallado."
+      ],
+      "Diff Not Supported": [
+        "Diff no soportado"
+      ],
+      "Diff is not supported for %1 files.": [
+        "Diff no es compatible con %1 archivos."
+      ],
+      "Diff selected file": [
+        "Diferencia el archivo seleccionado"
+      ],
+      "Diff selected files": [
+        "Diferencia archivos seleccionados"
+      ],
+      "Discard": [
+        "Descartar"
+      ],
+      "Discard changes": [
+        "Descartar cambios"
+      ],
+      "Discard changes for %1 failed.": [
+        "Error al descartar los cambios para %1."
+      ],
+      "Discard recent changes of selected file": [
+        "Descartar cambios recientes del archivo seleccionado"
+      ],
+      "Discard recent changes of selected files": [
+        "Descartar cambios recientes del archivo seleccionado"
+      ],
+      "Discarding changes\u2026": [
+        "Descartando cambios\u2026"
+      ],
+      "Dismiss": [
+        "Descartar"
+      ],
+      "Display a file diff.": [
+        "Mostrar un archivo diff."
+      ],
+      "Do you really want to make this directory a Git Repo?": [
+        "\u00bfEst\u00e1s seguro de que quieres crear un repositorio Git en este directorio?"
+      ],
+      "Double click opens diff": [
+        "Doble clic abre la diferencia"
+      ],
+      "Download the repository": [
+        "Descargar el repositorio"
+      ],
+      "Encountered an error when initializing the repository. Error: ": [
+        "Se encontr\u00f3 un error al inicializar el repositorio. Error: "
+      ],
+      "Encountered an error when pushing changes. Error: ": [
+        "Se encontr\u00f3 un error al empujar los cambios. Error: "
+      ],
+      "Enter a new remote repository name and URL": [
+        "Introduzca un nuevo nombre y URL del repositorio remoto"
+      ],
+      "Enter credentials for remote repository": [
+        "Introducir credenciales para el repositorio remoto"
+      ],
+      "Enter the Clone URI of the repository": [
+        "Ingrese el URI de clonaci\u00f3n del repositorio"
+      ],
+      "Enter the URI of the remote Git repository": [
+        "Introduzca la URI del repositorio Git remoto"
+      ],
+      "Error when adding remote repository": [
+        "Error al a\u00f1adir el repositorio remoto"
+      ],
+      "Failed to checkout tag.": [
+        "Error al verificar etiqueta."
+      ],
+      "Failed to clone": [
+        "Error al clonar"
+      ],
+      "Failed to initialize the Git repository": [
+        "Error al inicializar el repositorio Git"
+      ],
+      "Failed to load the jupyterlab-git server extension": [
+        "Error al cargar la extensi\u00f3n del servidor jupyterlab-git"
+      ],
+      "Failed to pull": [
+        "No se pudo extraer"
+      ],
+      "Failed to push": [
+        "Error al empujar"
+      ],
+      "Failed to switch branch.": [
+        "No se pudo cambiar la rama."
+      ],
+      "Find": [
+        "Buscar"
+      ],
+      "Git Documentation": [
+        "Documentaci\u00f3n de Git"
+      ],
+      "Git Interface": [
+        "Interfaz de Git"
+      ],
+      "Git credentials required": [
+        "Se requieren credenciales de Git"
+      ],
+      "Git repository initialized.": [
+        "Repositorio Git inicializado."
+      ],
+      "Git server extension is unavailable. Please ensure you have installed the JupyterLab Git server extension by running: pip install --upgrade jupyterlab-git. To confirm that the server extension is installed, run: jupyter server extension list.": [
+        "La extensi\u00f3n del servidor Git no est\u00e1 disponible. Aseg\u00farese de haber instalado la extensi\u00f3n del servidor JupyterLab Git ejecutando: pip install --upgrade jupyterlab-git. Para confirmar que la extensi\u00f3n del servidor est\u00e1 instalada, ejecute: jupyter server extension list."
+      ],
+      "Go to Git user interface": [
+        "Ir a la interfaz de usuario de Git"
+      ],
+      "Ignore": [
+        "Ignorar"
+      ],
+      "Ignore %2 extension (add to .gitignore)": [
+        "Ignorar la extensi\u00f3n %2 (a\u00f1adir a .gitignore)",
+        "Ignorar la extensi\u00f3n %2 (agregar a .gitignore)"
+      ],
+      "Ignore file extension": [
+        "Ignorar extensi\u00f3n de archivo"
+      ],
+      "Ignore these files (add to .gitignore)": [
+        "Ignorar estos archivos (a\u00f1adir a .gitignore)"
+      ],
+      "Ignore these files extension (add to .gitignore)": [
+        "Ignorar estas extensiones de archivo (agregar a .gitignore)"
+      ],
+      "Ignore this file (add to .gitignore)": [
+        "Ignorar este archivo (a\u00f1adir a .gitignore)"
+      ],
+      "Ignore this file extension (add to .gitignore)": [
+        "Ignorar esta extensi\u00f3n de archivo (agregar a .gitignore)"
+      ],
+      "Incorrect username or password.": [
+        "Nombre de usuario o contrase\u00f1a\nincorrectos."
+      ],
+      "Initialize a Repository": [
+        "Iniciar un repositorio"
+      ],
+      "Initializing...": [
+        "Inicializando..."
+      ],
+      "Initializing\u2026": [
+        "Inicializando\u2026"
+      ],
+      "Manage Remote Repositories": [
+        "Administrar repositorios remotos"
+      ],
+      "Mark as resolved": [
+        "Marcar como resuelto"
+      ],
+      "Mark file as resolved": [
+        "Marcar el archivo como resuelto"
+      ],
+      "Merge": [
+        "Fusionar"
+      ],
+      "Merge Branch\u2026": [
+        "Fusionar rama\u2026"
+      ],
+      "No actions available": [
+        "No hay acciones disponibles"
+      ],
+      "Not in a Git repository. Unable to add a remote.": [
+        "No est\u00e1 en un repositorio Git. No se puede a\u00f1adir un remoto."
+      ],
+      "Open": [
+        "Abrir"
+      ],
+      "Open .gitignore": [
+        "Abrir .gitignore"
+      ],
+      "Open File Failed": [
+        "Error al abrir archivo"
+      ],
+      "Open Git Repository in Terminal": [
+        "Abrir repositorio de Git en Terminal"
+      ],
+      "Open a New Terminal to the Git Repository": [
+        "Abrir una nueva Terminal al repositorio Git"
+      ],
+      "Open selected file": [
+        "Abrir archivo seleccionado"
+      ],
+      "Open selected files": [
+        "Abrir archivos seleccionados"
+      ],
+      "Please commit, stash, or discard your changes before you checkout tags.": [
+        "Por favor confirme, resguarde o descarte los cambios antes de verificar etiquetas."
+      ],
+      "Please commit, stash, or discard your changes before you switch branches.": [
+        "Por favor confirme, resguarde o descarte los cambios antes de cambiar las ramas."
+      ],
+      "Pull from Remote": [
+        "Jalar desde remoto"
+      ],
+      "Pull latest code from remote repository": [
+        "Descargue el \u00faltimo c\u00f3digo del repositorio remoto"
+      ],
+      "Pulling...": [
+        "Jalando..."
+      ],
+      "Push code to remote repository": [
+        "Empujar c\u00f3digo al repositorio remoto"
+      ],
+      "Push to Remote": [
+        "Empujar a remoto"
+      ],
+      "Pushing...": [
+        "Empujando..."
+      ],
+      "Pushing\u2026": [
+        "Enviando\u2026"
+      ],
+      "Refresh": [
+        "Actualizar"
+      ],
+      "Refresh diff widget": [
+        "Actualizar widget de diferencias"
+      ],
+      "Refreshing\u2026": [
+        "Actualizando\u2026"
+      ],
+      "Remote Changes": [
+        "Cambios Remotos"
+      ],
+      "Remote Git repository URL": [
+        "URL del repositorio Git remoto"
+      ],
+      "Replace": [
+        "Reemplazar"
+      ],
+      "Resolve with conflicts": [
+        "Resolver con conflictos"
+      ],
+      "Result": [
+        "Resultado"
+      ],
+      "Set Up Remotes": [
+        "Configurar Remotos"
+      ],
+      "Show": [
+        "Mostrar"
+      ],
+      "Show Diff": [
+        "Mostrar Diff"
+      ],
+      "Simple staging": [
+        "Escenario simple"
+      ],
+      "Stage": [
+        "Coloca"
+      ],
+      "Stage or track the changes of selected files": [
+        "Coloca o rastrea los cambios a los archivos seleccionados"
+      ],
+      "Stage or track the changes to selected file": [
+        "Coloca o rastrea los cambios al archivo seleccionado"
+      ],
+      "Stage the changes of selected file": [
+        "Coloca los cambios del archivo seleccionado"
+      ],
+      "Stage the changes of selected files": [
+        "Coloca los cambios de los archivos seleccionados"
+      ],
+      "Start tracking selected file": [
+        "Iniciar rastreo del archivo seleccionado"
+      ],
+      "Start tracking selected files": [
+        "Iniciar rastreo de los archivos seleccionados"
+      ],
+      "Submit the commit using the summary and description from commit box": [
+        "Enviar la confirmaci\u00f3n usando el resumen y la descripci\u00f3n de la celda de confirmaci\u00f3n"
+      ],
+      "Successfully cloned": [
+        "Clonado con \u00e9xito"
+      ],
+      "Successfully pulled": [
+        "Extracci\u00f3n exitosa"
+      ],
+      "Successfully pushed": [
+        "Empujado exit\u00f3samente"
+      ],
+      "The versions of the JupyterLab Git server frontend and backend do not match. The @jupyterlab/git frontend extension has version: %1 while the python package has version %2. Please install identical version of jupyterlab-git Python package and the @jupyterlab/git extension. Try running: pip install --upgrade jupyterlab-git": [
+        "Las versiones del frontend y backend del servidor JupyterLab Git no coinciden. La extensi\u00f3n de frontend @ jupyterlab/git tiene versi\u00f3n: %1 mientras que el paquete de python tiene versi\u00f3n %2. Instale una versi\u00f3n id\u00e9ntica del paquete de Python jupyterlab-git y la extensi\u00f3n @jupyterlab/git. Intente ejecutar: pip install --upgrade jupyterlab-git"
+      ],
+      "This file has been deleted!": [
+        "\u00a1Este archivo ha sido eliminado!"
+      ],
+      "Track": [
+        "Rastrea"
+      ],
+      "Unable to checkout tag": [
+        "La etiqueta no puede ser verificada"
+      ],
+      "Unable to switch branch": [
+        "No se pudo cambiar la rama"
+      ],
+      "Unstage": [
+        "Quitar"
+      ],
+      "Unstage the changes of selected file": [
+        "Quitar los cambios del archivo seleccionado"
+      ],
+      "Unstage the changes of selected files": [
+        "Quitar los cambios de los archivos seleccionados"
+      ],
+      "Yes": [
+        "Si"
+      ],
+      "Your changes to the following files would be overwritten by switching:": [
+        "Sus cambios en los siguientes archivos se sobrescribir\u00e1n al cambiar:"
+      ],
+      "all": [
+        "todos"
+      ],
+      "git command not found - please ensure you have Git > 2 installed": [
+        "comando git no encontrado - por favor aseg\u00farese de que tiene instalado Git > 2"
+      ],
+      "git command version must be > 2; got %1.": [
+        "la versi\u00f3n del comando git debe ser > 2; se obtuvo %1."
+      ],
+      "next": [
+        "siguiente"
+      ],
+      "on line": [
+        "en l\u00ednea"
+      ],
+      "password / personal access token": [
+        "contrase\u00f1a / token de acceso personal"
+      ],
+      "previous": [
+        "anterior"
+      ],
+      "schema\u0004Git Documentation": [
+        "Documentaci\u00f3n de Git"
+      ],
+      "schema\u0004Set Up Remotes": [
+        "Configurar Remotos"
+      ],
+      "schema\u0004jupyterlab-git settings.": [
+        "configuraci\u00f3n de jupyterlab-git."
+      ],
+      "settings\u0004If true, double clicking a file in the list of changed files will open a diff.": [
+        "Si es verdadero, al hacer doble clic en un archivo de la lista de archivos modificados se abrir\u00e1 un diff."
+      ],
+      "username": [
+        "nombre de usuario"
+      ]
+    },
+    "jupyterlab_lsp": {
+      "": {
+        "domain": "jupyterlab_lsp",
+        "language": "es-ES",
+        "plural_forms": "nplurals=2; plural=(n != 1);",
+        "version": "jupyterlab"
+      },
+      "%1 to %2": [
+        "%1 a %2"
+      ],
+      "Cell": [
+        "Celda"
+      ],
+      "Code": [
+        "C\u00f3digo"
+      ],
+      "Diagnostics Panel": [
+        "Panel de Diagn\u00f3stico"
+      ],
+      "Message": [
+        "Mensaje"
+      ],
+      "OK": [
+        "Aceptar"
+      ],
+      "Severity": [
+        "Severidad"
+      ],
+      "Source": [
+        "Origen"
+      ],
+      "Virtual Document": [
+        "Documento Virtual"
+      ],
+      "Waiting for documents initialization...": [
+        "Esperando la inicializaci\u00f3n de documentos..."
+      ],
+      "not initialized": [
+        "no inicializado"
+      ]
+    },
+    "jupyterlab_recents": {
+      "": {
+        "domain": "jupyterlab_recents",
+        "language": "es-ES",
+        "plural_forms": "nplurals=2; plural=(n != 1);",
+        "version": "jupyterlab"
+      }
+    },
+    "jupyterlab_search_replace": {
+      "": {
+        "domain": "jupyterlab_search_replace",
+        "language": "es-ES",
+        "plural_forms": "nplurals=2; plural=(n != 1);",
+        "version": "jupyterlab"
+      }
+    },
+    "jupyterlab_spreadsheet_editor": {
+      "": {
+        "domain": "jupyterlab_spreadsheet_editor",
+        "language": "es-ES",
+        "plural_forms": "nplurals=2; plural=(n != 1);",
+        "version": "jupyterlab"
+      },
+      "CSV File": [
+        "Archivo CSV"
+      ],
+      "Create a new CSV file": [
+        "Crear un nuevo archivo CSV"
+      ],
+      "Create a new TSV file": [
+        "Crear un nuevo archivo TSV"
+      ],
+      "First row as a header": [
+        "Primera fila como encabezado"
+      ],
+      "Fit columns width": [
+        "Ajustar ancho de columnas"
+      ],
+      "Freeze the initial columns (up to the selected column)": [
+        "Fijar las columnas iniciales (hasta la columna seleccionada)"
+      ],
+      "Insert a column at the end": [
+        "Insertar una columna al final"
+      ],
+      "Insert a row at the end": [
+        "Insertar una fila al final"
+      ],
+      "New CSV File": [
+        "Nuevo Archivo CSV"
+      ],
+      "New TSV File": [
+        "Nuevo Archivo TSV"
+      ],
+      "Other": [
+        "Otro"
+      ],
+      "Remove the last column": [
+        "Remover la \u00faltima columna"
+      ],
+      "Remove the last row": [
+        "Remover la \u00faltima fila"
+      ],
+      "Show/hide column types bar": [
+        "Mostrar/ocultar barra de tipo de columnas"
+      ],
+      "Show/hide row numbers": [
+        "Mostrar/ocultar n\u00famero de fila"
+      ],
+      "TSV File": [
+        "Archivo TSV"
+      ],
+      "Unfreeze frozen column": [
+        "Liberar columna fijada"
+      ]
+    },
+    "jupyterlab_tour": {
+      "": {
+        "domain": "jupyterlab_tour",
+        "language": "es-ES",
+        "plural_forms": "nplurals=2; plural=(n != 1);",
+        "version": "jupyterlab"
+      }
+    },
+    "jupyterlab_widgets": {
+      "": {
+        "domain": "jupyterlab_widgets",
+        "language": "es-ES",
+        "plural_forms": "nplurals=2; plural=(n != 1);",
+        "version": "jupyterlab"
+      }
+    },
+    "jupytext": {
+      "": {
+        "domain": "jupytext",
+        "language": "es-ES",
+        "plural_forms": "nplurals=2; plural=(n != 1);",
+        "version": "jupyterlab"
+      },
+      "Custom pairing": [
+        "Vinculaci\u00f3n personalizada"
+      ],
+      "Include Metadata": [
+        "Incluye metadatos"
+      ],
+      "Markdown File": [
+        "Archivo Markdown"
+      ],
+      "Pair Notebook with Hydrogen Script": [
+        "Vincular Notebook con Hydrogen Script"
+      ],
+      "Pair Notebook with Markdown": [
+        "Vincular Notebook con Markdown"
+      ],
+      "Pair Notebook with MyST Markdown": [
+        "Vincular Notebook con MyST Markdown"
+      ],
+      "Pair Notebook with Quarto (qmd)": [
+        "Vincular Notebook con Quarto (qmd)"
+      ],
+      "Pair Notebook with R Markdown": [
+        "Vincular Notebook con R Markdown"
+      ],
+      "Pair Notebook with ipynb document": [
+        "Vincular Notebook con documento ipynb"
+      ],
+      "Pair Notebook with light Script": [
+        "Vincular Notebook con light Script"
+      ],
+      "Pair Notebook with nomarker Script": [
+        "Vincular Notebook con nomarker Script"
+      ],
+      "Pair Notebook with percent Script": [
+        "Vincular Notebook con percent Script"
+      ],
+      "Please edit the notebook metadata directly if you wish a custom configuration.": [
+        "Por favor, edite los metadatos del notebook directamente si desea una configuraci\u00f3n personalizada."
+      ],
+      "Unpair Notebook": [
+        "Desvincular Notebook"
+      ]
+    },
+    "nbdime": {
+      "": {
+        "domain": "nbdime",
+        "language": "es-ES",
+        "plural_forms": "nplurals=2; plural=(n != 1);",
+        "version": "jupyterlab"
+      }
+    },
+    "notebook": {
+      "": {
+        "domain": "notebook",
+        "language": "es-ES",
+        "plural_forms": "nplurals=2; plural=(n != 1);",
+        "version": "jupyterlab"
+      }
+    },
+    "retrolab": {
+      "": {
+        "domain": "retrolab",
+        "language": "es-ES",
+        "plural_forms": "nplurals=2; plural=(n != 1);",
+        "version": "jupyterlab"
+      },
+      "About %1": [
+        "Alrededor de %1"
+      ],
+      "Are you sure you want to exit RetroLab?\n\nAny unsaved changes will be lost.": [
+        "\u00bfEst\u00e1 seguro que desea salir de JupyterLab?\n\nLos cambios no guardados se perder\u00e1n."
+      ],
+      "Dismiss": [
+        "Descartar"
+      ],
+      "Files": [
+        "Archivos"
+      ],
+      "Help": [
+        "Ayuda"
+      ],
+      "Name": [
+        "Nombre"
+      ],
+      "New Console": [
+        "Nueva Consola"
+      ],
+      "New Notebook": [
+        "Nuevo Notebook"
+      ],
+      "Open Files": [
+        "Abrir archivos"
+      ],
+      "Open JupyterLab": [
+        "Abrir JupyterLab"
+      ],
+      "RETROLAB ON GITHUB": [
+        "RETROLAB EN GITHUB"
+      ],
+      "Show Header": [
+        "Mostrar encabezado"
+      ],
+      "Version: %1": [
+        "Versi\u00f3n: %1"
+      ]
+    },
+    "spellchecker": {
+      "": {
+        "domain": "spellchecker",
+        "language": "es-ES",
+        "plural_forms": "nplurals=2; plural=(n != 1);",
+        "version": "jupyterlab"
+      }
+    }
+  },
+  "message": ""
+}

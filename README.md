@@ -1,6 +1,7 @@
 # QTM 350 - Data Science Computing
 
-This branch hosts the website for the course [QTM 350 - Data Science Computing](http://danilofreire.github.io/qtm350) at [Emory
+This branch hosts the website for the course [QTM 350 - Data Science
+Computing](http://danilofreire.github.io/qtm350) at [Emory
 University](http://www.emory.edu). The course provides an introduction to
 Python and SQL for data management and analysis. Please refer to the `main`
 branch of [this repository](https://github.com/danilofreire/qtm151) for the
@@ -29,6 +30,23 @@ from processing the website as a Jekyll project.
 
 I then built the website with `quarto render docs/` and pushed the changes to the
 `gh-pages` branch with `git push origin gh-pages`.
+
+## Building JupyterLite pages with Pyodide
+
+I have created a simple JupyterLite page using Pyodide for this website. The
+idea is that students can run Python code in the browser without needing to
+install Python on their own machines. The page is available at
+<https://danilofreire.github.io/qtm30/jupyter>. The code for the page is
+available below:
+
+```bash
+mkdir -p docs/jupyter
+cp -r jupyter/* docs/jupyter
+cd docs/jupyter
+pip install -r requirements.txt
+jupyter lite build
+mv _output/* ./
+```
 
 For further information on how to build a website with Quarto, please refer to
 <https://quarto.org/docs/websites/>.
