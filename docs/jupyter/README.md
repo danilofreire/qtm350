@@ -18,6 +18,9 @@ cd docs/jupyter
 pip install -r requirements.txt
 jupyter lite build
 mv _output/* ./
+git add ../../docs/jupyter -f
+git commit -m "update JupyterLite page"
+git push
 ```
 
 JupyterLite should be ready to be published on GitHub Pages. The
