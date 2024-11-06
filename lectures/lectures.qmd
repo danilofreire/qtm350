@@ -229,7 +229,8 @@ Suggested references:
 
 #### Wednesday, November 06:
 
-- Lecture 19: Merging Tables in SQL.
+- Lecture 19: [Merging Tables in SQL](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-19/19-sql-tables.html).
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=8743a497-266f-4422-9a71-16b062cfe705&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 - **Assignment 09 due (5%).**
 - **Assignment 10:** Problem Set 10.
 
