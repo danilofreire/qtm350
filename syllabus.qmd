@@ -364,7 +364,7 @@ Suggested references:
 
 ### Wednesday, November 13:
 
-- Lecture 21: Parallel Computing with Dask.
+- Lecture 21: [Parallel Computing with Dask](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-21/21-parallel-computing.html).
 - **Assignment 10 due (5%).**
 
 Suggested references:
