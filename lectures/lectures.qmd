@@ -261,7 +261,8 @@ Suggested references:
 
 #### Monday, November 18:
 
-- Lecture 22: Application: Parallelising Data Analysis with Dask and AutoML.
+- Lecture 22: [Application: Parallelising Data Analysis with Dask and AutoML](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-22/22-parallel-automl.html).
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=a2403e39-2c84-473b-8e78-ea0889581b0c&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 
 Suggested references:
 
