@@ -389,7 +389,7 @@ Suggested references:
 
 ### Wednesday, November 20:
 
-- Lecture 23: Dependency Management, Virtual Environments, and Containers.
+- Lecture 23: [Dependency Management, Virtual Environments, and Containers](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-23/23-containers.html).
 
 Suggested references:
 
