@@ -282,7 +282,7 @@ Suggested references:
 
 #### Monday, November 25:
 
-- Lecture 24: Docker for Data Science.
+- Lecture 24: [Docker for Data Science](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-24/24-docker.html).
 
 #### Wednesday, November 27: Thanksgiving Break (no class)
 
