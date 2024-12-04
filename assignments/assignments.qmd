@@ -25,7 +25,7 @@ When submitting, please name your files as follows: `assignment-01-your-name.pdf
 | 13 | [Python Data Types, Boolean Logic, and Control Structures.](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-13/13-python-intro.html#/title-slide) | [Assignment 07](https://github.com/danilofreire/qtm350/blob/main/assignments/07-assignment.ipynb) | 2024-10-23 |
 | 15 | [Pandas](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-15/15-wrangling-aggregating.html) | [Assignment 08](https://github.com/danilofreire/qtm350/blob/main/assignments/08-assignment.ipynb) | 2024-10-30 |
 | 18 | [PostgreSQL and Python](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-18/18-sql-python.html) | [Assignment 09](https://github.com/danilofreire/qtm350/blob/main/assignments/09-assignment.sql) | 2024-11-06 |
-| 21 | [Parallel Computing with Dask](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-21/21-parallel-computing.html) | [Assignment 09](https://github.com/danilofreire/qtm350/blob/main/assignments/10-assignment.ipynb) | 2024-11-13 |
+| 21 | [Parallel Computing with Dask](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-21/21-parallel-computing.html) | [Assignment 10](https://github.com/danilofreire/qtm350/blob/main/assignments/10-assignment.ipynb) | 2024-11-13 |
 
 ## In-Class Quizzes
 
