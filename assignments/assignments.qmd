@@ -23,14 +23,20 @@ When submitting, please name your files as follows: `assignment-01-your-name.pdf
 | 09 | [Writing Documents, Presentations, and Websites with Quarto](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-09/09-more-quarto.html) | [Assignment 05](https://github.com/danilofreire/qtm350/blob/main/assignments/05-assignment.ipynb) | 2024-10-09 |
 | 12 | [AI-Assisted Programming with GitHub Copilot](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-12/12-copilot.html) | [Assignment 06](https://github.com/danilofreire/qtm350/blob/main/assignments/06-assignment.ipynb) | 2024-10-16 |
 | 13 | [Python Data Types, Boolean Logic, and Control Structures.](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-13/13-python-intro.html#/title-slide) | [Assignment 07](https://github.com/danilofreire/qtm350/blob/main/assignments/07-assignment.ipynb) | 2024-10-23 |
+| 15 | [Pandas](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-15/15-wrangling-aggregating.html) | [Assignment 08](https://github.com/danilofreire/qtm350/blob/main/assignments/08-assignment.ipynb) | 2024-10-30 |
+| 18 | [PostgreSQL and Python](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-18/18-sql-python.html) | [Assignment 09](https://github.com/danilofreire/qtm350/blob/main/assignments/09-assignment.sql) | 2024-11-06 |
+| 21 | [Parallel Computing with Dask](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-21/21-parallel-computing.html) | [Assignment 09](https://github.com/danilofreire/qtm350/blob/main/assignments/10-assignment.ipynb) | 2024-11-13 |
 
 ## In-Class Quizzes
 
 In-class quizzes will be held on Wednesdays. They will be based on the material covered in the previous weeks. The quizzes will be open-book and open-notes, but you will not be allowed communicate with others during the quiz. They will also be available in the `assignment` folder on GitHub and on the course website.
 
-* Quiz 01: <https://github.com/danilofreire/qtm350-quiz01>. Please follow the instructions there.
-* Quiz 02: <https://github.com/danilofreire/qtm350-quiz02>. Please follow the instructions there.
+* Quiz 01: <https://github.com/danilofreire/qtm350-quiz01>. 
+* Quiz 02: <https://github.com/danilofreire/qtm350-quiz02>. 
+* Quiz 03: <https://github.com/danilofreire/qtm350-quiz03>. 
+* Quiz 04: <https://github.com/danilofreire/qtm350-quiz04>. 
+* Quiz 05: <https://github.com/danilofreire/qtm350-quiz05>. 
 
 ## Final Project
 
-The final project will be a group effort, with a maximum of 3 students per group. Detailed instructions will be provided soon.
+The final project will be a group effort, with a maximum of 3 students per group. Detailed instructions are available on the GitHub repository: <https://github.com/danilofreire/qtm350/tree/main/project>.
