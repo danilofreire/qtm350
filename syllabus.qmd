@@ -129,7 +129,7 @@ The lecture notes cover all the necessary material for the course, and the weekl
 ### Wednesday, January 15:
 
 - Syllabus and course repository: <https://github.com/danilofreire/qtm350>.
-- Lecture 01: [Welcome to QTM 350 - Introduction](https://danilofreire.github.io/qtm350/lectures/lecture-01/01-introduction.html).
+- Lecture 01: [Welcome to QTM 350 - Introduction](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-01/01-introduction.html).
 - [Course Tutorials: How to Install Anaconda, Jupyter, PostgreSQL, VSCode, and Open a Free Educational Account on GitHub](https://github.com/danilofreire/qtm350/tutorials).
 
 Suggested references:
@@ -144,7 +144,7 @@ Suggested references:
 
 ### Wednesday, January 22:
 
-- Lecture 02: [Computational Literacy](https://danilofreire.github.io/qtm350/lectures/lecture-02/02-computational-literacy.html).
+- Lecture 02: [Computational Literacy](https://raw.githack.com/danilofreire/qtm350/lectures/lecture-02/02-computational-literacy.html).
 - **Assignment 01:** [Problem Set 01](https://github.com/danilofreire/qtm350/blob/main/assignments/01-assignment.ipynb)
 
 Suggested references:

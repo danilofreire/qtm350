@@ -4,12 +4,12 @@ title: "Lectures"
 
 The course covers the following topics, with corresponding lecture materials available in the [lectures folder](https://github.com/danilofreire/qtm350/tree/main/lectures). Please refer to the syllabus for additional suggested readings on each topic. Links will be added as the materials are posted.
 
-### Module 01: Introduction to Python, Jupyter, and GitHub
+## Module 01: Introduction to Python, Jupyter, and GitHub
 
-#### Wednesday, August 28:
+### Wednesday, January 15:
 
 - Syllabus and course repository: <https://github.com/danilofreire/qtm350>.
-- Lecture 01: [Welcome to QTM 350 - Introduction](https://danilofreire.github.io/qtm350/lectures/lecture-01/01-introduction.html).
+- Lecture 01: [Welcome to QTM 350 - Introduction](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-01/01-introduction.html).
 - [Course Tutorials: How to Install Anaconda, Jupyter, PostgreSQL, VSCode, and Open a Free Educational Account on GitHub](https://github.com/danilofreire/qtm350/tutorials).
 
 Suggested references:
@@ -20,11 +20,11 @@ Suggested references:
 - Brady, H. E. (2019). [The Challenge of Big Data and Data Science](https://www.annualreviews.org/content/journals/10.1146/annurev-polisci-090216-023229). Annual Review of Political Science, 22(1), 297-323.
 - Zitnik, M., Nguyen, F., Wang, B., Leskovec, J., Goldenberg, A., & Hoffman, M. M. (2019). [Machine Learning for Integrating Data in Biology and Medicine: Principles, Practice, and Opportunities](https://www.sciencedirect.com/science/article/abs/pii/S1566253518304482). Information Fusion, 50, 71-91.
 
-#### Monday, September 02: Labour Day (no class)
+### Monday, January 20: Martin Luther King Jr. Day (no class)
 
-#### Wednesday, September 04:
+### Wednesday, January 22:
 
-- Lecture 02: [Computational Literacy](https://danilofreire.github.io/qtm350/lectures/lecture-02/02-computational-literacy.html).
+- Lecture 02: [Computational Literacy](https://raw.githack.com/danilofreire/qtm350/lectures/lecture-02/02-computational-literacy.html).
 - **Assignment 01:** [Problem Set 01](https://github.com/danilofreire/qtm350/blob/main/assignments/01-assignment.ipynb)
 
 Suggested references:
@@ -35,26 +35,24 @@ Suggested references:
 - Wing, J. M. (2006). [Computational Thinking](https://www.cs.cmu.edu/~15110-s13/Wing06-ct.pdf). Communications of the ACM, 49(3), 33-35.
 - Videos: [David J. Malan - Abstraction](https://www.youtube.com/watch?v=6V1sr0XV_Ng), [Khan Academy - Hexadecimal Number System](https://www.youtube.com/watch?v=4EJay-6Bioo), [Matthias Wandel - Marble Adding Machine](https://youtu.be/GcDshWmhF4A), [Crash Course - Early Computing](https://www.youtube.com/watch?v=O5nskjZ_GoI) and [Electronic Computing](https://www.youtube.com/watch?v=LN0ucKNX0hc) (the last two are quite entertaining!).
 
-### Module 02: Introduction to the Command Line Interface and Version Control
+## Module 02: Introduction to the Command-Line Interface and Version Control
 
-#### Monday September 09:
+### Monday, January 27:
 
-- Lecture 03: [The Command Line Interface (CLI), Shell Basics, and File Management.](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-03/03-command-line.html)
-- [Kahoot Quiz](https://play.kahoot.it/v2/*?quizId=fdb248cb-ef2e-4d12-b3fe-5b684aa8897f).
+- Lecture 03: [The Command-Line Interface (CLI), Shell Basics, and File Management](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-03/03-command-line.html).
 
 Suggested references:
 
-- Janssens, J. (2021). [Data science at the command line: Obtain, scrub, explore, and model data with Unix power tools (2nd ed.)](https://jeroenjanssens.com/dsatcl/). O'Reilly Media.
-- Levy, J. (2024). [The art of command line](https://github.com/jlevy/the-art-of-command-line). GitHub.
+- Janssens, J. (2021). [Data Science at the Command Line: Obtain, Scrub, Explore, and Model Data with Unix Power Tools (2nd ed.)](https://jeroenjanssens.com/dsatcl/). O'Reilly Media.
+- Levy, J. (2024). [The Art of Command Line](https://github.com/jlevy/the-art-of-command-line). GitHub.
 - Shotts, W. (2019). [The Linux Command Line: A Complete Introduction](https://linuxcommand.org/tlcl.php). No Starch Press.
 - Healy, K. (2019). [The Plain Person's Guide to Plain Text Social Science](https://plain-text.co/). Chapters 1-5.
 
-#### Wednesday, September 11:
+### Wednesday, January 29:
 
-- Lecture 04: [More command Line Tools, Text Files, and Scripting](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-04/04-more-command-line.html).
-- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=8cc3711e-3b26-4748-9df1-82dae843882a&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
+- Lecture 04: [More command line tools, text files and scripting](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-04/04-more-command-line.html).
 - **Assignment 01 due (5%).**
-- **Assignment 02:** Problem Set 02.
+- **Assignment 02:** [Problem Set 02](https://github.com/danilofreire/qtm350/blob/main/assignments/02-assignment.ipynb).
 
 Suggested references:
 
@@ -65,22 +63,20 @@ Suggested references:
 - [Vim Adventures](https://vim-adventures.com/). (Instructor's note: this is a fun, albeit cringy, way to learn Vim).
 - Videos: [freeCodeCamp - Command line crash course](https://www.youtube.com/watch?v=yz7nYlnXLfE&pp=ygUXaG93IHRvIHVzZSBjb21tYW5kIGxpbmU%3D), [Percy Grunwald - Absolute beginner guide to the macOS terminal](https://www.youtube.com/watch?v=aKRYQsKR46I&pp=ygUcdGVybWluYWwgZm9yIGJlZ2lubmVycyBtYWNvcw%3D%3D), [NetworkChuck - 50 macOS tips and tricks using terminal](https://www.youtube.com/watch?v=qOrlYzqXPa8&pp=ygUcdGVybWluYWwgZm9yIGJlZ2lubmVycyBtYWNvcw%3D%3D)
 
-#### Monday, September 16:
+### Monday, February 03:
 
-- Lecture 05: [Version control with git and GitHub](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-05/05-git-github.html).
-- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=f3930dce-298d-4610-a365-406fa3088a87&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
+- Lecture 05: [Version control with Git and GitHub](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-05/05-git-github.html).
 
 Suggested references:
 
 - Chacon, S. and Straub, B. (2014). [Pro Git](https://git-scm.com/book/en/v2). Apress. (Instructor's note: this is _the book_ on Git).
 - GitHub tutorials: [GitHub skills](https://skills.github.com/) (recommended), [Git guides](https://github.com/git-guides), [GitHub learning lab](https://lab.github.com/), [Best practices for repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/best-practices-for-repositories).
 
-#### Wednesday, September 18:
+### Wednesday, February 05:
 
 - Lecture 06: [More Git and GitHub: pull requests, issues, pages, and collaboration features](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-06/06-more-git-github.html).
-- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=eec92538-78d8-4974-ba7b-8f83b5f3b215&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 - **Assignment 02 due (5%).**
-- **Assignment 03:** Problem Set 03.
+- **Assignment 03:** [Problem Set 03](https://github.com/danilofreire/qtm350/blob/main/assignments/03-assignment.ipynb).
 
 Suggested references:
 
@@ -88,17 +84,17 @@ Suggested references:
 - Beckman, M. D., Çetinkaya-Rundel, M., Horton, N. J., Rundel, C. W., Sullivan, A. J., & Tackett, M. (2021). [Implementing version control with git and GitHub as a learning objective in statistics and data science courses](https://www.tandfonline.com/doi/pdf/10.1080/10691898.2020.1848485). Journal of Statistics and Data Science Education, 29(sup1), S132-S144.
 - Escamilla, E., Klein, M., Cooper, T., Rampin, V., Weigle, M. C., & Nelson, M. L. (2022). [The Rise of GitHub in Scholarly Publications](https://arxiv.org/abs/2208.04895). arXiv preprint arXiv:2208.04895.
 
-#### Monday, September 23:
+### Monday, February 10:
 
-- Lecture 07: [Quiz 01: git and Github (6%)](https://github.com/danilofreire/qtm350-quiz01).
+- Lecture 07: [Quiz 01: Git and Github (6%)](https://github.com/danilofreire/qtm350-quiz01/).
 
-### Module 03: Literate Programming with Markdown, Quarto, and Jupyter
+## Module 03: Literate Programming with Markdown, Quarto, and Jupyter
 
-#### Wednesday, September 25:
+### Wednesday, February 12:
 
 - Lecture 08: [Using Quarto for Reproducible Reports](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-08/08-quarto.html).
 - **Assignment 03 due (5%).**
-- **Assignment 04:** Problem Set 04.
+- **Assignment 04:** [Problem Set 04](https://github.com/danilofreire/qtm350/blob/main/assignments/04-assignment.ipynb).
 
 Suggested references:
 
@@ -111,7 +107,7 @@ Suggested references:
 - [Codecademy - How to use Jupyter Notebooks](https://www.codecademy.com/article/how-to-use-jupyter-notebooks)
 - [Course tutorial: Jupyter and Markdown](https://danilofreire.github.io/qtm350/tutorials/02-jupyter-markdown-tutorial.html)
 
-#### Monday, September 30:
+### Monday, February 17:
 
 - Lecture 09: [Writing Documents, Presentations, and Websites with Quarto](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-09/09-more-quarto.html).
 - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=b3cb9962-bfcd-4b44-a3f4-4357b1442eda&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
@@ -121,17 +117,17 @@ Suggested references:
 - [Quarto Documentation - Presentations](https://quarto.org/docs/presentations/) and [Websites](https://quarto.org/docs/websites/).
 - [GitHub Pages Documentation](https://docs.github.com/en/pages).
 - French, J. (2023). [Creating Websites with Quarto and GitHub Pages (YouTube Playlist)](https://www.youtube.com/playlist?list=PLkrJrLs7xfbXcEKhTCKRSr2VXH4yiBeXo).
-- Taylor, I. (2022). [Publishing a Quarto Site to GitHub Pages](https://www.ianmtaylor.net/posts/2022/deploy-quarto-to-github-pages/)
+- Taylor, I. (2022). [Publishing a Quarto Site to GitHub Pages](https://www.ianmtaylor.net/posts/2022/deploy-quarto-to-github-pages/).
 
-#### Wednesday, October 02:
+### Wednesday, February 19:
 
 - Lecture 10: **Quiz 02: Literate Programming (6%)**.
 - **Assignment 05:** Problem Set 05.
 - **Assignment 04 due (5%).**
 
-### Module 04: AI-Assisted Programming
+## Module 04: AI-Assisted Programming
 
-#### Monday, October 07:
+### Monday, February 24:
 
 - Lecture 11: [Introduction to AI-Assisted Programming and Chatbots](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-11/11-ai-programming.html).
 
@@ -142,10 +138,9 @@ Suggested references:
 - Lau, S & Guo, P. (2023). [From "Ban It Till We Understand It" to "Resistance is Futile": How University Programming Instructors Plan to Adapt as More Students Use AI Code Generation and Explanation Tools such as ChatGPT and GitHub Copilot](https://dl.acm.org/doi/fullHtml/10.1145/3568813.3600138). In Proceedings of the 2023 ACM Conference on International Computing Education Research V.1 (ICER '23 V1), August 07--11, 2023, Chicago, IL, USA. ACM, New York, NY, USA 16 Pages.
 - [Linus Torvalds Discusses the Impact of AI on Programming (YouTube)](https://www.youtube.com/watch?v=VHHT6W-N0ak).
 
-#### Wednesday, October 09:
+### Wednesday, February 26:
 
 - Lecture 12: [AI-Assisted Programming with GitHub Copilot](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-12/12-copilot.html).
-- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=f4297167-e7f3-4677-8ccb-147848dda2e2&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 - **Assignment 05 due (5%).**
 - **Assignment 06:** Problem Set 06.
  
@@ -159,11 +154,9 @@ Suggested references:
 - [GitHub Copilot YouTube Playlist](https://www.youtube.com/playlist?list=PL0lo9MOBetEHEHi9h0k_lPn0XZdEeYZDS)
 - Labadze, L., Grigolia, M., & Machaidze, L. (2023). [Role of AI Chatbots in Education: Systematic Literature Review](https://link.springer.com/article/10.1186/s41239-023-00426-1). International Journal of Educational Technology in Higher Education, 20(1), 56.
 
-### Module 05: Data Manipulation with Python
+## Module 05: Data Manipulation with Python
 
-#### Monday, October 14: Fall Break (no class)
-
-#### Wednesday, October 16:
+### Monday, March 03:
 
 - Lecture 13: [Python Data Types, Boolean Logic, and Control Structures](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-13/13-python-intro.html).
 - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=668187b3-ea1e-43d4-89f2-bd0f06aeb4a0&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
@@ -180,12 +173,16 @@ Suggested references:
 - Matthes, E. (2019). Python Crash Course: A Hands-On, Project-Based Introduction to Programming (2nd ed.). No Starch Press. [Chapter 02](https://nostarch.com/download/PCC3e_ch2sample_8.17.22.pdf).
 - Severance, C. (2016). Python for Everybody: Exploring Data in Python 3. CreateSpace Independent Publishing Platform. [Chapters 3-11](https://www.py4e.com/lessons) (Note: Read only the chapters which interest you).
 
-#### Monday, October 21:
+### Wednesday, March 05:
 
 - Lecture 14: [Introduction to Pandas](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-14/14-pandas.html).
 - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=1e70681f-4a2f-4a98-b2b8-e02006f05a65&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 
-#### Wednesday, October 23:
+### Monday, March 10: Spring Break (no class)
+
+### Wednesday, March 12: Spring Break (no class)
+
+### Monday, March 17:
 
 - Lecture 15: [Pandas for Data Analysis: Data Wrangling and Aggregating](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-15/15-wrangling-aggregating.html).
 - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=50a9780c-8eff-4487-8a13-ae7e2ea6a87c&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
@@ -200,13 +197,13 @@ Suggested references:
 - [DataCamp: Pandas Tutorial: DataFrames in Python](https://www.datacamp.com/tutorial/pandas-tutorial-dataframe-python).
 - [Real Python: Pandas Tutorial: DataFrames in Python](https://realpython.com/pandas-dataframe/).
 
-#### Monday, October 28:
+### Wednesday, March 19:
 
 - Lecture 16: **Quiz 03: Python for Data Analysis (6%)**.
 
-### Module 06: Introduction to SQL Databases 
+## Module 06: Introduction to SQL Databases 
 
-#### Wednesday, October 30:
+### Monday, March 24:
 
 - Lecture 17: [Introduction to PostgreSQL: Data Types, Tables, and Queries](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-17/17-introduction-sql.html).
 - **Assignment 08 due (5%).**
@@ -222,12 +219,12 @@ Suggested references:
 - [PostgreSQL Tutorial](https://www.postgresqltutorial.com/).
 - [PostgreSQL Documentation: SQL Commands](https://www.postgresql.org/docs/current/sql-commands.html). (Note: For reference only).
 
-#### Monday, November 04:
+### Wednesday, March 26:
 
 - Lecture 18: [SQL in Python: Connecting to Databases with Pandas](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-18/18-sql-python.html).
 - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=96842352-f74d-4a4b-8833-2c134d27502c&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 
-#### Wednesday, November 06:
+### Monday, March 31:
 
 - Lecture 19: [Merging Tables in SQL](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-19/19-sql-tables.html).
 - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=8743a497-266f-4422-9a71-16b062cfe705&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
@@ -241,13 +238,13 @@ Suggested references:
 - [Mode Analytics: SQL Joins](https://mode.com/sql-tutorial/sql-joins/).
 - [PostgreSQL Documentation: Joins Between Tables](https://www.postgresql.org/docs/current/tutorial-join.html).
 
-#### Monday, November 11:
+### Wednesday, April 02:
 
 - Lecture 20: **Quiz 04: SQL Databases (6%)**.
 
-### Module 07: Parallel Computing
+## Module 07: Parallel Computing
 
-#### Wednesday, November 13:
+### Monday, April 07:
 
 - Lecture 21: [Parallel Computing with Dask](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-21/21-parallel-computing.html).
 - **Assignment 10 due (5%).**
@@ -259,7 +256,7 @@ Suggested references:
 - [Coiled - Intro to Dask Tutorial (YouTube)](https://www.youtube.com/watch?v=z18qjLu-Mw4&list=PLeDTMczuyDQ8S73cdc0PrnTO80kfzpgz2&pp=iAQB).
 - Rocklin, M. (2017). [Dask: Flexible Library for Parallel Computing in Python](https://proceedings.scipy.org/articles/Majora-7b98e3ed-013). In Proceedings of the 16th Python in Science Conference (Vol. 126, p. 130).
 
-#### Monday, November 18:
+### Wednesday, April 09:
 
 - Lecture 22: [Application: Parallelising Data Analysis with Dask and AutoML](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-22/22-parallel-automl.html).
 - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=a2403e39-2c84-473b-8e78-ea0889581b0c&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
@@ -270,9 +267,9 @@ Suggested references:
 - He, X., Zhao, K., & Chu, X. (2021). [AutoML: A Survey of the State-of-The-Art](https://www.sciencedirect.com/science/article/abs/pii/S0950705120307516). Knowledge-based systems, 212, 106622.
 - [TPOT Documentation](https://epistasislab.github.io/tpot/).
 
-### Module 08: Containers and Reproducibility
+## Module 08: Containers and Reproducibility
 
-#### Wednesday, November 20:
+### Monday, April 14:
 
 - Lecture 23: [Dependency Management, Virtual Environments, and Containers](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-23/23-containers.html).
 
@@ -280,21 +277,19 @@ Suggested references:
 
 - [Docker Documentation](https://docs.docker.com/)
 
-#### Monday, November 25:
+### Wednesday, April 16:
 
 - Lecture 24: [Docker for Data Science](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-24/24-docker.html).
 
-#### Wednesday, November 27: Thanksgiving Break (no class)
-
-#### Monday, December 02:
+### Monday, April 21:
 
 - Lecture 25: **Quiz 05: Dask, Docker and Containers (6%)**.
 
-#### Wednesday, December 04:
+### Wednesday, April 23:
 
 - Lecture 26: Review and Final Project Discussion.
 
-#### Monday, December 09:
+### Monday, April 28:
 
 - **Final Project due (20%).**
 
