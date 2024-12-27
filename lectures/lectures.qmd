@@ -24,7 +24,7 @@ Suggested references:
 
 ### Wednesday, January 22:
 
-- Lecture 02: [Computational Literacy](https://raw.githack.com/danilofreire/qtm350/lectures/lecture-02/02-computational-literacy.html).
+- Lecture 02: [Computational Literacy](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-02/02-computational-literacy.html).
 - **Assignment 01:** [Problem Set 01](https://github.com/danilofreire/qtm350/blob/main/assignments/01-assignment.ipynb)
 
 Suggested references:
