@@ -4,7 +4,7 @@ This branch hosts the website for the course [QTM 350 - Data Science
 Computing](http://danilofreire.github.io/qtm350) at [Emory
 University](http://www.emory.edu). The course provides an introduction to
 Python and SQL for data management and analysis. Please refer to the `main`
-branch of [this repository](https://github.com/danilofreire/qtm151) for the
+branch of [this repository](https://github.com/danilofreire/qtm350) for the
 course materials.
 
 ## Building the website
@@ -55,8 +55,8 @@ For further information on how to build a website with Quarto, please refer to
 <https://quarto.org/docs/websites/>.
 
 If you have any questions, please feel free to [open an
-issue](https://github.com/danilofreire/qtm151/issues) or [create a pull
-request](https://github.com/danilofreire/qtm151/pulls).
+issue](https://github.com/danilofreire/qtm350/issues) or [create a pull
+request](https://github.com/danilofreire/qtm350/pulls).
 
 ## License
 
