@@ -253,6 +253,7 @@ Suggested references:
 
 Suggested references:
 
+- Matarazzo, A & Torlone, R. (2025). [A Survey on Large Language Models with some Insights on their Capabilities and Limitations](https://arxiv.org/abs/2501.04040). arXiv preprint arXiv:2501.04040.
 - Cihon, P. & Demirer, M. (2023). [How AI-powered software development may affect labor markets](https://www.brookings.edu/articles/how-ai-powered-software-development-may-affect-labor-markets/). Brookings Institution
 - Poldrack, R. A., Lu, T., & Beguš, G. (2023). [AI-assisted Coding: Experiments with GPT-4](https://arxiv.org/abs/2304.13187). arXiv preprint arXiv:2304.13187.
 - Lau, S & Guo, P. (2023). [From "Ban It Till We Understand It" to "Resistance is Futile": How University Programming Instructors Plan to Adapt as More Students Use AI Code Generation and Explanation Tools such as ChatGPT and GitHub Copilot](https://dl.acm.org/doi/fullHtml/10.1145/3568813.3600138). In Proceedings of the 2023 ACM Conference on International Computing Education Research V.1 (ICER '23 V1), August 07--11, 2023, Chicago, IL, USA. ACM, New York, NY, USA 16 Pages.
