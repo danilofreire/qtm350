@@ -277,6 +277,7 @@ Suggested references:
 Suggested references:
 
 - [Docker Documentation](https://docs.docker.com/)
+- [ComposeCraft](https://github.com/composecraft/composecraft). A tool to help you manage, edit and share docker compose files in a GUI way.
 
 ### Wednesday, April 16:
 
