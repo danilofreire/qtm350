@@ -25,7 +25,7 @@ Suggested references:
 ### Wednesday, January 22:
 
 - Lecture 02: [Computational Literacy](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-02/02-computational-literacy.html).
-- **Assignment 01:** [Problem Set 01](https://github.com/danilofreire/qtm350/blob/main/assignments/01-assignment.ipynb)
+- **Assignment 01:** [Problem Set 01](https://github.com/danilofreire/qtm350/blob/main/assignments/01-assignment.ipynb).
 
 Suggested references:
 
@@ -122,8 +122,8 @@ Suggested references:
 ### Wednesday, February 19:
 
 - Lecture 10: **Quiz 02: Literate Programming (6%)**.
-- **Assignment 05:** Problem Set 05.
 - **Assignment 04 due (5%).**
+- **Assignment 05:** [Problem Set 05](https://github.com/danilofreire/qtm350/blob/main/assignments/05-assignment.ipynb).
 
 ## Module 04: AI-Assisted Programming
 
@@ -143,7 +143,7 @@ Suggested references:
 
 - Lecture 12: [AI-Assisted Programming with GitHub Copilot](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-12/12-copilot.html).
 - **Assignment 05 due (5%).**
-- **Assignment 06:** Problem Set 06.
+- **Assignment 06:** [Problem Set 06](https://github.com/danilofreire/qtm350/blob/main/assignments/06-assignment.ipynb).
  
 Suggested references:
 
@@ -162,7 +162,7 @@ Suggested references:
 - Lecture 13: [Python Data Types, Boolean Logic, and Control Structures](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-13/13-python-intro.html).
 - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=668187b3-ea1e-43d4-89f2-bd0f06aeb4a0&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 - **Assignment 06 due (5%).**
-- **Assignment 07:** Problem Set 07.
+- **Assignment 07:** [Problem Set 07](https://github.com/danilofreire/qtm350/blob/main/assignments/07-assignment.ipynb).
 
 Suggested references:
 
@@ -188,7 +188,7 @@ Suggested references:
 - Lecture 15: [Pandas for Data Analysis: Data Wrangling and Aggregating](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-15/15-wrangling-aggregating.html).
 - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=50a9780c-8eff-4487-8a13-ae7e2ea6a87c&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 - **Assignment 07 due (5%).**
-- **Assignment 08:** Problem Set 08.
+- **Assignment 08:** [Problem Set 08](https://github.com/danilofreire/qtm350/blob/main/assignments/08-assignment.zip).
 
 Suggested references:
 
@@ -208,7 +208,7 @@ Suggested references:
 
 - Lecture 17: [Introduction to PostgreSQL: Data Types, Tables, and Queries](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-17/17-introduction-sql.html).
 - **Assignment 08 due (5%).**
-- **Assignment 09:** Problem Set 09.
+- **Assignment 09:** [Problem Set 09](https://github.com/danilofreire/qtm350/blob/main/assignments/09-assignment.sql).
 - **Instructions for the Final Project**.
 
 Suggested references:
@@ -230,7 +230,7 @@ Suggested references:
 - Lecture 19: [Merging Tables in SQL](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-19/19-sql-tables.html).
 - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=8743a497-266f-4422-9a71-16b062cfe705&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 - **Assignment 09 due (5%).**
-- **Assignment 10:** Problem Set 10.
+- **Assignment 10:** [Problem Set 10](https://github.com/danilofreire/qtm350/blob/main/assignments/10-assignment.ipynb).
 
 Suggested references:
 
