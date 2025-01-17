@@ -23,13 +23,6 @@ git commit -m "update JupyterLite page"
 git push
 ```
 
-JupyterLite should be ready to be published on GitHub Pages. The
-following commands will push the changes to the repository:
-
-```bash
-git add ../../docs/jupyter -f
-git commit -m "update JupyterLite page"
-git push
-```
+JupyterLite should be available on the website.
 
 If you have any questions, please let me know.
