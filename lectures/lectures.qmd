@@ -57,6 +57,7 @@ Suggested references:
 - [Kahoot quiz](https://play.kahoot.it/v2/?quizId=8cc3711e-3b26-4748-9df1-82dae843882a&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 
 Suggested references:
+
 - Kerr, D. (2024). [Effective Shell](https://effective-shell.com/).
 - Irianto, I. (2021). [Learn Vim (the Smart Way)](https://github.com/iggredible/Learn-Vim).
 - Neil, D. (2015). [Practical Vim: Edit Text at the Speed of Thought](https://pragprog.com/titles/dnvim2/practical-vim-second-edition/). Pragmatic Bookshelf.
