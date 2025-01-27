@@ -40,7 +40,7 @@ Suggested references:
 ### Monday, January 27:
 
 - Lecture 03: [The Command-Line Interface (CLI), Shell Basics, and File Management](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-03/03-command-line.html).
-- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=fdb248cb-ef2e-4d12-b3fe-5b684aa8897f&hostId=05eb977d-4f8a-440e-9e45-95212b29d103)
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=fdb248cb-ef2e-4d12-b3fe-5b684aa8897f&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 
 Suggested references:
 
@@ -51,12 +51,10 @@ Suggested references:
 
 ### Wednesday, January 29:
 
-
 - Lecture 04: [More command line tools, text files and scripting](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-04/04-more-command-line.html).
-- [Lecture slides](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-04/04-more-command-line.html).
-- [Kahoot quiz](https://play.kahoot.it/v2/?quizId=8cc3711e-3b26-4748-9df1-82dae843882a&hostId=05eb977d-4f8a-440e-9e45-95212b29d103)
 - **Assignment 01 due (5%).**
 - **Assignment 02:** [Problem Set 02](https://github.com/danilofreire/qtm350/blob/main/assignments/02-assignment.ipynb).
+- [Kahoot quiz](https://play.kahoot.it/v2/?quizId=8cc3711e-3b26-4748-9df1-82dae843882a&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 
 Suggested references:
 - Kerr, D. (2024). [Effective Shell](https://effective-shell.com/).
