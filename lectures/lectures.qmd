@@ -54,7 +54,7 @@ Suggested references:
 - Lecture 04: [More Command Line Tools, Text Files and Scripting](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-04/04-more-command-line.html).
 - **Assignment 01 due (5%).**
 - **Assignment 02:** [Problem Set 02](https://github.com/danilofreire/qtm350/blob/main/assignments/02-assignment.ipynb).
-- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=8cc3711e-3b26-4748-9df1-82dae843882a&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=9a77f4a0-f1ea-498a-b85f-1a8993922f82&hostId=05eb977d-4f8a-440e-9e45-95212b29d103)
 
 Suggested references:
 
