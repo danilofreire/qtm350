@@ -4,7 +4,7 @@ title: "Lectures"
 
 The course covers the following topics, with corresponding lecture materials available in the [lectures folder](https://github.com/danilofreire/qtm350/tree/main/lectures). Please refer to the syllabus for additional suggested readings on each topic. Links will be added as the materials are posted.
 
-## Module 01: Introduction to Python, Jupyter, and GitHub
+## Module 01: Introduction 
 
 ### Wednesday, January 15:
 
@@ -78,6 +78,7 @@ Suggested references:
 ### Wednesday, February 05:
 
 - Lecture 06: [More Git and GitHub: pull requests, issues, pages, and collaboration features](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-06/06-more-git-github.html).
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=eec92538-78d8-4974-ba7b-8f83b5f3b215&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 - **Assignment 02 due (5%).**
 - **Assignment 03:** [Problem Set 03](https://github.com/danilofreire/qtm350/blob/main/assignments/03-assignment.ipynb).
 
