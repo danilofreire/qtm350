@@ -68,6 +68,7 @@ Suggested references:
 ### Monday, February 03:
 
 - Lecture 05: [Version control with Git and GitHub](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-05/05-git-github.html).
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=f3930dce-298d-4610-a365-406fa3088a87&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 
 Suggested references:
 
