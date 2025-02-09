@@ -90,13 +90,13 @@ Suggested references:
 
 ### Monday, February 10:
 
-- Lecture 08: [Git and GitHub Continued / Using Quarto for Reproducible Reports](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-08/08-quarto.html).
+- Lecture 07: [Git and GitHub Continued / Using Quarto for Reproducible Reports](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-08/08-quarto.html).
 
 ## Module 03: Literate Programming with Markdown, Quarto, and Jupyter
 
 ### Wednesday, February 12:
 
-- Lecture 07: [Quiz 01: Git and Github (6%)](https://github.com/danilofreire/qtm350-quiz01/).
+- Lecture 08: [Quiz 01: Git and Github (6%)](https://github.com/danilofreire/qtm350-quiz01/).
 - **Assignment 03 due (5%).**
 - **Assignment 04:** [Problem Set 04](https://github.com/danilofreire/qtm350/blob/main/assignments/04-assignment.ipynb).
 
