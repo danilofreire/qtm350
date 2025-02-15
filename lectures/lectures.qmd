@@ -90,7 +90,7 @@ Suggested references:
 
 ### Monday, February 10:
 
-- Lecture 07: [Git and GitHub Continued / Using Quarto for Reproducible Reports](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-08/08-quarto.html).
+- Lecture 07: [Git and GitHub Continued](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-05/05-git-github.html).
 - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=0c41d485-25b6-44a6-a825-70854f1953cb&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 
 ## Module 03: Literate Programming with Markdown, Quarto, and Jupyter
@@ -114,8 +114,20 @@ Suggested references:
 
 ### Monday, February 17:
 
+- Lecture 08: [Introduction to Quarto](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-08/08-quarto.html).
+
+Suggested references:
+
+- [Quarto official website](https://quarto.org/).
+- Awesome Quarto: <https://github.com/mcanouil/awesome-quarto>. Note: this repository contains dozens of tutorials, examples, and resources. 
+- Çetinkaya-Rundel, M. & Lowndes, J. S. (2022) [Keynote talk: Hello Quarto: Share • Collaborate • Teach • Reimagine](https://www.youtube.com/watch?v=p7Hxu4coDl8). [Slides](https://mine.quarto.pub/hello-quarto/#/hello-quarto-title) and [source code](https://github.com/mine-cetinkaya-rundel/hello-quarto). This is one of the nicest Quarto presentations I have seen.
+- [Getting Started with Quarto (YouTube)](https://www.youtube.com/watch?v=_f3latmOhew&t=2s). Note: Posit (formerly RStudio) has a series of tutorials on Quarto on their YouTube channel. You can find their playlist [here](https://www.youtube.com/playlist?list=PL9HYL-VRX0oQI8fVioFxMTBrViFnRX_Df).
+
+### Wednesday, February 19:
+
 - Lecture 09: [Writing Documents, Presentations, and Websites with Quarto](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-09/09-more-quarto.html).
-- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=b3cb9962-bfcd-4b44-a3f4-4357b1442eda&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
+- **Assignment 04 due (5%).**
+- **Assignment 05:** [Problem Set 05](https://github.com/danilofreire/qtm350/blob/main/assignments/04-assignment.ipynb).
 
 Suggested references:
 
@@ -123,12 +135,6 @@ Suggested references:
 - [GitHub Pages Documentation](https://docs.github.com/en/pages).
 - French, J. (2023). [Creating Websites with Quarto and GitHub Pages (YouTube Playlist)](https://www.youtube.com/playlist?list=PLkrJrLs7xfbXcEKhTCKRSr2VXH4yiBeXo).
 - Taylor, I. (2022). [Publishing a Quarto Site to GitHub Pages](https://www.ianmtaylor.net/posts/2022/deploy-quarto-to-github-pages/).
-
-### Wednesday, February 19:
-
-- Lecture 10: **Quiz 02: Literate Programming (6%)**.
-- **Assignment 04 due (5%).**
-- **Assignment 05:** [Problem Set 05](https://github.com/danilofreire/qtm350/blob/main/assignments/05-assignment.ipynb).
 
 ## Module 04: AI-Assisted Programming
 
@@ -146,26 +152,29 @@ Suggested references:
 
 ### Wednesday, February 26:
 
-- Lecture 12: [AI-Assisted Programming with GitHub Copilot](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-12/12-copilot.html).
-- **Assignment 05 due (5%).**
-- **Assignment 06:** [Problem Set 06](https://github.com/danilofreire/qtm350/blob/main/assignments/06-assignment.ipynb).
- 
+- Lecture 10: **Quiz 02: Literate Programming (6%)**.
+- **Assignment 04 due (5%).**
+- **Assignment 05:** [Problem Set 05](https://github.com/danilofreire/qtm350/blob/main/assignments/05-assignment.ipynb).
+
 Suggested references:
 
 - [GitHub Copilot Documentation](https://docs.github.com/en/copilot).
 - [Using GitHub Copilot in your IDE: Tips, Tricks, and Best Practices](https://github.blog/developer-skills/github/how-to-use-github-copilot-in-your-ide-tips-tricks-and-best-practices/)
 - [Using GitHub Copilot in the Command Line](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-command-line)
-- [Coding with an AI Pair Programmer: Getting Started with GitHub Copilot
-  (YouTube)](https://www.youtube.com/watch?v=dhfTaSGYQ4o)
 - [GitHub Copilot YouTube Playlist](https://www.youtube.com/playlist?list=PL0lo9MOBetEHEHi9h0k_lPn0XZdEeYZDS)
 - Labadze, L., Grigolia, M., & Machaidze, L. (2023). [Role of AI Chatbots in Education: Systematic Literature Review](https://link.springer.com/article/10.1186/s41239-023-00426-1). International Journal of Educational Technology in Higher Education, 20(1), 56.
 
-## Module 05: Data Manipulation with Python
-
 ### Monday, March 03:
 
-- Lecture 13: [Python Data Types, Boolean Logic, and Control Structures](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-13/13-python-intro.html).
-- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=668187b3-ea1e-43d4-89f2-bd0f06aeb4a0&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
+- Lecture 12: AI-Assisted Programming, APIs, and Agents.
+- **Assignment 05 due (5%).**
+- **Assignment 06:** Problem Set 06.
+
+## Module 05: Introduction to Cloud Computing
+
+### Wednesday, March 05:
+
+- Lecture 13: Introduction to Cloud Computing.
 
 Suggested references:
 
@@ -179,10 +188,9 @@ Suggested references:
 
 ### Wednesday, March 05:
 
-- Lecture 14: [Introduction to Pandas](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-14/14-pandas.html).
-- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=1e70681f-4a2f-4a98-b2b8-e02006f05a65&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
+- Lecture 14: Cloud Architecture and Networks.
 - **Assignment 06 due (5%).**
-- **Assignment 07:** [Problem Set 07](https://github.com/danilofreire/qtm350/blob/main/assignments/07-assignment.ipynb).
+- **Assignment 07:** Problem Set 07.
 
 ### Monday, March 10: Spring Break (no class)
 
@@ -190,22 +198,13 @@ Suggested references:
 
 ### Monday, March 17:
 
-- Lecture 15: [Pandas for Data Analysis: Data Wrangling and Aggregating](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-15/15-wrangling-aggregating.html).
-- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=50a9780c-8eff-4487-8a13-ae7e2ea6a87c&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
+- Lecture 15: Cloud Storage and Databases.
  
-Suggested references:
-
-- McKinney, W. (2022). Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython (3rd ed.). O'Reilly Media. [Chapter 05: Getting Started with Pandas](https://wesmckinney.com/book/pandas-basics).
-- VanderPlas, J. (2016). Python Data Science Handbook: Essential Tools for Working with Data. O'Reilly Media. [Chapter 3: Data Manipulation with Pandas](https://jakevdp.github.io/PythonDataScienceHandbook/03.00-introduction-to-pandas.html).
-- McKinney, W. (2022). Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython (3rd ed.). O'Reilly Media. [Chapter 07: Data Cleaning and Preparation](https://wesmckinney.com/book/data-cleaning).
-- [DataCamp: Pandas Tutorial: DataFrames in Python](https://www.datacamp.com/tutorial/pandas-tutorial-dataframe-python).
-- [Real Python: Pandas Tutorial: DataFrames in Python](https://realpython.com/pandas-dataframe/).
-
 ### Wednesday, March 19:
 
-- Lecture 16: **Quiz 03: Python for Data Analysis (6%)**.
+- Lecture 16: **Quiz 03: Cloud Computing (6%)**.
 - **Assignment 07 due (5%).**
-- **Assignment 08:** [Problem Set 08](https://github.com/danilofreire/qtm350/blob/main/assignments/08-assignment.zip).
+- **Assignment 08:** Problem Set 08.
 
 ## Module 06: Introduction to SQL Databases 
 
