@@ -168,31 +168,14 @@ Suggested references:
 
 ### Monday, March 03:
 
-- Lecture 13: AI-Assisted Programming, APIs, and Agents.
-- **Assignment 05 due (5%).**
-- **Assignment 06:** Problem Set 06.
+- Lecture 13: [AI-Assisted Programming, APIs, and Agents.](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-13/13-ai.html).
 
 ## Module 05: Introduction to Cloud Computing
 
 ### Wednesday, March 05:
 
 - Lecture 14: Introduction to Cloud Computing.
-
-Suggested references:
-
-- [Python Documentation: An Informal Introduction to Python](https://docs.python.org/3/tutorial/introduction.html).
-- [Python Documentation: More Control Flow Tools](https://docs.python.org/3/tutorial/controlflow.html).
-- [Python Documentation: Compound Statements](https://docs.python.org/3/reference/compound_stmts.html).
-- [NumPy Documentation: Quickstart Tutorial](https://numpy.org/doc/stable/user/quickstart.html).
-- [Programiz: Math Operations in Python](https://www.programiz.com/python-programming/operators).
-- Matthes, E. (2019). Python Crash Course: A Hands-On, Project-Based Introduction to Programming (2nd ed.). No Starch Press. [Chapter 02](https://nostarch.com/download/PCC3e_ch2sample_8.17.22.pdf).
-- Severance, C. (2016). Python for Everybody: Exploring Data in Python 3. CreateSpace Independent Publishing Platform. [Chapters 3-11](https://www.py4e.com/lessons) (Note: Read only the chapters which interest you).
-
-### Wednesday, March 05:
-
-- Lecture 15: Cloud Architecture and Networks.
-- **Assignment 06 due (5%).**
-- **Assignment 07:** Problem Set 07.
+- **Assignment 05 due (5%).**
 
 ### Monday, March 10: Spring Break (no class)
 
@@ -200,13 +183,12 @@ Suggested references:
 
 ### Monday, March 17:
 
-- Lecture 16: Cloud Storage and Databases.
+- Lecture 15: Cloud Architecture and Networks.
  
 ### Wednesday, March 19:
 
-- Lecture 17: **Quiz 03: Cloud Computing (6%)**.
-- **Assignment 07 due (5%).**
-- **Assignment 08:** Problem Set 08.
+- Lecture 17: **Quiz 03: AI-Assisted Programming and Cloud Computing(6%)**.
+- **Assignment 07:** Problem Set 07.
 
 ## Module 06: Introduction to SQL Databases 
 
@@ -228,8 +210,8 @@ Suggested references:
 
 - Lecture 19: [SQL in Python: Connecting to Databases with Pandas](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-18/18-sql-python.html).
 - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=96842352-f74d-4a4b-8833-2c134d27502c&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
-- **Assignment 08 due (5%).**
-- **Assignment 09:** [Problem Set 09](https://github.com/danilofreire/qtm350/blob/main/assignments/09-assignment.sql).
+- **Assignment 07 due (5%).**
+- **Assignment 08:** [Problem Set 08](https://github.com/danilofreire/qtm350/blob/main/assignments/09-assignment.sql).
 
 ### Monday, March 31:
 
@@ -246,8 +228,8 @@ Suggested references:
 ### Wednesday, April 02:
 
 - Lecture 21: **Quiz 04: SQL Databases (6%)**.
-- **Assignment 09 due (5%).**
-- **Assignment 10:** [Problem Set 10](https://github.com/danilofreire/qtm350/blob/main/assignments/10-assignment.ipynb).
+- **Assignment 08 due (5%).**
+- **Assignment 09:** [Problem Set 10](https://github.com/danilofreire/qtm350/blob/main/assignments/10-assignment.ipynb).
 
 ## Module 07: Parallel Computing
 
@@ -266,7 +248,8 @@ Suggested references:
 
 - Lecture 23: [Application: Parallelising Data Analysis with Dask and AutoML](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-22/22-parallel-automl.html).
 - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=a2403e39-2c84-473b-8e78-ea0889581b0c&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
-- **Assignment 10 due (5%).**
+- **Assignment 09 due (5%).**
+- **Assignment 10:** Problem Set 10
 
 Suggested references:
 
@@ -288,6 +271,7 @@ Suggested references:
 ### Wednesday, April 16:
 
 - Lecture 25: [Docker for Data Science](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-24/24-docker.html).
+- **Assignment 10 due (5%).**
 
 ### Monday, April 21:
 
