@@ -174,7 +174,8 @@ Suggested references:
 
 ### Wednesday, March 05:
 
-- Lecture 14: Introduction to Cloud Computing.
+- Lecture 14: [Introduction to Cloud Computing](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-14/14-cloud.html).
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=8691380c-2ccb-49fa-aab1-471754aeb24c&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 - **Assignment 05 due (5%).**
 
 ### Monday, March 10: Spring Break (no class)
