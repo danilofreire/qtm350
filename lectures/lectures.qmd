@@ -191,11 +191,11 @@ Suggested references:
 
 ### Monday, March 17:
 
-- Lecture 15: Cloud Architecture and Networks.
+- Lecture 15: [More Cloud Computing with Amazon Web Services (AWS)](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-15/15-cloud2.html).
  
 ### Wednesday, March 19:
 
-- Lecture 17: **Quiz 03: AI-Assisted Programming and Cloud Computing(6%)**.
+- Lecture 17: **Quiz 03: AI-Assisted Programming and Cloud Computing (6%)**.
 - **Assignment 07:** Problem Set 07.
 
 ## Module 06: Introduction to SQL Databases 
