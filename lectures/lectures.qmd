@@ -192,6 +192,7 @@ Suggested references:
 ### Monday, March 17:
 
 - Lecture 15: [More Cloud Computing with Amazon Web Services (AWS)](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-15/15-cloud2.html).
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=9a098f1f-ebd6-40cd-aa4e-b8f096683a37&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
  
 ### Wednesday, March 19:
 
