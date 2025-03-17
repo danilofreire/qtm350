@@ -202,7 +202,7 @@ Suggested references:
 
 ### Monday, March 24:
 
-- Lecture 18: [Introduction to PostgreSQL: Data Types, Tables, and Queries](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-17/17-introduction-sql.html).
+- Lecture 18: [Introduction to SQL: Data Types, Tables, and Queries](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-17/17-introduction-sql.html).
 - **Instructions for the Final Project**.
 
 Suggested references:
