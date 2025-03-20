@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,12 +34,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-a202ed359b7240dcab911ed64cbd0efc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-fc69c27516b785ffb5db61c6a6e66aa6.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -167,7 +167,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Welcome to <a href="https://github.com/danilofreire/qtm350">QTM 350</a>! This course introduces key tools in modern data science, focusing on three essential aspects: reliability, reproducibility, and robustness. We will cover command line interfaces and <a href="https://www.vim.org/">vim</a>, version control with <a href="https://git-scm.com/">Git</a> and <a href="https://github.com/">GitHub</a>, and literate programming using <a href="https://quarto.org/">Quarto</a> and <a href="https://jupyter.org/">Jupyter Notebooks</a>. You will also learn about data storage and manipulation with <a href="https://www.w3schools.com/sql/">SQL</a> and <a href="https://pandas.pydata.org/">Pandas</a>, and parallel computing with <a href="https://www.dask.org/">Dask</a>. We will explore artificial intelligence-assisted programming with <a href="https://github.com/features/copilot">GitHub Copilot</a> and finish with <a href="https://www.docker.com/">Docker</a> and containerisation.</p>
+<p>Welcome to <a href="https://github.com/danilofreire/qtm350">QTM 350</a>! This course introduces key tools in modern data science, focusing on three essential aspects: reliability, reproducibility, and robustness. We will cover the <a href="https://en.wikipedia.org/wiki/Command-line_interface">command-line interface</a>, version control with <a href="https://git-scm.com/">Git</a> and <a href="https://github.com/">GitHub</a>, and literate programming using <a href="https://quarto.org/">Quarto</a>. You will also learn about <a href="https://aws.amazon.com/">cloud computing with AWS (basics)</a>, data storage and manipulation with <a href="https://www.w3schools.com/sql/">SQL</a> and <a href="https://pandas.pydata.org/">Pandas</a>, and parallel computing with <a href="https://www.dask.org/">Dask</a>. We will explore AI-assisted programming with <a href="https://github.com/features/copilot">GitHub Copilot</a> and <a href="https://ollama.com/">Ollama</a> and finish with <a href="https://www.docker.com/">Docker</a> and containerisation.</p>
 <p>We will meet every Monday and Wednesday from 14:30 to 15:45 in the <a href="https://maps.app.goo.gl/wLPSNiTSSXbizqsF8">Maths and Science Centre - E208</a>.</p>
 <section id="contact-information" class="level2">
 <h2 class="anchored" data-anchor-id="contact-information">Contact Information</h2>
@@ -443,8 +443,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -555,7 +553,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

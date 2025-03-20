@@ -193,7 +193,7 @@
     "href": "index.html",
     "title": "QTM 350 - Data Science Computing",
     "section": "",
-    "text": "Welcome to QTM 350! This course introduces key tools in modern data science, focusing on three essential aspects: reliability, reproducibility, and robustness. We will cover command line interfaces and vim, version control with Git and GitHub, and literate programming using Quarto and Jupyter Notebooks. You will also learn about data storage and manipulation with SQL and Pandas, and parallel computing with Dask. We will explore artificial intelligence-assisted programming with GitHub Copilot and finish with Docker and containerisation.\nWe will meet every Monday and Wednesday from 14:30 to 15:45 in the Maths and Science Centre - E208."
+    "text": "Welcome to QTM 350! This course introduces key tools in modern data science, focusing on three essential aspects: reliability, reproducibility, and robustness. We will cover the command-line interface, version control with Git and GitHub, and literate programming using Quarto. You will also learn about cloud computing with AWS (basics), data storage and manipulation with SQL and Pandas, and parallel computing with Dask. We will explore AI-assisted programming with GitHub Copilot and Ollama and finish with Docker and containerisation.\nWe will meet every Monday and Wednesday from 14:30 to 15:45 in the Maths and Science Centre - E208."
   },
   {
     "objectID": "index.html#contact-information",
@@ -368,7 +368,7 @@
     "href": "syllabus.html",
     "title": "QTM 350 - Data Science Computing",
     "section": "",
-    "text": "Welcome to QTM 350! This course introduces key tools in modern data science, focusing on three essential aspects: reliability, reproducibility, and robustness. We will cover the command-line interface, version control with Git and GitHub, and literate programming using Quarto and Jupyter Notebooks. You will also learn about data storage and manipulation with SQL and Pandas, and parallel computing with Dask. We will explore artificial intelligence-assisted programming with GitHub Copilot and finish with Docker and containerisation.\nBy working with real-world datasets and problems, students will gain hands-on experience using these tools and methods to extract insights from data. This course will develop technical skills and critical thinking needed to solve complex data challenges. Upon completion, students will be prepared to apply these tools to their own research and professional work."
+    "text": "Welcome to QTM 350! This course introduces key tools in modern data science, focusing on three essential aspects: reliability, reproducibility, and robustness. We will cover the command-line interface, version control with Git and GitHub, and literate programming using Quarto. You will also learn about cloud computing with AWS (basics), data storage and manipulation with SQL and Pandas, and parallel computing with Dask. We will explore AI-assisted programming with GitHub Copilot and Ollama and finish with Docker and containerisation.\nBy working with real-world datasets and problems, students will gain hands-on experience using these tools and methods to extract insights from data. This course will develop technical skills and critical thinking needed to solve complex data challenges. Upon completion, students will be prepared to apply these tools to their own research and professional work."
   },
   {
     "objectID": "syllabus.html#suggested-books",
