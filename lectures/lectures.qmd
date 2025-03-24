@@ -203,7 +203,7 @@ Suggested references:
 
 ### Monday, March 24:
 
-- Lecture 18: [Introduction to SQL: Data Types, Tables, and Queries](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-17/17-introduction-sql.html).
+- Lecture 18: [Introduction to SQL: Data Types, Tables, and Queries](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-18/18-introduction-sql.html).
 - **Instructions for the Final Project**.
 
 Suggested references:
@@ -284,11 +284,11 @@ Suggested references:
 
 ### Monday, April 21:
 
-- Lecture 26: **Quiz 05: Dask, Docker and Containers (6%)**.
+- Lecture 26: Review and final project discussion.
 
 ### Wednesday, April 23:
 
-- Lecture 27: Review and Final Project Discussion.
+- Lecture 27: **Quiz 05: Dask, Docker and Containers (6%)**.
 
 ### Monday, April 28:
 

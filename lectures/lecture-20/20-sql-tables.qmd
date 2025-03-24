@@ -1,0 +1,784 @@
+---
+title: QTM 350 - Data Science Computing
+subtitle: Lecture 19 - Tables and Dates in SQL
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: Emory University
+format:
+  clean-revealjs:
+    self-contained: true
+    code-overflow: wrap
+    footer: "[SQL Joins](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-19/10-sql-tables.html)"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: jupyter
+revealjs-plugins:
+  - fontawesome
+  - multimodal
+editor:
+  render-on-save: true
+---
+
+# Hello, my friends! 😊 <br> {background-color="#2d4563"}
+
+# Brief recap 📚 {background-color="#2d4563"}
+
+## Recap of last class and today's plan
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+### Last time we learned how to:
+
+- Connect SQL with Python with `psychopg2` and `sqlalchemy`
+- Use many SQL commands, such as `CASE WHEN`, window functions, and string functions
+- Use `pandas` to write SQL queries
+- Fill missing data with `COALESCE`
+- Pivot tables in PostgreSQL
+:::
+
+:::{.column width="50%"}
+### Today we will learn how to:
+
+- See different types of join in SQL
+- Use special joins, such as `CROSS JOIN` and `SELF JOIN`
+- Merge tables by row with `UNION`, `INTERSECT`, and `EXCEPT`
+- Use join conditions with `ON`, `USING`, and `NATURAL JOIN`
+- Solve exercises to practice what we learned
+- Let's get started! 🚀
+
+:::{style="text-align: center;"}
+![](figures/maxresdefault.jpg){width="60%"}
+:::
+:::
+:::
+:::
+
+## An announcement 📢
+
+:::{style="margin-top: 50px; font-size: 22px; text-align: center;"}
+![](figures/alumni.png){width="50%"}
+:::
+
+## Another announcement 📢
+### Final project instructions
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+- The instructions for the final project is now available on GitHub
+- Please find it here: <https://github.com/danilofreire/qtm350/blob/main/project/project-instructions.pdf>
+- The project is due on **December 9th, 2024**
+- Groups of 3-4 students
+- You will create a GitHub repository with a report based on World Bank data
+- The report should be in Quarto, the data cleaning and descriptive statistics in SQL, and the data analysis and visualisation in Python
+- QTM 531 students will also have to create a website with the report, as well as to write additional sections in the report
+- Please let me know if you have any questions
+:::
+
+# Basic joins 📊 {background-color="#2d4563"}
+
+## Primary and foreign keys
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- As with many languages, you can merge two tables in SQL either [by columns or by rows]{.alert}
+- Each uses different methods, but the most common is the `JOIN` clause
+- The `JOIN` clause is used to [combine rows and columns from two or more tables]{.alert} based on a related column between them
+- There are two types of keys, [primary and foreign keys]{.alert}
+- The [primary key]{.alert} is a column that [uniquely identifies each row in a table]{.alert}
+  - It must contain a unique value for each row of the table and cannot contain `NULL` values. One table can have only one primary key
+- A [foreign key]{.alert} is a column that [identifies a column in another table]{.alert}
+  - It references the key of another table. One table can have multiple foreign keys, and they can be `NULL`
+
+:::{style="text-align: center;"}
+![](figures/common_database_keys_explained-f_mobile.png){width="50%"}
+:::
+:::
+
+## Load the libraries and connect to the database {#sec:tables}
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- Let's load the libraries and connect to the database
+
+```{python}
+#| echo: true
+#| eval: true
+import pandas as pd
+import psycopg2
+from sqlalchemy import create_engine, text
+
+# Connect to the database
+engine = create_engine('postgresql+psycopg2://postgres:postgres@localhost:5432/postgres')
+connection = engine.connect()
+```
+
+- Then let's create two tables that we will use to test the `JOIN` clauses
+
+```{python}
+#| echo: true
+#| eval: true
+# Create the tables
+connection.execute(text('''
+DROP TABLE IF EXISTS players;
+CREATE TABLE players (
+    player_id SERIAL PRIMARY KEY,
+    player_name VARCHAR(50) NOT NULL,
+    goals INT NOT NULL,
+    victories INT NOT NULL
+);
+'''))
+
+connection.execute(text('''
+DROP TABLE IF EXISTS teams;
+CREATE TABLE teams (
+    team_id SERIAL PRIMARY KEY,
+    team_name VARCHAR(50) NOT NULL
+);
+'''))
+connection.commit()
+```
+:::
+
+## Create the tables
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- Now let's insert some data into the tables
+- Problems with the code below? [Try to clean the database first (see how in this appendix)](#sec:appendix05), then create the connection and tables again
+
+```{python}
+#| echo: true
+#| eval: true
+# Insert data into the tables
+connection.execute(text('''
+INSERT INTO players (player_name, goals, victories) VALUES
+('Messi', 10, 5),
+('Vini Jr', 8, 4),
+('Neymar', 6, 3),
+('Mbappe', 5, 2),
+('Lewandowski', 4, 1),
+('Haaland', 5, 3);
+'''))
+
+connection.execute(text('''
+INSERT INTO teams (team_name) VALUES
+('Inter Miami'),
+('Real Madrid'),
+('Al Hilal'),
+('Real Madrid'),
+('Bayern');
+'''))
+connection.commit()
+```
+:::
+
+## Visualise the tables
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- Let's see our tables
+
+```{python}
+#| echo: true
+#| eval: true
+pd.read_sql('SELECT * FROM players', connection)
+```
+
+```{python}
+#| echo: true
+#| eval: true
+pd.read_sql('SELECT * FROM teams', connection)
+```
+::: 
+
+## Types of joins
+
+:::{style="margin-top: 50px; font-size: 20px; text-align: center;"}
+![](figures/joins.webp){width="80%"}
+:::
+
+## Inner join
+
+:::{style="margin-top: 50px; font-size: 18px;"}
+- The `INNER JOIN` returns only the records where there is a match between both tables (intersection)
+- If there's no match for a record in either table, that record will be excluded from the results
+- Each match creates a new row in the result set that combines columns from both tables
+- The matching condition is specified in the `ON` clause (e.g., `ON table1.id = table2.id`)
+- It is commonly used to combine related data, like the ones we have in the `players` and `teams` tables
+- The syntax is as follows:
+- `SELECT columns FROM table1 INNER JOIN table2 ON table1.column = table2.column`
+- Note that Haaland is not in the `teams` table, so he will not appear in the result set
+
+```{python}
+#| echo: true
+#| eval: true
+pd.read_sql('''
+SELECT players.player_name, teams.team_name, players.goals, players.victories
+FROM players
+INNER JOIN teams 
+ON players.player_id = teams.team_id;
+''', connection)
+```
+:::
+
+## Left join
+
+:::{style="margin-top: 50px; font-size: 18px;"}
+- The `LEFT JOIN` returns all records from the left table (first table) and the matched records from the right table (second table)
+- The result is `NULL` from the right side if there is no match
+- This is perhaps the most common type of join, as it keeps the data from the table we are usually interested in
+- The syntax is as follows (pretty much the same as `INNER JOIN`): 
+- `SELECT columns FROM table1 LEFT JOIN table2 ON table1.column = table2.column`
+- Note that Haaland is here because he is in the `players` table, even though he is not in the `teams` table 
+
+```{python}
+#| echo: true
+#| eval: true
+pd.read_sql('''
+SELECT players.player_name, teams.team_name, players.goals
+FROM players
+LEFT JOIN teams
+ON players.player_id = teams.team_id;
+''', connection)
+``` 
+:::
+
+## Right join
+
+:::{style="margin-top: 50px; font-size: 18px;"}
+- The `RIGHT JOIN` returns all records from the right table (second table) and the matched records from the left table (first table)
+- The result is `NULL` from the left side if there is no match
+- As you have probably guessed, this is the opposite of the `LEFT JOIN` (and less common)
+- The syntax is as follows (you have probably guessed it by now 😄):
+- `SELECT columns FROM table1 RIGHT JOIN table2 ON table1.column = table2.column`
+
+```{python}
+#| echo: true
+#| eval: true
+pd.read_sql('''
+SELECT players.player_name, teams.team_name, players.goals
+FROM players
+RIGHT JOIN teams
+ON players.player_id = teams.team_id;
+''', connection)
+```
+:::
+
+## Full outer join
+
+:::{style="margin-top: 50px; font-size: 18px;"}
+- The `FULL OUTER JOIN` returns all records when there is a match in either left (first) or right (second) table
+- It returns `NULL` values when there is no match
+- In my experience, this is the least common type of join
+- Why? Because it returns all the data from both tables, which can be a lot and not very useful
+- It also overloads the database, as it has to compare all the records from both tables
+  
+```{python}
+#| echo: true
+#| eval: true
+pd.read_sql('''
+SELECT players.player_name, teams.team_name, players.goals
+FROM players
+FULL OUTER JOIN teams
+ON players.player_id = teams.team_id;
+''', connection)
+```
+:::
+
+## Try it yourself! 🧠 {#sec:exercise01a}
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- Let's create two new tables and insert some data into them
+
+```{python}
+#| echo: true
+#| eval: true
+# Create the tables and insert data
+connection.execute(text('''
+DROP TABLE IF EXISTS products CASCADE;
+CREATE TABLE products (
+    product_id SERIAL PRIMARY KEY,
+    product_name VARCHAR(100) NOT NULL,
+    price DECIMAL(10,2) -- 10 digits, 2 decimal places for money
+);
+
+-- Insert products (notice some won't have reviews)
+INSERT INTO products (product_name, price) VALUES
+    ('Coffee Maker', 99.99),
+    ('Toaster', 29.99),
+    ('Blender', 79.99),
+    ('Microwave', 149.99),
+    ('Air Fryer', 89.99);
+
+DROP TABLE IF EXISTS reviews CASCADE;
+CREATE TABLE reviews (
+    review_id SERIAL PRIMARY KEY,
+    product_id INT,
+    rating INT CHECK (rating BETWEEN 1 AND 5),
+    comment TEXT,
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+-- Insert reviews (only for some products)
+INSERT INTO reviews (product_id, rating, comment) VALUES
+    (1, 5, 'Great coffee maker!'),
+    (1, 4, 'Good but expensive'),
+    (2, 3, 'Average toaster'),
+    (3, 5, 'Best blender ever');
+'''))
+connection.commit()
+```
+:::
+
+## Try it yourself! 🧠 {#sec:exercise01b}
+
+:::{style="margin-top: 50px; font-size: 28px;"}
+- Now try to merge the `directors` and `movies` tables using `INNER JOIN` and `LEFT JOIN`
+- Explain the differences between the two results
+- [[Appendix 01]{.button}](#sec:appendix01)
+:::
+
+# Special joins 🌟 {background-color="#2d4563"}
+
+## Cross join
+
+:::{style="margin-top: 50px; font-size: 18px;"}
+- `CROSS JOIN` is also available in SQL
+- A cross join does not use any comparisons to determine whether the rows in each table match one another 
+- Instead, results are constructed by simply adding each of the rows from the first table to each of the rows of the second table.
+- Useful for generating all possible combinations (e.g., creating a multiplication table)
+- Can be resource-intensive with large tables since result grows exponentially
+- Sometimes written as simple comma-separated tables in `FROM` clause: `SELECT * FROM table1, table2`
+
+```{python}
+#| echo: true
+#| eval: true
+pd.read_sql('''
+SELECT players.player_name, teams.team_name
+FROM players
+CROSS JOIN teams
+ORDER BY players.player_id;
+''', connection)
+```
+::: 
+
+## Cross join
+
+:::{style="margin-top: 50px; font-size: 18px;"}
+- Sometimes it is useful to generate all possible combinations of two tables
+
+```{python}
+#| echo: true
+#| eval: true
+# Drop and recreate tables
+connection.execute(text('''
+DROP TABLE IF EXISTS colors CASCADE;
+CREATE TABLE colors (color_name VARCHAR(20));
+DROP TABLE IF EXISTS sizes CASCADE;
+CREATE TABLE sizes (size_code VARCHAR(5));
+INSERT INTO colors VALUES ('Black'), ('Red');
+INSERT INTO sizes VALUES ('S'), ('M');
+'''))
+
+pd.read_sql(text('''
+SELECT 
+    colors.color_name, 
+    sizes.size_code,
+    CONCAT(colors.color_name, ' - ', sizes.size_code) as t_shirt
+FROM colors
+CROSS JOIN sizes
+ORDER BY colors.color_name, sizes.size_code DESC;
+'''), connection)
+```
+:::
+
+## Self join
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- A self join is a regular join, but [the table is joined with itself]{.alert} (!) 🤯
+- It may not be immediately apparent how this could be useful, but it actually has many applications
+- Often, tables describe entities that can fulfill multiple roles in relationship to one another
+- For instance, if you have a table of `people`, each row could contain a `mother` column that reference other people in the table with the same `person_id`
+- A self join would allow you to stitch these different rows together by joining a second instance of the table to the first where these values match
+
+- Since self joins reference the same table twice, [table aliases are required]{.alert} to disambiguate the references 
+- You could join the two instances of the `people` table using the aliases `people AS children` and `people AS mothers`
+- That way, you can specify which instance of the table you are referring to when defining join conditions
+- The syntax is as follows: `SELECT columns FROM table1 AS alias1 JOIN table1 AS alias2 ON alias1.column = alias2.column`
+:::
+
+## Self join
+
+:::{style="margin-top: 50px; font-size: 18px;"}
+- Let see an example
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+DROP TABLE IF EXISTS family CASCADE;
+CREATE TABLE family (
+    person_id SERIAL PRIMARY KEY,
+    name VARCHAR(50),
+    mother_id INT
+);
+
+INSERT INTO family (name, mother_id) VALUES
+    ('Emma', NULL), -- grandmother
+    ('Sarah', 1),   -- Emma's daughter
+    ('Lisa', 1),    -- Emma's daughter
+    ('Tom', 2),     -- Sarah's son
+    ('Alice', 2);   -- Sarah's daughter
+'''))
+
+pd.read_sql('''
+SELECT 
+    children.name as child,
+    mothers.name as mother
+FROM family children
+JOIN family mothers ON children.mother_id = mothers.person_id
+ORDER BY mothers.name;
+''', connection)
+```
+:::
+
+## Self join
+
+:::{style="margin-top: 50px; font-size: 18px;"}
+- Let see another example
+- Here we want to calculate the difference in goals between players in the `players` table
+
+```{python}
+#| echo: true
+#| eval: true
+pd.read_sql('''
+SELECT 
+    p1.player_name,
+    p1.goals,
+    p2.player_name as compared_to,
+    p2.goals as their_goals,
+    p1.goals - p2.goals as difference
+FROM players p1
+JOIN players p2 
+ON p1.player_id < p2.player_id
+ORDER BY difference DESC;
+''', connection)
+```
+::: 
+
+## Try it yourself! 🧠 {#sec:exercise02}
+
+:::{style="margin-top: 50px; font-size: 24px;"}
+- Write a SQL query that:
+  - Uses a self join on the players table to compare players' `victories`
+- Shows for each pair of players:
+  - First player's name and victories
+  - Second player's name and victories
+  - The ratio of their victories (rounded to 2 decimal places)
+- Requirements:
+ - Use `CAST AS NUMERIC` to handle decimal division (`ROUND(CAST(p1.victories AS NUMERIC) / CAST(p2.victories AS NUMERIC), 2) as victories_ratio`)
+- Avoid duplicate comparisons using `player_id < player_id`
+- Prevent division by zero by adding `WHERE p2.victories > 0`
+- Order results by first player's ID
+- [[Appendix 02]{.button}](#sec:appendix02)
+:::
+
+# Join conditions 🧩 {background-color="#2d4563"}
+
+## Join conditions
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- The most standard way of defining the conditions for table joins is with the `ON` clause
+- `ON` uses an equals sign to specify the exact columns from each table that will be compared 
+- PostgreSQL uses the provided columns to stitch together the rows from each table
+- `ON` is verbose, but also very flexible, as it allows you to specify any condition you want
+
+```{python}
+#| echo: true
+#| eval: true
+pd.read_sql('''
+SELECT players.player_name, teams.team_name, players.goals
+FROM players
+JOIN teams
+ON players.player_id = teams.team_id;
+''', connection)
+``` 
+:::
+
+:::{.column width="50%"}
+- You can also use the `USING` clause to specify the columns that will be used to join the tables
+- `USING` is a bit more concise than `ON`, as it only requires the column names
+- Let's create a new column `player_id` in the `teams` table to demonstrate how `USING` works
+
+```{python}
+#| echo: true
+#| eval: true
+# First add team_id to players if not exists
+connection.execute(text('''
+ALTER TABLE teams ADD COLUMN IF NOT EXISTS player_id SERIAL;
+'''))
+
+# Show joined data using USING clause
+pd.read_sql('''
+SELECT player_name, team_name, goals
+FROM players
+JOIN teams USING (player_id);
+''', connection)
+```
+::: 
+:::
+:::
+
+## Natural join
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- This is a cool feature of PostgreSQL!
+- A `NATURAL JOIN` does not specify [any columns]{.alert} to be matched
+- Instead, PostgreSQL will automatically join the tables based on all columns that have matching columns in each database
+
+```{python}
+#| echo: true
+#| eval: true
+pd.read_sql('''
+SELECT players.player_name, teams.team_name, players.goals
+FROM players
+NATURAL JOIN teams;
+''', connection)
+```
+::: 
+
+# Merge tables by row 🧩 {background-color="#2d4563"}
+
+## Union
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- The `UNION` operator is used to combine the result sets of two or more `SELECT` statements
+- It removes duplicate rows between the various `SELECT` statements
+- The columns in each `SELECT` statement must be in the same order, with the same data types
+
+```{python}
+#| echo: true
+#| eval: true
+pd.read_sql('''
+SELECT player_name, goals FROM players
+UNION
+SELECT team_name, NULL FROM teams
+ORDER BY player_name;
+''', connection)
+```
+::: 
+
+## Union all and intersect
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Similar to `UNION`, `UNION ALL` also merges tables by rows
+- Unlike `UNION`, `UNION ALL` retains the duplicate records of both the tables
+
+```{python}
+#| echo: true
+#| eval: true
+pd.read_sql('''
+INSERT INTO players (player_name, goals, victories) VALUES ('Real Madrid', 0, 0); 
+SELECT player_name FROM players
+UNION ALL
+SELECT team_name FROM teams;
+''', connection)
+```
+:::
+
+:::{.column width="50%"}
+- The `INTERSECT` operator is used to return the common rows between two queries
+
+```{python}
+#| echo: true
+#| eval: true
+pd.read_sql('''
+INSERT INTO players (player_name, goals, victories) VALUES ('Real Madrid', 0, 0); 
+SELECT player_name FROM players
+INTERSECT
+SELECT team_name FROM teams;
+''', connection)
+```
+:::
+:::
+:::
+
+## Except
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- `EXCEPT` returns the records from the first table (left table) which are not present in the second table (right table)
+
+```{python}
+#| echo: true
+#| eval: true
+pd.read_sql('''
+INSERT INTO players (player_name, goals, victories) VALUES ('Real Madrid', 0, 0); 
+SELECT player_name FROM players
+EXCEPT
+SELECT team_name FROM teams;
+''', connection)
+```
+:::
+
+# Merge operator {background-color="#2d4563"}
+
+## Merge 
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- PostgreSQL 15 introduced the `MERGE` operator, which allows you to perform an `INSERT`, `UPDATE`, or `DELETE` operation in a single statement
+- It is extremely flexible, easy to read, and efficient. More info [here](https://www.postgresql.org/docs/current/sql-merge.html)
+- It is better to see it with an example
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+ALTER TABLE teams ADD COLUMN IF NOT EXISTS player_id SERIAL;
+ALTER TABLE teams ADD COLUMN IF NOT EXISTS team_player VARCHAR(100);
+
+MERGE INTO teams AS t
+USING players AS p
+ON t.player_id = p.player_id
+WHEN MATCHED THEN
+    UPDATE SET team_player = (p.player_name || ' - ' || t.team_name)
+WHEN NOT MATCHED THEN
+    INSERT (team_name) VALUES (p.player_name);
+'''))
+
+pd.read_sql('SELECT * FROM teams', connection)
+```
+:::
+
+# Conclusion 📖 {background-color="#2d4563"}
+
+## Conclusion
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- Today we learned about different types of joins in SQL
+- We also learned about special joins, such as `CROSS JOIN` and `SELF JOIN`
+- We saw how to merge tables by row with `UNION`, `INTERSECT`, and `EXCEPT`
+- We also learned about join conditions with `ON`, `USING`, and `NATURAL JOIN`
+- And we saw the new `MERGE` operator in PostgreSQL 15+ 🚀
+:::
+
+# And that's all for today! 🎉 {background-color="#2d4563"}
+
+# Thank you and have a great rest of your day! 🙏 {background-color="#2d4563"}
+
+## Appendix 01 {#sec:appendix01}
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- Here is the solution to the exercise
+  
+```{python}
+#| echo: true
+#| eval: true
+print("INNER JOIN Results:")
+print(pd.read_sql('''
+    SELECT p.product_name, r.rating, r.comment
+    FROM products p
+    INNER JOIN reviews r ON p.product_id = r.product_id
+    ORDER BY p.product_id;
+''', connection))
+```
+
+```{python}
+#| echo: true
+#| eval: true
+print("\nLEFT JOIN Results:")
+print(pd.read_sql('''
+    SELECT p.product_name, r.rating, r.comment
+    FROM products p
+    LEFT JOIN reviews r ON p.product_id = r.product_id
+    ORDER BY p.product_id;
+''', connection))
+```
+
+[[Back to exercise]{.button}](#sec:exercise01b)
+:::
+
+## Appendix 02 {#sec:appendix02}
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+```{python}
+#| echo: true
+#| eval: true
+pd.read_sql('''
+SELECT p1.player_name, p1.victories, p2.player_name, p2.victories,
+    ROUND(CAST(p1.victories AS NUMERIC) / CAST(p2.victories AS NUMERIC), 2) AS victories_ratio
+FROM players p1
+JOIN players p2
+ON p1.player_id < p2.player_id
+WHERE p2.victories > 0
+ORDER BY p1.player_id;
+''', connection)
+```
+[[Back to exercise]{.button}](#sec:exercise02)
+::: 
+
+
+## Appendix 05 {#sec:appendix05}
+### Cleaning all tables
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+- I have encountered some issues with `psycopg2` when trying to drop tables
+- So I created a function to clean all tables in the database
+- If you have a similar issue, you can use the function below
+- Replace the default values with your database name, user, and password
+
+```{python}
+#| echo: true
+#| eval: false
+from sqlalchemy import create_engine, text, inspect
+import time
+
+engine = create_engine('postgresql+psycopg2://postgres:postgres@localhost:5432/postgres', future=True)
+connection = engine.connect()
+
+def clean_database(engine):
+    with engine.connect() as conn:
+        try:
+            # Get inspector to check existing tables
+            inspector = inspect(engine)
+            existing_tables = inspector.get_table_names()
+            
+            if not existing_tables:
+                print("No tables found in database")
+                return
+                
+            print(f"Found {len(existing_tables)} tables: {existing_tables}")
+            
+            # Kill other connections
+            conn.execute(text("""
+                SELECT pg_terminate_backend(pid) 
+                FROM pg_stat_activity 
+                WHERE pid <> pg_backend_pid()
+                AND datname = current_database()
+            """))
+            
+            conn.execute(text("ROLLBACK"))
+            conn.execute(text("SET statement_timeout = '30s'"))
+            
+            # Only drop tables that exist
+            for table in existing_tables:
+                try:
+                    conn.execute(text(f"DROP TABLE IF EXISTS {table} CASCADE"))
+                    print(f"Dropped {table}")
+                    conn.commit()
+                    time.sleep(1)
+                except Exception as e:
+                    print(f"Error with {table}: {str(e)}")
+                    conn.execute(text("ROLLBACK"))
+                    
+        except Exception as e:
+            print(f"Fatal error: {str(e)}")
+            conn.execute(text("ROLLBACK"))
+
+# Execute
+clean_database(engine)
+```
+
+[[Back to the lecture]{.button}](#sec:tables)
+:::

@@ -494,7 +494,7 @@
     "href": "lectures/lectures.html#module-08-containers-and-reproducibility",
     "title": "Lectures",
     "section": "Module 08: Containers and Reproducibility",
-    "text": "Module 08: Containers and Reproducibility\n\nMonday, April 14:\n\nLecture 24: Dependency Management, Virtual Environments, and Containers.\n\nSuggested references:\n\nDocker Documentation\nComposeCraft. A tool to help you manage, edit and share docker compose files in a GUI way.\n\n\n\nWednesday, April 16:\n\nLecture 25: Docker for Data Science.\nAssignment 10 due (5%).\n\n\n\nMonday, April 21:\n\nLecture 26: Quiz 05: Dask, Docker and Containers (6%).\n\n\n\nWednesday, April 23:\n\nLecture 27: Review and Final Project Discussion.\n\n\n\nMonday, April 28:\n\nFinal Project due (20%)."
+    "text": "Module 08: Containers and Reproducibility\n\nMonday, April 14:\n\nLecture 24: Dependency Management, Virtual Environments, and Containers.\n\nSuggested references:\n\nDocker Documentation\nComposeCraft. A tool to help you manage, edit and share docker compose files in a GUI way.\n\n\n\nWednesday, April 16:\n\nLecture 25: Docker for Data Science.\nAssignment 10 due (5%).\n\n\n\nMonday, April 21:\n\nLecture 26: Review and final project discussion.\n\n\n\nWednesday, April 23:\n\nLecture 27: Quiz 05: Dask, Docker and Containers (6%).\n\n\n\nMonday, April 28:\n\nFinal Project due (20%)."
   },
   {
     "objectID": "lectures/lectures.html#module-01-introduction",

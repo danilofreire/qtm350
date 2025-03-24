@@ -1,0 +1,1080 @@
+---
+title: QTM 350 - Data Science Computing
+subtitle: Lecture 19 - SQL and Python
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: Emory University
+format:
+  clean-revealjs:
+    self-contained: true
+    code-overflow: wrap
+    footer: "[SQL and Python](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-19/19-sql-python.html)"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: jupyter
+revealjs-plugins:
+  - fontawesome
+  - multimodal
+editor:
+  render-on-save: true
+---
+
+# Hello! Great to see you again! 😊 {background-color="#2d4563"}
+
+# Lecture overview 📚 {background-color="#2d4563"}
+
+## Lecture overview
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+### Last time we learned:
+
+- What are relational databases and why they are still dominant in data science
+- How to install and run SQLite
+- How to create databases, tables, and insert data
+- How to perform queries with `SELECT`, `WHERE` and `ORDER BY`
+- Group data with `GROUP BY` and filter groups with `HAVING`
+- Compute statistics with `COUNT`, `SUM`, `AVG`, `MIN`, and `MAX`
+- That's quite a lot! 🤓
+- [By the way, any issues with the installation?]{.alert} 🤔
+:::
+
+:::{.column width="50%"}
+### Today we will learn:
+
+- How to connect SQL with Python, because we all love Python! 🐍 😂
+- We will use the `sqlite3` libraries (and `pandas` too! 🐼)
+- We will also learn about other SQL commands, such as `LIKE`, `IN`, `BETWEEN`, `CASE`, window functions, and string functions like `LEFT`, `RIGHT`, and `LENGTH`
+- How to fill missing data with `COALESCE`
+- Let's get started! 🚀
+:::
+:::
+:::
+
+# Connecting SQL with Python 🐍 {background-color="#2d4563"}
+
+## Why connect SQL with Python?
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- SQL is great for data manipulation and querying, but it is not a programming language
+- So it is useful to connect SQL with a programming language that allows for more complex operations, data visualisation, and machine learning
+- Do you know any programming language that does that? _Of course you do!_ 
+- So let's see how to connect SQL with Python! 🐍
+- First, let's install the `psycopg2` and `sqlalchemy` libraries
+
+```{verbatim}
+pip install psycopg2 sqlalchemy
+
+# or
+# conda install psycopg2 sqlalchemy
+```
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+[![](figures/sqlalchemy.jpg){width="60%"}](https://www.sqlalchemy.org/){data-modal-type="iframe"}
+:::
+
+- `psycopg2` is a PostgreSQL adapter for Python (more info [here](https://www.psycopg.org/docs/){data-modal-type="iframe"})
+- It allows you to connect to a PostgreSQL database and execute SQL commands
+- `sqlalchemy` is a SQL for Python, and it is database-agnostic
+-  More information about it [here](https://www.sqlalchemy.org/){data-modal-type="iframe"}
+- Both of them are very popular and work well together (and with other Python libraries too)
+:::
+:::
+:::
+
+## Connecting to a PostgreSQL database
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- `sqlalchemy` generates SQL statements and `psycopg2` sends SQL statements to the database
+- So let's load the libraries! 🤓
+
+```{python}
+#| echo: true
+#| eval: true
+import psycopg2
+from sqlalchemy import create_engine, text
+```
+
+- Now let's connect to the database
+- We need the database name, user, password, and host
+
+```{python}
+#| echo: true
+#| eval: true
+# Connection parameters
+engine = create_engine('postgresql+psycopg2://postgres:postgres@localhost:5432/postgres')
+connection = engine.connect()
+```
+
+- Let's see what every part of the connection string means
+- `create_engine()` creates a connection to the database
+- `postgresql+psycopg2` is the database driver
+- `postgres:postgres` is the username and password
+- `localhost:5432` is the host and port
+- `postgres` is the database name
+:::
+
+# SQL commands in Python 🐍 {background-color="#2d4563"}
+
+## Executing SQL commands in Python {#sec:tables}
+
+:::{style="margin-top: 50px; font-size: 19px;"}
+:::{.columns}
+:::{.column width="40%"}
+- Now that we have connected to the database, we can execute SQL commands
+- We can use the `execute()` method of the connection object
+- Let's see an example
+
+```{python}
+#| echo: true
+#| eval: true
+# Create drivers table
+connection.execute(text('''
+DROP TABLE IF EXISTS drivers;
+CREATE TABLE drivers (
+    driver_id SERIAL PRIMARY KEY,
+    driver_name VARCHAR(50),
+    team VARCHAR(50),
+    nationality VARCHAR(50),
+    victories INT
+);
+'''))
+connection.commit()
+```
+
+- The `commit()` method is necessary to save the changes, otherwise they will be lost
+- Problems with the code below? [Try to clean the database first (see how in this appendix)](#sec:appendix05), then create the connection and tables again
+:::
+
+:::{.column width="60%"}
+- The `execute()` method receives a string with the SQL command
+- We can use triple quotes to write multi-line strings
+- Let's add some data to the table
+
+```{python}
+#| echo: true
+#| eval: true
+# Add data to the drivers table
+connection.execute(text('''
+INSERT INTO drivers (driver_name, team, nationality, victories)
+VALUES 
+    ('Lewis Hamilton', 'Mercedes', 'British', 103),
+    ('Max Verstappen', 'Red Bull Racing', 'Dutch', 55),
+    ('Charles Leclerc', 'Ferrari', 'Monégasque', 5),
+    ('Fernando Alonso', 'Aston Martin', NULL, NULL)
+'''))
+connection.commit()
+```
+
+- Now let's check if the data were inserted correctly
+- We can use the `SELECT` command for that, and `fetchall()` to retrieve the data
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('SELECT * FROM drivers')).fetchall()
+```
+:::
+:::
+:::
+
+## `IN` and `BETWEEN` operators
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- We use `IN` to filter data based on a list of values
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT * FROM drivers WHERE team IN ('Ferrari', 'Mercedes');
+''')).fetchall()
+```
+
+- `BETWEEN` is used to filter data within a range
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT * FROM drivers WHERE victories BETWEEN 50 AND 100;
+''')).fetchall()
+```
+
+- We can also use `NOT IN` and `NOT BETWEEN` to exclude values
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT * FROM drivers WHERE team NOT IN ('Ferrari', 'Mercedes');
+''')).fetchall()
+```
+:::
+
+## `LIKE`, `ILIKE`, and `SIMILAR TO` operators
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We can use the `LIKE` operator to filter data based on patterns
+- `%` is a wildcard that matches any sequence of characters
+- `_` is a wildcard that matches any single character
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT * FROM drivers WHERE driver_name LIKE 'L%';
+''')).fetchall()
+```
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT * FROM drivers WHERE team LIKE 'M______s';
+''')).fetchall()
+```
+
+- We can also use `NOT LIKE` to exclude patterns
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT * FROM drivers WHERE driver_name NOT LIKE 'L%';
+''')).fetchall()
+```
+:::
+
+:::{.column width="50%"}
+- `ILIKE` is the case-insensitive version of `LIKE`
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT * FROM drivers WHERE driver_name ILIKE 'l%';
+''')).fetchall()
+```
+
+- `SIMILAR TO` is another operator that allows for more complex patterns
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT * FROM drivers WHERE driver_name SIMILAR TO 'L[a-z]%';
+''')).fetchall()
+```
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT * FROM drivers
+WHERE team SIMILAR TO '%(Racing|Martin)';
+''')).fetchall()
+``` 
+
+- More about [regex in PostgreSQL](https://www.postgresql.org/docs/13/functions-matching.html)
+:::
+:::
+:::
+
+## Try it yourself! 🤓 {#sec:exercise01}
+
+:::{style="margin-top: 50px; font-size: 24px;"}
+- Now it's your turn to practice!
+- Find all drivers whose names start with 'M'
+- Find drivers whose nationality contain exactly 7 characters
+- List drivers whose names start with either 'L' or 'M'
+- Find drivers who have won between 1 and 10 races
+- [[Appendix 01]{.button}](#sec:appendix01)
+:::
+
+# Missing data {background-color="#2d4563"}
+
+## `IS NULL` and `COALESCE` operators
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- We can also use `IS NULL` to check for missing values
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT * FROM drivers WHERE victories IS NULL;
+''')).fetchall()
+```
+
+- We can fill missing values with `COALESCE`
+- It is a simple impuation method that replaces missing values with a constant
+- The syntax is `COALESCE(column_name, value)`
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT driver_name, COALESCE(victories, 30) FROM drivers;
+''')).fetchall()
+```
+:::
+
+## `COALESCE` with subqueries
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- We can also use `COALESCE` with subqueries
+- Subqueries are used when we need to compute a value based on another query, usually for aggregation purposes
+- In this example, we compute the average number of victories and use it to fill missing values (rounding to 2 decimal places)
+- Note the use of `::int` to convert the result to an integer
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT 
+  driver_name,
+  COALESCE(victories, 
+    (SELECT AVG(victories)::int
+     FROM drivers 
+     WHERE victories IS NOT NULL)) 
+FROM drivers;
+''')).fetchall()
+```
+::: 
+
+# Window functions {background-color="#2d4563"}
+
+## Window functions
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- Window functions are used to compute values based on a group of rows
+- They are similar to aggregation functions, but they [do not reduce the number of rows]{.alert}
+- The syntax is `function() OVER (PARTITION BY column ORDER BY column)`
+- We can use `ROW_NUMBER()`, `RANK()`, `DENSE_RANK()`, `LAG()`, `LEAD()`, and many others
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+INSERT INTO drivers (driver_name, team, nationality, victories)
+VALUES 
+    ('Valtteri Bottas', 'Mercedes', 'Finnish', 10),
+    ('Sergio Perez', 'Red Bull Racing', 'Mexican', 5),
+    ('Lando Norris', 'McLaren', 'British', 2),
+    ('Esteban Ocon', 'Ferrari', 'French', 1)
+''')) 
+
+connection.execute(text('''
+SELECT driver_name, team, victories,
+    ROUND(AVG(victories) OVER (), 2) AS avg_victories,
+    ROUND(AVG(victories) OVER (PARTITION BY team), 2) AS avg_victories_team,
+    RANK() OVER (ORDER BY victories DESC) AS rank
+FROM drivers
+ORDER BY victories DESC;
+''')).fetchall()
+```
+:::
+
+## Window functions versus `GROUP BY`
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+### `GROUP BY`
+
+- `GROUP BY` [reduces the number of rows]{.alert} in the result set
+- It is used to aggregate data based on a column
+- It is useful to compute statistics for groups of data, but it is not as flexible as window functions
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT team, ROUND(AVG(victories), 2) AS avg_victories
+FROM drivers
+GROUP BY team;
+''')).fetchall()
+```
+:::
+
+:::{.column width="50%"}
+### Window functions
+
+- Window functions can have [multiple partitions]{.alert} and [orderings]{.alert}, and they are particularly useful for time series data, when we need to compute values based on a time window
+- For instance, they can be used to calculate moving averages, cumulative sums, and other statistics
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT 
+    driver_name, 
+    team, 
+    victories,
+    ROUND(AVG(victories) OVER (PARTITION BY team), 2) AS avg_victories_team,
+    RANK() OVER (ORDER BY victories DESC) AS rank,
+    RANK() OVER (PARTITION BY team ORDER BY victories DESC) AS rank_team
+FROM drivers
+WHERE victories IS NOT NULL
+ORDER BY rank ASC;
+''')).fetchall()
+``` 
+:::
+:::
+:::
+
+## Try it yourself! 🤓 {#sec:exercise02}
+
+:::{style="margin-top: 50px; font-size: 24px;"}
+- Select the variables `driver_name`, `nationality`, and `victories` from the `drivers` table
+- Create a column called `rank_nationality` that ranks drivers based on the number of victories and their nationality
+- Drop missing values in the `victories` column
+- Order the results by `rank_nationality`
+- [[Appendix 02]{.button}](#sec:appendix02)
+:::
+
+# String functions {background-color="#2d4563"}
+
+## String functions
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- SQL has several string functions that can be used to manipulate text data
+- We can use `LEFT()`, `RIGHT()`, `LENGTH()`, `UPPER()`, `LOWER()`, `INITCAP()`, `TRIM()`, `REPLACE()`, and many others
+- They are usually very similar to their Python counterparts (and straightforward to use!)
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT driver_name, 
+    LEFT(driver_name, 5) AS first_name,
+    RIGHT(driver_name, 8) AS last_name,
+    LENGTH(driver_name) AS name_length,
+    UPPER(driver_name) AS upper_name,
+    LOWER(driver_name) AS lower_name,
+    INITCAP(driver_name) AS initcap_name
+FROM drivers;
+''')).fetchall()
+```
+:::
+
+## String functions
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- We can also use `TRIM()` to remove leading and trailing spaces
+- `STRPOS()` returns the position of a substring in a string
+- `REPLACE()` is used to replace a substring with another substring
+- `CONCAT()` concatenates strings
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT driver_name, 
+    TRIM(driver_name) AS trimmed_name,
+    STRPOS(driver_name, 'a') AS a_position,
+    REPLACE(driver_name, ' ', '_') AS replaced_name,
+    CONCAT(driver_name, ' is a great driver!') AS message
+FROM drivers;
+''')).fetchall()
+```
+:::
+
+# CASE statement <br> (If-Then-Else) {background-color="#2d4563"}
+
+## `CASE` statement
+
+:::{style="margin-top: 50px; font-size: 17px;"}
+:::{.columns}
+:::{.column width="50%"}
+- SQL does not have an `IF` statement, but we can use the `CASE` statement
+- It works exactly like `if` statements in other programming languages
+- The syntax is `CASE WHEN condition THEN value ELSE value END`
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT driver_name, 
+    CASE 
+        WHEN victories > 50 THEN 'Great driver'
+        ELSE 'Good driver'
+    END
+FROM drivers;
+''')).fetchall()
+```
+:::
+
+:::{.column width="50%"}
+- We can also use `CASE` with multiple conditions
+- The `AS` keyword is used to rename the column
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT driver_name, 
+    CASE 
+        WHEN victories > 50 THEN 'Great driver'
+        WHEN victories < 10 THEN 'Average driver'
+        ELSE 'No data'
+    END AS driver_status
+FROM drivers;
+''')).fetchall()
+```
+
+- `CASE` can be combined with `IN` and `BETWEEN` operators
+- It is a very versatile statement! 🤓
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT driver_name, 
+    CASE 
+        WHEN victories IN (5, 54) THEN 'Good driver'
+        WHEN victories BETWEEN 55 AND 110 THEN 'Great driver'
+        ELSE 'No data'
+    END AS driver_status
+FROM drivers;
+''')).fetchall()
+```
+:::
+:::
+:::
+
+## `CASE` for missing values
+
+:::{style="margin-top: 50px; font-size: 19px;"}
+- `CASE` can also be useful to fill missing values with conditions
+- Let's add some missing values to the table
+  
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT * FROM drivers WHERE victories IS NULL;
+''')).fetchall()
+```
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT driver_name, 
+    CASE 
+        WHEN nationality IS NULL THEN 'Spanish'
+        ELSE nationality
+    END,
+    CASE 
+        WHEN victories IS NULL THEN 30
+        ELSE victories
+    END
+FROM drivers
+''')).fetchall()
+```
+
+- Note the use of [commas to separate the columns]{.alert}
+:::
+
+## Try it yourself! 🤓 {#sec:exercise03}
+
+:::{style="margin-top: 50px; font-size: 24px;"}
+- Let's see if you can use the `CASE` statement
+- Create a column called `driver_level` that classifies drivers as 'Beginner', 'Intermediate', or 'Expert' based on the number of victories
+  - 'Beginner' if victories < 10
+  - 'Intermediate' if victories between 10 and 100
+  - 'Expert' if victories > 100
+- [[Appendix 03]{.button}](#sec:appendix03) 
+:::
+
+# Using SQL with `pandas` 🐼 {background-color="#2d4563"}
+
+## Using SQL with `pandas`
+
+:::{style="margin-top: 50px; font-size: 19px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We all know that `pandas` is great! 😎
+- And it can be even better when combined with SQL queries
+- We can use the `read_sql()` method to read data from a SQL query
+
+```{python}
+#| echo: true
+#| eval: true
+import pandas as pd
+
+# Read data from SQL query
+df = pd.read_sql('SELECT * FROM drivers', connection)
+df
+```
+:::
+
+:::{.column width="50%"}
+- You can pass any SQL query to the `read_sql()` method
+
+```{python}
+#| echo: true
+#| eval: true
+pd.read_sql(
+  "SELECT * FROM drivers WHERE victories > 50 AND nationality = 'British'", 
+  connection
+)
+```
+
+<br>
+
+- Yes, it is that simple! 🤓
+- And you all now want to kill me for not showing this before! 😂
+- Just connect to the database using `sqlalchemy` and use `read_sql()` to read the data if that's what you want
+- Note the use of double quotes for the SQL query and single quotes for the strings
+- SQL only accepts single quotes, so be careful with that 😉
+:::
+:::
+:::
+
+## Using SQL with `pandas`
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We can then use any `pandas` method to manipulate the data
+
+```{python}
+#| echo: true
+#| eval: true
+df.groupby('team').agg(avg_victories=('victories', 'mean')).dropna()
+```
+
+- Using `.query()` to filter data
+
+```{python}
+#| echo: true
+#| eval: true
+df.query('victories > 50')
+```
+:::
+
+:::{.column width="50%"}
+- We can also write data to a SQL table with the `to_sql()` method
+
+```{python}
+#| echo: true
+#| eval: true
+df.to_sql('drivers_copy', connection, if_exists='replace', index=False)
+
+# Check if the data were written correctly
+pd.read_sql('SELECT * FROM drivers_copy', connection)
+```
+:::
+:::
+:::
+
+## Try it yourself! 🤓 {#sec:exercise04}
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- Create a new SQL table called `employees` with the following columns:
+  - `employee_id` (serial, primary key)
+  - `employee_name` (varchar(50))
+  - `department` (varchar(50))
+  - `salary` (int)
+- Remember to drop the table if it already exists
+- Insert some data into the table and read it with `pandas` (you can see the example below)
+- Commit the changes
+- Use `pandas` to compute the average salary by department
+
+```{python}
+#| echo: true
+#| eval: false
+# Create employees table first, then insert data
+'Alice', 'HR', 5000
+'Bob', 'IT', 6000
+'Charlie', 'HR', 7000
+'David', 'IT', 8000
+```
+
+- [[Appendix 04]{.button}](#sec:appendix04)
+:::
+
+# Pivot tables in SQL 📄 {background-color="#2d4563"}
+
+## Pivot tables in SQL
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- We have already seen how to pivot tables in `pandas`
+- But we can also pivot tables in SQL too
+- We can use the `CASE` function to pivot tables, which is similar to the `pivot_table()` method in `pandas`
+- Let's create another table with student scores
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+DROP TABLE IF EXISTS student_scores;
+CREATE TABLE student_scores (
+    student_name VARCHAR(50),
+    subject VARCHAR(50),
+    score INTEGER,
+    term VARCHAR(10)
+);
+
+INSERT INTO student_scores (student_name, subject, score, term)
+VALUES 
+    ('Alice', 'Maths', 90, 'Q1'),
+    ('Alice', 'Maths', 80, 'Q2'),
+    ('Alice', 'Science', 80, 'Q1'),
+    ('Alice', 'Science', 75, 'Q2'),
+    ('Bob', 'Maths', 80, 'Q1'),
+    ('Bob', 'Maths', 100, 'Q2'),
+    ('Bob', 'Science', 80, 'Q1'),
+    ('Bob', 'Science', 70, 'Q2'),
+    ('Charles', 'Maths', 70, 'Q1'),
+    ('Charles', 'Maths', 75, 'Q2'),
+    ('Charles', 'Science', 90, 'Q1'),
+    ('Charles', 'Science', 85, 'Q2')
+'''))
+
+connection.commit()
+
+connection.execute(text('SELECT * FROM student_scores')).fetchall()
+```
+:::
+
+## Pivot tables in SQL
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- Now let's pivot the table using the `CASE` function
+- We will focus on the students' scores in Math and Science
+- Let's calculate their average scores for each subject
+
+```{python}
+#| echo: true
+#| eval: true
+df2 = pd.read_sql('''
+SELECT 
+    student_name,
+    AVG(CASE WHEN subject = 'Maths' THEN score END) as Maths,
+    AVG(CASE WHEN subject = 'Science' THEN score END) as Science,
+    AVG(score) as total
+FROM student_scores
+GROUP BY student_name
+ORDER BY total DESC;
+''', connection)
+
+df2
+```
+:::
+
+## Pivot tables in SQL
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- PostgreSQL also has a `crosstab` function that can be used to pivot tables
+- It is a bit more complex than the `CASE` function, but it works fine
+- The syntax is `crosstab(text, text)` and it requires the `tablefunc` extension
+- We can install the extension with the command below
+
+```{python}
+#| echo: true
+#} eval: true
+connection.execute(text('CREATE EXTENSION IF NOT EXISTS tablefunc;'))
+connection.commit()
+
+df3 = pd.read_sql('''
+DROP TABLE IF EXISTS ct;
+SELECT student_name, Maths, Science, (Maths + Science)/2 as Total
+FROM crosstab(
+    'SELECT student_name, subject, AVG(score)
+     FROM student_scores
+     GROUP BY student_name, subject
+     ORDER BY student_name, subject',
+    'SELECT DISTINCT subject FROM student_scores ORDER BY subject'
+) AS ct (
+    student_name VARCHAR, Maths NUMERIC, Science NUMERIC
+);
+''', connection)
+
+df3
+```
+:::
+
+## Pivot tables in SQL
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Let's break the code down 
+- We first dropped the table `ct` if it already exists, just to avoid conflicts
+  - `DROP TABLE IF EXISTS ct;`
+- We then used the `crosstab` function to pivot the table
+  - `SELECT student_name, subject, AVG(score) FROM student_scores GROUP BY student_name, subject ORDER BY student_name, subject`
+  - `SELECT DISTINCT subject FROM student_scores ORDER BY subject`
+- We calculated the total score as the average of the scores in Maths and Science
+:::
+
+:::{.column width="50%"}
+- The `crosstab` function requires two arguments
+  - The first argument is the query to retrieve the data
+  - The second argument is the query to retrieve the column names
+- We then used the `AS` keyword to rename the columns and assigned the result to a new table called `ct`
+  - `AS ct (student_name VARCHAR, Maths NUMERIC, Science NUMERIC)`
+- And that's it! 🤓
+:::
+:::
+:::
+
+# Conclusion 📚 {background-color="#2d4563"}
+
+## Conclusion
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- SQL is cool, SQL + Python is even cooler! 😎
+- We can use `psycopg2` and `sqlalchemy` to connect to a PostgreSQL database
+- We can execute SQL commands with `execute()` and `fetchall()`
+- Functions like `IN`, `BETWEEN`, `LIKE`, `CASE`, and window functions are very useful
+- There are also many string functions that can be used to manipulate text data
+- We can fill missing values with `COALESCE` and pivot tables with the `CASE` function or the `crosstab` function
+- And we can use `pandas` to read data from SQL queries and manipulate it
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+[![](figures/pandasql5.jpg){width="100%"}](https://www.sqlalchemy.org/){data-modal-type="iframe"}
+
+Source: [Susan Ibach](https://susanibach.wordpress.com/2020/01/07/pandas-for-sql-lovers-select-from-table/)
+:::
+:::
+:::
+:::
+
+# And that's all for today! 🚀 {background-color="#2d4563"}
+
+# Have a great day! 😊 {background-color="#2d4563"}
+
+## Appendix 01 {#sec:appendix01}
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+- Find all drivers whose names start with 'M'
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT * FROM drivers WHERE driver_name LIKE 'M%';
+''')).fetchall()
+```
+
+- Find drivers whose nationality contains exactly 7 characters
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT * FROM drivers WHERE nationality LIKE '_______';
+''')).fetchall()
+```
+
+- Or we can use the `LENGTH` function
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT * FROM drivers WHERE LENGTH(nationality) = 7;
+''')).fetchall()
+```
+
+[[Back to exercise]{.button}](#sec:exercise01)
+:::
+
+## Appendix 01
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+- List drivers whose names start with either 'L' or 'M'
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT * FROM drivers WHERE driver_name LIKE 'L%' OR driver_name LIKE 'M%';
+''')).fetchall()
+```
+
+- Find drivers who have won between 10 and 50 races
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT * FROM drivers WHERE victories BETWEEN 1 AND 10;
+''')).fetchall()
+```
+
+[[Back to exercise]{.button}](#sec:exercise01)
+:::
+
+## Appendix 02 {#sec:appendix02}
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+- Create a column called `rank_nationality` that ranks drivers based on the number of victories and their nationality
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT driver_name, nationality, victories,
+    RANK() OVER (PARTITION BY nationality ORDER BY victories DESC) AS rank_nationality
+FROM drivers
+WHERE victories IS NOT NULL
+ORDER BY rank_nationality
+''')).fetchall()
+```
+
+[[Back to exercise]{.button}](#sec:exercise02)
+:::
+
+
+## Appendix 03 {#sec:appendix03}
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+- Create a column called `driver_level` that classifies drivers as 'Beginner', 'Intermediate', or 'Expert' based on the number of victories
+  - `Beginner` if victories < 10
+  - `Intermediate` if victories between 10 and 50
+  - `Expert` if victories > 50
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+SELECT driver_name, 
+    CASE 
+        WHEN victories < 10 THEN 'Beginner'
+        WHEN victories BETWEEN 10 AND 100 THEN 'Intermediate'
+        ELSE 'Expert'
+    END AS driver_level
+FROM drivers;
+''')).fetchall()
+```
+
+[[Back to exercise]{.button}](#sec:exercise02)
+:::
+
+## Appendix 04 {#sec:appendix04}
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+- Create a new SQL table called `employees` with the following columns:
+  - `employee_id` (serial, primary key)
+  - `employee_name` (varchar(50))
+  - `department` (varchar(50))
+  - `salary` (int)
+- Commit the changes
+- Insert some data into the table and read it with `pandas` (you can see the example below)
+- Use `pandas` to compute the average salary by department
+
+```{python}
+#| echo: true
+#| eval: true
+connection.execute(text('''
+DROP TABLE IF EXISTS employees;
+CREATE TABLE employees (
+    employee_id SERIAL PRIMARY KEY,
+    employee_name VARCHAR(50),
+    department VARCHAR(50),
+    salary INT
+);
+'''))
+
+connection.execute(text('''
+INSERT INTO employees (employee_name, department, salary)
+VALUES 
+    ('Alice', 'HR', 5000),
+    ('Bob', 'IT', 6000),
+    ('Charlie', 'HR', 7000),
+    ('David', 'IT', 8000)
+'''))
+
+connection.commit()
+
+# Read data with pandas
+pd.read_sql('SELECT * FROM employees', connection)
+
+# Compute average salary by department
+pd.read_sql('SELECT department, AVG(salary) FROM employees GROUP BY department', connection)
+```
+
+[[Back to exercise]{.button}](#sec:exercise03)
+:::
+
+## Appendix 05 {#sec:appendix05}
+### Cleaning all tables
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+- I have encountered some issues with `psycopg2` when trying to drop tables
+- So I created a function to clean all tables in the database
+- If you have a similar issue, you can use the function below
+- Replace the default values with your database name, user, and password
+
+```{python}
+#| echo: true
+#| eval: false
+from sqlalchemy import create_engine, text, inspect
+import time
+
+engine = create_engine('postgresql+psycopg2://postgres:postgres@localhost:5432/postgres', future=True)
+connection = engine.connect()
+
+def clean_database(engine):
+    with engine.connect() as conn:
+        try:
+            # Get inspector to check existing tables
+            inspector = inspect(engine)
+            existing_tables = inspector.get_table_names()
+            
+            if not existing_tables:
+                print("No tables found in database")
+                return
+                
+            print(f"Found {len(existing_tables)} tables: {existing_tables}")
+            
+            # Kill other connections
+            conn.execute(text("""
+                SELECT pg_terminate_backend(pid) 
+                FROM pg_stat_activity 
+                WHERE pid <> pg_backend_pid()
+                AND datname = current_database()
+            """))
+            
+            conn.execute(text("ROLLBACK"))
+            conn.execute(text("SET statement_timeout = '30s'"))
+            
+            # Only drop tables that exist
+            for table in existing_tables:
+                try:
+                    conn.execute(text(f"DROP TABLE IF EXISTS {table} CASCADE"))
+                    print(f"Dropped {table}")
+                    conn.commit()
+                    time.sleep(1)
+                except Exception as e:
+                    print(f"Error with {table}: {str(e)}")
+                    conn.execute(text("ROLLBACK"))
+                    
+        except Exception as e:
+            print(f"Fatal error: {str(e)}")
+            conn.execute(text("ROLLBACK"))
+
+# Execute
+clean_database(engine)
+```
+
+[[Back to the lecture]{.button}](#sec:tables)
+:::
