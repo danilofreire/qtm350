@@ -196,14 +196,14 @@ Suggested references:
  
 ### Wednesday, March 19:
 
-- Lecture 17: **Quiz 03: AI-Assisted Programming and Cloud Computing (6%)**.
+- Lecture 16: **Quiz 03: AI-Assisted Programming and Cloud Computing (6%)**.
 - **Assignment 07:** Problem Set 07.
 
 ## Module 06: Introduction to SQL Databases 
 
 ### Monday, March 24:
 
-- Lecture 18: [Introduction to SQL: Data Types, Tables, and Queries](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-18/18-introduction-sql.html).
+- Lecture 17: [Introduction to SQL: Data Types, Tables, and Queries](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-17/17-introduction-sql.html).
 - **Instructions for the Final Project**.
 
 Suggested references:
@@ -217,14 +217,14 @@ Suggested references:
 
 ### Wednesday, March 26:
 
-- Lecture 19: [SQL in Python: Connecting to Databases with Pandas](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-18/18-sql-python.html).
+- Lecture 18: [SQL in Python: Connecting to Databases with Pandas](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-18/18-sql-python.html).
 - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=96842352-f74d-4a4b-8833-2c134d27502c&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 - **Assignment 07 due (5%).**
 - **Assignment 08:** [Problem Set 08](https://github.com/danilofreire/qtm350/blob/main/assignments/09-assignment.sql).
 
 ### Monday, March 31:
 
-- Lecture 20: [Merging Tables in SQL](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-19/19-sql-tables.html).
+- Lecture 19: [Merging Tables in SQL](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-19/19-sql-tables.html).
 - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=8743a497-266f-4422-9a71-16b062cfe705&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 
 Suggested references:
@@ -236,7 +236,7 @@ Suggested references:
 
 ### Wednesday, April 02:
 
-- Lecture 21: **Quiz 04: SQL Databases (6%)**.
+- Lecture 20: **Quiz 04: SQL Databases (6%)**.
 - **Assignment 08 due (5%).**
 - **Assignment 09:** [Problem Set 10](https://github.com/danilofreire/qtm350/blob/main/assignments/10-assignment.ipynb).
 
@@ -244,7 +244,7 @@ Suggested references:
 
 ### Monday, April 07:
 
-- Lecture 22: [Parallel Computing with Dask](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-21/21-parallel-computing.html).
+- Lecture 21: [Parallel Computing with Dask](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-21/21-parallel-computing.html).
 
 Suggested references:
 
@@ -255,7 +255,7 @@ Suggested references:
 
 ### Wednesday, April 09:
 
-- Lecture 23: [Application: Parallelising Data Analysis with Dask and AutoML](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-22/22-parallel-automl.html).
+- Lecture 22: [Application: Parallelising Data Analysis with Dask and AutoML](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-22/22-parallel-automl.html).
 - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=a2403e39-2c84-473b-8e78-ea0889581b0c&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 - **Assignment 09 due (5%).**
 - **Assignment 10:** Problem Set 10
@@ -270,7 +270,7 @@ Suggested references:
 
 ### Monday, April 14:
 
-- Lecture 24: [Dependency Management, Virtual Environments, and Containers](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-23/23-containers.html).
+- Lecture 23: [Dependency Management, Virtual Environments, and Containers](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-23/23-containers.html).
 
 Suggested references:
 
@@ -279,16 +279,16 @@ Suggested references:
 
 ### Wednesday, April 16:
 
-- Lecture 25: [Docker for Data Science](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-24/24-docker.html).
+- Lecture 24: [Docker for Data Science](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-24/24-docker.html).
 - **Assignment 10 due (5%).**
 
 ### Monday, April 21:
 
-- Lecture 26: Review and final project discussion.
+- Lecture 25: Review and final project discussion.
 
 ### Wednesday, April 23:
 
-- Lecture 27: **Quiz 05: Dask, Docker and Containers (6%)**.
+- Lecture 26: **Quiz 05: Dask, Docker and Containers (6%)**.
 
 ### Monday, April 28:
 
