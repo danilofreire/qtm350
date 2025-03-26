@@ -218,9 +218,9 @@ Suggested references:
 ### Wednesday, March 26:
 
 - Lecture 18: [SQL in Python: Connecting to Databases with Pandas](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-18/18-sql-python.html).
-- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=96842352-f74d-4a4b-8833-2c134d27502c&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=ebd517ed-7bf1-447c-8e30-9c5abb75ef16&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 - **Assignment 07 due (5%).**
-- **Assignment 08:** [Problem Set 08](https://github.com/danilofreire/qtm350/blob/main/assignments/09-assignment.sql).
+- **Assignment 08:** Problem Set 08.
 
 ### Monday, March 31:
 
