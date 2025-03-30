@@ -211,9 +211,9 @@ Suggested references:
 - [Mode Analytics: SQL Tutorial](https://mode.com/sql-tutorial/).
 - [Real Python: SQL Databases and SQLite](https://realpython.com/python-sql-libraries/).
 - [Khan Academy: SQL Basics](https://www.khanacademy.org/computing/computer-programming/sql). (Note: Khan Academy is a great resource for learning SQL and other programming languages).
-- [Coursera: PostgreSQL for Everybody](https://www.coursera.org/specializations/postgresql-for-everybody).
-- [PostgreSQL Tutorial](https://www.postgresqltutorial.com/).
-- [PostgreSQL Documentation: SQL Commands](https://www.postgresql.org/docs/current/sql-commands.html). (Note: For reference only).
+- [SQLite Cheat Sheet](https://www.sqlitetutorial.net/sqlite-cheat-sheet/).
+- [SQLite Documentation](https://www.sqlite.org/docs.html).
+- [SQL for Data Science](https://www.coursera.org/learn/sql-for-data-science?irgwc=1).
 
 ### Wednesday, March 26:
 
@@ -225,20 +225,20 @@ Suggested references:
 ### Monday, March 31:
 
 - Lecture 19: [Merging Tables in SQL](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-19/19-sql-tables.html).
-- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=8743a497-266f-4422-9a71-16b062cfe705&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=0d1466b5-ef43-4ab3-90aa-c46ae0554f19&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 
 Suggested references:
 
 - [Pandas Documentation: SQL Databases](https://pandas.pydata.org/docs/user_guide/io.html#sql-queries).
 - [Real Python: Working with SQLite Databases Using Python and Pandas](https://realpython.com/python-sql-libraries/).
 - [Mode Analytics: SQL Joins](https://mode.com/sql-tutorial/sql-joins/).
-- [PostgreSQL Documentation: Joins Between Tables](https://www.postgresql.org/docs/current/tutorial-join.html).
+- [SQL Joins Tutorial](https://www.sqlitetutorial.net/sqlite-join/).
 
 ### Wednesday, April 02:
 
 - Lecture 20: **Quiz 04: SQL Databases (6%)**.
 - **Assignment 08 due (5%).**
-- **Assignment 09:** [Problem Set 10](https://github.com/danilofreire/qtm350/blob/main/assignments/10-assignment.ipynb).
+- **Assignment 09:** Problem Set 09.
 
 ## Module 07: Parallel Computing
 
