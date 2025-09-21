@@ -99,17 +99,6 @@ Suggested references:
 - **Assignment 03 due (5%).**
 - **Assignment 04:** [Problem Set 04](https://github.com/danilofreire/qtm350/blob/main/assignments/04-assignment.ipynb).
 
-Suggested references:
-
-- [Quarto official website](https://quarto.org/).
-- Awesome Quarto: <https://github.com/mcanouil/awesome-quarto>. Note: this repository contains dozens of tutorials, examples, and resources. 
-- Çetinkaya-Rundel, M. & Lowndes, J. S. (2022) [Keynote talk: Hello Quarto: Share • Collaborate • Teach • Reimagine](https://www.youtube.com/watch?v=p7Hxu4coDl8). [Slides](https://mine.quarto.pub/hello-quarto/#/hello-quarto-title) and [source code](https://github.com/mine-cetinkaya-rundel/hello-quarto). This is one of the nicest Quarto presentations I have seen.
-- [Getting Started with Quarto (YouTube)](https://www.youtube.com/watch?v=_f3latmOhew&t=2s). Note: Posit (formerly RStudio) has a series of tutorials on Quarto on their YouTube channel. You can find their playlist [here](https://www.youtube.com/playlist?list=PL9HYL-VRX0oQI8fVioFxMTBrViFnRX_Df).
-- [Markdown Guide](https://www.markdownguide.org/basic-syntax/).
-- [Jupyter Notebooks Documentation](https://jupyter.org/).
-- [Codecademy - How to use Jupyter Notebooks](https://www.codecademy.com/article/how-to-use-jupyter-notebooks)
-- [Course tutorial: Jupyter and Markdown](https://danilofreire.github.io/qtm350/tutorials/02-jupyter-markdown-tutorial.html)
-
 ### September 29, 2025:
 
 - Lecture 09: [Introduction to Quarto](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-08/08-quarto.html).
@@ -120,6 +109,7 @@ Suggested references:
 - Awesome Quarto: <https://github.com/mcanouil/awesome-quarto>. Note: this repository contains dozens of tutorials, examples, and resources. 
 - Çetinkaya-Rundel, M. & Lowndes, J. S. (2022) [Keynote talk: Hello Quarto: Share • Collaborate • Teach • Reimagine](https://www.youtube.com/watch?v=p7Hxu4coDl8). [Slides](https://mine.quarto.pub/hello-quarto/#/hello-quarto-title) and [source code](https://github.com/mine-cetinkaya-rundel/hello-quarto). This is one of the nicest Quarto presentations I have seen.
 - [Getting Started with Quarto (YouTube)](https://www.youtube.com/watch?v=_f3latmOhew&t=2s). Note: Posit (formerly RStudio) has a series of tutorials on Quarto on their YouTube channel. You can find their playlist [here](https://www.youtube.com/playlist?list=PL9HYL-VRX0oQI8fVioFxMTBrViFnRX_Df).
+- [Markdown Guide](https://www.markdownguide.org/basic-syntax/).
 
 ### October 1, 2025:
 
@@ -169,7 +159,7 @@ Suggested references:
 - Lecture 14: [Introduction to Cloud Computing](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-14/14-cloud.html).
 - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=8691380c-2ccb-49fa-aab1-471754aeb24c&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 - **Assignment 06 due (5%).**
-- **Assignment 07:** [Problem Set 07.](https://github.com/danilofreire/qtm350/blob/main/assignments/07-assignment.ipynb).
+- **Assignment 07:** [Problem Set 07.](https://github.com/danilofreire/qtm350/blob/main/assignments/07-assignment.ipynb)
 
 Suggested references:
 
