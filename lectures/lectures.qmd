@@ -88,7 +88,7 @@ Suggested references:
 
 ### September 22, 2025:
 
-- Lecture 07: [Git and GitHub Continued](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-05/05-git-github.html).
+- Lecture 07: [More Git Commands, CLI and Git Practice](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-07/07-practice.html).
 - [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=0c41d485-25b6-44a6-a825-70854f1953cb&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 
 ## Module 03: Literate Programming with Markdown, Quarto, and Jupyter
