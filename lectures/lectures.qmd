@@ -101,7 +101,7 @@ Suggested references:
 
 ### September 29, 2025:
 
-- Lecture 09: [Introduction to Quarto](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-08/08-quarto.html).
+- Lecture 09: [Introduction to Quarto](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-09/09-quarto.html).
 
 Suggested references:
 
@@ -113,7 +113,7 @@ Suggested references:
 
 ### October 1, 2025:
 
-- Lecture 10: [Writing Documents, Presentations, and Websites with Quarto](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-09/09-more-quarto.html).
+- Lecture 10: [Writing Documents, Presentations, and Websites with Quarto](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-10/10-more-quarto.html).
 - **Assignment 04 due (5%).**
 - **Assignment 05:** [Problem Set 05](https://github.com/danilofreire/qtm350/blob/main/assignments/04-assignment.ipynb).
 - [Kahoot quiz](https://play.kahoot.it/v2/?quizId=b3cb9962-bfcd-4b44-a3f4-4357b1442eda&hostId=05eb977d-4f8a-440e-9e45-95212b29d103)
