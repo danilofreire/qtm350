@@ -199,6 +199,7 @@ Suggested references:
 
 - Lecture 16: [Introduction to SQL: Data Types, Tables, and Queries](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-16/16-introduction-sql.html).
 - **Instructions for the Final Project**.
+- [Kahoot Quiz](https://play.kahoot.it/v2/?quizId=1ee46eb8-e667-4132-9895-4dd72ef3c561&hostId=05eb977d-4f8a-440e-9e45-95212b29d103).
 
 Suggested references:
 
