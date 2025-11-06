@@ -172,7 +172,7 @@
     "href": "assignments/assignments.html#assignment-timeline",
     "title": "Assignments",
     "section": "Assignment Timeline",
-    "text": "Assignment Timeline\n\n\n\nAssignment\nSubmission Deadline\n\n\n\n\nAssignment 01\n2025-09-10\n\n\nAssignment 02\n2025-09-17\n\n\nAssignment 03\n2025-09-24\n\n\nAssignment 04\n2025-10-01\n\n\nAssignment 05\n2025-10-08\n\n\nAssignment 06\n2025-10-15\n\n\nAssignment 07\n2025-10-22\n\n\nAssignment 08\n2025-11-05\n\n\nAssignment 09\n2025-11-12\n\n\nAssignment 10\n2025-11-19"
+    "text": "Assignment Timeline\n\n\n\nAssignment\nSubmission Deadline\n\n\n\n\nAssignment 01\n2025-09-10\n\n\nAssignment 02\n2025-09-17\n\n\nAssignment 03\n2025-09-24\n\n\nAssignment 04\n2025-10-01\n\n\nAssignment 05\n2025-10-08\n\n\nAssignment 06\n2025-10-15\n\n\nAssignment 07\n2025-10-22\n\n\nAssignment 08\n2025-11-12\n\n\nAssignment 09\n2025-11-19\n\n\nAssignment 10\n2025-12-03"
   },
   {
     "objectID": "assignments/assignments.html#in-class-quizzes",
@@ -494,7 +494,7 @@
     "href": "lectures/lectures.html#module-08-containers-and-reproducibility",
     "title": "Lectures",
     "section": "Module 08: Containers and Reproducibility",
-    "text": "Module 08: Containers and Reproducibility\n\nNovember 19, 2025:\n\nLecture 23: Dependency Management, Virtual Environments, and Containers.\nAssignment 09 due (5%).\nAssignment 10: Problem Set 10..\n\nSuggested references:\n\nDocker Documentation\nComposeCraft. A tool to help you manage, edit and share docker compose files in a GUI way.\n\n\n\nNovember 24, 2025:\n\nLecture 24: Docker for Data Science.\nAssignment 10 due (5%).\n\n\n\nDecember 1, 2025:\n\nLecture 25: Course Review.\nKahoot Quiz.\n\n\n\nDecember 3, 2025:\n\nLecture 26: Quiz 05: Dask, Docker and Containers (6%).\n\n\n\nDecember 8, 2025:\n\nNo lecture. Students can drop in for help with their projects.\nFinal Project due (20%)."
+    "text": "Module 08: Containers and Reproducibility\n\nNovember 19, 2025:\n\nLecture 23: Dependency Management, Virtual Environments, and Containers.\nAssignment 09 due (5%).\nAssignment 10: Problem Set 10..\n\nSuggested references:\n\nDocker Documentation\nComposeCraft. A tool to help you manage, edit and share docker compose files in a GUI way.\n\n\n\nNovember 24, 2025:\n\nLecture 24: Docker for Data Science.\n\n\n\nDecember 1, 2025:\n\nLecture 25: Course Review.\nKahoot Quiz.\n\n\n\nDecember 3, 2025:\n\nLecture 26: Quiz 05: Dask, Docker and Containers (6%).\nAssignment 10 due (5%).\n\n\n\nDecember 8, 2025:\n\nNo lecture. Students can drop in for help with their projects.\nFinal Project due (20%)."
   },
   {
     "objectID": "lectures/lectures.html#module-01-introduction",

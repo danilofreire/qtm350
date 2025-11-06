@@ -278,7 +278,6 @@ Suggested references:
 ### November 24, 2025:
 
 - Lecture 24: [Docker for Data Science](https://raw.githack.com/danilofreire/qtm350/main/lectures/lecture-24/24-docker.html).
-- **Assignment 10 due (5%).**
 
 ### December 1, 2025:
 
@@ -288,6 +287,7 @@ Suggested references:
 ### December 3, 2025:
 
 - Lecture 26: **Quiz 05: Dask, Docker and Containers (6%)**.
+- **Assignment 10 due (5%).**
 
 ### December 8, 2025:
 

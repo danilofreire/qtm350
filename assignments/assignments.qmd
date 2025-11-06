@@ -23,9 +23,9 @@ When submitting, please name your files as follows: `assignment-01-your-name.pdf
 | [Assignment 05](https://github.com/danilofreire/qtm350/blob/main/assignments/05-assignment.ipynb) | 2025-10-08 |
 | [Assignment 06](https://github.com/danilofreire/qtm350/blob/main/assignments/06-assignment.ipynb) | 2025-10-15 |
 | [Assignment 07](https://github.com/danilofreire/qtm350/blob/main/assignments/07-assignment.ipynb) | 2025-10-22 |
-| [Assignment 08](https://github.com/danilofreire/qtm350/blob/main/assignments/08-assignment.ipynb) | 2025-11-05 |
-| [Assignment 09](https://github.com/danilofreire/qtm350/blob/main/assignments/09-assignment.sql) | 2025-11-12 |
-| [Assignment 10](https://github.com/danilofreire/qtm350/blob/main/assignments/10-assignment.ipynb) | 2025-11-19 |
+| [Assignment 08](https://github.com/danilofreire/qtm350/blob/main/assignments/08-assignment.ipynb) | 2025-11-12 |
+| [Assignment 09](https://github.com/danilofreire/qtm350/blob/main/assignments/09-assignment.sql) | 2025-11-19 |
+| [Assignment 10](https://github.com/danilofreire/qtm350/blob/main/assignments/10-assignment.ipynb) | 2025-12-03 |
 
 ## In-Class Quizzes
 
