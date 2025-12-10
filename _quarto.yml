@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "QTM 350"
+  title: "DATASCI 350"
   page-navigation: true
   back-to-top-navigation: true
   reader-mode: true
