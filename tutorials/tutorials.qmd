@@ -10,8 +10,7 @@ Below you will find a list of available tutorials with instructions on how to in
 - [02 - Jupyter Notebook and Markdown Tutorial](02-jupyter-markdown-tutorial.qmd)
 - [03 - GitHub Tutorial](03-github-tutorial.qmd)
 
-PDF versions of the tutorials are also available on GitHub:
-<https://github.com/danilofreire/qtm350/tree/main/tutorials>.
+PDF versions of the tutorials are also available on GitHub: <https://github.com/danilofreire/datasci350/tree/main/tutorials>.
 
 ## Additional Resources
 
@@ -53,9 +52,9 @@ PDF versions of the tutorials are also available on GitHub:
 - [GitHub Co-Pilot Documentation](https://copilot.github.com/)
 - [Docker Documentation](https://docs.docker.com/)
 
-For any questions or issues regarding these tutorials, please [open a GitHub issue](https://github.com/danilofreire/qtm350/issues), [submit a pull request](https://github.com/danilofreire/qtm350/pulls), or [create a discussion post](https://github.com/danilofreire/qtm350/discussions). 
+For any questions or issues regarding these tutorials, please [open a GitHub issue](https://github.com/danilofreire/datasci350/issues), [submit a pull request](https://github.com/danilofreire/datasci350/pulls), or [create a discussion post](https://github.com/danilofreire/datasci350/discussions). 
 
-Please do not forget that, in addition to the tutorials here, the [course syllabus](https://danilofreire.github.io/qtm350/syllabus.html#course-outline-and-suggested-readings)
+Please do not forget that, in addition to the tutorials here, the [course syllabus](https://danilofreire.github.io/datasci350/syllabus.html#course-outline-and-suggested-readings)
 also contains a list of recommended weekly readings and additional resources.
 
 I hope you like the tutorials and find them useful! 

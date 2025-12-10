@@ -34,5 +34,17 @@
   },
   "assignments/assignments.qmd": {
     "assignments.html": "6defd061"
+  },
+  "assignments/LICENSE.qmd": {
+    "LICENSE.html": "25ff5bcd"
+  },
+  "tutorials/testing-ipython.ipynb": {
+    "testing-ipython.html": "f43f4408"
+  },
+  "LICENSE.qmd": {
+    "LICENSE.html": "64a591d0"
+  },
+  "lectures/LICENSE.qmd": {
+    "LICENSE.html": "9f9df328"
   }
 }

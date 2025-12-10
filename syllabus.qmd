@@ -1,10 +1,10 @@
 ---
-title: "QTM 350 - Data Science Computing"
+title: "DATASCI 350 - Data Science Computing"
 ---
 
 # Course Description
 
-Welcome to [QTM 350](https://github.com/danilofreire/qtm350)! This course introduces key tools in modern data science, focusing on three essential aspects: reliability, reproducibility, and robustness. We will cover the [command-line interface](https://en.wikipedia.org/wiki/Command-line_interface), version control with [Git](https://git-scm.com/) and [GitHub](https://github.com/), and literate programming using [Quarto](https://quarto.org/). You will also learn about [cloud computing with AWS (basics)](https://aws.amazon.com/), data storage and manipulation with [SQL](https://www.w3schools.com/sql/) and [Pandas](https://pandas.pydata.org/), and parallel computing with [Dask](https://www.dask.org/). We will explore AI-assisted programming with [GitHub Copilot](https://github.com/features/copilot) and [Ollama](https://ollama.com/) and finish with [Docker](https://www.docker.com/) and containerisation. 
+Welcome to [DATASCI 350](https://github.com/danilofreire/datasci350)! This course introduces key tools in modern data science, focusing on three essential aspects: reliability, reproducibility, and robustness. We will cover the [command-line interface](https://en.wikipedia.org/wiki/Command-line_interface), version control with [Git](https://git-scm.com/) and [GitHub](https://github.com/), and literate programming using [Quarto](https://quarto.org/). You will also learn about [cloud computing with AWS (basics)](https://aws.amazon.com/), data storage and manipulation with [SQL](https://www.w3schools.com/sql/) and [Pandas](https://pandas.pydata.org/), and parallel computing with [Dask](https://www.dask.org/). We will explore AI-assisted programming with [GitHub Copilot](https://github.com/features/copilot) and [Ollama](https://ollama.com/) and finish with [Docker](https://www.docker.com/) and containerisation. 
 
 By working with real-world datasets and problems, students will gain hands-on experience using these tools and methods to extract insights from data. This course will develop technical skills and critical thinking needed to solve complex data challenges. Upon completion, students will be prepared to apply these tools to their own research and professional work.
 
@@ -66,7 +66,7 @@ This course is designed to be self-contained, providing all the necessary resour
 
 # Course Information
 
-We will meet every Monday and Wednesday from 16:00 to 17:15 in the [Psychology Building 230](http://emap.fmd.emory.edu/website/campus/index.htm#?queryzoom=Yes&Query=(bldg='2045')). It is important that you read the materials before class. All information about the course is available on the course's GitHub repository at <https://github.com/danilofreire/qtm350>. While I will try to adhere to the course schedule as much as possible, I also want to adapt to your learning pace and style. The syllabus and course plan may change in the semester. Again, please check [the course repository](https://github.com/danilofreire/qtm350) regularly to check for updates. I will also announce any changes in class and via email.
+We will meet every Monday and Wednesday from 5:30pm to 6:45 in the [Psychology Building 230](http://emap.fmd.emory.edu/website/campus/index.htm#?queryzoom=Yes&Query=(bldg='2045')). It is important that you read the materials before class. All information about the course is available on the course's GitHub repository at <https://github.com/danilofreire/datasci350>. While I will try to adhere to the course schedule as much as possible, I also want to adapt to your learning pace and style. The syllabus and course plan may change in the semester. Again, please check [the course repository](https://github.com/danilofreire/datasci350) regularly to check for updates. I will also announce any changes in class and via email.
 
 # Software
 
@@ -82,7 +82,7 @@ Please also install [Docker](https://www.docker.com/) to work with containers. D
 
 Finally, we will use [GitHub](https://github.com) for version control. Please create a free account on GitHub and install [GitHub Desktop](https://desktop.github.com/) to manage your repositories. We will also use [Git](https://git-scm.com/) in the course. Git is a distributed version control system that allows you to track changes in your codebase and collaborate with others. You can install Git from the [official website](https://git-scm.com/).
 
-To help you get started, I have prepared [a series of tutorials](https://github.com/danilofreire/qtm350/tree/main/tutorials) on how to install Anaconda, Jupyter, SQLite, VS Code, GitHub Copilot, and open a free educational account on GitHub. Please follow these tutorials to ensure that you have all the necessary tools for the course.
+To help you get started, I have prepared [a series of tutorials](https://github.com/danilofreire/datasci350/tree/main/tutorials) on how to install Anaconda, Jupyter, SQLite, VS Code, GitHub Copilot, and open a free educational account on GitHub. Please follow these tutorials to ensure that you have all the necessary tools for the course.
 
 # Office Hours
 

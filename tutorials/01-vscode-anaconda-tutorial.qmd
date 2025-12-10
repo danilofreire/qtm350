@@ -14,11 +14,7 @@ editor:
 
 # Introduction
 
-This tutorial will guide students new to computer programming through the
-process of installing Visual Studio Code (VS Code) and connecting it with
-Anaconda. We will cover each step in detail to ensure a smooth setup process.
-If you have any questions or encounter issues during the installation, please
-feel free to ask for help from me (<danilo.freire@emory.edu>) or the QTM350 teaching assistants.
+This tutorial will guide students new to computer programming through the process of installing Visual Studio Code (VS Code) and connecting it with Anaconda. We will cover each step in detail to ensure a smooth setup process.  If you have any questions or encounter issues during the installation, please feel free to ask for help from me (<danilo.freire@emory.edu>) or the teaching assistants.
 
 # Why VS Code?
 

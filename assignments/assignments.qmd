@@ -2,13 +2,13 @@
 title: Assignments
 ---
 
-Here you will find information about the assignments for QTM 350. There are ten of them, each worth 5% of your final grade. The assignments are designed to help you practice the concepts covered in class and to develop your data science skills.
+Here you will find information about the assignments for [DATASCI 350](https://github.com/danilofreire/datasci350). There are ten of them, each worth 5% of your final grade. The assignments are designed to help you practice the concepts covered in class and to develop your data science skills.
 
 Assignment submissions are typically due on Wednesdays at 11:59pm in the week following their publication. You may submit via Canvas (preferred) or email (<danilo.freire@emory.edu>).
 
 We encourage you to complete assignments in Jupyter Notebooks and submit them in PDF format. You can also submit them as a Word document, provided that code and results are included in the same document.
 
-You will find the assignments in `.ipynb` format in the `assignments` folder on [the course repository](https://github.com/danilofreire/qtm350/tree/main/assignments). For your convenience, rendered versions are available on the course website; links are provided below.
+You will find the assignments in `.ipynb` format in the `assignments` folder on [the course repository](https://github.com/danilofreire/datasci350/tree/main/assignments). For your convenience, rendered versions are available on the course website; links are provided below.
 
 When submitting, please name your files as follows: `assignment-01-your-name.pdf`. For instance: `assignment-01-john-doe.pdf`.
 
@@ -16,27 +16,27 @@ When submitting, please name your files as follows: `assignment-01-your-name.pdf
 
 | Assignment | Submission Deadline |
 |------------|---------------------|
-| [Assignment 01](https://github.com/danilofreire/qtm350/blob/main/assignments/01-assignment.ipynb) | 2025-09-10 |
-| [Assignment 02](https://github.com/danilofreire/qtm350/blob/main/assignments/02-assignment.ipynb) | 2025-09-17 |
-| [Assignment 03](https://github.com/danilofreire/qtm350/blob/main/assignments/03-assignment.ipynb) | 2025-09-24 |
-| [Assignment 04](https://github.com/danilofreire/qtm350/blob/main/assignments/04-assignment.ipynb) | 2025-10-01 |
-| [Assignment 05](https://github.com/danilofreire/qtm350/blob/main/assignments/05-assignment.ipynb) | 2025-10-08 |
-| [Assignment 06](https://github.com/danilofreire/qtm350/blob/main/assignments/06-assignment.ipynb) | 2025-10-15 |
-| [Assignment 07](https://github.com/danilofreire/qtm350/blob/main/assignments/07-assignment.ipynb) | 2025-10-22 |
-| [Assignment 08](https://github.com/danilofreire/qtm350/blob/main/assignments/08-assignment.ipynb) | 2025-11-12 |
-| [Assignment 09](https://github.com/danilofreire/qtm350/blob/main/assignments/09-assignment.sql) | 2025-11-19 |
-| [Assignment 10](https://github.com/danilofreire/qtm350/blob/main/assignments/10-assignment.ipynb) | 2025-12-03 |
+| [Assignment 01](https://github.com/danilofreire/datasci350/blob/main/assignments/01-assignment.ipynb) | 2025-09-10 |
+| [Assignment 02](https://github.com/danilofreire/datasci350/blob/main/assignments/02-assignment.ipynb) | 2025-09-17 |
+| [Assignment 03](https://github.com/danilofreire/datasci350/blob/main/assignments/03-assignment.ipynb) | 2025-09-24 |
+| [Assignment 04](https://github.com/danilofreire/datasci350/blob/main/assignments/04-assignment.ipynb) | 2025-10-01 |
+| [Assignment 05](https://github.com/danilofreire/datasci350/blob/main/assignments/05-assignment.ipynb) | 2025-10-08 |
+| [Assignment 06](https://github.com/danilofreire/datasci350/blob/main/assignments/06-assignment.ipynb) | 2025-10-15 |
+| [Assignment 07](https://github.com/danilofreire/datasci350/blob/main/assignments/07-assignment.ipynb) | 2025-10-22 |
+| [Assignment 08](https://github.com/danilofreire/datasci350/blob/main/assignments/08-assignment.ipynb) | 2025-11-12 |
+| [Assignment 09](https://github.com/danilofreire/datasci350/blob/main/assignments/09-assignment.sql) | 2025-11-19 |
+| [Assignment 10](https://github.com/danilofreire/datasci350/blob/main/assignments/10-assignment.ipynb) | 2025-12-03 |
 
 ## In-Class Quizzes
 
 In-class quizzes will be held on Wednesdays. They will be based on the material covered in the previous weeks. The quizzes will be open-book and open-notes, but you will not be allowed communicate with others during the quiz. 
 
-* Quiz 01: <https://github.com/danilofreire/qtm350-quiz01>. 
-* Quiz 02: <https://github.com/danilofreire/qtm350-quiz02>. 
-* Quiz 03: <https://github.com/danilofreire/qtm350-quiz03>. 
-* Quiz 04: <https://github.com/danilofreire/qtm350-quiz04>. 
-* Quiz 05: <https://github.com/danilofreire/qtm350-quiz05>. 
+* Quiz 01: <https://github.com/danilofreire/datasci350-quiz01>. 
+* Quiz 02: <https://github.com/danilofreire/datasci350-quiz02>. 
+* Quiz 03: <https://github.com/danilofreire/datasci350-quiz03>. 
+* Quiz 04: <https://github.com/danilofreire/datasci350-quiz04>. 
+* Quiz 05: <https://github.com/danilofreire/datasci350-quiz05>. 
 
 ## Final Project
 
-The final project will be a group effort, with a maximum of 3 students per group. Detailed instructions are available on the GitHub repository: <https://github.com/danilofreire/qtm350/tree/main/project>.
+The final project will be a group effort, with a maximum of 3 students per group. Detailed instructions are available on the GitHub repository: <https://github.com/danilofreire/datasci350/tree/main/project>.

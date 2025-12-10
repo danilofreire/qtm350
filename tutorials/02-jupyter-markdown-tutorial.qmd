@@ -28,9 +28,7 @@ Jupyter Notebooks provide an interactive development environment that allows you
 
 ## Creating a New Notebook
 
-First, please make sure you have Python, Jupyter Notebook, and VSCode installed
-on your computer. If you do not have these installed, please refer to the
-[VSCode and Anaconda Tutorial](https://github.com/danilofreire/qtm350/blob/main/tutorials/01-vscode-anaconda-tutorial.pdf) for instructions on how to install them.
+First, please make sure you have Python, Jupyter Notebook, and VSCode installed on your computer. If you do not have these installed, please refer to the [VSCode and Anaconda Tutorial](https://github.com/danilofreire/datasci350/blob/main/tutorials/01-vscode-anaconda-tutorial.pdf) for instructions on how to install them.
 
 To create a new Jupyter Notebook in VSCode, please go to the tab "File" > "New File". You will see a prompt in the middle of the screen. Select the option "Jupyter Notebook". 
 
@@ -71,7 +69,7 @@ To create a text cell click on "+ Markdown." You will get an empty white box whe
 # Welcome to QTM 350!
 
 This is a Jupyter Notebook. You can write *text*, **equations**, and `code` 
-in [this notebook](https://github.com/danilofreire/qtm350/blob/main/tutorials/testing-ipython.ipynb). 
+in [this notebook](https://github.com/danilofreire/datasci350/blob/main/tutorials/testing-ipython.ipynb). 
 ```
 
 The text will be displayed in the text cell like this:

@@ -4,7 +4,7 @@
     "href": "lectures/LICENSE.html",
     "title": "MIT License",
     "section": "",
-    "text": "Copyright (c) 2024 Danilo Freire\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n Back to top"
+    "text": "Copyright (c) 2026 Danilo Freire\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n Back to top"
   },
   {
     "objectID": "LICENSE.html",
@@ -21,39 +21,200 @@
     "text": "Copyright (c) 2024 Danilo Freire\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n Back to top"
   },
   {
-    "objectID": "tutorials/04-postgresql-tutorial.html",
-    "href": "tutorials/04-postgresql-tutorial.html",
-    "title": "PostgreSQL Tutorial",
+    "objectID": "tutorials/03-github-tutorial.html",
+    "href": "tutorials/03-github-tutorial.html",
+    "title": "GitHub Tutorial",
     "section": "",
-    "text": "Here we will learn how to use PostgreSQL, a powerful object-relational database system. The tutorial has instructions for installing PostgreSQL on your computer, using VS Code as a client, and writing SQL queries to interact with the database. It also includes a section on how to integrate PostgreSQL with Python via the psycopg2 library."
+    "text": "This tutorial will guide you through the process of creating a GitHub educational account, downloading and installing GitHub Desktop, and downloading the course materials from GitHub to your computer. The tutorial also covers the basics of Git and GitHub, such as creating a repository, committing changes, and pushing changes to GitHub. It will also show you how to use VS Code to edit and manage your code on GitHub. You can use any tool you prefer to version control your code."
   },
   {
-    "objectID": "tutorials/04-postgresql-tutorial.html#footnotes",
-    "href": "tutorials/04-postgresql-tutorial.html#footnotes",
-    "title": "PostgreSQL Tutorial",
+    "objectID": "tutorials/03-github-tutorial.html#footnotes",
+    "href": "tutorials/03-github-tutorial.html#footnotes",
+    "title": "GitHub Tutorial",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nIn SQL, a database is a system that stores and organises multiple sets of related data. It typically contains several tables, each of which is a structured collection of data arranged in rows and columns. For instance, a ‘School’ database might contain separate tables for ‘Students’, ‘Teachers’, and ‘Classes’. Each table would store specific information: the ‘Students’ table might have columns for student ID, name, and year group, with each row representing an individual student’s details. Databases can also contain objects other than tables, such as views (virtual tables used for data retrieval), indexes (optimised data structures for faster data retrieval), and stored procedures (predefined SQL queries that can be reused). While databases are managed by Database Management Systems (DBMS), such as PostgreSQL, and handle overall data organisation and integrity, tables are manipulated using SQL commands for specific data operations within their structure, as we will see below.↩︎"
+    "text": "Footnotes\n\n\nAs a curiosity, the code for the Apollo 11 mission is also available on GitHub.↩︎\nThe default branch in GitHub is called main. This is the branch where you will make most of your changes. You can create other branches if you want to work on different features or bug fixes.↩︎"
   },
   {
-    "objectID": "tutorials/testing-ipython.html",
-    "href": "tutorials/testing-ipython.html",
-    "title": "Welcome to QTM 151!",
+    "objectID": "tutorials/02-jupyter-markdown-tutorial.html",
+    "href": "tutorials/02-jupyter-markdown-tutorial.html",
+    "title": "Jupyter Notebook and Markdown Tutorial",
     "section": "",
-    "text": "print(\"Welcome to QTM 151!\")\n\nx = 5\ny = 10\nz = x + y\nprint(z)\n\nWelcome to QTM 151!\n15\nThis is a Jupyter Notebook. You can write text, equations, and code in this notebook."
+    "text": "This tutorial will introduce you to Jupyter Notebook and Markdown. Jupyter Notebook is an interactive computing platform that allows users to create and share documents that contain live code, equations, visualisations, and narrative text. Markdown is a lightweight markup language that is used to format text, and can be used for everything - websites, documents, notes, books, presentations, email messages, and technical documentation. Even WhatsApp and Facebook Messenger use Markdown to format messages. So if you have already italicised a word or made a text bold on WhatsApp, you have used Markdown!\nThis tutorial is divided into two parts. The first part will introduce you to Jupyter Notebook and show you how to create a new notebook, run code cells, and format text cells using Markdown. The second part will provide a more in-depth look at Markdown and show you how to create headings, lists, links, images, and tables."
   },
   {
-    "objectID": "tutorials/testing-ipython.html#footnotes",
-    "href": "tutorials/testing-ipython.html#footnotes",
-    "title": "Welcome to QTM 151!",
+    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#what-is-jupyter-notebook",
+    "href": "tutorials/02-jupyter-markdown-tutorial.html#what-is-jupyter-notebook",
+    "title": "Jupyter Notebook and Markdown Tutorial",
+    "section": "What is Jupyter Notebook?",
+    "text": "What is Jupyter Notebook?\nJupyter Notebook is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations, and narrative text. Jupyter Notebook supports over 40 programming languages, including Python, R, and Julia. Jupyter Notebook is widely used in data science, machine learning, scientific computing, and other fields.\nJupyter Notebooks provide an interactive development environment that allows you to write and execute code, see the results immediately, and create reproducible analyses. Jupyter Notebooks are organized into cells, which can contain code, text, equations, or visualisations. You can run individual cells or the entire notebook, and you can save your work as a notebook file (.ipynb) that can be shared with others."
+  },
+  {
+    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#creating-a-new-notebook",
+    "href": "tutorials/02-jupyter-markdown-tutorial.html#creating-a-new-notebook",
+    "title": "Jupyter Notebook and Markdown Tutorial",
+    "section": "Creating a New Notebook",
+    "text": "Creating a New Notebook\nFirst, please make sure you have Python, Jupyter Notebook, and VSCode installed on your computer. If you do not have these installed, please refer to the VSCode and Anaconda Tutorial for instructions on how to install them.\nTo create a new Jupyter Notebook in VSCode, please go to the tab “File” &gt; “New File”. You will see a prompt in the middle of the screen. Select the option “Jupyter Notebook”.\n\n\n\nCreating a new Jupyter Notebook in VSCode.\n\n\nA new Jupyter Notebook will be created with the file extension .ipynb. You can rename the notebook by clicking on the notebook name at the top of the screen. An empty notebook will look like this:\n\n\n\nAn empty Jupyter Notebook.\n\n\nPlease do not forget to select the Python interpreter that you want to use for the notebook. You can do this by clicking on the Python version at the top right corner of the screen. A prompt will appear, and you can select the Python interpreter that you want to use (in this case, Anacoda’s “base”).\n\n\n\nSelecting the Python interpreter for the notebook.\n\n\nTo create a chunk of Python code click on “+ Code.” You will get an empty gray box which has Python on the lower-right corner. You can type Python code in this box and run it by clicking on the “Run” button on the left side of the box. You can also run the code by pressing “Shift + Enter” on your keyboard.\n\n\n\nA code cell in a Jupyter Notebook.\n\n\nHere you should enter the Python commands. For example, type the following lines of code in the code cell:\n\nprint(\"Welcome to QTM 350!\")\n\nx = 5\ny = 10\nz = x + y\nprint(z)\n\nThe results of the code will be displayed below the code cell. In this case, the output will be:\n\n\n\nOutput of the code cell.\n\n\nTo create a text cell click on “+ Markdown.” You will get an empty white box where you can type text. We will cover Markdown in more detail in the next section. But for now, you can type the following text in the Markdown cell:\n# Welcome to QTM 350!\n\nThis is a Jupyter Notebook. You can write *text*, **equations**, and `code` \nin [this notebook](https://github.com/danilofreire/datasci350/blob/main/tutorials/testing-ipython.ipynb). \nThe text will be displayed in the text cell like this:\n\n\n\nA text cell in a Jupyter Notebook.\n\n\nYou can run the text cell by clicking the “Run” button on the left side of the box or by pressing “Shift + Enter” on your keyboard. The first text block shows how the text looks before running the cell, and the second block shows how it looks after running the cell. Just double click on the space where the text is to edit the Markdown block. This is should open the gray box again."
+  },
+  {
+    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#why-use-markdown",
+    "href": "tutorials/02-jupyter-markdown-tutorial.html#why-use-markdown",
+    "title": "Jupyter Notebook and Markdown Tutorial",
+    "section": "Why Use Markdown?",
+    "text": "Why Use Markdown?\nMarkdown is a great way to format text because it is simple, easy to learn, and widely supported. You can use Markdown to create headings, lists, tables, equations, and figures in your documents. Markdown is used in many different applications, including Jupyter Notebook, GitHub, and Slack. Learning Markdown will help you create well-formatted documents that are easy to read and share."
+  },
+  {
+    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#headings",
+    "href": "tutorials/02-jupyter-markdown-tutorial.html#headings",
+    "title": "Jupyter Notebook and Markdown Tutorial",
+    "section": "Headings",
+    "text": "Headings\nYou can create headings using the # symbol. For example, # Heading 1 creates a first-level heading, ## Heading 2 creates a second-level heading, and so on. You can create up to six levels of headings using the # symbol.\n# Heading 1\n## Heading 2\n### Heading 3"
+  },
+  {
+    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#lists",
+    "href": "tutorials/02-jupyter-markdown-tutorial.html#lists",
+    "title": "Jupyter Notebook and Markdown Tutorial",
+    "section": "Lists",
+    "text": "Lists\nTo create an ordered list with nested unordered sub-items in Markdown, you can write the following code:\n1. This is an ordered list.\n2. This is the second item in the ordered list.\n  - This is a sub-item in the unordered list.\n    - This is a sub-sub-item in the unordered list.\n\nThis is an ordered list.\nThis is the second item in the ordered list.\n\nThis is a sub-item in the unordered list.\n\nThis is a sub-sub-item in the unordered list.\n\n\n\nYou can also create unordered lists:\n- This is an unordered list.\n- This is the second item in the unordered list.\n  - This is a sub-item in the unordered list.\n\nThis is an unordered list.\nThis is the second item in the unordered list.\n\nThis is a sub-item in the unordered list."
+  },
+  {
+    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#tables",
+    "href": "tutorials/02-jupyter-markdown-tutorial.html#tables",
+    "title": "Jupyter Notebook and Markdown Tutorial",
+    "section": "Tables",
+    "text": "Tables\nYou can create tables using the | symbol. For example:\nTable: Your Caption \n\n| A            | New              | Table          |\n|:-------------|:----------------:|---------------:|\n|left-aligned  |centre-aligned    |right-aligned   |\n|*italics*     |~~strikethrough~~ |**boldface**    |\n\nYour Caption\n\n\nA\nNew\nTable\n\n\n\n\nleft-aligned\ncentre-aligned\nright-aligned\n\n\nitalics\nstrikethrough\nboldface\n\n\n\nThe : symbols in the second row of the table determine the alignment of the text in each column. You can use left, center, or right to align the text."
+  },
+  {
+    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#creating-markdown-tables-from-pandas-dataframes-in-jupyter-notebooks",
+    "href": "tutorials/02-jupyter-markdown-tutorial.html#creating-markdown-tables-from-pandas-dataframes-in-jupyter-notebooks",
+    "title": "Jupyter Notebook and Markdown Tutorial",
+    "section": "Creating Markdown Tables from Pandas DataFrames in Jupyter Notebooks",
+    "text": "Creating Markdown Tables from Pandas DataFrames in Jupyter Notebooks\nWhen working with pandas DataFrames, you can convert them into Markdown tables for better presentation. The method is also relatively simple. Here is how to do it:\n\nPrerequisites\nEnsure you have the following installed:\n\nJupyter Notebook\npandas\ntabulate (for enhanced table formatting)\n\nJupyter Notebook and pandas are included in the Anaconda distribution. You can install tabulate using conda install in your terminal. If you are using VS Code, you can open a terminal by clicking on “Terminal” &gt; “New Terminal” in the top menu. Then run the following command:\nconda install tabulate\n\n\nBasic Method: Using pandas.DataFrame.to_markdown()\npandas provides a built-in method to_markdown() for converting DataFrames to Markdown tables.\n\nStep 1: Import pandas and create a DataFrame\nYou can create a dataframe by passing a dictionary to the pd.DataFrame() constructor:\n\n# If necessary, install pandas and tabulate \n# You should have pandas installed if you installed Anaconda, \n# but if you do not, you can install both with the following terminal command:\n# conda install pandas tabulate\n\n# Import pandas\nimport pandas as pd\nfrom tabulate import tabulate\n\n# Create a sample DataFrame\ndata = {\n    \"Name\": [\"Alice\", \"Bob\", \"Charlie\"],\n    \"Age\": [25, 30, 35],\n    \"City\": [\"New York\", \"London\", \"Paris\"]\n}\ndf = pd.DataFrame(data)\n\n\n\nStep 2: Convert DataFrame to Markdown\nThen you just need to call the to_markdown() method on the DataFrame:\n\n# Print the DataFrame as a Markdown table, excluding the index\nmarkdown_table = df.to_markdown(index=False)\nprint(markdown_table)\n\nThis will output:\n| Name    | Age  | City     |\n|:--------|-----:|:---------|\n| Alice   |   25 | New York |\n| Bob     |   30 | London   |\n| Charlie |   35 | Paris    |\n\n\nStep 3: Display in Jupyter Notebook\nTo display the Markdown table in a Jupyter Notebook cell, use the display() function from the IPython.display module:\n\n# You should also have the IPython package installed if you installed Anaconda\n# If not, you can install it with\n# conda install ipython\n\n# Import the Markdown display class. \n# This is what allows us to display Markdown in Jupyter Notebooks \nfrom IPython.display import display, Markdown\n\n# Display the Markdown table\ndisplay(Markdown(markdown_table))\n\nThis will render a nicely formatted table in your notebook:\n\n\n\nMarkdown table in a Jupyter Notebook.\n\n\n\n\n\nAdvanced Formatting\nYou can customise the Markdown table using various parameters of to_markdown():\n\n# Customising the Markdown table using the to_markdown() method\nmarkdown_table = df.to_markdown(\n    index=False,  # Don't include index\n    tablefmt=\"pipe\",  # Use pipe format\n    floatfmt=\".2f\",  # Format floats to 2 decimal places\n    headers=[\"Name\", \"Age (Years)\", \"City\"],  # Custom headers\n    colalign=(\"left\", \"center\", \"right\")  # Align columns\n)\ndisplay(Markdown(markdown_table))\n\n\n\nUsing tabulate for Enhanced Formatting\nThe tabulate library offers even more formatting options. While they are not necessary for basic tables, they can be useful for more complex tables. In our course, you will probably not need them, but I will show you how to use them for your reference. Please check their documentation for more information.\n\nfrom tabulate import tabulate\n\nmarkdown_table = tabulate(df, headers='keys', tablefmt='pipe', showindex=False)\ndisplay(Markdown(markdown_table))\n\n\n\nBest Practices\n\nIndex: Consider whether you need the index in your table. Often, it is cleaner to exclude it using index=False.\nFormatting: Use floatfmt to control decimal places for numerical data.\nHeaders: Customize headers for clarity, especially if your DataFrame column names are not user-friendly.\nTable Format: Experiment with different tablefmt options to find the most suitable for your needs.\nLarge DataFrames: For large DataFrames, consider displaying only a subset of rows or columns to maintain readability.\n\n\n\nExample: Comprehensive Table Creation\nHere is a more comprehensive example incorporating various best practices:\n\n# Import necessary packages\nimport pandas as pd\nfrom IPython.display import display, Markdown\nfrom tabulate import tabulate\n\n# Create a sample DataFrame\ndata = {\n    \"Product\": [\"Laptop\", \"Smartphone\", \"Tablet\"],\n    \"Price\": [999.99, 599.50, 299.75],\n    \"Stock\": [50, 100, 75],\n    \"Rating\": [4.5, 4.8, 4.2]\n}\ndf = pd.DataFrame(data)\n\n# Create a formatted Markdown table\nmarkdown_table = tabulate(\n    df,\n    headers=[\"Product Name\", \"Price ($)\", \"Stock Quantity\", \"Customer Rating\"],\n    tablefmt=\"pipe\", # Format as Markdown table\n    floatfmt=(\".2f\", \".2f\", \"d\", \".1f\"),\n    showindex=False, # Don't show the index (row numbers)\n    numalign=\"right\", # Align numbers to the right\n    stralign=\"left\" # Align strings (text, first column) to the left\n)\n\n# Display the table in the notebook\ndisplay(Markdown(\"### Product Inventory Summary\"))\ndisplay(Markdown(markdown_table))\n\nThis will produce a well-formatted table with custom headers, appropriate number formatting, and a title.\n\n\n\nComprehensive Markdown table in a Jupyter Notebook."
+  },
+  {
+    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#equations",
+    "href": "tutorials/02-jupyter-markdown-tutorial.html#equations",
+    "title": "Jupyter Notebook and Markdown Tutorial",
+    "section": "Equations",
+    "text": "Equations\nYou can create equations using the $$ symbol. For example in Equation 1, we have the formula for the standard deviation of a population:\n$$\n\\sigma = \\sqrt{\\frac{\\sum_{i=1}^{N} (x_i - \\mu)^2}{N}}\n$$ {#eq-stddev}\n\\[\n\\sigma = \\sqrt{\\frac{\\sum_{i=1}^{N} (x_i - \\mu)^2}{N}}\n\\tag{1}\\]\nYou can also create equations inline by using the $ symbol. For example, $\\alpha = \\beta + \\gamma$ will render as \\(\\alpha = \\beta + \\gamma\\). To learn more about how to write equations in using Markdown, you can refer to the Overleaf documentation."
+  },
+  {
+    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#figures",
+    "href": "tutorials/02-jupyter-markdown-tutorial.html#figures",
+    "title": "Jupyter Notebook and Markdown Tutorial",
+    "section": "Figures",
+    "text": "Figures\nYou can include figures in your document using the ![Caption](path/to/image.png){#fig-label} syntax. For example:\n![This is a figure caption.](path/to/image.png){#fig-label}\nThis will include the image path/to/image.png in your document with the caption “This is a figure caption.” You can refer to the figure using the label fig-label, but this is optional.\nIf you are creating plots on Jupyter Notebook, the graphs will appear after the code cell that generates them."
+  },
+  {
+    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#citations",
+    "href": "tutorials/02-jupyter-markdown-tutorial.html#citations",
+    "title": "Jupyter Notebook and Markdown Tutorial",
+    "section": "Citations",
+    "text": "Citations\nAlthough Markdown has excellent reference support with BibTeX files, there is no reliable way to include citations automatically in Jupyter Notebooks. The two packages I know that manage citations, cite2c and Jupyterlab Citation Manager, are not ideal. The first has not been maintained for years, while the second is not ready for most uses. Therefore, I suggest simply copying the citation from Google Scholar and pasting it into a Markdown cell titled “References” at the end of your document. The same approach applies for inline citations."
+  },
+  {
+    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#footnotes",
+    "href": "tutorials/02-jupyter-markdown-tutorial.html#footnotes",
+    "title": "Jupyter Notebook and Markdown Tutorial",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nThis is the first footnote.↩︎\nThis is the second footnote.↩︎"
+    "text": "Footnotes\n\n\nThis is an inline footnote.↩︎\nYou can also include multiple paragraphs in a footnote by indenting the subsequent paragraphs.↩︎"
+  },
+  {
+    "objectID": "syllabus/LICENSE.html",
+    "href": "syllabus/LICENSE.html",
+    "title": "MIT License",
+    "section": "",
+    "text": "Copyright (c) 2024 Danilo Freire\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "assignments/LICENSE.html",
+    "href": "assignments/LICENSE.html",
+    "title": "MIT License",
+    "section": "",
+    "text": "Copyright (c) 2025 Danilo Freire\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "assignments/assignments.html",
+    "href": "assignments/assignments.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "Here you will find information about the assignments for DATASCI 350. There are ten of them, each worth 5% of your final grade. The assignments are designed to help you practice the concepts covered in class and to develop your data science skills.\nAssignment submissions are typically due on Wednesdays at 11:59pm in the week following their publication. You may submit via Canvas (preferred) or email (danilo.freire@emory.edu).\nWe encourage you to complete assignments in Jupyter Notebooks and submit them in PDF format. You can also submit them as a Word document, provided that code and results are included in the same document.\nYou will find the assignments in .ipynb format in the assignments folder on the course repository. For your convenience, rendered versions are available on the course website; links are provided below.\nWhen submitting, please name your files as follows: assignment-01-your-name.pdf. For instance: assignment-01-john-doe.pdf."
+  },
+  {
+    "objectID": "assignments/assignments.html#assignment-timeline",
+    "href": "assignments/assignments.html#assignment-timeline",
+    "title": "Assignments",
+    "section": "Assignment Timeline",
+    "text": "Assignment Timeline\n\n\n\nAssignment\nSubmission Deadline\n\n\n\n\nAssignment 01\n2025-09-10\n\n\nAssignment 02\n2025-09-17\n\n\nAssignment 03\n2025-09-24\n\n\nAssignment 04\n2025-10-01\n\n\nAssignment 05\n2025-10-08\n\n\nAssignment 06\n2025-10-15\n\n\nAssignment 07\n2025-10-22\n\n\nAssignment 08\n2025-11-12\n\n\nAssignment 09\n2025-11-19\n\n\nAssignment 10\n2025-12-03"
+  },
+  {
+    "objectID": "assignments/assignments.html#in-class-quizzes",
+    "href": "assignments/assignments.html#in-class-quizzes",
+    "title": "Assignments",
+    "section": "In-Class Quizzes",
+    "text": "In-Class Quizzes\nIn-class quizzes will be held on Wednesdays. They will be based on the material covered in the previous weeks. The quizzes will be open-book and open-notes, but you will not be allowed communicate with others during the quiz.\n\nQuiz 01: https://github.com/danilofreire/datasci350-quiz01.\nQuiz 02: https://github.com/danilofreire/datasci350-quiz02.\nQuiz 03: https://github.com/danilofreire/datasci350-quiz03.\nQuiz 04: https://github.com/danilofreire/datasci350-quiz04.\nQuiz 05: https://github.com/danilofreire/datasci350-quiz05."
+  },
+  {
+    "objectID": "assignments/assignments.html#final-project",
+    "href": "assignments/assignments.html#final-project",
+    "title": "Assignments",
+    "section": "Final Project",
+    "text": "Final Project\nThe final project will be a group effort, with a maximum of 3 students per group. Detailed instructions are available on the GitHub repository: https://github.com/danilofreire/datasci350/tree/main/project."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "DATASCI 350 - Data Science Computing",
+    "section": "",
+    "text": "Welcome to DATASCI 350! This course introduces key tools in modern data science, focusing on three essential aspects: reliability, reproducibility, and robustness. We will cover the command-line interface, version control with Git and GitHub, and literate programming using Quarto. You will also learn about cloud computing with AWS (basics), data storage and manipulation with SQL and Pandas, and parallel computing with Dask. We will explore AI-assisted programming with GitHub Copilot and Ollama and finish with Docker and containerisation.\nWe will meet every Monday and Wednesday from 5:30pm to 6:45pm in the Psychology Building, Room 230."
+  },
+  {
+    "objectID": "index.html#contact-information",
+    "href": "index.html#contact-information",
+    "title": "DATASCI 350 - Data Science Computing",
+    "section": "Contact Information",
+    "text": "Contact Information\n\nInstructor\n\nName: Danilo Freire\nEmail: danilo.freire@emory.edu\nOffice Hours: By appointment at your convenience, please email me to schedule a meeting\n\n\n\nTeaching Assistants\n\nName: Alix Morales\nEmail: alix.morales@emory.edu\nName: Harris Wang\nEmail: harris.wang@emory.edu\nPlease email them to arrange a time"
+  },
+  {
+    "objectID": "index.html#learning-outcomes",
+    "href": "index.html#learning-outcomes",
+    "title": "DATASCI 350 - Data Science Computing",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\nBy the end of this course, students will be able to:\n\nUse the command line interface to manage files and directories.\nWork with version control systems to track changes in code and collaborate with others.\nCreate reproducible reports and presentations.\nUse AI tools to assist with programming tasks.\nApply advanced techniques for data storage, manipulation, and querying.\nUnderstand the basics of containerisation and parallel computing."
+  },
+  {
+    "objectID": "index.html#website-structure",
+    "href": "index.html#website-structure",
+    "title": "DATASCI 350 - Data Science Computing",
+    "section": "Website Structure",
+    "text": "Website Structure\nThis website contains the course syllabus, lecture materials, tutorials, and assignments for the course. The course repository at https://github.com/danilofreire/datasci350 is similarly structured. Feel free to explore the materials and use them as needed."
+  },
+  {
+    "objectID": "index.html#getting-help",
+    "href": "index.html#getting-help",
+    "title": "DATASCI 350 - Data Science Computing",
+    "section": "Getting Help",
+    "text": "Getting Help\nIf you encounter any issues with the course materials or have questions about the content, please:\n\nCheck the course syllabus and this README for relevant information\nReview the lecture materials and tutorials in the repository\nConsult with your classmates or post in the course discussion forum\nAttend office hours or schedule an appointment with the TAs or the instructor"
+  },
+  {
+    "objectID": "index.html#contributing-to-the-repository",
+    "href": "index.html#contributing-to-the-repository",
+    "title": "DATASCI 350 - Data Science Computing",
+    "section": "Contributing to the Repository",
+    "text": "Contributing to the Repository\nWhile this repository is primarily maintained by the course instructor, everyone is welcome to contribute. Please feel free to suggest improvements or report issues by opening a GitHub issue, submitting a pull request, creating a discussion post, or contacting the instructor directly."
+  },
+  {
+    "objectID": "index.html#license",
+    "href": "index.html#license",
+    "title": "DATASCI 350 - Data Science Computing",
+    "section": "License",
+    "text": "License\nThis repository is licensed under the MIT License. You are free to use, modify, and distribute the materials as needed, with appropriate attribution to the original source.\n\nWe look forward to an engaging and productive semester! Happy coding!"
   },
   {
     "objectID": "tutorials/01-vscode-anaconda-tutorial.html",
     "href": "tutorials/01-vscode-anaconda-tutorial.html",
     "title": "Installing VS Code and Connecting it with Anaconda",
     "section": "",
-    "text": "This tutorial will guide students new to computer programming through the process of installing Visual Studio Code (VS Code) and connecting it with Anaconda. We will cover each step in detail to ensure a smooth setup process. If you have any questions or encounter issues during the installation, please feel free to ask for help from me (danilo.freire@emory.edu) or the QTM350 teaching assistants."
+    "text": "This tutorial will guide students new to computer programming through the process of installing Visual Studio Code (VS Code) and connecting it with Anaconda. We will cover each step in detail to ensure a smooth setup process. If you have any questions or encounter issues during the installation, please feel free to ask for help from me (danilo.freire@emory.edu) or the teaching assistants."
   },
   {
     "objectID": "tutorials/01-vscode-anaconda-tutorial.html#for-windows-users",
@@ -147,200 +308,18 @@
     "text": "Verify the Connection:\n\nPlease click on the “Run” button at the top right corner of the editor to execute the code in your .py file. Select “Run Current File in Dedicated Terminal”\n\n\n\n\nRun Python File in VS Code\n\n\n\nThe output should show the Anaconda Python version and its location.\n\n\n\n\nPython Output in VS Code"
   },
   {
-    "objectID": "syllabus/LICENSE.html",
-    "href": "syllabus/LICENSE.html",
-    "title": "MIT License",
+    "objectID": "tutorials/testing-ipython.html",
+    "href": "tutorials/testing-ipython.html",
+    "title": "Welcome to DATASCI 350!",
     "section": "",
-    "text": "Copyright (c) 2024 Danilo Freire\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n Back to top"
+    "text": "This is a Jupyter Notebook. You can write text, equations, and code in this notebook."
   },
   {
-    "objectID": "assignments/LICENSE.html",
-    "href": "assignments/LICENSE.html",
-    "title": "MIT License",
-    "section": "",
-    "text": "Copyright (c) 2024 Danilo Freire\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "assignments/assignments.html",
-    "href": "assignments/assignments.html",
-    "title": "Assignments",
-    "section": "",
-    "text": "Here you will find information about the assignments for QTM 350. There are ten of them, each worth 5% of your final grade. The assignments are designed to help you practice the concepts covered in class and to develop your data science skills.\nAssignment submissions are typically due on Wednesdays at 11:59pm in the week following their publication. You may submit via Canvas (preferred) or email (danilo.freire@emory.edu).\nWe encourage you to complete assignments in Jupyter Notebooks and submit them in PDF format. You can also submit them as a Word document, provided that code and results are included in the same document.\nYou will find the assignments in .ipynb format in the assignments folder on the course repository. For your convenience, rendered versions are available on the course website; links are provided below.\nWhen submitting, please name your files as follows: assignment-01-your-name.pdf. For instance: assignment-01-john-doe.pdf."
-  },
-  {
-    "objectID": "assignments/assignments.html#assignment-timeline",
-    "href": "assignments/assignments.html#assignment-timeline",
-    "title": "Assignments",
-    "section": "Assignment Timeline",
-    "text": "Assignment Timeline\n\n\n\nAssignment\nSubmission Deadline\n\n\n\n\nAssignment 01\n2025-09-10\n\n\nAssignment 02\n2025-09-17\n\n\nAssignment 03\n2025-09-24\n\n\nAssignment 04\n2025-10-01\n\n\nAssignment 05\n2025-10-08\n\n\nAssignment 06\n2025-10-15\n\n\nAssignment 07\n2025-10-22\n\n\nAssignment 08\n2025-11-12\n\n\nAssignment 09\n2025-11-19\n\n\nAssignment 10\n2025-12-03"
-  },
-  {
-    "objectID": "assignments/assignments.html#in-class-quizzes",
-    "href": "assignments/assignments.html#in-class-quizzes",
-    "title": "Assignments",
-    "section": "In-Class Quizzes",
-    "text": "In-Class Quizzes\nIn-class quizzes will be held on Wednesdays. They will be based on the material covered in the previous weeks. The quizzes will be open-book and open-notes, but you will not be allowed communicate with others during the quiz.\n\nQuiz 01: https://github.com/danilofreire/qtm350-quiz01.\nQuiz 02: https://github.com/danilofreire/qtm350-quiz02.\nQuiz 03: https://github.com/danilofreire/qtm350-quiz03.\nQuiz 04: https://github.com/danilofreire/qtm350-quiz04.\nQuiz 05: https://github.com/danilofreire/qtm350-quiz05."
-  },
-  {
-    "objectID": "assignments/assignments.html#final-project",
-    "href": "assignments/assignments.html#final-project",
-    "title": "Assignments",
-    "section": "Final Project",
-    "text": "Final Project\nThe final project will be a group effort, with a maximum of 3 students per group. Detailed instructions are available on the GitHub repository: https://github.com/danilofreire/qtm350/tree/main/project."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "QTM 350 - Data Science Computing",
-    "section": "",
-    "text": "Welcome to QTM 350! This course introduces key tools in modern data science, focusing on three essential aspects: reliability, reproducibility, and robustness. We will cover the command-line interface, version control with Git and GitHub, and literate programming using Quarto. You will also learn about cloud computing with AWS (basics), data storage and manipulation with SQL and Pandas, and parallel computing with Dask. We will explore AI-assisted programming with GitHub Copilot and Ollama and finish with Docker and containerisation.\nWe will meet every Monday and Wednesday from 4pm to 5:15pm in the Psychology Building, Room 230."
-  },
-  {
-    "objectID": "index.html#contact-information",
-    "href": "index.html#contact-information",
-    "title": "QTM 350 - Data Science Computing",
-    "section": "Contact Information",
-    "text": "Contact Information\n\nInstructor\n\nName: Danilo Freire\nEmail: danilo.freire@emory.edu\nOffice Hours: By appointment at your convenience, please email me to schedule a meeting\n\n\n\nTeaching Assistants\n\nName: Alix Morales\nEmail: alix.morales@emory.edu\nName: Harris Wang\nEmail: harris.wang@emory.edu\nPlease email them to arrange a time"
-  },
-  {
-    "objectID": "index.html#learning-outcomes",
-    "href": "index.html#learning-outcomes",
-    "title": "QTM 350 - Data Science Computing",
-    "section": "Learning Outcomes",
-    "text": "Learning Outcomes\nBy the end of this course, students will be able to:\n\nUse the command line interface to manage files and directories.\nWork with version control systems to track changes in code and collaborate with others.\nCreate reproducible reports and presentations.\nUse AI tools to assist with programming tasks.\nApply advanced techniques for data storage, manipulation, and querying.\nUnderstand the basics of containerisation and parallel computing."
-  },
-  {
-    "objectID": "index.html#website-structure",
-    "href": "index.html#website-structure",
-    "title": "QTM 350 - Data Science Computing",
-    "section": "Website Structure",
-    "text": "Website Structure\nThis website contains the course syllabus, lecture materials, tutorials, and assignments for the course. The course repository at https://github.com/danilofreire/qtm350 is similarly structured. Feel free to explore the materials and use them as needed."
-  },
-  {
-    "objectID": "index.html#getting-help",
-    "href": "index.html#getting-help",
-    "title": "QTM 350 - Data Science Computing",
-    "section": "Getting Help",
-    "text": "Getting Help\nIf you encounter any issues with the course materials or have questions about the content, please:\n\nCheck the course syllabus and this README for relevant information\nReview the lecture materials and tutorials in the repository\nConsult with your classmates or post in the course discussion forum\nAttend office hours or schedule an appointment with the TAs or the instructor"
-  },
-  {
-    "objectID": "index.html#contributing-to-the-repository",
-    "href": "index.html#contributing-to-the-repository",
-    "title": "QTM 350 - Data Science Computing",
-    "section": "Contributing to the Repository",
-    "text": "Contributing to the Repository\nWhile this repository is primarily maintained by the course instructor, everyone is welcome to contribute. Please feel free to suggest improvements or report issues by opening a GitHub issue, submitting a pull request, creating a discussion post, or contacting the instructor directly."
-  },
-  {
-    "objectID": "index.html#license",
-    "href": "index.html#license",
-    "title": "QTM 350 - Data Science Computing",
-    "section": "License",
-    "text": "License\nThis repository is licensed under the MIT License. You are free to use, modify, and distribute the materials as needed, with appropriate attribution to the original source.\n\nWe look forward to an engaging and productive semester! Happy coding!"
-  },
-  {
-    "objectID": "tutorials/python-postgresql-example.html",
-    "href": "tutorials/python-postgresql-example.html",
-    "title": "PostgreSQL Example",
-    "section": "",
-    "text": "Here is an example of how to use PostgreSQL with Python. The example uses the psycopg2 library to connect to a PostgreSQL database and perform some basic operations. Please refer to tutorial 04 for more information.\n\n# Install the required packages\n# conda install psycopg2\n\n# Import the required library\nimport psycopg2\n\n# Connect to the database\nconn = psycopg2.connect(\n    host=\"localhost\", \n    port=5432,\n    database=\"tutorial\",\n    user=\"postgres\",\n    password=\"\") # Change the password to your password\n\n# Create a cursor object. This is used to interact with the database.\ncur = conn.cursor()\n\n\n# Now we will execute the queries\ncur.execute(\"SELECT * FROM students\")\n\n# Fetch the results\nrows = cur.fetchall()\n\n# Print the results\nfor row in rows:\n    print(row)\n\n(1, 'Alice', 25)\n(2, 'Bob', 30)\n(3, 'Charlie', 35)\n\n\n\n# Let us run another query\ncur.execute(\"SELECT * FROM students WHERE name = 'Bob' \")\n\n# Fetch the results\nrows = cur.fetchall()\n\n# Print the results\nfor row in rows:\n    print(row)\n\n(2, 'Bob', 30)\n\n\n\n# Close the cursor and the connection. This is important as it will free up the resources.\ncur.close()\n\n# Commit the transaction. This will save the changes to the database. \n# You do not need to do this if you are only reading from the database.\nconn.commit()\n\n# Close the connection\nconn.close()\n\n\n# Converting tables to pandas dataframe\n# Install the required packages\n# conda install pandas sqlalchemy\n\n# Import the required libraries\nimport pandas as pd\nfrom sqlalchemy import create_engine\n\n# Create a connection to the database\n# The syntax is 'postgresql://username:password@host:port/database'\n# In our case, the username is postgres, password is blank, host is localhost, \n# port is 5432 and database is tutorial\nengine = create_engine('postgresql://postgres:@localhost:5432/tutorial')\n\n# Read the table into a pandas dataframe\ndf = pd.read_sql_table('students', engine)\n\n# Print the dataframe\nprint(df)\n\n   id     name  age\n0   1    Alice   25\n1   2      Bob   30\n2   3  Charlie   35\n\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "tutorials/02-jupyter-markdown-tutorial.html",
-    "href": "tutorials/02-jupyter-markdown-tutorial.html",
-    "title": "Jupyter Notebook and Markdown Tutorial",
-    "section": "",
-    "text": "This tutorial will introduce you to Jupyter Notebook and Markdown. Jupyter Notebook is an interactive computing platform that allows users to create and share documents that contain live code, equations, visualisations, and narrative text. Markdown is a lightweight markup language that is used to format text, and can be used for everything - websites, documents, notes, books, presentations, email messages, and technical documentation. Even WhatsApp and Facebook Messenger use Markdown to format messages. So if you have already italicised a word or made a text bold on WhatsApp, you have used Markdown!\nThis tutorial is divided into two parts. The first part will introduce you to Jupyter Notebook and show you how to create a new notebook, run code cells, and format text cells using Markdown. The second part will provide a more in-depth look at Markdown and show you how to create headings, lists, links, images, and tables."
-  },
-  {
-    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#what-is-jupyter-notebook",
-    "href": "tutorials/02-jupyter-markdown-tutorial.html#what-is-jupyter-notebook",
-    "title": "Jupyter Notebook and Markdown Tutorial",
-    "section": "What is Jupyter Notebook?",
-    "text": "What is Jupyter Notebook?\nJupyter Notebook is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations, and narrative text. Jupyter Notebook supports over 40 programming languages, including Python, R, and Julia. Jupyter Notebook is widely used in data science, machine learning, scientific computing, and other fields.\nJupyter Notebooks provide an interactive development environment that allows you to write and execute code, see the results immediately, and create reproducible analyses. Jupyter Notebooks are organized into cells, which can contain code, text, equations, or visualisations. You can run individual cells or the entire notebook, and you can save your work as a notebook file (.ipynb) that can be shared with others."
-  },
-  {
-    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#creating-a-new-notebook",
-    "href": "tutorials/02-jupyter-markdown-tutorial.html#creating-a-new-notebook",
-    "title": "Jupyter Notebook and Markdown Tutorial",
-    "section": "Creating a New Notebook",
-    "text": "Creating a New Notebook\nFirst, please make sure you have Python, Jupyter Notebook, and VSCode installed on your computer. If you do not have these installed, please refer to the VSCode and Anaconda Tutorial for instructions on how to install them.\nTo create a new Jupyter Notebook in VSCode, please go to the tab “File” &gt; “New File”. You will see a prompt in the middle of the screen. Select the option “Jupyter Notebook”.\n\n\n\nCreating a new Jupyter Notebook in VSCode.\n\n\nA new Jupyter Notebook will be created with the file extension .ipynb. You can rename the notebook by clicking on the notebook name at the top of the screen. An empty notebook will look like this:\n\n\n\nAn empty Jupyter Notebook.\n\n\nPlease do not forget to select the Python interpreter that you want to use for the notebook. You can do this by clicking on the Python version at the top right corner of the screen. A prompt will appear, and you can select the Python interpreter that you want to use (in this case, Anacoda’s “base”).\n\n\n\nSelecting the Python interpreter for the notebook.\n\n\nTo create a chunk of Python code click on “+ Code.” You will get an empty gray box which has Python on the lower-right corner. You can type Python code in this box and run it by clicking on the “Run” button on the left side of the box. You can also run the code by pressing “Shift + Enter” on your keyboard.\n\n\n\nA code cell in a Jupyter Notebook.\n\n\nHere you should enter the Python commands. For example, type the following lines of code in the code cell:\n\nprint(\"Welcome to QTM 350!\")\n\nx = 5\ny = 10\nz = x + y\nprint(z)\n\nThe results of the code will be displayed below the code cell. In this case, the output will be:\n\n\n\nOutput of the code cell.\n\n\nTo create a text cell click on “+ Markdown.” You will get an empty white box where you can type text. We will cover Markdown in more detail in the next section. But for now, you can type the following text in the Markdown cell:\n# Welcome to QTM 350!\n\nThis is a Jupyter Notebook. You can write *text*, **equations**, and `code` \nin [this notebook](https://github.com/danilofreire/qtm350/blob/main/tutorials/testing-ipython.ipynb). \nThe text will be displayed in the text cell like this:\n\n\n\nA text cell in a Jupyter Notebook.\n\n\nYou can run the text cell by clicking the “Run” button on the left side of the box or by pressing “Shift + Enter” on your keyboard. The first text block shows how the text looks before running the cell, and the second block shows how it looks after running the cell. Just double click on the space where the text is to edit the Markdown block. This is should open the gray box again."
-  },
-  {
-    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#why-use-markdown",
-    "href": "tutorials/02-jupyter-markdown-tutorial.html#why-use-markdown",
-    "title": "Jupyter Notebook and Markdown Tutorial",
-    "section": "Why Use Markdown?",
-    "text": "Why Use Markdown?\nMarkdown is a great way to format text because it is simple, easy to learn, and widely supported. You can use Markdown to create headings, lists, tables, equations, and figures in your documents. Markdown is used in many different applications, including Jupyter Notebook, GitHub, and Slack. Learning Markdown will help you create well-formatted documents that are easy to read and share."
-  },
-  {
-    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#headings",
-    "href": "tutorials/02-jupyter-markdown-tutorial.html#headings",
-    "title": "Jupyter Notebook and Markdown Tutorial",
-    "section": "Headings",
-    "text": "Headings\nYou can create headings using the # symbol. For example, # Heading 1 creates a first-level heading, ## Heading 2 creates a second-level heading, and so on. You can create up to six levels of headings using the # symbol.\n# Heading 1\n## Heading 2\n### Heading 3"
-  },
-  {
-    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#lists",
-    "href": "tutorials/02-jupyter-markdown-tutorial.html#lists",
-    "title": "Jupyter Notebook and Markdown Tutorial",
-    "section": "Lists",
-    "text": "Lists\nTo create an ordered list with nested unordered sub-items in Markdown, you can write the following code:\n1. This is an ordered list.\n2. This is the second item in the ordered list.\n  - This is a sub-item in the unordered list.\n    - This is a sub-sub-item in the unordered list.\n\nThis is an ordered list.\nThis is the second item in the ordered list.\n\nThis is a sub-item in the unordered list.\n\nThis is a sub-sub-item in the unordered list.\n\n\n\nYou can also create unordered lists:\n- This is an unordered list.\n- This is the second item in the unordered list.\n  - This is a sub-item in the unordered list.\n\nThis is an unordered list.\nThis is the second item in the unordered list.\n\nThis is a sub-item in the unordered list."
-  },
-  {
-    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#tables",
-    "href": "tutorials/02-jupyter-markdown-tutorial.html#tables",
-    "title": "Jupyter Notebook and Markdown Tutorial",
-    "section": "Tables",
-    "text": "Tables\nYou can create tables using the | symbol. For example:\nTable: Your Caption \n\n| A            | New              | Table          |\n|:-------------|:----------------:|---------------:|\n|left-aligned  |centre-aligned    |right-aligned   |\n|*italics*     |~~strikethrough~~ |**boldface**    |\n\nYour Caption\n\n\nA\nNew\nTable\n\n\n\n\nleft-aligned\ncentre-aligned\nright-aligned\n\n\nitalics\nstrikethrough\nboldface\n\n\n\nThe : symbols in the second row of the table determine the alignment of the text in each column. You can use left, center, or right to align the text."
-  },
-  {
-    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#creating-markdown-tables-from-pandas-dataframes-in-jupyter-notebooks",
-    "href": "tutorials/02-jupyter-markdown-tutorial.html#creating-markdown-tables-from-pandas-dataframes-in-jupyter-notebooks",
-    "title": "Jupyter Notebook and Markdown Tutorial",
-    "section": "Creating Markdown Tables from Pandas DataFrames in Jupyter Notebooks",
-    "text": "Creating Markdown Tables from Pandas DataFrames in Jupyter Notebooks\nWhen working with pandas DataFrames, you can convert them into Markdown tables for better presentation. The method is also relatively simple. Here is how to do it:\n\nPrerequisites\nEnsure you have the following installed:\n\nJupyter Notebook\npandas\ntabulate (for enhanced table formatting)\n\nJupyter Notebook and pandas are included in the Anaconda distribution. You can install tabulate using conda install in your terminal. If you are using VS Code, you can open a terminal by clicking on “Terminal” &gt; “New Terminal” in the top menu. Then run the following command:\nconda install tabulate\n\n\nBasic Method: Using pandas.DataFrame.to_markdown()\npandas provides a built-in method to_markdown() for converting DataFrames to Markdown tables.\n\nStep 1: Import pandas and create a DataFrame\nYou can create a dataframe by passing a dictionary to the pd.DataFrame() constructor:\n\n# If necessary, install pandas and tabulate \n# You should have pandas installed if you installed Anaconda, \n# but if you do not, you can install both with the following terminal command:\n# conda install pandas tabulate\n\n# Import pandas\nimport pandas as pd\nfrom tabulate import tabulate\n\n# Create a sample DataFrame\ndata = {\n    \"Name\": [\"Alice\", \"Bob\", \"Charlie\"],\n    \"Age\": [25, 30, 35],\n    \"City\": [\"New York\", \"London\", \"Paris\"]\n}\ndf = pd.DataFrame(data)\n\n\n\nStep 2: Convert DataFrame to Markdown\nThen you just need to call the to_markdown() method on the DataFrame:\n\n# Print the DataFrame as a Markdown table, excluding the index\nmarkdown_table = df.to_markdown(index=False)\nprint(markdown_table)\n\nThis will output:\n| Name    | Age  | City     |\n|:--------|-----:|:---------|\n| Alice   |   25 | New York |\n| Bob     |   30 | London   |\n| Charlie |   35 | Paris    |\n\n\nStep 3: Display in Jupyter Notebook\nTo display the Markdown table in a Jupyter Notebook cell, use the display() function from the IPython.display module:\n\n# You should also have the IPython package installed if you installed Anaconda\n# If not, you can install it with\n# conda install ipython\n\n# Import the Markdown display class. \n# This is what allows us to display Markdown in Jupyter Notebooks \nfrom IPython.display import display, Markdown\n\n# Display the Markdown table\ndisplay(Markdown(markdown_table))\n\nThis will render a nicely formatted table in your notebook:\n\n\n\nMarkdown table in a Jupyter Notebook.\n\n\n\n\n\nAdvanced Formatting\nYou can customise the Markdown table using various parameters of to_markdown():\n\n# Customising the Markdown table using the to_markdown() method\nmarkdown_table = df.to_markdown(\n    index=False,  # Don't include index\n    tablefmt=\"pipe\",  # Use pipe format\n    floatfmt=\".2f\",  # Format floats to 2 decimal places\n    headers=[\"Name\", \"Age (Years)\", \"City\"],  # Custom headers\n    colalign=(\"left\", \"center\", \"right\")  # Align columns\n)\ndisplay(Markdown(markdown_table))\n\n\n\nUsing tabulate for Enhanced Formatting\nThe tabulate library offers even more formatting options. While they are not necessary for basic tables, they can be useful for more complex tables. In our course, you will probably not need them, but I will show you how to use them for your reference. Please check their documentation for more information.\n\nfrom tabulate import tabulate\n\nmarkdown_table = tabulate(df, headers='keys', tablefmt='pipe', showindex=False)\ndisplay(Markdown(markdown_table))\n\n\n\nBest Practices\n\nIndex: Consider whether you need the index in your table. Often, it is cleaner to exclude it using index=False.\nFormatting: Use floatfmt to control decimal places for numerical data.\nHeaders: Customize headers for clarity, especially if your DataFrame column names are not user-friendly.\nTable Format: Experiment with different tablefmt options to find the most suitable for your needs.\nLarge DataFrames: For large DataFrames, consider displaying only a subset of rows or columns to maintain readability.\n\n\n\nExample: Comprehensive Table Creation\nHere is a more comprehensive example incorporating various best practices:\n\n# Import necessary packages\nimport pandas as pd\nfrom IPython.display import display, Markdown\nfrom tabulate import tabulate\n\n# Create a sample DataFrame\ndata = {\n    \"Product\": [\"Laptop\", \"Smartphone\", \"Tablet\"],\n    \"Price\": [999.99, 599.50, 299.75],\n    \"Stock\": [50, 100, 75],\n    \"Rating\": [4.5, 4.8, 4.2]\n}\ndf = pd.DataFrame(data)\n\n# Create a formatted Markdown table\nmarkdown_table = tabulate(\n    df,\n    headers=[\"Product Name\", \"Price ($)\", \"Stock Quantity\", \"Customer Rating\"],\n    tablefmt=\"pipe\", # Format as Markdown table\n    floatfmt=(\".2f\", \".2f\", \"d\", \".1f\"),\n    showindex=False, # Don't show the index (row numbers)\n    numalign=\"right\", # Align numbers to the right\n    stralign=\"left\" # Align strings (text, first column) to the left\n)\n\n# Display the table in the notebook\ndisplay(Markdown(\"### Product Inventory Summary\"))\ndisplay(Markdown(markdown_table))\n\nThis will produce a well-formatted table with custom headers, appropriate number formatting, and a title.\n\n\n\nComprehensive Markdown table in a Jupyter Notebook."
-  },
-  {
-    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#equations",
-    "href": "tutorials/02-jupyter-markdown-tutorial.html#equations",
-    "title": "Jupyter Notebook and Markdown Tutorial",
-    "section": "Equations",
-    "text": "Equations\nYou can create equations using the $$ symbol. For example in Equation 1, we have the formula for the standard deviation of a population:\n$$\n\\sigma = \\sqrt{\\frac{\\sum_{i=1}^{N} (x_i - \\mu)^2}{N}}\n$$ {#eq-stddev}\n\\[\n\\sigma = \\sqrt{\\frac{\\sum_{i=1}^{N} (x_i - \\mu)^2}{N}}\n\\tag{1}\\]\nYou can also create equations inline by using the $ symbol. For example, $\\alpha = \\beta + \\gamma$ will render as \\(\\alpha = \\beta + \\gamma\\). To learn more about how to write equations in using Markdown, you can refer to the Overleaf documentation."
-  },
-  {
-    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#figures",
-    "href": "tutorials/02-jupyter-markdown-tutorial.html#figures",
-    "title": "Jupyter Notebook and Markdown Tutorial",
-    "section": "Figures",
-    "text": "Figures\nYou can include figures in your document using the ![Caption](path/to/image.png){#fig-label} syntax. For example:\n![This is a figure caption.](path/to/image.png){#fig-label}\nThis will include the image path/to/image.png in your document with the caption “This is a figure caption.” You can refer to the figure using the label fig-label, but this is optional.\nIf you are creating plots on Jupyter Notebook, the graphs will appear after the code cell that generates them."
-  },
-  {
-    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#citations",
-    "href": "tutorials/02-jupyter-markdown-tutorial.html#citations",
-    "title": "Jupyter Notebook and Markdown Tutorial",
-    "section": "Citations",
-    "text": "Citations\nAlthough Markdown has excellent reference support with BibTeX files, there is no reliable way to include citations automatically in Jupyter Notebooks. The two packages I know that manage citations, cite2c and Jupyterlab Citation Manager, are not ideal. The first has not been maintained for years, while the second is not ready for most uses. Therefore, I suggest simply copying the citation from Google Scholar and pasting it into a Markdown cell titled “References” at the end of your document. The same approach applies for inline citations."
-  },
-  {
-    "objectID": "tutorials/02-jupyter-markdown-tutorial.html#footnotes",
-    "href": "tutorials/02-jupyter-markdown-tutorial.html#footnotes",
-    "title": "Jupyter Notebook and Markdown Tutorial",
+    "objectID": "tutorials/testing-ipython.html#footnotes",
+    "href": "tutorials/testing-ipython.html#footnotes",
+    "title": "Welcome to DATASCI 350!",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nThis is an inline footnote.↩︎\nYou can also include multiple paragraphs in a footnote by indenting the subsequent paragraphs.↩︎"
-  },
-  {
-    "objectID": "tutorials/03-github-tutorial.html",
-    "href": "tutorials/03-github-tutorial.html",
-    "title": "GitHub Tutorial",
-    "section": "",
-    "text": "This tutorial will guide you through the process of creating a GitHub educational account, downloading and installing GitHub Desktop, and downloading the course materials from GitHub to your computer. The tutorial also covers the basics of Git and GitHub, such as creating a repository, committing changes, and pushing changes to GitHub. It will also show you how to use VS Code to edit and manage your code on GitHub. You can use any tool you prefer to version control your code."
-  },
-  {
-    "objectID": "tutorials/03-github-tutorial.html#footnotes",
-    "href": "tutorials/03-github-tutorial.html#footnotes",
-    "title": "GitHub Tutorial",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nAs a curiosity, the code for the Apollo 11 mission is also available on GitHub.↩︎\nThe default branch in GitHub is called main. This is the branch where you will make most of your changes. You can create other branches if you want to work on different features or bug fixes.↩︎"
+    "text": "Footnotes\n\n\nThis is the first footnote.↩︎\nThis is the second footnote.↩︎"
   },
   {
     "objectID": "tutorials/tutorials.html",
@@ -354,7 +333,7 @@
     "href": "tutorials/tutorials.html#available-tutorials",
     "title": "Tutorials",
     "section": "Available Tutorials",
-    "text": "Available Tutorials\n\n01 - VSCode and Anaconda Tutorial\n02 - Jupyter Notebook and Markdown Tutorial\n03 - GitHub Tutorial\n\nPDF versions of the tutorials are also available on GitHub: https://github.com/danilofreire/qtm350/tree/main/tutorials."
+    "text": "Available Tutorials\n\n01 - VSCode and Anaconda Tutorial\n02 - Jupyter Notebook and Markdown Tutorial\n03 - GitHub Tutorial\n\nPDF versions of the tutorials are also available on GitHub: https://github.com/danilofreire/datasci350/tree/main/tutorials."
   },
   {
     "objectID": "tutorials/tutorials.html#additional-resources",
@@ -366,72 +345,16 @@
   {
     "objectID": "syllabus.html",
     "href": "syllabus.html",
-    "title": "QTM 350 - Data Science Computing",
+    "title": "DATASCI 350 - Data Science Computing",
     "section": "",
-    "text": "Welcome to QTM 350! This course introduces key tools in modern data science, focusing on three essential aspects: reliability, reproducibility, and robustness. We will cover the command-line interface, version control with Git and GitHub, and literate programming using Quarto. You will also learn about cloud computing with AWS (basics), data storage and manipulation with SQL and Pandas, and parallel computing with Dask. We will explore AI-assisted programming with GitHub Copilot and Ollama and finish with Docker and containerisation.\nBy working with real-world datasets and problems, students will gain hands-on experience using these tools and methods to extract insights from data. This course will develop technical skills and critical thinking needed to solve complex data challenges. Upon completion, students will be prepared to apply these tools to their own research and professional work."
+    "text": "Welcome to DATASCI 350! This course introduces key tools in modern data science, focusing on three essential aspects: reliability, reproducibility, and robustness. We will cover the command-line interface, version control with Git and GitHub, and literate programming using Quarto. You will also learn about cloud computing with AWS (basics), data storage and manipulation with SQL and Pandas, and parallel computing with Dask. We will explore AI-assisted programming with GitHub Copilot and Ollama and finish with Docker and containerisation.\nBy working with real-world datasets and problems, students will gain hands-on experience using these tools and methods to extract insights from data. This course will develop technical skills and critical thinking needed to solve complex data challenges. Upon completion, students will be prepared to apply these tools to their own research and professional work."
   },
   {
     "objectID": "syllabus.html#suggested-books",
     "href": "syllabus.html#suggested-books",
-    "title": "QTM 350 - Data Science Computing",
+    "title": "DATASCI 350 - Data Science Computing",
     "section": "Suggested Books",
     "text": "Suggested Books\n\nPython for Data Analysis by Wes McKinney\nElements of Data Science by Allen Downey\nSQL for Data Scientists by Renee M. P. Teate\nData Science on the Command Line by Jeroen Janssens\nDocker for Data Science by Joshua Cook\nPro Git by Scott Chacon and Ben Straub\nFree programming books\n\n\nOnline Courses\n\nCoursera: Python for Everybody Specialisation\nedX: Python Basics for Data Science\nCodecademy: Learn Python\nDataCamp: Introduction to SQL\nCoursera: SQL for Data Science\nCoursera: Introduction to Git and GitHub\nMicrosoft Learn: GitHub Copilot Fundamentals\n\n\n\nDocumentation\n\nOfficial Python Documentation\nNumPy Documentation\nPandas Documentation\nMatplotlib Documentation\nPostgreSQL Documentation\nGit Documentation\nGitHub Documentation\nDask Documentation\nGitHub Co-Pilot Documentation\nDocker Documentation"
-  },
-  {
-    "objectID": "syllabus.html#module-01-introduction-to-python-jupyter-and-github",
-    "href": "syllabus.html#module-01-introduction-to-python-jupyter-and-github",
-    "title": "QTM 350 - Data Science Computing",
-    "section": "Module 01: Introduction to Python, Jupyter, and GitHub",
-    "text": "Module 01: Introduction to Python, Jupyter, and GitHub\n\nWednesday, January 15:\n\nSyllabus and course repository: https://github.com/danilofreire/qtm350.\nLecture 01: Welcome to QTM 350 - Introduction.\nCourse Tutorials: How to Install Anaconda, Jupyter, PostgreSQL, VSCode, and Open a Free Educational Account on GitHub.\n\nSuggested references:\n\nCleveland, W. S. (2001). Data science: An action plan for expanding the technical areas of the field of statistics. International Statistical Review, 69(1), 21-26.\nDonoho, D. (2017). 50 Years of Data Science. Journal of Computational and Graphical Statistics, 26(4), 745-766.\nBreiman, L. (2001). Statistical Modeling: The Two Cultures (with Comments and a Rejoinder by the Author). Statistical Science, 16(3), 199-231.\nBrady, H. E. (2019). The Challenge of Big Data and Data Science. Annual Review of Political Science, 22(1), 297-323.\nZitnik, M., Nguyen, F., Wang, B., Leskovec, J., Goldenberg, A., & Hoffman, M. M. (2019). Machine Learning for Integrating Data in Biology and Medicine: Principles, Practice, and Opportunities. Information Fusion, 50, 71-91.\n\n\n\nMonday, January 20: Martin Luther King Jr. Day (no class)\n\n\nWednesday, January 22:\n\nLecture 02: Computational Literacy.\nAssignment 01: Problem Set 01\n\nSuggested references:\n\nCampbell-Kelly, M., Aspray, W. F., Yost, J. R., Tinn, H., & Díaz, G. C. (2023). Computer: A History of the Information Machine. Routledge.\nShalf, J. (2020). The Future of Computing beyond Moore’s Law. Philosophical Transactions of the Royal Society A, 378(2166), 20190061.\nAl-Hashimi, H. M. (2023). Turing, von Neumann, and The Computational Architecture of Biological Machines. Proceedings of the National Academy of Sciences, 120(25), e2220022120.\nWing, J. M. (2006). Computational Thinking. Communications of the ACM, 49(3), 33-35.\nVideos: David J. Malan - Abstraction, Khan Academy - Hexadecimal Number System, Matthias Wandel - Marble Adding Machine, Crash Course - Early Computing and Electronic Computing (the last two are quite entertaining!)."
-  },
-  {
-    "objectID": "syllabus.html#module-02-introduction-to-the-command-line-interface-and-version-control",
-    "href": "syllabus.html#module-02-introduction-to-the-command-line-interface-and-version-control",
-    "title": "QTM 350 - Data Science Computing",
-    "section": "Module 02: Introduction to the Command-Line Interface and Version Control",
-    "text": "Module 02: Introduction to the Command-Line Interface and Version Control\n\nMonday, January 27:\n\nLecture 03: The Command-Line Interface (CLI), Shell Basics, and File Management.\n\nSuggested references:\n\nJanssens, J. (2021). Data Science at the Command Line: Obtain, Scrub, Explore, and Model Data with Unix Power Tools (2nd ed.). O’Reilly Media.\nLevy, J. (2024). The Art of Command Line. GitHub.\nShotts, W. (2019). The Linux Command Line: A Complete Introduction. No Starch Press.\nHealy, K. (2019). The Plain Person’s Guide to Plain Text Social Science. Chapters 1-5.\n\n\n\nWednesday, January 29:\n\nLecture 04: More command line tools, text files and scripting.\nAssignment 01 due (5%).\nAssignment 02: Problem Set 02.\n\nSuggested references:\n\nKerr, D. (2024). Effective Shell.\nIrianto, I. (2021). Learn Vim (the Smart Way).\nNeil, D. (2015). Practical Vim: Edit Text at the Speed of Thought. Pragmatic Bookshelf.\nDennis, J. Your problem with Vim is that you don’t grok vi. (Stack Overflow).\nVim Adventures. (Instructor’s note: this is a fun, albeit cringy, way to learn Vim).\nVideos: freeCodeCamp - Command line crash course, Percy Grunwald - Absolute beginner guide to the macOS terminal, NetworkChuck - 50 macOS tips and tricks using terminal\n\n\n\nMonday, February 03:\n\nLecture 05: Version control with Git and GitHub.\n\nSuggested references:\n\nChacon, S. and Straub, B. (2014). Pro Git. Apress. (Instructor’s note: this is the book on Git).\nGitHub tutorials: GitHub skills (recommended), Git guides, GitHub learning lab, Best practices for repositories.\n\n\n\nWednesday, February 05:\n\nLecture 06: More Git and GitHub: pull requests, issues, pages, and collaboration features.\nAssignment 02 due (5%).\nAssignment 03: Problem Set 03.\n\nSuggested references:\n\nPerez-Riverol, Y., Gatto, L., Wang, R., Sachsenberg, T., Uszkoreit, J., Leprevost, F. da V., Fufezan, C., Ternent, T., Eglen, S. J., Katz, D. S., Pollard, T. J., Konovalov, A., Flight, R. M., Blin, K., & Vizcaíno, J. A. (2016). Ten Simple Rules for Taking Advantage of Git and GitHub. PLOS Computational Biology, 12(7), e1004947.\nBeckman, M. D., Çetinkaya-Rundel, M., Horton, N. J., Rundel, C. W., Sullivan, A. J., & Tackett, M. (2021). Implementing version control with git and GitHub as a learning objective in statistics and data science courses. Journal of Statistics and Data Science Education, 29(sup1), S132-S144.\nEscamilla, E., Klein, M., Cooper, T., Rampin, V., Weigle, M. C., & Nelson, M. L. (2022). The Rise of GitHub in Scholarly Publications. arXiv preprint arXiv:2208.04895.\n\n\n\nMonday, February 10:\n\nLecture 07: Quiz 01: Git and Github (6%)."
-  },
-  {
-    "objectID": "syllabus.html#module-03-literate-programming-with-markdown-quarto-and-jupyter",
-    "href": "syllabus.html#module-03-literate-programming-with-markdown-quarto-and-jupyter",
-    "title": "QTM 350 - Data Science Computing",
-    "section": "Module 03: Literate Programming with Markdown, Quarto, and Jupyter",
-    "text": "Module 03: Literate Programming with Markdown, Quarto, and Jupyter\n\nWednesday, February 12:\n\nLecture 08: Using Quarto for Reproducible Reports.\nAssignment 03 due (5%).\nAssignment 04: Problem Set 04.\n\nSuggested references:\n\nQuarto official website.\nAwesome Quarto: https://github.com/mcanouil/awesome-quarto. Note: this repository contains dozens of tutorials, examples, and resources.\nÇetinkaya-Rundel, M. & Lowndes, J. S. (2022) Keynote talk: Hello Quarto: Share • Collaborate • Teach • Reimagine. Slides and source code. This is one of the nicest Quarto presentations I have seen.\nGetting Started with Quarto (YouTube). Note: Posit (formerly RStudio) has a series of tutorials on Quarto on their YouTube channel. You can find their playlist here.\nMarkdown Guide.\nJupyter Notebooks Documentation.\nCodecademy - How to use Jupyter Notebooks\nCourse tutorial: Jupyter and Markdown\n\n\n\nMonday, February 17:\n\nLecture 09: Writing Documents, Presentations, and Websites with Quarto.\nKahoot Quiz.\n\nSuggested references:\n\nQuarto Documentation - Presentations and Websites.\nGitHub Pages Documentation.\nFrench, J. (2023). Creating Websites with Quarto and GitHub Pages (YouTube Playlist).\nTaylor, I. (2022). Publishing a Quarto Site to GitHub Pages.\n\n\n\nWednesday, February 19:\n\nLecture 10: Quiz 02: Literate Programming (6%).\nAssignment 05: Problem Set 05.\nAssignment 04 due (5%)."
-  },
-  {
-    "objectID": "syllabus.html#module-04-ai-assisted-programming",
-    "href": "syllabus.html#module-04-ai-assisted-programming",
-    "title": "QTM 350 - Data Science Computing",
-    "section": "Module 04: AI-Assisted Programming",
-    "text": "Module 04: AI-Assisted Programming\n\nMonday, February 24:\n\nLecture 11: Introduction to AI-Assisted Programming and Chatbots.\n\nSuggested references:\n\nMatarazzo, A & Torlone, R. (2025). A Survey on Large Language Models with some Insights on their Capabilities and Limitations. arXiv preprint arXiv:2501.04040.\nCihon, P. & Demirer, M. (2023). How AI-powered software development may affect labor markets. Brookings Institution\nPoldrack, R. A., Lu, T., & Beguš, G. (2023). AI-assisted Coding: Experiments with GPT-4. arXiv preprint arXiv:2304.13187.\nLau, S & Guo, P. (2023). From “Ban It Till We Understand It” to “Resistance is Futile”: How University Programming Instructors Plan to Adapt as More Students Use AI Code Generation and Explanation Tools such as ChatGPT and GitHub Copilot. In Proceedings of the 2023 ACM Conference on International Computing Education Research V.1 (ICER ’23 V1), August 07–11, 2023, Chicago, IL, USA. ACM, New York, NY, USA 16 Pages.\nLinus Torvalds Discusses the Impact of AI on Programming (YouTube).\n\n\n\nWednesday, February 26:\n\nLecture 12: AI-Assisted Programming with GitHub Copilot.\nAssignment 05 due (5%).\nAssignment 06: Problem Set 06.\n\nSuggested references:\n\nGitHub Copilot Documentation.\nUsing GitHub Copilot in your IDE: Tips, Tricks, and Best Practices\nUsing GitHub Copilot in the Command Line\nCoding with an AI Pair Programmer: Getting Started with GitHub Copilot (YouTube)\nGitHub Copilot YouTube Playlist\nLabadze, L., Grigolia, M., & Machaidze, L. (2023). Role of AI Chatbots in Education: Systematic Literature Review. International Journal of Educational Technology in Higher Education, 20(1), 56."
-  },
-  {
-    "objectID": "syllabus.html#module-05-data-manipulation-with-python",
-    "href": "syllabus.html#module-05-data-manipulation-with-python",
-    "title": "QTM 350 - Data Science Computing",
-    "section": "Module 05: Data Manipulation with Python",
-    "text": "Module 05: Data Manipulation with Python\n\nMonday, March 03:\n\nLecture 13: Python Data Types, Boolean Logic, and Control Structures.\nKahoot Quiz.\nAssignment 06 due (5%).\nAssignment 07: Problem Set 07.\n\nSuggested references:\n\nPython Documentation: An Informal Introduction to Python.\nPython Documentation: More Control Flow Tools.\nPython Documentation: Compound Statements.\nNumPy Documentation: Quickstart Tutorial.\nProgramiz: Math Operations in Python.\nMatthes, E. (2019). Python Crash Course: A Hands-On, Project-Based Introduction to Programming (2nd ed.). No Starch Press. Chapter 02.\nSeverance, C. (2016). Python for Everybody: Exploring Data in Python 3. CreateSpace Independent Publishing Platform. Chapters 3-11 (Note: Read only the chapters which interest you).\n\n\n\nWednesday, March 05:\n\nLecture 14: Introduction to Pandas.\nKahoot Quiz.\n\n\n\nMonday, March 10: Spring Break (no class)\n\n\nWednesday, March 12: Spring Break (no class)\n\n\nMonday, March 17:\n\nLecture 15: Pandas for Data Analysis: Data Wrangling and Aggregating.\nKahoot Quiz.\nAssignment 07 due (5%).\nAssignment 08: Problem Set 08.\n\nSuggested references:\n\nMcKinney, W. (2022). Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython (3rd ed.). O’Reilly Media. Chapter 05: Getting Started with Pandas.\nVanderPlas, J. (2016). Python Data Science Handbook: Essential Tools for Working with Data. O’Reilly Media. Chapter 3: Data Manipulation with Pandas.\nMcKinney, W. (2022). Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython (3rd ed.). O’Reilly Media. Chapter 07: Data Cleaning and Preparation.\nDataCamp: Pandas Tutorial: DataFrames in Python.\nReal Python: Pandas Tutorial: DataFrames in Python.\n\n\n\nWednesday, March 19:\n\nLecture 16: Quiz 03: Python for Data Analysis (6%)."
-  },
-  {
-    "objectID": "syllabus.html#module-06-introduction-to-sql-databases",
-    "href": "syllabus.html#module-06-introduction-to-sql-databases",
-    "title": "QTM 350 - Data Science Computing",
-    "section": "Module 06: Introduction to SQL Databases",
-    "text": "Module 06: Introduction to SQL Databases\n\nMonday, March 24:\n\nLecture 17: Introduction to PostgreSQL: Data Types, Tables, and Queries.\nAssignment 08 due (5%).\nAssignment 09: Problem Set 09.\nInstructions for the Final Project.\n\nSuggested references:\n\nMode Analytics: SQL Tutorial.\nReal Python: SQL Databases and SQLite.\nKhan Academy: SQL Basics. (Note: Khan Academy is a great resource for learning SQL and other programming languages).\nCoursera: PostgreSQL for Everybody.\nPostgreSQL Tutorial.\nPostgreSQL Documentation: SQL Commands. (Note: For reference only).\n\n\n\nWednesday, March 26:\n\nLecture 18: SQL in Python: Connecting to Databases with Pandas.\nKahoot Quiz.\n\n\n\nMonday, March 31:\n\nLecture 19: Merging Tables in SQL.\nKahoot Quiz.\nAssignment 09 due (5%).\nAssignment 10: Problem Set 10.\n\nSuggested references:\n\nPandas Documentation: SQL Databases.\nReal Python: Working with SQLite Databases Using Python and Pandas.\nMode Analytics: SQL Joins.\nPostgreSQL Documentation: Joins Between Tables.\n\n\n\nWednesday, April 02:\n\nLecture 20: Quiz 04: SQL Databases (6%)."
-  },
-  {
-    "objectID": "syllabus.html#module-07-parallel-computing",
-    "href": "syllabus.html#module-07-parallel-computing",
-    "title": "QTM 350 - Data Science Computing",
-    "section": "Module 07: Parallel Computing",
-    "text": "Module 07: Parallel Computing\n\nMonday, April 07:\n\nLecture 21: Parallel Computing with Dask.\nAssignment 10 due (5%).\n\nSuggested references:\n\nDask Documentation\nDask Tutorial\nCoiled - Intro to Dask Tutorial (YouTube).\nRocklin, M. (2017). Dask: Flexible Library for Parallel Computing in Python. In Proceedings of the 16th Python in Science Conference (Vol. 126, p. 130).\n\n\n\nWednesday, April 09:\n\nLecture 22: Application: Parallelising Data Analysis with Dask and AutoML.\nKahoot Quiz.\n\nSuggested references:\n\nDask Documentation: Machine Learning.\nHe, X., Zhao, K., & Chu, X. (2021). AutoML: A Survey of the State-of-The-Art. Knowledge-based systems, 212, 106622.\nTPOT Documentation."
-  },
-  {
-    "objectID": "syllabus.html#module-08-containers-and-reproducibility",
-    "href": "syllabus.html#module-08-containers-and-reproducibility",
-    "title": "QTM 350 - Data Science Computing",
-    "section": "Module 08: Containers and Reproducibility",
-    "text": "Module 08: Containers and Reproducibility\n\nMonday, April 14:\n\nLecture 23: Dependency Management, Virtual Environments, and Containers.\n\nSuggested references:\n\nDocker Documentation\nComposeCraft. A tool to help you manage, edit and share docker compose files in a GUI way.\n\n\n\nWednesday, April 16:\n\nLecture 24: Docker for Data Science.\n\n\n\nMonday, April 21:\n\nLecture 25: Quiz 05: Dask, Docker and Containers (6%).\n\n\n\nWednesday, April 23:\n\nLecture 26: Review and Final Project Discussion.\n\n\n\nMonday, April 28:\n\nFinal Project due (20%)."
   },
   {
     "objectID": "lectures/lectures.html",
@@ -441,11 +364,11 @@
     "text": "The course covers the following topics, with corresponding lecture materials available in the lectures folder. Please refer to the syllabus for additional suggested readings on each topic. Links will be added as the materials are posted."
   },
   {
-    "objectID": "lectures/lectures.html#module-01-introduction-to-python-jupyter-and-github",
-    "href": "lectures/lectures.html#module-01-introduction-to-python-jupyter-and-github",
+    "objectID": "lectures/lectures.html#module-01-introduction",
+    "href": "lectures/lectures.html#module-01-introduction",
     "title": "Lectures",
-    "section": "Module 01: Introduction to Python, Jupyter, and GitHub",
-    "text": "Module 01: Introduction to Python, Jupyter, and GitHub\n\nWednesday, January 15:\n\nSyllabus and course repository: https://github.com/danilofreire/qtm350.\nLecture 01: Welcome to QTM 350 - Introduction.\nCourse Tutorials: How to Install Anaconda, Jupyter, PostgreSQL, VSCode, and Open a Free Educational Account on GitHub.\n\nSuggested references:\n\nCleveland, W. S. (2001). Data science: An action plan for expanding the technical areas of the field of statistics. International Statistical Review, 69(1), 21-26.\nDonoho, D. (2017). 50 Years of Data Science. Journal of Computational and Graphical Statistics, 26(4), 745-766.\nBreiman, L. (2001). Statistical Modeling: The Two Cultures (with Comments and a Rejoinder by the Author). Statistical Science, 16(3), 199-231.\nBrady, H. E. (2019). The Challenge of Big Data and Data Science. Annual Review of Political Science, 22(1), 297-323.\nZitnik, M., Nguyen, F., Wang, B., Leskovec, J., Goldenberg, A., & Hoffman, M. M. (2019). Machine Learning for Integrating Data in Biology and Medicine: Principles, Practice, and Opportunities. Information Fusion, 50, 71-91.\n\n\n\nMonday, January 20: Martin Luther King Jr. Day (no class)\n\n\nWednesday, January 22:\n\nLecture 02: Computational Literacy.\nAssignment 01: Problem Set 01.\n\nSuggested references:\n\nCampbell-Kelly, M., Aspray, W. F., Yost, J. R., Tinn, H., & Díaz, G. C. (2023). Computer: A History of the Information Machine. Routledge.\nShalf, J. (2020). The Future of Computing beyond Moore’s Law. Philosophical Transactions of the Royal Society A, 378(2166), 20190061.\nAl-Hashimi, H. M. (2023). Turing, von Neumann, and The Computational Architecture of Biological Machines. Proceedings of the National Academy of Sciences, 120(25), e2220022120.\nWing, J. M. (2006). Computational Thinking. Communications of the ACM, 49(3), 33-35.\nVideos: David J. Malan - Abstraction, Khan Academy - Hexadecimal Number System, Matthias Wandel - Marble Adding Machine, Crash Course - Early Computing and Electronic Computing (the last two are quite entertaining!)."
+    "section": "Module 01: Introduction",
+    "text": "Module 01: Introduction\n\nAugust 27, 2025:\n\nSyllabus and course repository: https://github.com/danilofreire/datasci350.\nLecture 01: Welcome to QTM 350 - Introduction.\nCourse Tutorials: How to Install Anaconda, Jupyter, VSCode, and Open a Free Educational Account on GitHub.\n\nSuggested references:\n\nCleveland, W. S. (2001). Data science: An action plan for expanding the technical areas of the field of statistics. International Statistical Review, 69(1), 21-26.\nDonoho, D. (2017). 50 Years of Data Science. Journal of Computational and Graphical Statistics, 26(4), 745-766.\nBreiman, L. (2001). Statistical Modeling: The Two Cultures (with Comments and a Rejoinder by the Author). Statistical Science, 16(3), 199-231.\nBrady, H. E. (2019). The Challenge of Big Data and Data Science. Annual Review of Political Science, 22(1), 297-323.\nZitnik, M., Nguyen, F., Wang, B., Leskovec, J., Goldenberg, A., & Hoffman, M. M. (2019). Machine Learning for Integrating Data in Biology and Medicine: Principles, Practice, and Opportunities. Information Fusion, 50, 71-91.\n\n\n\nSeptember 3, 2025:\n\nLecture 02: Computational Literacy.\nAssignment 01: Problem Set 01.\n\nSuggested references:\n\nCampbell-Kelly, M., Aspray, W. F., Yost, J. R., Tinn, H., & Díaz, G. C. (2023). Computer: A History of the Information Machine. Routledge.\nShalf, J. (2020). The Future of Computing beyond Moore’s Law. Philosophical Transactions of the Royal Society A, 378(2166), 20190061.\nAl-Hashimi, H. M. (2023). Turing, von Neumann, and The Computational Architecture of Biological Machines. Proceedings of the National Academy of Sciences, 120(25), e2220022120.\nWing, J. M. (2006). Computational Thinking. Communications of the ACM, 49(3), 33-35.\nVideos: David J. Malan - Abstraction, Khan Academy - Hexadecimal Number System, Matthias Wandel - Marble Adding Machine, Crash Course - Early Computing and Electronic Computing (the last two are quite entertaining!)."
   },
   {
     "objectID": "lectures/lectures.html#module-02-introduction-to-the-command-line-interface-and-version-control",
@@ -469,11 +392,11 @@
     "text": "Module 04: AI-Assisted Programming\n\nOctober 6, 2025:\n\nLecture 11: Introduction to AI-Assisted Programming and Chatbots.\nKahoot Quiz.\n\nSuggested references:\n\nMatarazzo, A & Torlone, R. (2025). A Survey on Large Language Models with some Insights on their Capabilities and Limitations. arXiv preprint arXiv:2501.04040.”\nCihon, P. & Demirer, M. (2023). How AI-powered software development may affect labor markets. Brookings Institution\nPoldrack, R. A., Lu, T., & Beguš, G. (2023). AI-assisted Coding: Experiments with GPT-4. arXiv preprint arXiv:2304.13187.\nLau, S & Guo, P. (2023). From “Ban It Till We Understand It” to “Resistance is Futile”: How University Programming Instructors Plan to Adapt as More Students Use AI Code Generation and Explanation Tools such as ChatGPT and GitHub Copilot. In Proceedings of the 2023 ACM Conference on International Computing Education Research V.1 (ICER ’23 V1), August 07–11, 2023, Chicago, IL, USA. ACM, New York, NY, USA 16 Pages.\nLinus Torvalds Discusses the Impact of AI on Programming (YouTube).\nUsing GitHub Copilot in the Command Line\nGitHub Copilot YouTube Playlist\n\n\n\nOctober 8, 2025:\n\nLecture 12: Quiz 02: Literate Programming (6%).\nAssignment 05 due (5%).\nAssignment 06: Problem Set 06.\n\n\n\nOctober 15, 2025:\n\nLecture 13: AI-Assisted Programming, APIs, and Agents..\nAssignment 06 due (5%).\nAssignment 07: Problem Set 07..\n\nSuggested references:\n\nOllama Documentation.\nLM Studio Documentation.\nBrowser Use Documentation\nHugging Face Documentation. Note: great resource for NLP models and tools."
   },
   {
-    "objectID": "lectures/lectures.html#module-05-data-manipulation-with-python",
-    "href": "lectures/lectures.html#module-05-data-manipulation-with-python",
+    "objectID": "lectures/lectures.html#module-05-introduction-to-cloud-computing",
+    "href": "lectures/lectures.html#module-05-introduction-to-cloud-computing",
     "title": "Lectures",
-    "section": "Module 05: Data Manipulation with Python",
-    "text": "Module 05: Data Manipulation with Python\n\nMonday, March 03:\n\nLecture 13: Python Data Types, Boolean Logic, and Control Structures.\nKahoot Quiz.\n\nSuggested references:\n\nPython Documentation: An Informal Introduction to Python.\nPython Documentation: More Control Flow Tools.\nPython Documentation: Compound Statements.\nNumPy Documentation: Quickstart Tutorial.\nProgramiz: Math Operations in Python.\nMatthes, E. (2019). Python Crash Course: A Hands-On, Project-Based Introduction to Programming (2nd ed.). No Starch Press. Chapter 02.\nSeverance, C. (2016). Python for Everybody: Exploring Data in Python 3. CreateSpace Independent Publishing Platform. Chapters 3-11 (Note: Read only the chapters which interest you).\n\n\n\nWednesday, March 05:\n\nLecture 14: Introduction to Pandas.\nKahoot Quiz.\nAssignment 06 due (5%).\nAssignment 07: Problem Set 07.\n\n\n\nMonday, March 10: Spring Break (no class)\n\n\nWednesday, March 12: Spring Break (no class)\n\n\nMonday, March 17:\n\nLecture 15: Pandas for Data Analysis: Data Wrangling and Aggregating.\nKahoot Quiz.\n\nSuggested references:\n\nMcKinney, W. (2022). Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython (3rd ed.). O’Reilly Media. Chapter 05: Getting Started with Pandas.\nVanderPlas, J. (2016). Python Data Science Handbook: Essential Tools for Working with Data. O’Reilly Media. Chapter 3: Data Manipulation with Pandas.\nMcKinney, W. (2022). Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython (3rd ed.). O’Reilly Media. Chapter 07: Data Cleaning and Preparation.\nDataCamp: Pandas Tutorial: DataFrames in Python.\nReal Python: Pandas Tutorial: DataFrames in Python.\n\n\n\nWednesday, March 19:\n\nLecture 16: Quiz 03: Python for Data Analysis (6%).\nAssignment 07 due (5%).\nAssignment 08: Problem Set 08."
+    "section": "Module 05: Introduction to Cloud Computing",
+    "text": "Module 05: Introduction to Cloud Computing\n\nOctober 20, 2025:\n\nLecture 14: Introduction to Cloud Computing.\nKahoot Quiz.\n\nSuggested references:\n\nAmazon Web Services (AWS) Documentation.\nAWS Educate.\nAWS Training and Certification.\nAWS Cloud Practitioner Tutorial\nNewman, S. (2021). Building microservices: designing fine-grained systems. O’Reilly Media, Inc.\nErl, T., Puttini, R., & Mahmood, Z. (2013). Cloud computing: concepts, technology & architecture. Pearson Education.\n\n\n\nOctober 22, 2025:\n\nLecture 15: More Cloud Computing with Amazon Web Services (AWS).\nKahoot Quiz.\nAssignment 07 due (5%)."
   },
   {
     "objectID": "lectures/lectures.html#module-06-introduction-to-sql-databases",
@@ -495,19 +418,5 @@
     "title": "Lectures",
     "section": "Module 08: Containers and Reproducibility",
     "text": "Module 08: Containers and Reproducibility\n\nNovember 19, 2025:\n\nLecture 23: Dependency Management, Virtual Environments, and Containers.\nAssignment 09 due (5%).\nAssignment 10: Problem Set 10..\n\nSuggested references:\n\nDocker Documentation\nComposeCraft. A tool to help you manage, edit and share docker compose files in a GUI way.\n\n\n\nNovember 24, 2025:\n\nLecture 24: Docker for Data Science.\nKahoot Quiz.\n\n\n\nDecember 1, 2025:\n\nLecture 25: Course Review.\nKahoot Quiz.\n\n\n\nDecember 3, 2025:\n\nLecture 26: Quiz 05: Dask, Docker and Containers (6%).\nAssignment 10 due (5%).\n\n\n\nDecember 8, 2025:\n\nNo lecture. Students can drop in for help with their projects.\nFinal Project due (20%)."
-  },
-  {
-    "objectID": "lectures/lectures.html#module-01-introduction",
-    "href": "lectures/lectures.html#module-01-introduction",
-    "title": "Lectures",
-    "section": "Module 01: Introduction",
-    "text": "Module 01: Introduction\n\nAugust 27, 2025:\n\nSyllabus and course repository: https://github.com/danilofreire/qtm350.\nLecture 01: Welcome to QTM 350 - Introduction.\nCourse Tutorials: How to Install Anaconda, Jupyter, VSCode, and Open a Free Educational Account on GitHub.\n\nSuggested references:\n\nCleveland, W. S. (2001). Data science: An action plan for expanding the technical areas of the field of statistics. International Statistical Review, 69(1), 21-26.\nDonoho, D. (2017). 50 Years of Data Science. Journal of Computational and Graphical Statistics, 26(4), 745-766.\nBreiman, L. (2001). Statistical Modeling: The Two Cultures (with Comments and a Rejoinder by the Author). Statistical Science, 16(3), 199-231.\nBrady, H. E. (2019). The Challenge of Big Data and Data Science. Annual Review of Political Science, 22(1), 297-323.\nZitnik, M., Nguyen, F., Wang, B., Leskovec, J., Goldenberg, A., & Hoffman, M. M. (2019). Machine Learning for Integrating Data in Biology and Medicine: Principles, Practice, and Opportunities. Information Fusion, 50, 71-91.\n\n\n\nSeptember 3, 2025:\n\nLecture 02: Computational Literacy.\nAssignment 01: Problem Set 01.\n\nSuggested references:\n\nCampbell-Kelly, M., Aspray, W. F., Yost, J. R., Tinn, H., & Díaz, G. C. (2023). Computer: A History of the Information Machine. Routledge.\nShalf, J. (2020). The Future of Computing beyond Moore’s Law. Philosophical Transactions of the Royal Society A, 378(2166), 20190061.\nAl-Hashimi, H. M. (2023). Turing, von Neumann, and The Computational Architecture of Biological Machines. Proceedings of the National Academy of Sciences, 120(25), e2220022120.\nWing, J. M. (2006). Computational Thinking. Communications of the ACM, 49(3), 33-35.\nVideos: David J. Malan - Abstraction, Khan Academy - Hexadecimal Number System, Matthias Wandel - Marble Adding Machine, Crash Course - Early Computing and Electronic Computing (the last two are quite entertaining!)."
-  },
-  {
-    "objectID": "lectures/lectures.html#module-05-introduction-to-cloud-computing",
-    "href": "lectures/lectures.html#module-05-introduction-to-cloud-computing",
-    "title": "Lectures",
-    "section": "Module 05: Introduction to Cloud Computing",
-    "text": "Module 05: Introduction to Cloud Computing\n\nOctober 20, 2025:\n\nLecture 14: Introduction to Cloud Computing.\nKahoot Quiz.\n\nSuggested references:\n\nAmazon Web Services (AWS) Documentation.\nAWS Educate.\nAWS Training and Certification.\nAWS Cloud Practitioner Tutorial\nNewman, S. (2021). Building microservices: designing fine-grained systems. O’Reilly Media, Inc.\nErl, T., Puttini, R., & Mahmood, Z. (2013). Cloud computing: concepts, technology & architecture. Pearson Education.\n\n\n\nOctober 22, 2025:\n\nLecture 15: More Cloud Computing with Amazon Web Services (AWS).\nKahoot Quiz.\nAssignment 07 due (5%)."
   }
 ]

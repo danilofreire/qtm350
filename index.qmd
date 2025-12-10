@@ -1,10 +1,10 @@
 ---
-title: "QTM 350 - Data Science Computing"
+title: "DATASCI 350 - Data Science Computing"
 ---
 
-Welcome to [QTM 350](https://github.com/danilofreire/qtm350)! This course introduces key tools in modern data science, focusing on three essential aspects: reliability, reproducibility, and robustness. We will cover the [command-line interface](https://en.wikipedia.org/wiki/Command-line_interface), version control with [Git](https://git-scm.com/) and [GitHub](https://github.com/), and literate programming using [Quarto](https://quarto.org/). You will also learn about [cloud computing with AWS (basics)](https://aws.amazon.com/), data storage and manipulation with [SQL](https://www.w3schools.com/sql/) and [Pandas](https://pandas.pydata.org/), and parallel computing with [Dask](https://www.dask.org/). We will explore AI-assisted programming with [GitHub Copilot](https://github.com/features/copilot) and [Ollama](https://ollama.com/) and finish with [Docker](https://www.docker.com/) and containerisation. 
+Welcome to [DATASCI 350](https://github.com/danilofreire/datasci350)! This course introduces key tools in modern data science, focusing on three essential aspects: reliability, reproducibility, and robustness. We will cover the [command-line interface](https://en.wikipedia.org/wiki/Command-line_interface), version control with [Git](https://git-scm.com/) and [GitHub](https://github.com/), and literate programming using [Quarto](https://quarto.org/). You will also learn about [cloud computing with AWS (basics)](https://aws.amazon.com/), data storage and manipulation with [SQL](https://www.w3schools.com/sql/) and [Pandas](https://pandas.pydata.org/), and parallel computing with [Dask](https://www.dask.org/). We will explore AI-assisted programming with [GitHub Copilot](https://github.com/features/copilot) and [Ollama](https://ollama.com/) and finish with [Docker](https://www.docker.com/) and containerisation. 
 
-We will meet every Monday and Wednesday from 4pm to 5:15pm in the [Psychology Building, Room 230](http://emap.fmd.emory.edu/website/campus/index.htm#?queryzoom=Yes&Query=(bldg='2045')).
+We will meet every Monday and Wednesday from 5:30pm to 6:45pm in the [Psychology Building, Room 230](http://emap.fmd.emory.edu/website/campus/index.htm#?queryzoom=Yes&Query=(bldg='2045')).
 
 ## Contact Information
 
@@ -35,25 +35,25 @@ By the end of this course, students will be able to:
 
 ## Website Structure
 
-This website contains the [course syllabus](https://danilofreire.github.io/qtm350/syllabus.html), [lecture materials](https://danilofreire.github.io/qtm350/lectures/lectures.html), [tutorials](https://danilofreire.github.io/qtm350/tutorials/tutorials.html), and
-[assignments](https://danilofreire.github.io/qtm350/assignments/assignments.html) for the course. The course repository at <https://github.com/danilofreire/qtm350> is similarly structured. Feel free to explore the materials and use them as needed.
+This website contains the [course syllabus](https://danilofreire.github.io/datasci350/syllabus.html), [lecture materials](https://danilofreire.github.io/datasci350/lectures/lectures.html), [tutorials](https://danilofreire.github.io/datasci350/tutorials/tutorials.html), and
+[assignments](https://danilofreire.github.io/datasci350/assignments/assignments.html) for the course. The course repository at <https://github.com/danilofreire/datasci350> is similarly structured. Feel free to explore the materials and use them as needed.
 
 ## Getting Help
 
 If you encounter any issues with the course materials or have questions about the content, please:
 
-1. Check the [course syllabus](https://danilofreire.github.io/qtm350/syllabus.html) and this README for relevant information
-2. Review the [lecture materials](https://danilofreire.github.io/qtm350/lectures/lectures.html) and [tutorials](https://danilofreire.github.io/qtm350/tutorials/tutorials.html) in the repository
-3. Consult with your classmates or post in the [course discussion forum](https://github.com/danilofreire/qtm350/discussions)
+1. Check the [course syllabus](https://danilofreire.github.io/datasci350/syllabus.html) and this README for relevant information
+2. Review the [lecture materials](https://danilofreire.github.io/datasci350/lectures/lectures.html) and [tutorials](https://danilofreire.github.io/datasci350/tutorials/tutorials.html) in the repository
+3. Consult with your classmates or post in the [course discussion forum](https://github.com/danilofreire/datasci350/discussions)
 4. Attend office hours or schedule an appointment with the TAs or the instructor
 
 ## Contributing to the Repository
 
-While this repository is primarily maintained by the course instructor, everyone is welcome to contribute. Please feel free to suggest improvements or report issues by [opening a GitHub issue](https://github.com/danilofreire/qtm350/issues), [submitting a pull request](https://github.com/danilofreire/qtm350/pulls), [creating a discussion post](https://github.com/danilofreire/qtm350/discussions), or [contacting the instructor directly](mailto:danilo.freire@emory.edu).
+While this repository is primarily maintained by the course instructor, everyone is welcome to contribute. Please feel free to suggest improvements or report issues by [opening a GitHub issue](https://github.com/danilofreire/datasci350/issues), [submitting a pull request](https://github.com/danilofreire/datasci350/pulls), [creating a discussion post](https://github.com/danilofreire/datasci350/discussions), or [contacting the instructor directly](mailto:danilo.freire@emory.edu).
 
 ## License
 
-This repository is licensed under the [MIT License](https://github.com/danilofreire/qtm350/blob/main/LICENSE.md). You are free to use, modify, and distribute the materials as needed, with appropriate attribution to the original source.
+This repository is licensed under the [MIT License](https://github.com/danilofreire/datasci350/blob/main/LICENSE.md). You are free to use, modify, and distribute the materials as needed, with appropriate attribution to the original source.
 
 -----
 

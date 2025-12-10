@@ -46,15 +46,13 @@ Now you are ready to start using Git and GitHub. Let us move on to the next step
 
 # Downloading the Course Materials
 
-The course materials are available on GitHub at
-<https://github.com/danilofreire/qtm350>. You should "fork" the repository to your account. This will create a copy of the repository in your account that you can modify and push changes to. Please click on the top-right corner of the repository page and select "Fork".
+The course materials are available on GitHub at <https://github.com/danilofreire/datasci350>. You should "fork" the repository to your account. This will create a copy of the repository in your account that you can modify and push changes to. Please click on the top-right corner of the repository page and select "Fork".
 
 ![Fork the Repository](images/github-fork.png)
 
 ![Create a Copy of the Repository](images/github-fork02.png)
 
-You will be asked to make your own copy of the lecture notes. You can add any name you like. I
-recommend you use the name same name I used for the repository (`qtm350`). This will make it easier to follow the instructions in the tutorials. Click on "Create fork".
+You will be asked to make your own copy of the lecture notes. You can add any name you like. I recommend you use the name same name I used for the repository (`datasci350`). This will make it easier to follow the instructions in the tutorials. Click on "Create fork".
 
 *You will only do this once*. After you fork the repository, you will be able to pull changes from the original repository and push changes to your forked repository. This will allow you to keep your copy of the course materials up to date with the latest changes.
 
