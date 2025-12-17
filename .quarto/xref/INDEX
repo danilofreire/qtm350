@@ -1,0 +1,50 @@
+{
+  "syllabus.qmd": {
+    "syllabus.html": "7d96cef8"
+  },
+  "lectures/lectures.qmd": {
+    "lectures.html": "1380d8fe"
+  },
+  "index.qmd": {
+    "index.html": "50b2ac43"
+  },
+  "syllabus/LICENSE.qmd": {
+    "LICENSE.html": "f15af7a8"
+  },
+  "tutorials/python-postgresql-example.ipynb": {
+    "python-postgresql-example.html": "648e9aca"
+  },
+  "tutorials/01-vscode-anaconda-tutorial.qmd": {
+    "01-vscode-anaconda-tutorial.html": "da921445"
+  },
+  "tutorials/02-jupyter-markdown-tutorial.qmd": {
+    "02-jupyter-markdown-tutorial.html": "5ed059dc"
+  },
+  "tutorials/03-github-tutorial.qmd": {
+    "03-github-tutorial.html": "6edd90f8"
+  },
+  "tutorials/04-postgresql-tutorial.qmd": {
+    "04-postgresql-tutorial.html": "eb985a66"
+  },
+  "tutorials/tutorials.qmd": {
+    "tutorials.html": "16065ace"
+  },
+  "tutorials/LICENSE.qmd": {
+    "LICENSE.html": "8b922831"
+  },
+  "assignments/assignments.qmd": {
+    "assignments.html": "6defd061"
+  },
+  "assignments/LICENSE.qmd": {
+    "LICENSE.html": "25ff5bcd"
+  },
+  "tutorials/testing-ipython.ipynb": {
+    "testing-ipython.html": "f43f4408"
+  },
+  "LICENSE.qmd": {
+    "LICENSE.html": "64a591d0"
+  },
+  "lectures/LICENSE.qmd": {
+    "LICENSE.html": "9f9df328"
+  }
+}

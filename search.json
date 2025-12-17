@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "assignments/assignments.html",
+    "href": "assignments/assignments.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "Here you will find information about the assignments for QTM 350. There are ten of them, each worth 5% of your final grade. The assignments are designed to help you practice the concepts covered in class and to develop your data science skills.\nAssignment submissions are typically due on Wednesdays at 11:59pm in the week following their publication. You may submit via Canvas (preferred) or email (danilo.freire@emory.edu).\nWe encourage you to complete assignments in Jupyter Notebooks and submit them in PDF format. You can also submit them as a Word document, provided that code and results are included in the same document.\nYou will find the assignments in .ipynb format in the assignments folder on the course repository. For your convenience, rendered versions are available on the course website; links are provided below.\nWhen submitting, please name your files as follows: assignment-01-your-name.pdf. For instance: assignment-01-john-doe.pdf."
+  },
+  {
+    "objectID": "assignments/assignments.html#assignment-timeline",
+    "href": "assignments/assignments.html#assignment-timeline",
+    "title": "Assignments",
+    "section": "Assignment Timeline",
+    "text": "Assignment Timeline\n\n\n\nSession\nTopic\nAssignment\nSubmission Deadline\n\n\n\n\n02\nComputational Literacy\nAssignment 01\n2025-01-29\n\n\n03\nCommand Line Interface\nAssignment 02\n2025-02-05\n\n\n05\nVersion control with git and GitHub\nAssignment 03\n2025-02-12\n\n\n05\nVersion control with git and GitHub\nAssignment 04\n2025-02-19\n\n\n09\nWriting Documents, Presentations, and Websites with Quarto\nAssignment 05\n2025-02-26\n\n\n12\nAI-Assisted Programming with GitHub Copilot\nAssignment 06\n2025-03-05\n\n\n13\nPython Data Types, Boolean Logic, and Control Structures.\nAssignment 07\n2025-03-12\n\n\n15\nPandas\nAssignment 08\n2025-03-19\n\n\n18\nSQLite and Python\nAssignment 09\n2025-03-26\n\n\n21\nParallel Computing with Dask\nAssignment 10\n2025-04-02"
+  },
+  {
+    "objectID": "assignments/assignments.html#in-class-quizzes",
+    "href": "assignments/assignments.html#in-class-quizzes",
+    "title": "Assignments",
+    "section": "In-Class Quizzes",
+    "text": "In-Class Quizzes\nIn-class quizzes will be held on Wednesdays. They will be based on the material covered in the previous weeks. The quizzes will be open-book and open-notes, but you will not be allowed communicate with others during the quiz. They will also be available in the assignment folder on GitHub and on the course website.\n\nQuiz 01: https://github.com/danilofreire/qtm350-quiz01.\nQuiz 02: https://github.com/danilofreire/qtm350-quiz02.\nQuiz 03: https://github.com/danilofreire/qtm350-quiz03.\nQuiz 04: https://github.com/danilofreire/qtm350-quiz04.\nQuiz 05: https://github.com/danilofreire/qtm350-quiz05."
+  },
+  {
+    "objectID": "assignments/assignments.html#final-project",
+    "href": "assignments/assignments.html#final-project",
+    "title": "Assignments",
+    "section": "Final Project",
+    "text": "Final Project\nThe final project will be a group effort, with a maximum of 3 students per group. Detailed instructions are available on the GitHub repository: https://github.com/danilofreire/qtm350/tree/main/project."
+  }
+]
