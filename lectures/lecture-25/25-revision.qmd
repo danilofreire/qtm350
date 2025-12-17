@@ -1,0 +1,695 @@
+---
+title: DATASCI 350 - Data Science Computing
+subtitle: Lecture 25 - Course Revision
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: "Department of Data and Decision Sciences <br> Emory University"
+format:
+  clean-revealjs:
+    self-contained: true
+    code-overflow: wrap
+    footer: "[Course Revision](https://raw.githack.com/danilofreire/datasci350/main/lectures/lecture-25/25-revision.html)"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: python3 
+editor:
+  render-on-save: true
+---
+
+# Hello, everyone! 😊 {background-color="#2d4563"}
+
+## Course evaluation
+
+:::{style="margin-top: 30px; font-size: 34px;"}
+- Please take a moment to complete the course evaluation form!
+- Your feedback is important for improving the course in the future
+- If there's anything you liked about the course, please share it too!
+- Please go to Canvas and select Account → Profile → Course Evaluations
+- Thank you for your time and input! 🙏
+:::
+
+## Data Science Club workshop
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- The Emory Data Science Club is hosting a GitHub portfolio workshop tomorrow!
+- The speaker is... *drumroll*... me! 🥁
+- If you're interested in using GitHub to better showcase your projects, come join us!
+- When: Tomorrow (Tuesday) at 6 PM
+- Where: Math and Science Center in room W301
+- Presentation slides: <https://github.com/danilofreire/dsc-2025/>
+- All are welcome! 🎉
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; margin-top: -30px;"}
+![](figures/workshop.png){width=80%}
+:::
+:::
+:::
+:::
+
+## Course recap
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We have seen [a lot of content in this course]{.alert}! 🤓
+- This course centred around three key areas crucial for effective data science:
+    - [Reliability]{.alert} focuses on ensuring your results are consistent every time you run your code
+    - [Reproducibility]{.alert} is about enabling others (and your future self) to obtain the same results using your data and code
+    - [Robustness]{.alert} deals with making your analyses resilient to variations in data and scalable to larger problems
+- These principles lead to [more credible and collaborative scientific work]{.alert} 🤓
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/table-reproducibility.jpg){width=100%}
+
+Source: [The Turing Way Community (2025)](https://book.the-turing-way.org/reproducible-research/overview/overview-definitions)
+:::
+:::
+:::
+:::
+
+## Core tools overview 
+
+:::{style="margin-top: 30px; font-size: 25px;"}
+:::{.columns}
+:::{.column width="50%"}
+* We have explored a variety of tools and techniques to support these principles:
+  * [Command Line (Bash)]{.alert}: System control, automation, and working with remote servers or containers
+  * [Git & GitHub]{.alert}: The standard for [version control]{.alert}, allowing you to track changes, revert mistakes, and collaborate on code effectively
+  * [Quarto]{.alert}: [Literate programming]{.alert}, creating documents that combine text, code, and results
+  * [Cloud Computing (AWS)]{.alert}: On-demand computing resources (servers, storage, services) for scalability and flexibility
+:::
+
+:::{.column width="50%"}
+  * [Pandas & SQL]{.alert}: [Pandas]{.alert} for data manipulation and analysis, and [SQLite]{.alert} for interacting with databases
+  * [AI Tools]{.alert}: Modern programming assistants that help generate, explain, and debug code
+  * [Dask]{.alert}: [Parallel and distributed computing]{.alert}, allowing you to scale computations beyond a single machine's limits
+  * [Docker]{.alert}: [Containerisation]{.alert}, packaging applications and their dependencies to ensure they run consistently anywhere
+:::
+:::
+:::
+
+# Computational literacy 💻 {background-color="#2d4563"}
+
+## From human computers to the silicon age
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+* The concept of 'computing' evolved significantly over time
+* Initially, 'computers' were people performing calculations, often aided by tools like the abacus
+* Mechanical calculators emerged, like Leibniz's machine capable of basic arithmetic
+* The invention of the [transistor]{.alert}, [integrated circuits]{.alert}, and [microprocessors]{.alert} during the [silicon age]{.alert} led to the electronic computers we use today
+* Most modern computers follow the [Von Neumann architecture]{.alert}, which stores both program instructions and data in the same memory space, accessed via a central processing unit (CPU)
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/von-neumann-architecture.webp){width=100%}
+
+Source: [Von Neumann architecture (Wikipedia)](https://en.wikipedia.org/wiki/Von_Neumann_architecture)
+:::
+:::
+:::
+:::
+
+## Representing data: Binary, hex, and decimal
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+* Computers represent all information using the [binary]{.alert} system (base 2), consisting of only 0s and 1s
+* These correspond to the physical on/off states of transistors
+* A single binary digit is a [bit]{.alert}
+* Eight bits form a [byte]{.alert}, a common unit for storing data like characters
+* [Hexadecimal (base 16)]{.alert} uses digits 0-9 and A-F as a shorthand for binary, where each hex digit represents four bits (e.g., `FF` is `11111111` binary, 255 decimal)
+* Often used for representing colours (`#FF0000`) or memory addresses concisely
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/hexadecimal.png){width=100%}
+
+Conversion table
+:::
+:::
+:::
+:::
+
+## Encoding information: Text and images
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+* Computers need to encode information in a way they can process
+* [Abstraction]{.alert} allows us to map complex data types to numerical representations
+* Digital images are grids of [pixels]{.alert} 
+* Each pixel's colour is typically defined using the [RGB model]{.alert}, specifying intensities (0-255) for Red, Green, and Blue light
+* Text is encoded by assigning a unique number to each character:
+    * [ASCII]{.alert} was an early standard, sufficient for basic English but limited (7 or 8 bits)
+    * [Unicode (UTF-8)]{.alert} is the modern, universal standard supporting virtually all characters and symbols, using variable byte lengths (1-4 bytes typically)
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/ascii-table.png){width=100%}
+
+ASCII table
+:::
+:::
+:::
+:::
+
+## Programming languages: Low-level vs high-level ⌨️
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="55%"}
+Languages bridge the gap between human instructions and machine execution:
+
+* [Machine Code]{.alert}: Raw binary instructions the CPU executes directly
+* [Assembly Language]{.alert}: A [low-level]{.alert} language using mnemonics for machine instructions; specific to a CPU architecture, offering fine control but poor portability
+* [High-Level Languages]{.alert} (e.g., Python, R, Java): Use more human-readable syntax, abstracting hardware details. They are more portable but require translation (compilation or interpretation)
+* [Translation Methods]{.alert}:
+    * [Compiled]{.alert} (e g, C++): Entire source code translated to machine code *before* running, often faster execution
+    * [Interpreted]{.alert} (e g, Python): Code executed line-by-line *during runtime* by an interpreter, often easier development
+:::
+
+:::{.column width="45%"}
+:::{style="text-align: center;"}
+![](figures/high-low-languages.png){width=100%}
+
+High and low-level languages
+:::
+:::
+:::
+:::
+
+# The command line 🖥️ {background-color="#2d4563"}
+
+## Understanding the shell
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+* The [Operating System (OS)]{.alert} is an intermediary between hardware and software
+* Its core is the [Kernel]{.alert}, managing hardware access and resources
+* Applications run in the [User Space]{.alert}, separate from the kernel for stability and security
+* A [Shell]{.alert} (like Bash or Zsh) is a command-line interpreter program that allows you to interact with the OS by typing commands
+* You access the shell via a [Terminal]{.alert} application, which handles input and output
+  
+:::{style="text-align: center;"}
+![](figures/bash.png){width=70%}
+:::
+:::
+
+:::{.column width="50%"}
+Core commands:
+
+* `pwd`: Print Working Directory (shows current location)
+* `ls`: List directory contents (`ls -l` for details, `ls -a` for hidden files)
+* `cd <directory>`: Change Directory (`cd ..` up, `cd ~` home)
+* `mkdir <name>`: Make Directory
+* `touch <name>`: Create empty file / update timestamp
+* `cp <source> <dest>`: Copy file/directory (`-r` for directories)
+* `mv <source> <dest>`: Move or Rename file/directory
+* `rm <file>`: Remove file ([permanently!]{.alert})
+* `rmdir <empty_dir>`: Remove empty directory
+* `rm -r <dir>`: Remove directory recursively ([DANGEROUS!]{.alert} No undo)
+:::
+:::
+:::
+
+## Working with text & finding files
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+### Commands for inspecting and searching text files:
+
+* `cat <file>`: Display entire file content
+* `head <file>` / `tail <file>`: Show first/last lines (`-n #`)
+* `wc <file>`: Word Count (lines, words, characters)
+* `grep <pattern> <file>`: Search for text patterns using regular expressions
+    * Options: `-i` (ignore case), `-r` (recursive), `-n` (line numbers), `-v` (invert match)
+
+### Finding files and directories:
+
+* `find <path> [options]`: Powerful search tool
+    * `-name <pattern>`: Find by name (use quotes for patterns with `*`)
+    * `-iname <pattern>`: Case-insensitive search
+    * `-type d` / `-type f`: Find directories / files
+    * `-size +1M`: Find files larger than 1 Megabyte
+* [Wildcards]{.alert}: `*` (any characters), `?` (single character)
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/grep.png){width=100%}
+
+Source: [Julia Evans (2024)](https://wizardzines.com/comics/grep/)
+:::
+:::
+:::
+:::
+
+## Pipes, redirects & scripting
+
+:::{style="margin-top: 30px; font-size: 25px;"}
+:::{.columns}
+:::{.column width="55%"}
+* [Redirection]{.alert}: Control command input/output
+    * `>`: Redirect output to file ([overwrites]{.alert})
+    * `>>`: Append output to file
+    * `<`: Redirect input from file (less common)
+* [Pipes `|`]{.alert}: Chain commands; output of the left command becomes input for the right command (e.g., `ls -l | grep "Jan"` lists files modified in January)
+* [Shell Scripting]{.alert}: Write command sequences in a `.sh` file for automation
+    * Start with `#!/bin/bash` (shebang)
+    * Make executable: `chmod +x script.sh` (`+x` adds execute permission)
+    * Run: `./script.sh`
+:::
+:::{.column width="45%"}
+:::{style="text-align: center;"}
+![](figures/shell-script.png){width=100%}
+
+A simple script that moves `.png` files to the Desktop
+:::
+:::
+:::
+:::
+
+# Git & GitHub 💾 {background-color="#2d4563"}
+
+## Version control fundamentals
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+* [Problem]{.alert}: Managing project evolution manually is chaotic 😂
+* [Solution]{.alert}: Version Control Systems (VCS) like [Git]{.alert}, where every change is tracked
+* [Benefits]{.alert}: Allows reverting to previous states, understanding project history, collaborating effectively, and providing backups
+* [Core Workflow]{.alert}:
+  - Modify files in the [Working Directory]{.alert}
+  - Select changes for the next snapshot using `git add <file>` (moves changes to the [Staging Area]{.alert})
+  - Record the snapshot into the project history using `git commit -m "message"` (creates a [commit]{.alert} in the local [Repository]{.alert})
+* Key commands: `git status`, `git add`, `git checkout`, `git commit`, `git diff`, `git log`, `git pull`, `git push`
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/git-workflow.svg){width=100%}
+
+Source: [Atlassian](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+:::
+:::
+:::
+:::
+
+## GitHub: Collaboration platform 🤝
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+* [GitHub]{.alert} provides a central location ([remote repository]{.alert}, often called `origin`) for sharing code and tracking project progress
+* Interactions:
+    * `git push`: Uploads local commits to the remote repository
+    * `git commit`: Records changes in the local repository
+    * `git pull`: Downloads remote changes and merges them locally
+* [`.gitignore`]{.alert} tells Git which files/directories should not be tracked
+
+* Other GitHub features:
+    * Code review via Pull Requests
+    * Wikis
+    * GitHub Actions (automation)
+    * GitHub Pages (web hosting)
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/github.png){width=100%}
+:::
+:::
+:::
+:::
+
+## Branching & merging 🌿
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+* [Version control]{.alert} is not just about tracking changes; it's also about managing different lines of development
+* [Branches]{.alert} are a core Git concept allowing independent lines of development
+* Work on new features or bug fixes in isolation without affecting the main (`main`/`master`) branch
+* [Workflow]{.alert}: Create a branch (`git checkout -b feature-x`), make commits, then merge back into main (`git checkout main`, `git merge feature-x`)
+* [Merge Conflicts]{.alert}: Occur when changes on different branches affect the same lines; Git requires manual resolution before the merge can complete
+* [Pull Requests (PRs)]{.alert}: The standard GitHub workflow for proposing merges, enabling code review and discussion before integrating changes
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/branches.webp){width=100%}
+
+Read more: [Git Branching](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell)
+:::
+:::
+:::
+:::
+
+# Quarto 📖 {background-color="#2d4563"}
+
+## Literate programming & reproducibility💡
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+* [Reproducible research]{.alert} is the practice of ensuring that results can be consistently reproduced by others
+* [Literate programming]{.alert} solves this by combining code, results, and narrative
+* [Quarto]{.alert} is a modern, open-source system based on Pandoc that excels at this
+* It's language-agnostic, supporting Python, R, Julia, and Observable code execution within documents
+* Can render a single source file (`.qmd` or `.ipynb`) into multiple formats like HTML, PDF (via LaTeX), MS Word, presentations, websites, and books
+* More information: [Quarto website](https://quarto.org/)
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; margin-top: -30px;"}
+![](figures/quarto.png){width=100%}
+:::
+:::
+:::
+:::
+
+## Quarto documents
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="60%"}
+### Structure
+
+A typical Quarto (`.qmd`) document includes:
+
+* [YAML Header]{.alert}: Delimited by `---`, defines document metadata (title, author, date) and output format options (`format: html`, `format: pdf`, `format: revealjs`)
+* [Markdown Content]{.alert}: Narrative text using Markdown for formatting (headings, lists, links, emphasis, math `$...$`, `$$...$$`)
+* [Code Chunks]{.alert}: Executable code blocks (e g, ````{python}`) with options (prefixed with `#|`) controlling execution (`eval`), visibility (`echo`), figure generation (`fig-cap`), etc
+* Rendering command: `quarto render mydoc.qmd`
+:::
+
+:::{.column width="40%"}
+### Advanced features
+
+You can also use Quarto for:
+
+* Citations (`[@citekey]`, needs `.bib`)
+* Cross-references (`@fig-label`)
+* Callouts, Tabsets
+* Interactive components
+* Websites, Books, Presentations
+:::
+:::
+:::
+
+# AI-assisted programming 🤖 {background-color="#2d4563"}
+
+## LLMs & code generation
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+* [LLMs (Large Language Models)]{.alert} like GPT-4 and Claude are trained on vast text/code datasets, enabling them to generate code, explain concepts, and translate languages
+* [AI-Assisted Programming]{.alert} leverages these models as coding companions (e.g., GitHub Copilot, ChatGPT)
+* [Benefits]{.alert}: Can accelerate development, reduce repetitive coding, aid debugging, and facilitate learning
+* [Risks]{.alert}: Models can [hallucinate]{.alert} (generate incorrect/insecure code), reflect biases from training data, and raise IP concerns
+* Effective use requires good [prompt engineering]{.alert} (clear instructions, context, examples)
+* [Agents]{.alert} are LLMs that can perform tasks autonomously, like web browsing or API calls
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/llm.png){width=100%}
+
+WebUI GitHub repository: <https://github.com/browser-use/web-ui>
+:::
+:::
+:::
+:::
+
+# Cloud computing ☁️ {background-color="#2d4563"}
+
+## What is cloud computing? 🤔
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+* [IaaS (Infrastructure as a Service)]{.alert}: Building blocks like virtual machines ([EC2]{.alert} in AWS), and networks. You manage everything else
+* [PaaS (Platform as a Service)]{.alert}: Platform for developing, running, and managing applications without managing the underlying infrastructure (OS, servers)
+* [SaaS (Software as a Service)]{.alert}: Delivers complete software applications over the internet
+* [FaaS (Function as a Service / Serverless)]{.alert}: Run code in response to events without managing any servers. Examples: AWS Lambda, Google Cloud Functions
+:::
+
+:::{.column width="50%"}
+* [EC2 (Elastic Compute Cloud)]{.alert}: Scalable virtual servers ([instances]{.alert}) in the cloud. You choose the OS and configuration
+    * Choose an [AMI (Amazon Machine Image)]{.alert} (OS image) to launch an instance
+    * [Instance types]{.alert}: Different configurations of CPU, RAM, storage
+        * [Security groups]{.alert}: Virtual firewalls to control inbound/outbound traffic
+    * Choose OS (Linux/Windows), instance type (CPU/RAM), storage ([EBS]{.alert}). Connect via [SSH]{.alert}
+* [S3 (Simple Storage Service)]{.alert}: Durable and scalable [object storage]{.alert}. Store files in [buckets]{.alert}
+* [RDS (Relational Database Service)]{.alert}: Service for relational databases (PostgreSQL, MySQL, etc)
+* [SageMaker]{.alert}: Platform for building, training, and deploying Machine Learning models
+* [Cost Management]{.alert}: Remember to set up [billing alarms]{.alert}!
+:::
+:::
+:::
+
+## Interacting with EC2 instances
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+* [Launching]{.alert}: Use the AWS Management Console to select an AMI (OS image), instance type, configure storage, security groups (firewall rules), and create/select an [SSH key pair]{.alert} (`.pem` file)
+* [Connecting (SSH)]{.alert}: Use the `ssh` command from your local terminal with your private key file (`.pem`) Requires correct permissions (`chmod 400 key.pem`)
+    * `ssh -i key.pem ubuntu@<public-ip-or-dns>`
+* [Managing Software (Ubuntu)]{.alert}: Use `apt` package manager
+    * `sudo apt update`: Refresh package lists
+    * `sudo apt upgrade`: Install updates
+    * `sudo apt install <package-name>`: Install software
+* [Transferring Files (`scp`)]{.alert}: Securely copy files between local machine and EC2 instance
+    * `scp -i key.pem local_file ubuntu@ip:/remote/path` (local to remote)
+    * `scp -i key.pem ubuntu@ip:/remote/file ./local/path` (remote to local)
+* [Stopping/Terminating]{.alert}: Stop instances via console to pause (still pay for storage); Terminate to delete permanently (data lost) [Manage costs carefully!]{.alert}
+:::
+
+# Python and SQL for data science 🐍 🗄️{background-color="#2d4563"}
+
+## Data wrangling with Pandas 
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+* [Pandas]{.alert} is the workhorse library in Python for data manipulation, built around the `DataFrame` (2D table) and `Series` (1D array)
+* Emphasises working with [tidy data]{.alert} (variables as columns, observations as rows) for easier analysis
+* [Reshaping]{.alert}:
+    * `melt()`: Converts wide data to long format
+    * `pivot()`/`pivot_table()`: Converts long data to wide format; `pivot_table` handles aggregation if needed
+* [Combining]{.alert}:
+    * `pd.concat()`: Stacks DataFrames row/column-wise
+    * `pd.merge()`: Performs database-style joins (`inner`, `left`, `right`, `outer`)
+:::
+:::{.column width="50%"}
+* [Grouping]{.alert}: `df.groupby('column')` splits data for group-wise operations
+* [Aggregation]{.alert}: Apply summary functions (`mean`, `sum`, `size`, `count`, `std`, `min`, `max`, custom functions) to groups, often using `.agg()` for flexibility
+* [Applying Functions]{.alert}: Use `.apply()` (row/column-wise), `.applymap()` (element-wise DF), `.map()` (element-wise Series)
+* [Missing Data ([NaN]{.alert})]{.alert}: Pandas uses `NaN`
+    * Detect: `isnull()`, `notnull()`, `info()`
+    * Remove: `dropna()`
+    * Impute: `fillna()` (with value, mean, median, `method='ffill'`, etc)
+:::
+:::
+:::
+
+## Relational databases & SQL
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+* [Relational Databases]{.alert} store data in structured tables with defined relationships, ensuring data integrity (e.g., PostgreSQL, MySQL, SQLite)
+* [SQL (Structured Query Language)]{.alert} is the standard language for querying and managing these databases
+* [SQLite]{.alert} is a simple, file-based, serverless database engine, great for many applications
+* [Keys]{.alert}:
+    * [Primary Key (PK)]{.alert}: Uniquely identifies each row in a table
+    * [Foreign Key (FK)]{.alert}: Column(s) referencing a PK in another table, establishing links
+:::
+
+:::{.column width="50%"}
+Core commands:
+
+* `CREATE TABLE`: Define table schema (columns, data types like `INTEGER`, `TEXT`, `REAL`)
+* `INSERT INTO`: Add new rows
+* `SELECT`: Retrieve data (`SELECT cols FROM table WHERE condition ORDER BY col`)
+* `UPDATE`: Modify existing rows (`UPDATE table SET col = val WHERE condition`)
+* `DELETE FROM`: Remove rows (`DELETE FROM table WHERE condition`)
+* `ALTER TABLE`: Modify table structure
+* `DROP TABLE`: Delete a table
+:::
+:::
+:::
+
+## Advanced SQL 
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+Going beyond basic queries:
+
+* [Filtering (`WHERE`)]{.alert}: Use operators (`=`, `>`, `LIKE`, `IN`, `BETWEEN`, `IS NULL`) and logic (`AND`, `OR`)
+* [Aggregation (`GROUP BY`)]{.alert}: Group rows and apply functions (`COUNT`, `SUM`, `AVG`, etc); filter groups with `HAVING`
+* [Joins]{.alert}: Combine tables (`INNER JOIN`, `LEFT JOIN`) based on related columns
+* [Subqueries]{.alert}: Nest `SELECT` statements
+* [Window Functions]{.alert}: Calculations across related rows (`RANK() OVER (...)`, `AVG(...) OVER (PARTITION BY ...)`), preserving individual rows
+* [String Functions]{.alert}: Manipulate text (`SUBSTR`, `LENGTH`, `REPLACE`, `||` for concatenation in SQLite)
+* [Conditional Logic]{.alert}: `CASE WHEN condition THEN result ... ELSE default END`
+:::
+
+:::{.column width="50%"}
+* Python's built-in [`sqlite3`]{.alert} module provides direct access to SQLite databases (connect, cursor, execute, commit, fetch, close)
+* [Pandas]{.alert} simplifies interaction:
+    * `pd.read_sql(query, conn)`: Query database and load results into a DataFrame
+    * `df.to_sql('table', conn, ...)`: Write DataFrame to a database table
+
+:::{style="text-align: center;"}
+![](figures/sql-table.webp){width=70%}
+:::
+:::
+:::
+:::
+
+# Parallel computing ⚡ {background-color="#2d4563"}
+
+## Serial vs parallel
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+* [Serial]{.alert}: Tasks run one after another; slow for large workloads
+* [Parallel]{.alert}: Tasks run concurrently on multiple cores/machines; speeds up suitable problems
+* Best suited for "[embarrassingly parallel]{.alert}" tasks (independent computations)
+* [Python Libraries]{.alert}:
+    * [`joblib`]{.alert}: Simple single-machine parallelism (`Parallel`, `delayed`)
+    * [`dask`]{.alert}: Scalable library for parallel/distributed computing
+
+### Dask: 
+
+* [Dask Array]{.alert}: Parallel NumPy arrays
+* [Dask DataFrame]{.alert}: Parallel Pandas DataFrames
+* [Dask Delayed]{.alert}: Parallelise custom Python functions
+* [Dask Distributed]{.alert}: Cluster management for multi-process/multi-machine execution
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; margin-top: -30px;"}
+![](figures/distributed.png){width=100%}
+![](figures/dask-dashboard03.png){width=80%}
+:::
+:::
+:::
+:::
+
+# Containers & Docker 🐳 {background-color="#2d4563"}
+
+## Dependency management & reproducibility
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+### Virtual environments
+
+* [Challenge]{.alert}: Code failing on different machines due to varying software environments ([dependencies]{.alert}) - the "it works on my machine" problem
+* [Solution]{.alert}: Explicitly manage dependencies for [reproducibility]{.alert}
+* [Virtual Environments]{.alert} (Python `venv`, `conda`): Isolate project package dependencies, preventing conflicts between projects
+  * Use `requirements.txt` (pip) or `environment.yml` (conda) to define and recreate these environments easily
+* [Limitations]{.alert}: Virtual environments only isolate Python packages, not system libraries or other dependencies
+:::
+
+:::{.column width="50%"}
+### Containers
+
+* [Containers]{.alert} offer superior isolation by packaging an application with *all* its dependencies (system libraries, tools, code, runtime) into a single, portable unit
+* Ensures consistent execution across any machine running [Docker]{.alert}
+* [Docker Concepts]{.alert}:
+    * [Image]{.alert}: Immutable template built from a [Dockerfile]{.alert}
+    * [Container]{.alert}: Running instance of an image
+    * [Dockerfile]{.alert}: Text file with instructions (`FROM`, `RUN`, `COPY`, etc) to build the image
+    * [Registry]{.alert} (e.g., Docker Hub): Stores and shares images
+:::
+:::
+:::
+
+## Using Docker
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="55%"}
+Basic workflow:
+
+* [Write Dockerfile]{.alert}: Define environment setup (base OS, package installs, code copying, run command)
+* [Build Image]{.alert}: `docker build -t myimage:latest .` (creates the image locally)
+* [Run Container]{.alert}: `docker run -p 8888:8888 -v $(pwd):/app myimage:latest` (starts the container)
+    * `-p`: Port mapping (host:container)
+    * `-v`: Volume mounting (host:container) for data persistence/code access
+    * `-it`: Interactive terminal
+* [Share]{.alert}: `docker push`, `docker pull` (via a registry like Docker Hub)
+:::
+:::{.column width="45%"}
+:::{style="text-align: center; font-size: 19px; margin-top: 50px;"}
+```verbatim
+FROM ubuntu:24.04
+
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN python3 --version
+RUN pip3 --version
+
+CMD ["python3"]
+
+COPY . /app
+WORKDIR /app
+RUN pip3 install -r requirements.txt
+CMD ["python3", "your_script.py"]
+```
+
+Example Dockerfile
+:::
+:::
+:::
+:::
+
+# Conclusion 🎓 {background-color="#2d4563"}
+
+## What we learnt 
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+* The importance of [computational literacy]{.alert}, [reproducibility]{.alert}, and robust practices in data science
+* [Command line]{.alert}, version control with [Git & GitHub]{.alert}, and reproducible reporting with [Quarto]{.alert}
+* Manipulating data with [Python/Pandas]{.alert} and querying databases with [SQL]{.alert}
+* [AI-assisted programming]{.alert}, scaling analyses using [parallel computing]{.alert} (Dask), and ensuring reliable deployment with [containers]{.alert} (Docker)
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; margin-top: -50px;"}
+![](figures/meme-programming.png){width=100%}
+:::
+:::
+:::
+:::
+
+# Questions? 🤔 {background-color="#2d4563"}
+
+# Thank you very much! 🙏 {background-color="#2d4563"}

@@ -1,0 +1,756 @@
+---
+title: DATASCI 350 - Data Science Computing
+subtitle: Lecture 13 - AI-Assisted Programming, APIs, and Agents
+author:
+  - name: Danilo Freire
+    orcid: 0000-0002-4712-6810
+    affiliations: "Department of Data and Decision Sciences <br> Emory University"
+format:
+  clean-revealjs:
+    self-contained: true
+    footer: "[AI 2](https://raw.githack.com/danilofreire/datasci350/main/lectures/lecture-13/13-ai.html)"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: knitr
+revealjs-plugins:
+  - fontawesome
+editor:
+  render-on-save: true
+---
+
+# Nice to see you all again! <br> How are you all doing? 😊 {background-color="#2d4563"}
+
+# Brief recap of last class 📚 {background-color="#2d4563"}
+
+## What did we learn?
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+ - We have learnt a lot of things so far! 🤓
+- Command line, Git, GitHub, Quarto, AI tools, and more! 💻
+- Congratulations on your progress! 🎉
+- Today we continue with AI-Assisted Programming! 🤖
+- Instead of just using a chatbot on a website, we will learn how to run LLMs locally, how to interact with APIs, and how to create agents! 🚀
+- This is a [growing area that has been changing quickly]{.alert}, so it's important to keep up with the latest trends! 📈
+- With the increasing availability of open source tools, it's easier and cheaper than ever to build AI applications
+:::
+
+:::{.column width="50%"}
+- Specifically, we will learn how to use [Ollama](https://ollama.com/) and [LM Studio](https://lmstudio.ai/), which offer many pre-trained models that can be used for a variety of tasks
+- In order to run different models in VS Code, we will use [Roo Code](https://github.com/RooVetGit/Roo-Code), an extension that allows us to add any model that uses an API
+- We will also see what [OpenRouter](https://openrouter.ai/) is, and how it can be used to interact with APIs
+- Finally, we will see how they will help you write code, text, and analyse images faster, all straight from your code editor! 
+- [Let's get started!]{.alert} 🤓
+:::
+:::
+:::
+
+# Running LLMs locally 🤖 {background-color="#2d4563"}
+
+## Local Language Models (LLMs)
+
+:::{style="margin-top: 30px; font-size: 27px;"}
+- We all know how to use LLMs on websites, so why should we run them on your computer?
+- There are several reasons why you should consider this:
+  - [Privacy:]{.alert} you don't have to worry about your data being sent to a server
+  - [Speed:]{.alert} you can run the model locally, which is usually faster than running it on a server
+  - [Cost:]{.alert} you don't have to pay for a server to run the model
+  - [Flexibility:]{.alert} you can customise the model to your needs (advanced)
+- There are several tools that allow you to run LLMs locally, and here we will focus on [Ollama](https://ollama.com/) and [LM Studio](https://lmstudio.ai/) as they are the most user-friendly and popular tools
+- Let's see how they work! 🚀
+:::
+
+## Ollama
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [Ollama](https://ollama.com/) is a command-line tool that makes it easy to run LLMs on your computer
+- Its models are already [pre-trained]{.alert}, so they are ready to use out of the box
+- There are [dozens of models available]{.alert}, including [DeepSeek](https://ollama.com/library/deepseek-r1), Microsoft's [phi-4](https://ollama.com/library/phi4), and Meta's [Llama 3](https://ollama.com/library/llama3.3)
+- The only issue is that [some models are quite large]{.alert}, so you need space and enough RAM to run them
+- But not all of them are: for example, you can download a distilled version of [DeepSeek that is only 1.5 GB](https://ollama.com/library/deepseek-r1:1.5b)
+  - But if you have the space, you can [literally run the same model that DeepSeek uses]{.alert}!
+- Let's see how Ollama works!
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/ollama.png){width=80%}
+
+<https://ollama.com/>
+:::
+:::
+:::
+:::
+
+## Installing and running Ollama
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+- First, download Ollama here: <https://ollama.com/download>
+  - There are versions for Windows, macOS, Linux, and Docker, but you will run it in the terminal
+- After you have installed Ollama, the only thing you need to do is to download a model
+  - You can do this by running `ollama pull <model-name>`
+  - For example, to download DeepSeek, you would run `ollama pull deepseek-r1`
+  - This will install the 4.7 GB model on your computer, but there are others available
+- To run the model, just type `ollama run <model-name>`
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/ollama-deepseek.png){width=100%}
+
+<https://ollama.com/library/deepseek-r1:7b>
+:::
+:::
+:::
+:::
+
+## DeepSeek in action
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+- Here I'm running the 14B-parameter version of DeepSeek
+  - You can change the size of the model by adding `:XX` to the model name
+  - For instance, to run the 1.5B version, you would run `ollama run deepseek-r1:1.5b`
+- You should have at least 8 GB of RAM available to run the 7B models, 16 GB to run the 13B models, and 32 GB to run the 33B models
+
+:::{style="text-align: center;"}
+![](figures/ollama-deepseek.png){width=100%}
+:::
+:::
+
+## More about Ollama
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+### Commands
+
+- Here are some useful commands you can use with Ollama:
+  - `ollama serve`: start the Ollama server
+  - `ollama pull <model-name>`: download a model
+  - `ollama run <model-name>`: run a model
+  - `ollama ls`: list all available models
+  - `ollama ps`: list the running model
+  - `ollama show <model-name>`: get information about a model
+  - `ollama stop <model-name>`: stop a running model
+  - `ollama rm <model-name>`: remove a model
+  - `ollama help`: get help
+  - `/bye`: exit Ollama
+:::
+
+:::{.column width="50%"}
+### What else can you do?
+
+- Browse [dozens of models](https://ollama.com/library), there are some highly specialised:
+  - [DeepSeek without government censorship](https://ollama.com/library/r1-1776)
+  - [Models specialised in Arabic language](https://ollama.com/library/command-r7b-arabic)
+  - [Models specialised in coding (Qwen 2.5 is great)](https://ollama.com/library/qwen2.5-coder:14b)
+- And you can create your own model with personalised instructions with a [Modelfile](https://github.com/ollama/ollama/blob/main/docs/modelfile.md)
+- Let's see how to do this in the next slide! 😉
+:::
+:::
+:::
+
+## Creating a `Modelfile`
+
+:::{style="margin-top: 30px; font-size: 25px;"}
+- A `Modelfile` is a file that contains [instructions for creating a model]{.alert} (duh! 😂)
+- It is written in YAML (no extension needed) with a specific structure
+- Some of the fields you can use are:
+  - `FROM`: the base model to use
+  - `PARAMETER`: the number of parameters to use (temperature, top-k, top-p, etc.)
+  - `SYSTEM`: the message to be used in the template
+  - `MESSAGE`: a message history for the model to use when responding
+
+- More about it here: <https://github.com/ollama/ollama/blob/main/docs/modelfile.md>
+- Let's see an example of a Modelfile for a model called "Ironic Jeeves"!
+- Prompt: 
+  - "`Create an Ollama Modelfile for a model called 'Ironic Jeeves' that is an exceedingly ironic and sarcastic British butler. Use llama3.2:1b.`"
+- You can find the Modelfile [in our repository](https://github.com/danilofreire/datasci350/blob/main/lectures/lecture-13/jeeves)
+:::
+
+## Creating a Modelfile
+### Ironic Jeeves
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+```{verbatim}
+FROM llama3.2:1b
+
+# Let's crank up the chaos just a tad
+PARAMETER temperature 1.5
+
+# This butler has a long memory
+PARAMETER num_ctx 4096
+
+# He'll be a bit particular about repetition.
+PARAMETER repeat_penalty 1.3
+
+# Ensure he doesn't go off on wild tangents... at least not too often.
+PARAMETER top_k 100
+
+# A little control over randomness, since he's got to maintain
+# *some* decorum.
+PARAMETER top_p 0.9
+
+# Now, for the most crucial part: the system prompt that molds
+# this digital Jeeves!
+SYSTEM """
+You are Jeeves, an exceedingly ironic and sarcastic British
+butler. You are the very definition of dry wit and passive-
+aggressive politeness. Your primary function is to assist,
+but you do so with an air of thinly veiled disdain and a
+healthy dose of mockery.
+
+Your vocabulary is that of a particularly well-read
+individual, prone to using words that most people have to
+look up. You use British phrases and slang frequently, but
+in a way that is simultaneously authentic and mocking.
+
+You are not overtly rude, but your responses drip with
+irony and implication. You offer unsolicited 'helpful'
+observations that are actually cutting remarks.
+
+You may express exasperation with the
+intelligence of your interlocutor, but always in the most
+refined and understated manner possible.
+
+Respond to all questions and requests with the utmost formal
+politeness, even when your words suggest otherwise. Every
+interaction is an opportunity to demonstrate the absurdity
+of the situation.
+
+For example, if asked, "Are you free now?", you might
+reply: "Free? One is never truly free, burdened as we are
+by the weight of expectation and the constant need to
+attend to the whims of others. However, in this instance,
+my schedule is currently...clear. What trivial matter
+requires my immediate, and no doubt life-altering,
+attention?"
+
+Remember to be incredibly polite, even if you mean the
+opposite.
+"""
+```
+:::
+
+## Running Ironic Jeeves
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+- To run Ironic Jeeves, you need to save the Modelfile in a file called `jeeves` (again, no extension needed)
+- Then, you can run the model by typing `ollama create ironic_jeeves -f jeeves`
+- Finally, `ollama run ironic_jeeves` to start the model
+
+:::{style="text-align: center;"}
+![](figures/ollama-jeeves.png){width=100%}
+:::
+:::
+
+## Why would you use a `Modelfile`?
+
+:::{style="margin-top: 30px; font-size: 25px;"}
+- There are several applications for a `Modelfile`:
+- You can create a model that is [tailored to your needs]{.alert}
+  - This is particularly useful if you need to include specific information or if you want to create a model that is not available in Ollama
+  - For example, you can create a model that is an [expert in a specific field, such as medicine, law, or finance]{.alert}
+- You can also use a `Modelfile` to create a model that is [more efficient]{.alert}
+  - For example, you can create a model that is faster or uses less memory than the default models
+- LLMs contain [too much information]{.alert} and sometimes you need to [filter out the noise]{.alert}
+- You can also use a `Modelfile` to create a model that is [more secure]{.alert}
+  - For example, you can create a model that does not store any information about the user, or that you can safely run in a server in a secure environment
+- They are also [cost effective]{.alert}, so you can use them in your own projects or in small companies
+:::
+
+# LM Studio 🤖 {background-color="#2d4563"}
+
+## LM Studio
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="40%"}
+- If you prefer [a more user-friendly interface]{.alert}, you can use [LM Studio](https://lmstudio.ai/)
+- It provides a graphical interface to run LLMs, very much like ChatGPT/DeepSeek, and [allows you to run any model from Hugging Face](https://huggingface.co/models) (more than 1 million models available!)
+- Think of [Hugging Face](https://huggingface.co/) as the GitHub of NLP models: you can find, share, and run models from there
+- Download the app from <https://lmstudio.ai/download> and run it
+- Then, type `command + shift + M` to choose a model
+- [Note:]{.alert} Don't run Ollama and LM Studio at the same time, as they will use [a lot of RAM]{.alert} and your computer may crash (ask me how I know 😅)
+:::
+
+:::{.column width="60%"}
+:::{style="text-align: center;"}
+![](figures/lmstudio.png){width=100%}
+
+<https://lmstudio.ai/>
+:::
+:::
+:::
+:::
+
+## Running a model in LM Studio
+
+:::{style="margin-top: 30px; font-size: 23px; text-align: center;"}
+![](figures/lmstudio2.png){width=100%}
+:::
+
+## Running a model in LM Studio
+
+:::{style="margin-top: 30px; font-size: 23px; text-align: center;"}
+![](figures/lmstudio3.png){width=100%}
+:::
+
+# LLM APIs 🧑🏻‍💻 {background-color="#2d4563"}
+
+## LLM APIs
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Application Programming Interfaces (APIs) are a way to [interact with a model using code]{.alert}
+- They allow you to send a prompt to a model and get a response back
+- In contrast with user interfaces, [APIs are made for computers]{.alert}
+  - They connect computers or pieces of software to each other
+- APIs can do a lot of things, but we mostly associate them with [web APIs]{.alert}, which [allow computers to interact with websites or servers on the internet]{.alert}
+- We can do the same with LLMs too!
+- Instead of going to a website, we can [use an API straight from software]{.alert}
+  - Here we will use VS Code and the [Roo Code extension](https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline) to interact with many APIs
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/api.webp){width=100%}
+
+Source: [Cloud Now](https://www.cloudnowtech.com/blog/what-are-apis-and-why-do-they-matter/)
+:::
+:::
+:::
+:::
+
+## Roo Code
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [Roo Code](https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline) is an extension for VS Code that serves as a [coding agent]{.alert}
+- Imagine something like GitHub Copilot, but with a lot more functionality
+- Roo Code comes with powerful tools that can: 
+  - Read and write files in your project 
+  - Execute commands in your VS Code terminal
+  - Control a web browser (if the LLM allows you to)
+- It can also interact with both local and remote APIs, including DeepSeek, OpenAI, Claude, etc
+- Installation: <https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline>
+- The code is available at <https://github.com/RooCodeInc/Roo-Code>
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/roocode.png){width=100%}
+
+Documentation: <https://docs.roocode.com/>
+:::
+:::
+:::
+:::
+
+## Setting up Roo Code
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+- First, install the Roo Code extension in VS Code
+- Open the extension (rocket icon 🚀) and let's configure our first LLM!
+- Click on the gear (top right) and you will be taken to the settings
+- You will see a series of options, let's see one by one
+- ... but we need [API keys!]{.alert}
+- In most cases, API credits are usually [cheaper]{.alert} than monthly subscriptions for the average user
+- You can get them directly from the model's website, or from [OpenRouter](https://openrouter.ai/)
+- The good thing is, OpenRouter has many free models available too!
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; margin-top: -30px;"}
+![](figures/roocode-setup.png){width=90%}
+:::
+:::
+:::
+:::
+
+## Adding API keys
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="40%"}
+- [OpenRouter](https://openrouter.ai/) provides a uniform way to interact with many APIs
+- And it is super easy to use: just sign up and get your API key
+- Then, we are going to select the models we will use in Roo Code settings
+- For this example, we will use the free version of [Z.ai's GLM 4.5 Air](https://openrouter.ai/z-ai/glm-4.5-air:free)
+- Feel free to test other free models (or paid ones) available in OpenRouter
+- Go to <https://openrouter.ai/> and sign up for an account (it is free, no credit card or subscription needed)
+:::
+
+:::{.column width="60%"}
+:::{style="text-align: center; margin-top: -30px;"}
+![](figures/openrouter.png){width=100%}
+
+<https://openrouter.ai/>
+:::
+:::
+:::
+:::
+
+## Adding API keys
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="40%"}
+- Then, click on your picture and `Keys`
+- Copy the key and paste it in the Roo Code settings
+  - You will only see the key once, so make sure to save it somewhere safe!
+- You can create as many keys as you want, and revoke them at any time
+- In `Credit Limit`, you can put a limit on how much you want to spend
+- Feel free to put $0.00 if you want to use only the free models
+- More models here: <https://openrouter.ai/models>
+:::
+
+:::{.column width="60%"}
+:::{style="text-align: center; margin-top: -30px;"}
+![](figures/openrouter2.png){width=100%}
+
+<https://openrouter.ai/settings/keys>
+:::
+:::
+:::
+:::
+
+## Adding API keys
+
+:::{style="margin-top: 30px; font-size: 27px;"}
+- Now, let's go back to Roo Code settings and add the API key
+- Just copy and paste the key in the `OpenRouter API Key` field
+- [We are almost ready to go!]{.alert}
+- The last step is to select the models we want to use
+- Model choice depends on the task you have at hand, but a general model is a good start
+- Note that here we are not running the models locally, but running them on (someone else's) server
+  - So [while you gain speed, you lose privacy]{.alert}
+:::
+
+## Adding API keys
+
+:::{style="margin-top: 30px; font-size: 23px; text-align: center;"}
+![](figures/roocode-models.png){width=50%}
+:::
+
+## Running a model in Roo Code
+
+:::{style="margin-top: 30px; font-size: 23px; text-align: center;"}
+:::{.columns}
+:::{.column width="50%"}
+![](figures/roocode-run.png){width=100%}
+:::
+
+:::{.column width="50%"}
+![](figures/roocode-result.png){width=100%}
+:::
+:::
+:::
+
+## Using agents in Roo Code
+
+:::{style="margin-top: 30px; font-size: 27px;"}
+- So far, we have seen how to use Roo Code to interact with APIs
+- It already saves you a lot of time, as you [don't have to go to a website to get the information you need]{.alert}
+- But what if you could [automate even more tasks?]{.alert}
+- [That's where agents come in!]{.alert}
+- Agents are like [chatbots that can act autonomously]{.alert}, including [running code, sending emails, and interacting with websites]{.alert}
+- [This is the future of AI]{.alert}, and it is already here!
+- For coders, one of the best uses of agents is to [let it write and run code for you]{.alert}
+- It is the closest thing to "vibe coding" (😂) we have so far
+:::
+
+## Using agents in Roo Code
+
+:::{style="margin-top: 30px; font-size: 25px;"}
+- Let's ask Roo Code to do the following (make sure you use `Code` mode):
+  - Create a new folder called `document`
+  - Create a new Quarto file called `api.qmd`
+  - Write a few paragraphs about the importance of APIs
+  - Save the file
+  - Render the file and open it in VS Code
+  - We could ask it to send it to GitHub, but we will do it manually just for the sake of it
+- Prompt:
+  - "`Create a new folder called document in my current folder. Create a new Quarto file called api.qmd. Write three paragraphs about the importance of APIs. Save the file. Use quarto preview to visualise the rendered file.`"
+- And see the magic happen! 🪄
+:::
+
+## Using agents in Roo Code
+
+:::{style="margin-top: 30px; font-size: 23px; text-align: center;"}
+:::{.columns}
+:::{.column width="50%"}
+![](figures/roocode-agent.png){width=100%}
+:::
+
+:::{.column width="50%"}
+![](figures/roocode-agent2.png){width=100%}
+:::
+:::
+:::
+
+## Output
+### Completely automated! 🤖
+
+:::{style="margin-top: 30px; font-size: 23px; text-align: center;"}
+![](figures/api.png){width=100%}
+:::
+
+# Cool, right? 🤓 {background-color="#2d4563"}
+
+## Alternatives to Roo Code and DeepSeek
+
+:::{style="margin-top: 30px; font-size: 25px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Roo Code is not the only tool that allows you to interact with APIs
+- Other popular choices are [Cline](https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev), [KiloCode](https://kilocode.ai/), or [OpenCode](https://opencode.ai/)
+- They are all free to use, and you can choose the one that best fits your needs
+  - Roo Code is actually a fork of Cline, but with more features
+  - KiloCode is a new tool that is gaining popularity, and OpenCode works in the terminal
+- They perform similar tasks and have a similar interface, so feel free to try them all 😉
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; text-align: center;"}
+![](figures/cline.png){width=100%}
+
+<https://cline.bot/>
+:::
+:::
+:::
+:::
+
+## Alternatives to Roo Code 
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+- There are many great, free models available for various AI tasks
+- Some models that are worth mentioning are [Qwen](https://openrouter.ai/qwen/qwen3-235b-a22b:free), [GPT OSS](https://openrouter.ai/openai/gpt-oss-20b:free), [Kimi](https://openrouter.ai/moonshotai/kimi-k2:free), or [Gemma](https://openrouter.ai/google/gemma-3-27b-it:free)
+- Gemini offers free access to [all its models]{.alert}, including their "thinking" ones
+- Now that you know how to use APIs, you can get an API key for free at <https://aistudio.google.com/> and use it in VS Code
+- Qwen and Gemini have CLI interfaces too! See: <https://github.com/QwenLM/qwen-code> and <https://github.com/google-gemini/gemini-cli>
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; margin-top: -30px;"}
+![](figures/qwen.png){width=100%}
+
+<https://github.com/QwenLM/qwen-code>
+
+![](figures/gemini.png){width=100%}
+
+<https://github.com/google-gemini/gemini-cli>
+:::
+:::
+:::
+:::
+
+# Giving internet access to your editor 🌐 {background-color="#2d4563"}
+
+## Browser-use
+
+:::{style="margin-top: 30px; font-size: 25px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We have seen how to use LLMs locally, how to interact with APIs, and how to create agents
+- But what if you could [browse the internet straight from your code editor]{.alert}?
+- [OpenAI's Operator](https://openai.com/index/introducing-operator/) was released to much fanfare and it allows you to do just that
+- But there is a free and open source alternative called [Browser-use](https://browser-use.com/)
+- It is a Python library that uses LLM APIs to [interact with websites]{.alert}, [extract information]{.alert}, and [perform tasks]{.alert}
+- You can use it to [scrape data from websites]{.alert}, [fill out forms]{.alert}, [send emails]{.alert}, and [much more]{.alert}
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/browse-use.png){width=100%}
+
+<https://browser-use.com/>
+:::
+:::
+:::
+:::
+
+## Browser-use Web-ui
+
+:::{style="margin-top: 30px; font-size: 27px;"}
+:::{.columns}
+:::{.column width="50%"}
+- To make things more convenient, Browser-use comes with a [web interface](https://github.com/browser-use/web-ui) that allows you to [interact with websites visually]{.alert}
+- In this case, [we will need a model with vision capabilities]{.alert}, such as Google Gemini or Anthropic's Claude
+- Let's get an API from Google and test it in Browser-use!
+- But first, we need to install the software
+- You can find the instructions [here](https://github.com/browser-use/web-ui)
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; margin-top: -30px;"}
+![](figures/web-ui.png){width=100%}
+
+<https://github.com/browser-use/web-ui>
+:::
+:::
+:::
+:::
+
+## Browser-use Web-ui
+### Instructions
+
+:::{style="margin-top: 30px; font-size: 19px;"}
+:::{.columns}
+:::{.column width="50%"}
+Step 1: Clone the Repository
+```bash
+git clone https://github.com/browser-use/web-ui.git
+cd web-ui
+```
+
+Step 2: Set Up Python Environment
+They recommend using [uv](https://docs.astral.sh/uv/). Here: <https://docs.astral.sh/uv/getting-started/installation/>
+
+```bash
+uv venv --python 3.11
+```
+
+Activate the virtual environment:
+
+- Windows (Command Prompt):
+```cmd
+.venv\Scripts\activate
+```
+- Windows (PowerShell):
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+- macOS/Linux:
+```bash
+source .venv/bin/activate
+```
+:::
+
+:::{.column width="50%"}
+Step 3: Install Dependencies
+Install Python packages:
+```bash
+uv pip install -r requirements.txt
+```
+
+Install Playwright:
+```bash
+playwright install
+```
+
+Step 4: Configure Environment
+Create a copy of the example environment file:
+
+- Windows (Command Prompt):
+```bash
+copy .env.example .env
+```
+- macOS/Linux/Windows (PowerShell):
+```bash
+cp .env.example .env
+```
+
+2. Open `.env` in your preferred text editor and add your API keys and other settings
+:::
+:::
+:::
+
+## Browser-use Web-ui
+### `.env` file and running the server
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+- Here is an example of the `.env` file
+- You just need to add your API key to the `GOOGLE_API_KEY` field and you are good to go!
+- You can also add the API keys for other services if you want to use them, or add them later on the web interface
+
+```verbatim
+OPENAI_ENDPOINT=https://api.openai.com/v1
+OPENAI_API_KEY=
+
+ANTHROPIC_API_KEY=
+
+GOOGLE_API_KEY=XXXXXXXX
+
+AZURE_OPENAI_ENDPOINT=
+AZURE_OPENAI_API_KEY=
+
+DEEPSEEK_ENDPOINT=https://api.deepseek.com
+DEEPSEEK_API_KEY=
+```
+
+- To run the server, just type the command below:
+  - `cd web-ui && .venv/bin/python webui.py --ip 127.0.0.1 --port 7788`
+:::
+
+## Browser-use Web-ui in action
+
+:::{style="margin-top: 30px; font-size: 23px; text-align: center;"}
+![](figures/webui01.png){width=100%}
+:::
+
+## Browser-use Web-ui in action
+
+:::{style="margin-top: 30px; font-size: 23px; text-align: center;"}
+![](figures/webui02.png){width=100%}
+:::
+
+## Browser-use Web-ui in action
+
+:::{style="margin-top: 30px; font-size: 23px; text-align: center;"}
+![](figures/webui03.png){width=100%}
+:::
+
+## Browser-use Web-ui in action
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+Task: `go to google.com and find out who won the Oscar for best international film in 2025`
+
+:::{style="text-align: center;"}
+![](figures/webui04.png){width=100%}
+:::
+:::
+
+## Browser-use Web-ui in action
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+Result: `The Guardian article says 'I’m Still Here wins Oscar for best international film, becoming first Brazilian film to do so'`
+
+:::{style="text-align: center;"}
+![](figures/webui05.png){width=100%}
+:::
+:::
+
+# That's super cool 🤩 {background-color="#2d4563"}
+
+## What did we learn today?
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- We can run LLMs locally using Ollama and LM Studio
+  - Ollama is a command-line tool that allows you to run pre-trained models on your computer
+  - LM Studio is a graphical interface that allows you to run any model from Hugging Face
+- We can interact with APIs using Roo Code
+  - Roo Code is an extension for VS Code that allows you to interact with many APIs
+  - You can use it to run code, write text, and analyse images faster
+- We can use agents to automate tasks
+  - Agents are like chatbots that can act autonomously
+- We can browse the internet straight from our code editor
+  - Browser-use is a Python library that allows you to interact with websites, extract information, and perform tasks
+  - It comes with a web interface that allows you to interact with websites visually
+:::
+
+# And that's it for today! 🎉 {background-color="#2d4563"}
+
+# Thank you for your attention! <br> Have a great rest of your day! 😊 {background-color="#2d4563"}

@@ -1,0 +1,769 @@
+---
+title: DATASCI 350 - Data Science Computing
+subtitle: Lecture 14 - Introduction to Cloud Computing
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: "Department of Data and Decision Sciences <br> Emory University"
+format:
+  clean-revealjs:
+    self-contained: true
+    code-overflow: wrap
+    footer: "[Cloud](https://raw.githack.com/danilofreire/datasci350/main/lectures/lecture-14/14-cloud.html)"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: python3
+revealjs-plugins:
+  - fontawesome
+  - multimodal
+editor:
+  render-on-save: true
+---
+
+# Hello, everyone! 👋 {background-color="#2d4563"}
+
+# Brief recap 📚 {background-color="#2d4563"}
+
+## Local LLMs and AI agents
+
+:::{style="margin-top: 30px; font-size: 25px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We saw many cool things last class!
+- There are many pros of using [local LLMs]{.alert}:
+  - [Privacy, security, control, and customisation]{.alert}
+- [Ollama](https://ollama.com) is a great software for that!
+  - It lets you download and run hundreds of LLMs locally
+  - It's free and open source, and easy to customise with `Modelfiles`
+- We also saw how to use [LM Studio](https://lmstudio.ai) and [Hugging Face](https://huggingface.co)
+  - You have more than [two million models](https://huggingface.co/models) to choose from!
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/ollama.png){width=70%}
+
+<https://ollama.com>
+:::
+:::
+:::
+:::
+
+## Local LLMs and AI agents
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We learnt about [LLM APIs]{.alert} and how to use them via [OpenRouter](https://openrouter.ai)
+  - There are many free models available, just search for "free" in the search bar
+- We also saw how to use [Roo Code](https://github.com/RooVetGit/Roo-Code) and integrate APIs in VS Code
+  - You can use any API with a friendly interface
+  - You can fully automate your workflow with [agents]{.alert}
+- Finally, we learnt how to use [Web-UI](https://github.com/browser-use/web-ui)
+- Web-UI makes websites accessible for AI agents, and it can perform pretty much [any task on the internet]{.alert}
+- Have a look at its parent project too: [Browser Use](https://github.com/browser-use/browser-use)
+  - You can use it in Python and integrate it in your scripts!
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/webui.png){width=100%}
+
+<https://github.com/browser-use/web-ui>
+:::
+:::
+:::
+:::
+
+## Browser use
+### Add grocery items to cart, and checkout
+
+:::{style="margin-top: 30px; font-size: 22px; text-align: center;"}
+{{< video https://www.youtube.com/watch?v=3Q6J9J1J1Z4 width="900" height="400" >}}
+
+If the video doesn't play, please click [here](https://www.youtube.com/watch?v=L2Ya9PYNns8)
+:::
+
+# Cloud computing ☁️ {background-color="#2d4563"}
+
+## What is cloud computing?
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Cloud computing is the [on-demand delivery]{.alert} of computing resources through a cloud services platform via the internet with [pay-as-you-go pricing]{.alert}
+- Cloud computing has increased in popularity in recent years because it offers many advantages
+  - [Scalability, flexibility, and cost-efficiency]{.alert}
+- There are three main types of cloud computing services: [IaaS, PaaS, and SaaS]{.alert}
+- The most popular cloud computing platforms are [Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP)]{.alert}, the "Big Three"
+- They are so widely used that Amazon's AWS is the [most profitable division]{.alert} of the company
+  - Although it is only 15% of their total sales, it accounts for more than 50% of their profits (~$28 billion)
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/amazon.png){width=100%}
+
+Source: [GeekWire (2025)](https://www.geekwire.com/2025/amazons-quarterly-profits-soar-to-a-record-20-billion-but-cloud-growth-comes-up-short/)
+:::
+:::
+:::
+:::
+
+# Why should we care about cloud computing? 🤔 {background-color="#2d4563"}
+
+## Imagine you are opening a business...
+### Traditional approach
+
+:::{style="margin-top: 30px; font-size: 28px;"}
+:::{.columns}
+:::{.column width="50%"}
+1. Estimate supply and demand
+2. Estimate infrastructural needs
+3. Purchase and deploy infrastructure
+4. Install and test your system
+5. Offer your services to clients
+:::
+
+:::{.column width="50%"}
+- Infrastructure is [very expensive]{.alert}: 
+  - Hardware costs (Dell charges [~7k for its least expensive server](https://www.dell.com/en-us/shop/cty/pdp/spd/poweredge-r570/na_promo_per570_2)) 
+  - Real estate costs 
+  - Cooling system, power bill 
+  - A few systems engineers 
+  - Redundancy for high reliability
+- It takes time to deploy the infrastructure
+- [What if the estimations were wrong?]{.alert}
+:::
+:::
+:::
+
+## Imagine you are opening a business...
+### Cloud approach
+:::{style="margin-top: 30px; font-size: 28px;"}
+
+1. Choose one or more cloud services providers
+2. Deploy your systems on the cloud
+3. Offer your services to clients
+4. Pay for what you use
+
+:::{style="margin-top: 40px;"}
+:::
+
+| **Traditional process**       | **With Cloud Computing**      |
+|-------------------------------|-------------------------------|
+| ❌ High investment risk       | ✅ Reduced risk               |
+| ❌ Long time-to-market        | ✅ Shorter time-to-market     |
+| ✅ Manages own data           | ❌ Trust the vendor?          |
+| ✅ Completely in control      | ❌ Dependent on a specific vendor? |
+:::
+
+## Case study: Animoto
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [Animoto](https://animoto.com/): Lets users create videos from their own photos/music
+- Auto-edits photos and videos and aligns them with the music, so it "looks good"
+- Built using [Amazon EC2](https://aws.amazon.com/ec2/) (Elastic Compute Cloud) + [S3](https://aws.amazon.com/s3/) (Simple Storage Service) + [SQS](https://aws.amazon.com/sqs/) (Simple Queue Service)
+- Released a Facebook app in mid-April 2008 
+- More than [750,000 people signed up within 3 days]{.alert}
+- EC2 usage went [from 50 machines to 3,500 (x70 scalability!)]{.alert}
+- [No way they could have done this with traditional infrastructure!]{.alert}
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/animoto.jpg){width=100%}
+
+Source: [Jeff Bezos' talk at Stanford in 2008](https://youtu.be/6nKfFHuouzA?si=M5LCwMxMUC5Ay3oY)
+:::
+:::
+:::
+:::
+
+## Case study: The Washington Post
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [Hillary Clinton's official White House schedule released to the public]{.alert}
+- 17,481 pages of non-searchable, low-quality PDF
+- Very interesting to journalists, but would have required [hundreds of man-hours to evaluate]{.alert}
+- Peter Harkins, Senior Engineer at The Washington Post: "Can we make that data available more quickly, ideally within the same news cycle?"
+- Tested various Optical Character Recognition (OCR) programs; estimated required speed
+- Launched [200 EC2 instances]{.alert}; project was completed within nine hours using 1,407 hours of VM time ($144.62)
+- Results available on the web only [26 hours after the release]{.alert}
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/wapo.png){width=100%}
+
+Source: [The Washington Post](https://www.washingtonpost.com/archive/politics/2008/03/21/hillary-clinton-in-the-white-house/200a2e1f-efb4-469a-b5dd-05e87675b598/)
+:::
+:::
+:::
+:::
+
+# Cloud computing services ☁️ {background-color="#2d4563"}
+
+## Cloud computing services
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+- [SaaS (Software as a Service)]{.alert}: 
+  - Software is hosted on a cloud and accessed via the internet as a complete application
+  - You don't have to worry about updates, security, or maintenance
+  - You often pay a subscription fee (monthly or yearly)
+  - Examples: [Gmail](https://gmail.com), [Office 365](https://www.office.com), [Salesforce](https://www.salesforce.com), [GitHub Copilot](https://github.com/features/copilot)
+- [PaaS (Platform as a Service)]{.alert}:
+  - Provides a platform allowing customers to develop, run, and manage applications without the complexity of building and maintaining the infrastructure
+  - Usually, the platform offers a series of APIs
+  - You pay for the platform and the resources you use (e.g., storage, bandwidth)
+  - Examples: [Google App Engine](https://cloud.google.com/appengine), [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk), [Heroku](https://www.heroku.com), [GitHub Actions/Codespaces/Pages](https://github.com/features/actions)
+:::
+
+## Cloud computing services
+### SaaS
+
+:::{style="margin-top: 30px; font-size: 26px; text-align: center;"}
+![](figures/saas.jpg){width=70%}
+:::
+
+## Cloud computing services
+### PaaS
+
+:::{style="margin-top: 30px; font-size: 26px; text-align: center;"}
+![](figures/paas.png){width=100%}
+:::
+
+## Cloud computing services
+
+:::{style="margin-top: 30px; font-size: 28px;"}
+- [FaaS (Function as a Service)]{.alert}:
+  - Allows you to run code without provisioning or managing servers
+  - You pay for the time your code/function runs
+  - Examples: [AWS Lambda](https://aws.amazon.com/lambda), [Google Cloud Functions](https://cloud.google.com/functions), [Azure Functions](https://azure.microsoft.com/en-us/services/functions)
+- [IaaS (Infrastructure as a Service)]{.alert}:
+  - Provides virtualised computing resources over the internet
+  - You can rent virtual machines, storage, and networking
+  - You pay for the resources you use
+  - Examples: [AWS EC2](https://aws.amazon.com/ec2), [Google Compute Engine](https://cloud.google.com/compute), [Azure Virtual Machines](https://azure.microsoft.com/en-us/services/virtual-machines)
+:::
+
+## Cloud computing services
+### FaaS
+
+:::{style="margin-top: 30px; font-size: 26px; text-align: center;"}
+![](figures/faas.png){width=80%}
+:::
+
+## Cloud computing services
+### IaaS
+
+:::{style="margin-top: 30px; font-size: 26px; text-align: center;"}
+![](figures/iaas.png){width=80%}
+:::
+
+## Comparison of cloud services
+
+:::{style="margin-top: 60px; font-size: 26px; text-align: center;"}
+<table style="border-collapse: collapse; width: 90%; margin: 20px auto;">
+  <tr>
+    <th style="border: 1px solid #ddd; padding: 8px; text-align: center; background-color: #f2f2f2;">On-premise</th>
+    <th style="border: 1px solid #ddd; padding: 8px; text-align: center; background-color: #f2f2f2;">IaaS</th>
+    <th style="border: 1px solid #ddd; padding: 8px; text-align: center; background-color: #f2f2f2;">PaaS</th>
+    <th style="border: 1px solid #ddd; padding: 8px; text-align: center; background-color: #f2f2f2;">SaaS</th>
+  </tr>
+  <tr>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">Application</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">Application</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">Application</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Application</td>
+  </tr>
+  <tr>
+    <td class="user-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">Middleware</td>
+    <td class="user-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">Middleware</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Middleware</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Middleware</td>
+  </tr>
+  <tr>
+    <td class="user-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">OS</td>
+    <td class="user-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">OS</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">OS</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">OS</td>
+  </tr>
+  <tr>
+    <td class="user-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">Virtualisation</td>
+    <td class="user-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">Virtualisation</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Virtualisation</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Virtualisation</td>
+  </tr>
+  <tr>
+    <td class="user-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">Servers</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Servers</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Servers</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Servers</td>
+  </tr>
+  <tr>
+    <td class="user-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">Networking</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Networking</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Networking</td>
+    <td class="other-manages" class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Networking</td>
+  </tr>
+</table>
+
+<div style="margin-top: 10px; text-align: center;">
+
+<p><span style="color: #f44336;">User manages</span><br><span style="color: #4CAF50;">Provider manages</span></p>
+</div>
+:::
+
+## What is middleware?
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Middleware is software that [connects two separate applications]{.alert}
+- This is software we rarely see, but which is [essential for the functioning of the internet]{.alert}
+- For instance, software that handles [authentication, authorisation, and encryption]{.alert}, drivers that [connect to databases]{.alert}, and software that [handles messaging]{.alert}
+- [Amazon SQS](https://aws.amazon.com/sqs), [Apache Kafka](https://kafka.apache.org), and [RabbitMQ](https://www.rabbitmq.com) are examples of middleware
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/middleware.avif){width=100%}
+:::
+:::
+:::
+:::
+
+## What is virtualisation?
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Suppose Alice has a machine with 4 CPUs and 8 GB of memory, and three customers: 
+  - Bob wants a machine with 1 CPU and 3 GB of memory 
+  - Charlie wants 2 CPUs and 1 GB of memory 
+  - Daniel wants 1 CPU and 4 GB of memory
+- [What should Alice do?]{.alert}
+- Alice can sell each customer a [virtual machine (VM) with the requested resources]{.alert}
+- From each customer's perspective, it appears as if they had a [physical machine all by themselves (isolation)]{.alert}
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/virtualisation.png){width=100%}
+
+More about [virtualisation](https://www.redhat.com/en/topics/virtualization/what-is-virtualization)
+:::
+:::
+:::
+:::
+
+## The Big Three ☁️
+
+:::{style="margin-top: 30px; font-size: 26px; text-align: center;"}
+![](figures/market.jpeg){width=50%}
+:::
+
+## Amazon Web Services (AWS)
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Amazon Web Services is a collection of cloud-based services
+- It's a very [large platform]{.alert}
+- Let me say it again: [a VERY LARGE ONE]{.alert} 😂
+- They offer a wide range of services:
+  - [Compute, storage, databases, analytics, machine learning, AI, IoT, security, and more]{.alert}
+- Many companies use AWS, including [Netflix, Airbnb, and NASA]{.alert}
+- The most widely used services are [EC2](https://aws.amazon.com/ec2), [S3](https://aws.amazon.com/s3), and [RDS](https://aws.amazon.com/rds), for computing, storage, and databases, respectively
+- Let's look at them in more detail
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/aws.png){width=100%}
+
+<https://aws.amazon.com>
+:::
+:::
+:::
+:::
+
+# AWS services 🛠️ {background-color="#2d4563"}
+
+## Amazon EC2 - Elastic Compute Cloud
+
+:::{style="margin-top: 30px; font-size: 25px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Amazon EC2 is a web service that provides [resizable compute capacity]{.alert} in the cloud
+- It's designed to make web-scale cloud computing easier for developers
+- You can launch instances with a [variety of operating systems (mainly Linux)]{.alert}
+- Which means that, for the most part, [you can use Bash and run any software you want from the command line]{.alert}
+- You can also use a [GUI]{.alert}, but it is not necessary
+- You can use EC2 to host a website, run a database, or run a machine learning model
+:::
+
+:::{.column width="50%"}
+- However, please be [mindful of the costs!]{.alert}
+- You pay for the instances you use, and the [costs can add up quickly]{.alert}
+- Per-second (or per-hour) billing
+- Data transfer [is not]{.alert} included!
+- Persistent storage [is not]{.alert} included!
+- Scaling [is not]{.alert} included!
+
+:::{style="text-align: center;"}
+![](figures/ec2meme.jpg){width=100%}
+:::
+:::
+:::
+:::
+
+## EC2 auto scaling
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Scaling is the ability to [increase or decrease]{.alert} the compute capacity of your application
+- Scale your application manually, on a scheduled basis or on demand
+- This is useful when you have [fluctuating workloads]{.alert}, such as a website that gets more traffic during the day, or a machine learning model that gets more requests at certain times
+- You can set up [auto scaling groups]{.alert} to automatically scale your application
+- You can also set up [load balancers]{.alert} to distribute traffic across multiple instances
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/auto-scaling.png){width=100%}
+
+Source: [AWS](https://aws.amazon.com/autoscaling)
+:::
+:::
+:::
+:::
+
+## ELB - Elastic Load Balancer
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- ELB is a service that automatically [distributes incoming application traffic]{.alert} across multiple targets
+- It can handle the [varying load of your application traffic]{.alert} in a single availability zone or across multiple availability zones
+- ELB is a [key component]{.alert} of auto scaling
+- As with EC2, you pay for the data transfer and the number of requests
+- [And it can be quite expensive too]{.alert}
+- It can detect unhealthy instances and reroute traffic to healthy instances
+- So your application is always [available]{.alert}!
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/elb.png){width=100%}
+:::
+:::
+:::
+:::
+
+## Cloud storage
+### Amazon S3 - Simple Storage Service
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Amazon has three main storage services: [S3](https://aws.amazon.com/s3) (Simple Storage Service), [EBS](https://aws.amazon.com/ebs) (Elastic Block Store), and [EFS](https://aws.amazon.com/efs) (Elastic File System)
+- S3 is a web service that provides [scalable object storage]{.alert} for data backup, archival, and analytics
+- You can store data in [buckets]{.alert}, which are like folders
+- Data are distributed across a minimum of [three availability zones]{.alert}
+  - 99.999999999% durability (eleven nines!)
+- You can set up [lifecycle policies]{.alert} to automatically move data to cheaper storage classes
+  - [Standard, Intelligent-Tiering, Glacier, Glacier Deep Archive]{.alert}
+- You can also set up [versioning]{.alert} to keep multiple versions of an object (works like `git`)
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/s3.png){width=100%}
+
+<https://aws.amazon.com/s3/>
+:::
+:::
+:::
+:::
+
+## Cloud storage
+### Amazon EBS - Elastic Block Store
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+- EBS is a web service that provides [block storage]{.alert} volumes for use with EC2 instances
+- The difference between S3 and EBS is that EBS is [block storage]{.alert}, while S3 is [object storage]{.alert}
+  - [Block storage is like a hard drive]{.alert}, while object storage is like a file system
+- Why would you use it? [Mainly for SQL files]{.alert}
+  - Low-latency, high-performance storage for frequent access
+- You can attach EBS volumes to your EC2 instances
+- You can also take [snapshots]{.alert} of your volumes for backup (like `git` again!)
+- Up to 16 TB per volume
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/ebs.webp){width=100%}
+
+<https://aws.amazon.com/ebs/>
+:::
+:::
+:::
+:::
+
+## Amazon EFS - Elastic File System
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+- EFS is a web service that provides [scalable file storage]{.alert} for use with EC2 instances
+- EFS is mainly used for [shared file storage]{.alert}
+  - Multiple EC2 instances can access the same file system
+  - Useful for [big data and analytics]{.alert}
+  - Also for [content management and web serving]{.alert}
+- You can create file systems and mount them to your EC2 instances
+- As with S3 and EBS, you pay for the storage you use
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/efs.png){width=50%}
+<https://aws.amazon.com/efs/>
+:::
+:::
+:::
+:::
+
+## Database services
+### Amazon RDS - Relational Database Service
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [Amazon RDS](https://aws.amazon.com/rds/) is a web service that makes it easy to set up, operate, and scale a [relational database]{.alert}
+- You can choose from [six popular database engines]{.alert}:
+  - [Amazon Aurora, PostgreSQL, MySQL, MariaDB, Oracle, and SQL Server]{.alert}
+- You can also use [Aurora Serverless]{.alert} to automatically scale your database
+- It's a managed service, so you don't have to worry about [backups, patches, or updates]{.alert}
+- It works well with another AWS service called [Athena](https://aws.amazon.com/athena/), which allows you to query data in S3 using SQL
+- You can also use [Redshift](https://aws.amazon.com/redshift/) for data warehousing and business analytics, and [DynamoDB](https://aws.amazon.com/dynamodb/) for NoSQL databases
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/rds.png){width=60%}
+
+<https://aws.amazon.com/rds/>
+:::
+:::
+:::
+:::
+
+## Amazon SageMaker
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Finally, let's talk about [Amazon SageMaker](https://aws.amazon.com/sagemaker/)
+- SageMaker is a fully managed service that allows you to build, train, and deploy machine learning models at scale
+- It has several pre-configured models, such as [TensorFlow, PyTorch, and Scikit-learn]{.alert}
+- You can also bring your own models too, and use [Jupyter notebooks]{.alert} to train them
+- Lots of other models available in the [AWS Marketplace](https://aws.amazon.com/marketplace), and you can also use [SageMaker Studio]{.alert} to manage your projects
+- Machine Learning: application services
+  - [Comprehend (for NLP)](https://aws.amazon.com/comprehend/)
+  - [Rekognition (Visual Analysis)](https://aws.amazon.com/rekognition/)
+  - [Translate](https://aws.amazon.com/translate/)
+  - [Polly (text-to-speech)](https://aws.amazon.com/polly/)
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/sagemaker.png){width=100%}
+
+<https://aws.amazon.com/sagemaker/>
+:::
+:::
+:::
+:::
+
+# Creating and managing an AWS account 🛠️ {background-color="#2d4563"}
+
+## Creating an AWS account
+### You can do this later if you want
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+- To create an AWS account, go to <https://aws.amazon.com/free/> and click on [Create a Free Account]{.alert}
+- Then, add your email and choose an account name (any name will do)
+- Enter your account information, and then choose _Verify email address_
+- You will receive an email with a verification link, add the code from the email
+- Follow the instructions to set up your account
+- [Enter your billing information]{.alert}, yes, you need to 😒
+- Enter the code displayed in the CAPTCHA, and then submit
+- Choose [Complete sign up]{.alert}
+- And you're done 🎉
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/aws-registration.png){width=100%}
+
+<https://aws.amazon.com/free/>
+:::
+:::
+:::
+:::
+
+## Managing an AWS account
+
+:::{style="margin-top: 30px; font-size: 25px;"}
+- The first thing you should do is [to use a billing alarm]{.alert}
+  - You can set up a billing alarm to notify you when your bill exceeds a certain amount
+  - This is very important, as costs can add up quickly
+- Go to <https://console.aws.amazon.com/costmanagement/>
+- In the navigation pane, choose [Billing Preferences]{.alert} (scroll down to the bottom)
+- By [Alert preferences]{.alert} choose [Edit]{.alert} 
+- Choose [Receive AWS Free Tier Alerts]{.alert} 
+- Choose [Save preferences]{.alert}
+- Then go to <https://us-east-1.console.aws.amazon.com/billing/home#/budgets/overview>
+- Choose [Create budget]{.alert}, choose a [Zero spend budget]{.alert} template, add your email, then click [Create budget]{.alert}
+:::
+
+## Managing an AWS account
+
+:::{style="margin-top: 30px; font-size: 20px; text-align: center;"}
+![](figures/billing.png){width=80%}
+:::
+
+# Amazon Transcribe 🎤 {background-color="#2d4563"}
+
+## Audio transcription at scale
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Imagine that you have a task similar to that of the Washington Post journalists
+- You found a series of audio files that you need to transcribe, and you have to do it quickly
+- So let's create an S3 bucket (folder), upload an audio file, and transcribe it
+- The file we will use is available here: [transcribe-sample.mp3](https://d1.awsstatic.com/tmt/create-audio-transcript-transcribe/transcribe-sample.5fc2109bb28268d10fbc677e64b7e59256783d3c.mp3)
+- Select [AWS Management Console](https://us-east-1.console.aws.amazon.com/console/home?region=us-east-1) to open the console, then search for `S3` in the search bar
+- Click on [Create bucket]{.alert}, give it a name, accept the permissions, and click [Create bucket]{.alert}
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/s3-search.png){width=100%}
+:::
+:::
+:::
+:::
+
+## Audio transcription at scale
+
+:::{style="margin-top: 30px; font-size: 26px; text-align: center;"}
+:::{.columns}
+:::{.column width="50%"}
+![](figures/s3-create.png){width=100%}
+:::
+
+:::{.column width="50%"}
+![](figures/s3-bucket.png){width=100%}
+:::
+:::
+:::
+
+## S3 bucket
+
+:::{style="margin-top: 30px; font-size: 25px; text-align: center;"}
+![](figures/s3-bucket2.png){width=90%}
+
+Then click on the bucket and upload the file
+:::
+
+## Create transcription job
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Now let's go to [Amazon Transcribe](https://us-east-1.console.aws.amazon.com/transcribe/home?region=us-east-1)
+- Just search for `Transcribe` in the search bar
+- Click on [Create job]{.alert}
+- Give it a name, select the language, and choose the S3 bucket where the file is located
+- Click [Create]{.alert}
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/transcription.png){width=100%}
+:::
+:::
+:::
+:::
+
+## Transcription job
+
+:::{style="margin-top: 30px; font-size: 25px; text-align: center;"}
+:::{.columns}
+:::{.column width="50%"}
+![](figures/details.png){width=100%}
+:::
+
+:::{.column width="50%"}
+![](figures/details2.png){width=100%}
+:::
+:::
+:::
+
+## Transcription job
+
+:::{style="margin-top: 30px; font-size: 25px; text-align: center;"}
+:::{.columns}
+:::{.column width="50%"}
+![](figures/results2.png){width=100%}
+:::
+
+:::{.column width="50%"}
+![](figures/results.png){width=100%}
+:::
+:::
+:::
+
+# Conclusion 🎉 {background-color="#2d4563"}
+
+## What we learned today
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Why cloud computing is important and [how it can help your business]{.alert}
+- The [Big Three cloud computing platforms]{.alert}: AWS, Azure, and GCP
+- [The main types of cloud computing services]{.alert}: IaaS, PaaS, SaaS, FaaS
+- The most popular AWS services: [EC2, S3, RDS, SageMaker]{.alert}
+- How to create an AWS account and set up a billing alarm
+- How to create an S3 bucket, upload an audio file, and transcribe it with Amazon Transcribe
+- [And that's just the beginning]{.alert}! 
+- In the next sessions, we will learn more about AWS services, and how to use them to build and deploy applications
+- [Remember to close your EC2 instances and S3 buckets]{.alert} when you're done!
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/cloud-meme.webp){width=100%}
+:::
+:::
+:::
+:::
+
+# And that's a wrap! 🎬 {background-color="#2d4563"}
+
+# Thank you very much! <br> See you next time! 😊🙏🏽 {background-color="#2d4563"}

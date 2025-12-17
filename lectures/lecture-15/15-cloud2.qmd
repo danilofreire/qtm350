@@ -1,0 +1,776 @@
+---
+title: DATASCI 350 - Data Science Computing
+subtitle: Lecture 15 - Cloud Computing II
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: "Department of Data and Decision Sciences <br> Emory University"
+format:
+  clean-revealjs:
+    self-contained: true
+    code-overflow: wrap
+    footer: "[Cloud Computing II](https://raw.githack.com/danilofreire/datasci350/main/lectures/lecture-15/15-cloud2.html)"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: python3
+revealjs-plugins:
+  - fontawesome
+  - multimodal
+editor:
+  render-on-save: true
+---
+
+# Hello, everyone! 👋 {background-color="#2d4563"}
+
+# Brief recap 📚 {background-color="#2d4563"}
+
+## Introduction to cloud computing and AWS
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Cloud computing fundamentals:
+  - [On-demand]{.alert} resource delivery with [pay-as-you-go]{.alert} pricing models
+  - Elastic scalability, measured service, resource pooling
+  - Service models: [IaaS]{.alert} (virtualisation), [PaaS]{.alert} (managed platforms), [SaaS]{.alert} (full applications)
+- Enterprise case studies:
+  - [Animoto]{.alert}: Scaled from 50 to 3,500 EC2 instances during viral Facebook app growth
+  - [Washington Post]{.alert}: Processed 17,481 pages of Clinton schedules in 9 hours using 200 EC2 instances
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+<table style="border-collapse: collapse; width: 90%; margin: 20px auto;">
+  <tr>
+    <th style="border: 1px solid #ddd; padding: 8px; text-align: center; background-color: #f2f2f2;">On-premise</th>
+    <th style="border: 1px solid #ddd; padding: 8px; text-align: center; background-color: #f2f2f2;">IaaS</th>
+    <th style="border: 1px solid #ddd; padding: 8px; text-align: center; background-color: #f2f2f2;">PaaS</th>
+    <th style="border: 1px solid #ddd; padding: 8px; text-align: center; background-color: #f2f2f2;">SaaS</th>
+  </tr>
+  <tr>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">Application</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">Application</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">Application</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Application</td>
+  </tr>
+  <tr>
+    <td class="user-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">Middleware</td>
+    <td class="user-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">Middleware</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Middleware</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Middleware</td>
+  </tr>
+  <tr>
+    <td class="user-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">OS</td>
+    <td class="user-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">OS</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">OS</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">OS</td>
+  </tr>
+  <tr>
+    <td class="user-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">Virtualisation</td>
+    <td class="user-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">Virtualisation</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Virtualisation</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Virtualisation</td>
+  </tr>
+  <tr>
+    <td class="user-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">Servers</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Servers</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Servers</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Servers</td>
+  </tr>
+  <tr>
+    <td class="user-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f44336; color: white; text-align: center;">Networking</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Networking</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Networking</td>
+    <td class="other-manages" style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #4CAF50; color: white; text-align: center;">Networking</td>
+  </tr>
+</table>
+
+<div style="margin-top: 10px; text-align: center;">
+
+<p><span style="color: #f44336;">User manages</span><br><span style="color: #4CAF50;">Provider manages</span></p>
+</div>
+:::
+:::
+:::
+:::
+
+
+## Introduction to cloud computing and AWS
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+- AWS architecture components:
+  - [EC2]{.alert}: Resizable compute capacity with auto-scaling
+  - [S3]{.alert}: 11x9s durability object storage with lifecycle policies
+  - [RDS]{.alert}: Managed relational databases (PostgreSQL/MySQL, etc.)
+  - [SageMaker]{.alert}: ML workflows with Jupyter integration
+- Cost management:
+  - [Always configure billing alarms and budget limits!]{.alert}
+  - Monitor data transfer costs and storage class transitions
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/meme.png){width=80%}
+:::
+:::
+:::
+:::
+
+# Today's plan 📅 {background-color="#2d4563"}
+
+## Today's plan 
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Using [EC2]{.alert} instances from your [local machine]{.alert}
+  - Launching instances via AWS Console
+  - Connecting via SSH with [key pairs]{.alert}
+
+- Essential [Linux commands]{.alert} for instance management:
+  - Package management: `apt update`, `apt upgrade`, `apt install`
+  - File operations: `scp` and `chmod`
+
+- Activity 01: Launching a [Jupyter notebook]{.alert} on an EC2 instance
+  - Installing Jupyter and running a Python script
+  - Forwarding ports with SSH
+  - Running Jupyter on a remote server
+
+- Activity 02: [Data analysis on the cloud]{.alert} (time permitting)
+  - Creating a weather dataset and uploading it to an EC2 instance
+  - Analysing the data with Python and downloading the results
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/ubuntu.jpg){width=80%}
+
+[About Ubuntu (Wikipedia)](https://en.wikipedia.org/wiki/Ubuntu)
+
+[Ubuntu (Official Site)](https://ubuntu.com/)
+:::
+:::
+:::
+:::
+
+# EC2 from your local machine 🖥️ {background-color="#2d4563"}
+
+## EC2 instances in a nutshell
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Just to recap: [EC2]{.alert} is a virtual server in the cloud
+- Each instance has a full [OS]{.alert} and can run any software
+  - The vast majority of instances run [Linux]{.alert} ([Ubuntu](https://ubuntu.com/), [Amazon Linux](https://aws.amazon.com/linux/amazon-linux-2023/), etc.)
+- [Virtualisation]{.alert} allows multiple instances on the same hardware
+  - A [virtual machine](https://www.datacamp.com/blog/what-is-a-virtual-machine) is a software emulation of a physical computer
+  - [Hypervisors](https://www.redhat.com/en/topics/virtualization/what-is-a-hypervisor) manage VMs and allocate resources
+- [Instance types]{.alert} vary in CPU, memory, storage, and network capacity
+  - [T2]{.alert} instances are general-purpose, [M5]{.alert} are memory-optimised, etc
+  - You can change instance types on-the-fly
+- The [free tier](https://aws.amazon.com/free/) offers [750 hours]{.alert} of t2.micro instances per month, 1 GB of RAM, and 30 GB of storage
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/hypervisor.avif){width=80%}
+
+Source: [DataCamp](https://www.datacamp.com/blog/what-is-a-virtual-machine)
+:::
+:::
+:::
+:::
+
+## Ubuntu Linux
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [Linux]{.alert} is a popular open-source operating system
+- They are popular [precisely because they are free]{.alert}, but they are also [more secure]{.alert} than Windows and can be [customised]{.alert} to your needs (in contrast to MacOS)
+- The most widely used Linux distribution is [Ubuntu](https://ubuntu.com/)
+  - [Debian](https://www.debian.org/)-based, with a focus on usability and security
+  - [Long-term support (LTS)](https://ubuntu.com/about/release-cycle) versions are supported for 5 years
+  - [Desktop](https://ubuntu.com/desktop) and [server](https://ubuntu.com/server) editions available
+- [Google](https://cloud.google.com/), [Amazon](https://aws.amazon.com/), and [Microsoft](https://azure.microsoft.com/en-us/) all offer Ubuntu instances
+- [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/) allows you to run Ubuntu on Windows
+- For our purposes, we will use [Ubuntu instances on AWS]{.alert}
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/ubuntu.png){width=90%}
+
+[Ubuntu Desktop](https://ubuntu.com/desktop)
+:::
+
+- All Linux distributions share a common set of commands and [use bash as the default shell]{.alert}
+- Therefore, [all commands we have learnt so far will work on Ubuntu]{.alert}
+:::
+:::
+:::
+
+## Ubuntu server
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+- While Ubuntu is a complete OS (with a GUI), we will use the [terminal]{.alert} to interact with our instances
+- Why should we only use the terminal? 
+  - A bare-bones Ubuntu instance is [cheaper]{.alert} and [faster]{.alert} than a full desktop
+  - And as you already know, the terminal has [everything you need]{.alert} to manage your instance and run your code
+- Again, [all commands are the same]{.alert} (`ls`, `cd`, `pwd`, etc)
+- However, you have to use `sudo` to run commands as [root]{.alert} (superuser)
+  - This is because [root has full control over the system]{.alert} and can do anything
+  - [Be careful with root!]{.alert}
+- To install software, use `apt` (Advanced Package Tool)
+- `apt update` refreshes the package list
+- `apt install` installs a package
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/terminal.jpg){width=100%}
+
+[Ubuntu Terminal](https://ubuntu.com/tutorials/command-line-for-beginners)
+:::
+
+- `sudo apt python3` installs Python 3 
+- `sudo apt install python3-pip` installs [pip](https://pypi.org/project/pip/)
+:::
+:::
+:::
+
+## Windows Subsystem for Linux (WSL)
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [WSL](https://docs.microsoft.com/en-us/windows/wsl/) is nothing but Ubuntu running natively on Windows!
+- I hope many of you have already installed it! 😊
+- If you work with WSL, [make sure to store your SSH key file in your Ubuntu home directory]{.alert}
+- That's because Windows FS does not work well with `chmod 400` (which is required to set the correct permissions on your key file)
+- To locate your `/home/user` directory, type `cd ~` and then `pwd` in your WSL terminal
+- You can then move your key file there using Windows Explorer or the `mv` command in WSL
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/wsl.jpg){width=100%}
+
+[Ubuntu on Windows (WSL)](https://ubuntu.com/wsl)
+:::
+:::
+:::
+:::
+
+## Step 01: Launching an EC2 instance
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="40%"}
+- Now we are ready to launch an [EC2 instance]{.alert}!
+- Go to the AWS Console: <https://aws.amazon.com/console/>, sign in, and click on (search for) EC2
+- You will see the EC2 Dashboard, with a big orange button saying "Launch Instance"
+- Click on it, and you will be taken to the [AMI (Amazon Machine Image)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) selection page
+- There, we will choose an Ubuntu AMI (free tier eligible)
+ - Amazon has [thousands of AMIs]{.alert} available, including Windows, macOS, and other Linux distributions
+ - Many are already pre-configured to run specific software (e.g. [Jupyter](https://jupyter.org/), [TensorFlow](https://www.tensorflow.org/), [Docker](https://www.docker.com/), etc.)
+:::
+
+:::{.column width="60%"}
+:::{style="text-align: center;"}
+![](figures/dashboard.png){width=100%}
+
+[EC2 Dashboard](https://us-east-1.console.aws.amazon.com/ec2/home?region=us-east-1#Home:)
+:::
+:::
+:::
+:::
+
+## Step 02: Choosing an instance type
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="40%"}
+- Type a name to label your VM under `Name and tags`. For example, name your instance `datasci350`
+- I recommend using `Ubuntu Server 24.04 LTS` as the OS image and `64-bit (x86)` as the architecture
+- You can also specify the number of instances to launch at this time. To start off, [choose 1]{.alert}
+- Next choose an EC2 instance type
+- To test, you can always create one or multiple `t2.micro` or `t1.micro`, both of which are free tier eligible
+- If you need more power, you can always [change the instance type later]{.alert}
+- So far, so good? 😊
+:::
+
+:::{.column width="60%"}
+:::{style="text-align: center; margin-top: -30px;"}
+![](figures/instance-type.png){width=100%}
+
+[Instance Type](https://us-east-1.console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:)
+:::
+:::
+:::
+:::
+
+## Step 03: Choose an SSH key pair 
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="40%"}
+- Next, you will be asked to choose a [key pair]{.alert}
+- You just have to [do it once](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html), and then [you can use the same key pair for all your instances]{.alert}
+- A key pair is a pair of cryptographic keys that you use to [authenticate]{.alert} to an instance
+- Click on `Create a new key pair` and give it a name (e.g. `datasci350`)
+- Choose `ED25519` and `.pem` as the file format
+- Click on `Create Key Pair` and [save it to a secure location]{.alert}
+- It is important to [keep this key safe and know where it is]{.alert}, as it is the only way to access your instance
+:::
+
+:::{.column width="60%"}
+:::{style="margin-top: -30px; text-align: center;"}
+![](figures/key-pair.png){width=90%}
+:::
+:::
+:::
+:::
+
+## Step 04: Check HTTP/HTTPS options
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="40%"}
+- Under `Network settings`, you may check `Allow HTTPS traffic from the internet` and `Allow HTTP traffic from the internet` so that you can access the web servers hosted on your EC2 VM
+- We will allow all traffic for now, but in a production environment, you should [restrict traffic to only what is necessary]{.alert}
+- Why so? [Security]{.alert}! The more open ports you have, the more vulnerable your instance is to attacks
+- You can always [edit the security group later]{.alert} to add or remove rules
+:::
+
+:::{.column width="60%"}
+:::{style="text-align: center;"}
+![](figures/security-group.png){width=100%}
+:::
+:::
+:::
+:::
+
+## Step 05: Configure storage
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="40%"}
+- You may also increase the storage capacity of the `Root` volume under Configure storage
+- By default you will be allocated a small 8-GB root disk
+- The free tier gives you [30 GB of storage]{.alert}, so you can increase the size to 30 GB
+- You can also add additional volumes if you need more storage
+- `gp3` is the default volume type, and it works fine for most use cases
+- `io2` is the fastest and most expensive volume type, usually used for high-performance databases (which require millisecond latency)
+- If you have data that is not frequently accessed, you can use `sc1` or `st1` for cost savings
+:::
+
+:::{.column width="60%"}
+:::{style="text-align: center;"}
+![](figures/storage.png){width=100%}
+:::
+
+- [Now you just have to click on `Launch instance`]{.alert}! 🚀
+
+:::{style="text-align: center;"}
+![](figures/launch.png){width=100%}
+:::
+:::
+:::
+:::
+
+## Step 06: Log in to the EC2 instance through SSH
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Once you click on `Launch`, you will be taken to the Instances page
+- Click on `Connect to instance` to see the instructions
+
+:::{style="text-align: center;"}
+![](figures/connect.png){width=100%}
+:::
+:::
+
+:::{.column width="50%"}
+- Click on `SSH client` to see the command to connect to your instance
+- [Open a terminal]{.alert} on your local machine and navigate to the directory where you saved the key pair
+- Run the `chmod 400 "name-of-your-key.pem"` and the `Example` commands provided by AWS to connect to your instance
+
+:::{style="text-align: center;"}
+![](figures/ssh.png){width=80%}
+:::
+:::
+:::
+:::
+
+## And you are in! 🎉
+### Welcome to the cloud! 🌥️
+
+:::{style="margin-top: 30px; font-size: 21px; text-align: center;"}
+![](figures/ssh-connection.png){width=100%}
+:::
+
+## Check the instance details on the AWS Console
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="30%"}
+- You can click on the instance ID or on the `Instances` link on the left to see the details of your instance
+- You can see the [public IP address]{.alert} of your instance, the [instance type]{.alert}, the [security group]{.alert}, the [key pair]{.alert}, and other details
+- You can also [stop]{.alert}, [terminate]{.alert}, or [reboot]{.alert} your instance from this page (we will see how to do this later)
+:::
+
+:::{.column width="70%"}
+:::{style="text-align: center;"}
+![](figures/instance-details.png){width=100%}
+:::
+:::
+:::
+:::
+
+## Using CloudShell
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+- If you don't have access to a terminal, you can use [CloudShell](https://aws.amazon.com/cloudshell/)
+- CloudShell is a browser-based shell that you can use to run commands on your instances
+- You can find it on the AWS Console, in the [bottom left corner]{.alert}
+- It is a great way to run commands on your instances without having to install anything on your local machine
+- You can also use it to run commands on your S3 buckets, RDS databases, and other AWS services
+- I recommend using [your local terminal]{.alert} as you can write code in your local IDE and run it on the cloud
+- But it is nice that AWS provides this option 
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/cloudshell.png){width=70%}
+:::
+:::
+:::
+:::
+
+## Step 07: Update and install software
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="40%"}
+- Once you are in, the first thing you should do is to update the package list
+- Run `sudo apt update` to refresh the package list
+- Then, type `sudo apt get upgrade` to install the latest updates
+  - You can use the `-y` flag to automatically answer `yes` to all prompts
+- You can also install software using `sudo apt install`
+- For example, to install Python 3, run `sudo apt install python3`
+- To install pip, run `sudo apt install python3-pip`
+- You can also install [Jupyter](https://jupyter.org/) or any other software you need
+- And we will be ready to go! 🚀
+:::
+
+:::{.column width="60%"}
+:::{style="text-align: center;"}
+![](figures/update.png){width=100%}
+
+`sudo apt update && sudo apt upgrade && sudo apt install python3 && sudo apt install -y python3-pip`
+:::
+:::
+:::
+:::
+
+## Adding files to your instance
+
+:::{style="margin-top: 30px; font-size: 19px;"}
+:::{.columns}
+:::{.column width="40%"}
+- You can add files to your instance using `scp` (secure copy)
+- `scp` is a command-line tool that allows you to copy files securely
+- To copy a file [from your local machine to your instance]{.alert}, run `scp -i "name-of-your-key.pem" file-to-copy ubuntu@public-ip:/path/to/destination`
+- To copy a file [from your instance to your local machine]{.alert}, run `scp -i "name-of-your-key.pem" ubuntu@public-ip:/path/to/file-to-copy /path/to/destination`
+- You can also use `scp` to copy files [between two remote servers]{.alert}
+- [Windows users]{.alert} can use [WinSCP](https://winscp.net/eng/index.php) or [PuTTY](https://www.putty.org/)
+:::
+
+:::{.column width="60%"}
+- Open a [new bash/zsh local terminal]{.alert} (not the one you are using to connect to your instance) and type the following (one line at a time):
+
+```verbatim
+echo "print('Hello, DATASCI350!')" > hello.py
+scp -i datasci350.pem hello.py ubuntu@XXXXXX.compute-1.amazonaws.com:~ 
+```
+:::{style="text-align: center;"}
+![](figures/scp.png){width=100%}
+:::
+
+- [Don't forget to replace `XXXXXX` with your public IP]{.alert} and note that [`:~` is your home directory on the instance]{.alert}
+- You can find your public IP on the AWS Console, on the Instances page. It's the same you copied in the "Example" command when connecting via SSH
+- You can check (`ls`) and run (`python3`) the file on your instance
+
+:::{style="text-align: center;"}
+![](figures/hello.png){width=70%}
+::: 
+:::
+:::
+:::
+
+## Stopping and terminating your instance
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="40%"}
+- It is very important to [stop or terminate your instance]{.alert} when you are not using it
+- Stopping an instance will [pause it]{.alert} and you will not be charged for it (but [you will be charged for the storage]{.alert})
+- Terminating an instance will [delete it]{.alert} and you will not be charged for it (but [you will lose all data]{.alert})
+- You can stop or terminate your instance from the [Instances page]{.alert} on the AWS Console
+- You can also [reboot]{.alert} your instance if it is not responding
+- So let's stop our instance now! 🛑
+:::
+
+:::{.column width="60%"}
+:::{style="text-align: center;"}
+![](figures/stop.png){width=100%}
+![](figures/terminated.png){width=100%}
+:::
+:::
+:::
+:::
+
+# Now it is your turn! 🚀 {background-color="#2d4563"}
+
+## Activity 01
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+- Create an EC2 instance on AWS called `jupyter`
+- Connect to your instance using SSH
+- Update the package list, and install Python 3, pip, and Jupyter
+  - `sudo apt install python3-notebook`
+  - `source ~/.profile`
+- Test it with `which python3`, `which pip3`, and `which jupyter`
+- Open a new bash/zsh terminal locally, and type this to forward your connection to port `8000`
+  - `ssh -i "<your-key>.pem" ubuntu@<public_IPv4_DNS_address_of_your_EC2_instance> -L 8000:localhost:8888`
+- Start your Jupyter notebook with `jupyter notebook`
+- Open your browser and go to `http://localhost:8000`
+- Copy and paste the token from the terminal
+- Create a new notebook and run `print('Hello, DATASCI350!')` (or any other code you like!)
+- [Do not]{.alert} terminate your instance, we will use it later
+:::
+
+# Let's see the code! 🚀 {background-color="#2d4563"}
+
+## Activity 01
+
+:::{style="margin-top: 30px; font-size: 30px;"}
+```verbatim
+sudo apt update && sudo apt upgrade
+sudo apt install python3 python3-pip python3-notebook
+source ~/.profile
+which python3
+which pip3
+which jupyter
+ssh -i your-key.pem ubuntu@XXXXX -L 8000:localhost:8888
+jupyter notebook
+```
+:::
+
+## Activity 01
+
+:::{style="text-align: center; margin-top: 30px;"} 
+![](figures/jupyter.png){width=100%}
+:::
+
+## Activity 01
+
+:::{style="margin-top: 30px; font-size: 23px; text-align: center;"}
+![](figures/hello-jupyter.png){width=100%}
+:::
+
+# Another one? 🚀 {background-color="#2d4563"}
+
+## Activity 02
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+- Now that you have your EC2 instance running, let's do some data analysis
+- Let's create a simple weather dataset, upload it to our EC2 instance, analyse it, and download the results
+- Install the required packages:
+  - `sudo apt install python3-numpy python3-pandas python3-matplotlib python3-seaborn`
+
+- On your local machine, create a simple weather dataset with the Python code below, or download it here: [weather_data.py](https://github.com/danilofreire/datasci350/blob/main/lectures/lecture-15/weather_data.py)
+
+```python
+# weather_data.py
+import pandas as pd
+import numpy as np
+import datetime
+
+# Set seed for reproducibility
+np.random.seed(42)
+
+# Generate dates for the past 30 days
+dates = pd.date_range(end=datetime.datetime.now(), periods=30).tolist()
+dates = [d.strftime('%Y-%m-%d') for d in dates]
+
+# Generate temperature data with some randomness
+temp_high = np.random.normal(75, 8, 30)
+temp_low = temp_high - np.random.uniform(10, 20, 30)
+precipitation = np.random.exponential(0.5, 30)
+humidity = np.random.normal(65, 10, 30)
+
+# Create a structured dataset
+weather_data = pd.DataFrame({
+    'date': dates,
+    'temp_high': temp_high,
+    'temp_low': temp_low,
+    'precipitation': precipitation,
+    'humidity': humidity
+})
+
+# Save to a text file
+with open('weather_data.txt', 'w') as f:
+    f.write("# Weather data for the past 30 days\n")
+    f.write(weather_data.to_string(index=False))
+    
+print("Weather data saved to weather_data.txt")
+```
+:::
+
+## Activity 02
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Run this script on your local machine: `python3 weather_data.py`
+- It will create a file called `weather_data.txt` with 30 days of weather data
+- Upload the dataset to your EC2 instance:
+  - `scp -i <your-key>.pem weather_data.txt ubuntu@<your-instance-ip>:~/`
+
+- Create another Python script to analyse the data:
+- Either create a new file on your local machine or use the code: [weather_analysis.py](https://github.com/danilofreire/datasci350/blob/main/lectures/lecture-15/weather_analysis.py)
+
+```python
+# weather_analysis.py
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from io import StringIO  # Add proper import for StringIO
+
+# Read the weather data
+with open('weather_data.txt', 'r') as f:
+    lines = f.readlines()
+
+# Skip the header comment
+data_str = ''.join(lines[1:])
+df = pd.read_csv(StringIO(data_str), sep=r'\s+')  # Fix StringIO import and use raw string for regex
+
+# Print basic statistics
+print("Weather Data Analysis:")
+print("=====================")
+print(f"Number of days: {len(df)}")
+print(f"Average high temperature: {df['temp_high'].mean():.1f}°F")
+print(f"Average low temperature: {df['temp_low'].mean():.1f}°F")
+print(f"Maximum temperature: {df['temp_high'].max():.1f}°F on {df.loc[df['temp_high'].idxmax(), 'date']}")
+print(f"Minimum temperature: {df['temp_low'].min():.1f}°F on {df.loc[df['temp_low'].idxmin(), 'date']}")
+print(f"Days with precipitation > 1 inch: {len(df[df['precipitation'] > 1])}")
+
+# Create a visualisation
+plt.figure(figsize=(12, 6))
+sns.set_style("whitegrid")
+
+# Plot temperature range
+plt.fill_between(df['date'], df['temp_low'], df['temp_high'], alpha=0.3, color='skyblue')
+plt.plot(df['date'], df['temp_high'], marker='o', color='red', label='High Temp')
+plt.plot(df['date'], df['temp_low'], marker='o', color='blue', label='Low Temp')
+
+# Add precipitation as bars on a secondary axis
+ax2 = plt.twinx()
+ax2.bar(df['date'], df['precipitation'], alpha=0.3, color='navy', width=0.5, label='Precipitation')
+ax2.set_ylabel('Precipitation (inches)', color='navy')
+ax2.tick_params(axis='y', labelcolor='navy')
+
+# Formatting
+plt.title('30-Day Weather Report: Temperature Range and Precipitation', fontsize=16)
+plt.xticks(rotation=45, ha='right')
+plt.ylabel('Temperature (°F)')
+plt.legend(loc='upper left')
+plt.tight_layout()
+
+# Save the figure
+plt.savefig('weather_analysis.png')
+print("Analysis complete. Results saved to 'weather_analysis.png'")
+```
+:::
+
+## Activity 02
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Upload the files to your EC2 instance:
+  - `scp -i <your-key>.pem <file> ubuntu@<your-instance-ip>:~/`
+
+- Create a Jupyter notebook session with port forwarding:
+  - `ssh -i <your-key>.pem ubuntu@<your-instance-ip> -L 8000:localhost:8888`
+  - `jupyter notebook`
+
+- Open Jupyter in your browser (`http://localhost:8000`) and run your analysis
+- Download the resulting image to your local machine:
+  - From a new terminal on your local machine:
+  - `scp -i <your-key>.pem ubuntu@<your-instance-ip>:~/weather_analysis.png ./`
+
+- View the image on your local machine
+- [Don't forget to terminate your instance when done!]{.alert}
+:::
+
+## Activity 02 Result
+
+:::{style="margin-top: 20px; font-size: 21px;"}
+When you run the activity, you should get a weather analysis graph similar to this one:
+
+:::{style="text-align: center;"}
+![](figures/weather_analysis.png){width=80%}
+:::
+:::
+
+## Activity 02 Result
+
+:::{style="margin-top: 20px; font-size: 27px;"}
+You've just completed a full data analysis workflow in the cloud 🎉
+
+1. Created data locally
+2. Uploaded it to the cloud
+3. Processed it on a cloud server
+4. Generated visualisations
+5. Downloaded results to your local machine
+
+This workflow is similar to how data scientists use cloud resources for larger datasets and more complex analyses!
+:::
+
+# Conclusion 🎉 {background-color="#2d4563"}
+
+## Conclusion
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Today we learnt how to launch an [EC2 instance]{.alert} on AWS
+- We connected to our instance using [SSH]{.alert} and installed software
+- We ran a [Jupyter notebook]{.alert} on our instance and forwarded the connection to our local machine
+- We also uploaded a dataset, analysed it, and downloaded the results
+- We learnt how to use [scp]{.alert} to copy files between our local machine and our instance
+- And we learnt how to [stop and terminate]{.alert} our instance
+- I hope you enjoyed the class and learnt something new today! 🚀
+:::
+
+:::{.column width="50%"}
+- But we are just scratching the surface of what you can do with AWS
+- Take some time to explore the [AWS Console]{.alert} and see what other services are available
+  - [Lambda]{.alert} is particularly easy and useful, and you can run code without provisioning or managing servers
+- You can also explore [S3]{.alert} for object storage, [RDS]{.alert} for managed databases, and [SageMaker]{.alert} for machine learning
+- And remember to always [configure billing alarms and budget limits]{.alert} to avoid unexpected charges!
+:::
+:::
+:::
+
+# And that's a wrap! 🎬 {background-color="#2d4563"}
+
+# Thank you! 🙏 {background-color="#2d4563"}

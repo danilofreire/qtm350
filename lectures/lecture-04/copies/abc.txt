@@ -1,0 +1,1020 @@
+---
+title: DATASCI 350 - Data Science Computing
+subtitle: "Lecture 04: More About the Command Line"
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: Department of Data and Decision Sciences <br> Emory University
+format:
+  clean-revealjs:
+    self-contained: true
+    footer: "[More CLI](https://danilofreire.github.io/datasci350/lectures/lecture-04/04-more-command-line.html)"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: knitr
+editor:
+  render-on-save: true
+---
+
+# Recap 📚 {background-color="#2d4563"}
+
+## Brief recap
+### Why the shell?
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+
+:::{.columns}
+:::{.column width="50%"}
+- Terminals provide a [simple interface to operate computers]{.alert} via a shell
+- Command line interfaces offer [speed, power, reproducibility, and portability]{.alert}
+- Basic command syntax: [command option(s) argument(s)]{.alert}
+- Options (flags) modify command behaviour and start with a dash (-)
+- `man` pages provide detailed documentation for commands
+- `cht.sh` and `tldr` offer simplified help for common commands
+- Key commands: `ls` (list directory contents), `pwd` (print working directory), `cd` (change directory)
+- Special directory shortcuts: `~` (home), `.` (current), `..` (parent)
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; margin-top: -30px;"}
+![](figures/bash.png)
+![](figures/linux-bash.png)
+:::
+:::
+:::
+:::
+
+## The `man` command issue in WSL
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Some students using Windows WSL may encounter an issue where the `man` command doesn't work
+- The issue typically occurs because man pages may not be installed by default in minimal Linux distributions (such as Ubuntu on WSL)
+- If you try to run `man ls` or any other command, you might see an error like `man: command not found` or `No manual entry for ls`
+
+[Possible solutions:]{.alert}
+
+:::: {.columns}
+::: {.column width="50%"}
+Installation options:
+
+- Install the `man-db` and `manpages` packages:
+  ```bash
+  sudo apt update
+  sudo apt install man-db manpages
+  ```
+
+- Alternative installation command:
+
+  ```bash
+  sudo apt install man
+  ```
+:::
+
+::: {.column width="50%"}
+Testing the installation:
+
+- After installation, test with:
+  ```bash
+  man ls
+  man cp
+  man man
+  ```
+:::
+::::
+:::
+
+# Managing your files 🗂 {background-color="#2d4563"}
+
+## Managing your files
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+::: {.column width="50%"}
+- The obvious next step after navigating the file system is [managing files]{.alert}
+- There's a lot you can do with files, including downloading, unzipping, copying, moving, renaming and deleting
+- Again, doing this in a GUI is intuitive but usually [scales badly]{.alert}
+- We'll learn how to do these operations at scale using the shell
+- Be careful when handling files in the shell though! Don't expect friendly reminders such as ["Do you really want to delete this folder of pictures from your anniversary?"]{.alert} 😅
+:::
+
+::: {.column width="50%"}
+:::{style="text-align: center; margin-top: -10px;"}
+![](figures/time.jpg){width="250%"}
+:::
+:::
+:::
+:::
+
+## Create: `mkdir` and `touch`
+
+:::{style="margin-top: 30px; font-size: 25px;"}
+:::{.columns}
+:::{.column width="50%"}
+- One of the most common shell tasks is [object creation]{.alert} (files, directories, etc.).
+- We use `mkdir` to create directories. E.g., to create a new "testing" directory we do:
+
+```{bash, eval=FALSE, echo=TRUE}
+mkdir testing
+```
+- If you want to create the parent directories as well, use the `-p` flag:
+
+```{bash, eval=FALSE, echo=TRUE}
+mkdir -p testing02/subdir
+```
+
+- The `-p` flag can create complex [directory trees in one command]{.alert}, and it won't throw an error if the directory already exists
+:::
+
+:::{.column width="50%"}
+- We use `touch` to create (empty) files
+- If the file(s) already exist, `touch` changes a file's "Access", "Modify" and "Change" timestamps to the current time and date
+- [No change to the file's contents is made]{.alert}
+- To add some files to our new directory, we do:
+
+```{bash, eval=FALSE, echo=TRUE}
+touch testing/test1.txt testing/test2.txt testing/test3.txt
+```
+
+- Check that it worked:
+
+```{bash, echo=TRUE}
+ls testing
+```
+:::
+:::
+:::
+
+## Remove: `rm` and `rmdir`
+
+:::{style="margin-top: 30px; font-size: 25px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Let's delete the objects that we just created 
+- Start with one of the `.txt` files, by using `rm`
+- We could delete all the files at the same time, but you'll see why I want to keep some
+
+```{bash, eval=FALSE, echo=TRUE}
+rm testing/test1.txt
+```
+
+```{bash, eval=TRUE, echo=FALSE}
+touch test.txt
+```
+:::
+
+:::{.column width="50%"}
+- The equivalent command for directories is `rmdir`
+
+```{bash, eval=FALSE, echo=TRUE}
+rmdir testing
+
+rm: testing: is a directory
+```
+
+- Uh oh... It won't let us delete the directory while it still has files inside of it. The solution is to use the `rm` command again with the ["recursive" (`-r` or `-R`) and "force" (`-f`) options]{.alert}
+  - `-r` and `-R` are equivalent
+
+- Excluding the `-f` option is safer, but in some shells it will trigger a confirmation prompt for every file, which I'd rather avoid here
+
+```{bash, eval=FALSE, echo=TRUE}
+rm -rf testing ## Success
+```
+:::
+:::
+:::
+
+## Copy: `cp`
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+The syntax for copying is `$ cp object path/copyname`.
+
+-   If you don't provide a new name for the copied object, it will just take the old name.
+
+-   However, if there is already an object with the same name in the target destination, then you'll have to use `-f` to force an overwrite.
+
+```{bash, eval=TRUE, echo=FALSE}
+rm -rf ./copies
+```
+
+```{bash, echo=TRUE}
+## Create new "copies" sub-directory
+mkdir ./copies
+
+## Now copy across a file (with a new name)
+cp ./04-more-command-line.qmd ./copies/abc.txt
+
+## Show that we were successful
+ls ./copies
+```
+:::
+
+:::{.column width="50%"}
+You can use `cp` to copy directories, although you'll need the `-r` flag if you want to recursively copy over everything inside of it too:
+
+```{bash, echo=TRUE}
+cp -r ./figures ./copies
+ls ./copies/figures/
+```
+:::
+:::
+:::
+
+## Move (and rename): `mv`
+
+:::{style="margin-top: 30px; font-size: 25px;"}
+- The syntax for moving is `$ mv object path/newobjectname`
+  - The `newobjectname` is optional, but if you don't provide it, the object will be moved to the new location with the same name
+
+```{bash, echo=TRUE}
+## Move a file to see how it works
+mv ./test.txt ./copies/
+ls ./copies
+```
+
+- Again, note that "moving" an object within the same directory, but with specifying `newobjectname`, is effectively the same as renaming it
+
+```{bash, eval=TRUE, echo=TRUE}
+ ## Rename test02.txt to test03.txt
+mv ./copies/test.txt ./copies/test-b.txt
+ls ./copies
+```
+
+```{bash, eval=TRUE, echo=FALSE}
+rm ./copies/test-b.txt
+```
+:::
+
+## Wildcards
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+- [Wildcards](http://tldp.org/LDP/GNU-Linux-Tools-Summary/html/x11655.htm) are special characters that can be used as a replacement for other characters. The two most important ones are:
+
+- Replace any number of characters with `*`.
+  -   Convenient when you want to copy, move, or delete a whole class of files.
+
+```{bash, echo=TRUE}
+# List all files in the "figures" directory that end with ".png"
+ls figures/*.png 
+```
+
+- Replace a single character with `?`
+  -   Convenient when you want to discriminate between similarly named files.
+
+```{bash, echo=TRUE}
+# List all files in the "figures" directory that start with "tim" and end with ".jpg"
+ls figures/tim?.jpg 
+```
+Note that `?` can be used multiple times in a single command. [And that can give you different results]{.alert}
+
+```{bash, echo=TRUE}
+# List all files in the "figures" directory that start with "time" and end with ".jpg"
+ls figures/tim??.jpg
+```
+:::
+
+## Find
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- The last command to mention is `find`
+- This can be used to locate files and directories based on a variety of criteria; from pattern matching to object properties
+- The basic syntax is `find path(s) -options expression`
+- For example, to find all files in the current directory and in the lecture-03 directory with the extension `.qmd`, we would do:
+
+```{bash, echo=TRUE}
+# Must use "." to indicate pwd
+find ./ ../lecture-03/ -iname "*.qmd" 
+```
+- We can also use `-size` to find files based on their size
+  - Use capital `K` for kilobytes, `M` for megabytes, and `G` for gigabytes
+
+```{bash, echo=TRUE}
+# Find files larger than 500 KB
+find . -size +500k | sort # Sort the output 
+```
+
+- To search for directories, you can use the `-type` option:
+  - Use `d` for directories and `f` for files
+
+```{bash, echo=TRUE}
+# Find all directories in the parent directory
+find ./ -type d | sort # Sort the output
+```
+:::
+
+
+## Find
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- We can combine multiple conditions using logical operators:
+  - Use `-and` or simply place conditions next to each other
+  - Use `-or` to match either condition
+  - Use `-not` or `!` to negate a condition
+
+```{bash, echo=TRUE}
+# Find all .txt files that are larger than 1KB
+find . -name "*.txt" -size +1k
+```
+
+```{bash, echo=TRUE}
+# Find all .txt files OR .qmd files
+find . -name "*.txt" -or -name "*.qmd"
+```
+
+```{bash, echo=TRUE}
+# Find files that are NOT .csv or .gif files
+find ./figures -not -name "*.csv" -and -not -name "*.gif"
+```
+:::
+
+## Find
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- We can control how deep `find` searches with depth options:
+  - Use `-maxdepth n` to limit search to n levels deep
+  - Use `-mindepth n` to start search at least n levels deep
+
+```{bash, echo=TRUE}
+# Search only in current directory, not subdirectories
+find . -maxdepth 1 -name "*.txt"
+
+# Skip current directory, search only in subdirectories
+find . -mindepth 2 -name "*.txt"
+```
+
+- We can execute commands on found files:
+  - Use `-exec` followed by the command and `{}` as placeholder for filename
+ - Always end with `\;`
+
+```{bash, echo=TRUE}
+# Print the size and name of each .txt file
+find . -name "*.txt" -exec ls -lh {} \;
+```
+
+```{bash, echo=TRUE}
+# Count lines in each .csv file
+find . -name "*.csv" -exec wc -l {} \;
+```
+:::
+
+# File management exercise 📂 {background-color="#2d4563"}
+
+## File management exercise {#sec-exercise-01}
+### I will show you some time-saving tips after the exercise
+
+:::{style="margin-top: 30px; font-size: 25px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Imagine that you are a data analyst working in a new project. The project should have the following structure:
+
+```{verbatim}
+project/
+│
+├── scripts/
+│   ├── preprocessing.py
+│   ├── analysis.py
+│   └── visualization.py
+│
+├── data/
+│   ├── raw_data.csv
+│   └── processed_data.csv
+│
+└── docs/
+    ├── readme.txt
+    └── notes.txt
+```
+:::
+
+:::{.column width="50%"}
+- Now do the following:
+
+- Create the folders and files as described
+- Rename `raw_data.csv` to `input_data.csv`
+- Copy all Python files in the `scripts` directory and to a new directory called `backup` inside the `project` directory
+- Remove the `notes.txt` file from the `docs` directory
+- List all folders in the `project` directory in long and human-readable format 
+- Remove all folders 
+- [[Answer: Appendix 01]{.button}](#sec-appendix-01)
+:::
+:::
+:::
+
+## How to use `{}` to create multiple files or directories
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+-   The `{}` operator is a powerful tool that allows you to create multiple files or directories at once
+- For example, to create three files in a directory, you can do:
+  - `touch file{1..3}.txt`
+- To create three directories with different names, you can do:
+  - `mkdir dir{a,b,c}`
+- You can use this operator in combination with other commands, such as `cp`, `mv`, and `rm`
+  - `cp file{1..3}.txt dir{a,b,c}`
+:::
+
+:::{.column width="50%"}
+- For example:
+
+```{bash, echo=TRUE}
+mkdir -p project/{scripts,data,docs}
+touch project/scripts/{processing,analysis,visualisation}.py
+touch project/data/data{1..5}.csv
+touch project/docs/{readme.md,notes.txt}
+ls project/data
+```
+
+```{bash, echo=TRUE, eval=TRUE}
+ls project/scripts
+```
+
+```{bash, echo=TRUE, eval=TRUE}
+ls project/docs
+```
+:::
+:::
+:::
+
+## Other tips: `&&`, `||` and `tree`
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+- The `&&` operator allows you to run multiple commands in sequence, but only if the previous command was successful (`AND` logic)
+- The `||` operator allows you to run multiple commands in sequence, but only if the previous command failed (`OR` logic)
+- For example, to create a directory and then list its contents, you can do:
+  - `mkdir my-dir && ls my-dir`
+- If the directory already exists, you can do:
+  - `mkdir my-dir || echo "Directory already exists"`
+:::
+
+:::{.column width="50%"}
+- The `tree` command is a useful tool for visualising the directory structure of a project
+- You can install it on macOS with `brew install tree` and on Linux/WSL with `sudo apt-get install tree`
+  - [More information here](https://github.com/Old-Man-Programmer/tree)
+
+```{bash, echo=TRUE}
+mkdir -p book/{code,data,text}/chapter-{1..3} && \
+tree book
+```
+
+```{bash, echo=FALSE, eval=TRUE}
+rm -rf project && rm -rf book
+```
+:::
+:::
+:::
+
+# Working with text files 📄 {background-color="#2d4563"}
+
+## Working with text files
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+-   Data scientists spend [a lot of time working with text]{.alert}, including scripts, Markdown documents, and delimited text files like CSVs
+
+-   You will have the opportunity to learn more on the statistical analysis of text using NLP technique over the course of your studies
+
+-   While `Python` and `R` are strong environments for text wrangling and analysis, it still makes sense to spend a few slides showing off some Bash shell capabilities for working with text files
+
+-   We'll only scratch the surface, but hopefully you'll get an idea of how powerful the shell is in the text domain
+:::
+
+::: {.column width="30%"}
+:::{style="text-align: center; margin-top: -30px; margin-left: 50px;"}
+![](figures/bookshelf.gif){width="150%"}
+:::
+:::
+:::
+:::
+
+## Counting text: `wc`
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- You can use the `wc` command to count, respectively:
+  - The lines of text
+  - The number of words
+  - The number of characters
+
+- Let's demonstrate with a text file containing all of Shakespeare's Sonnets. [Source](http://www.gutenberg.org/cache/epub/1041/pg1041.txt).
+
+```{bash, echo=TRUE}
+## Download the file. -o is to specify the output filename
+# curl -o sonnet.txt https://raw.githubusercontent.com/danilofreire/datasci350/main/lectures/lecture-04/sonnets.txt
+wc sonnets.txt
+```
+
+The character count is actually higher than we'd get if we count by hand, because `wc` counts the invisible newline character `\n`.
+:::
+
+:::{.callout-note}
+Download the `sonnet.txt` file at <https://github.com/danilofreire/datasci350/blob/main/lectures/lecture-04/sonnets.txt>. Click on "Download raw file". Or use `curl` as shown in the code above. [Download curl here](https://curl.se/download.html).
+:::
+
+## Read text: `cat`
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- The simplest way to read in text is with the `cat` ("concatenate") command. Note that `cat` will read in *all* of the text. You can scroll back up in your shell window, but this can still be a pain.
+- Again, let's demonstrate using Shakespeare's Sonnets. (This will overflow the slide.)
+- We use the `-n` flag to show line numbers:
+:::
+
+:::{.column width="50%"}
+```{bash, echo=TRUE}
+cat -n sonnets.txt
+```
+:::
+:::
+:::
+
+## Preview: `head` and `tail`
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- The `head` and `tail` commands let you limit yourself to a preview of the text, down to a specified number of rows. (The default is 10 rows if you don't specify a number with the `-n` flag.)
+
+```{bash, echo=TRUE}
+head -n 3 sonnets.txt ## First 3 rows
+```
+:::
+
+:::{.column width="50%"}
+- `tail` works very similarly to `head`, but starting from the bottom. For example, we can see the very last row of a file as follows:
+
+```{bash, echo=TRUE}
+tail -n 1 sonnets.txt ## Last row
+```
+
+- By using the `-n +N` option, we can specify that we want to preview all lines starting from row N *and after*, as in:
+
+```{bash, echo=TRUE}
+tail -n +3024 sonnets.txt ## Show everything from line 3024
+```
+:::
+:::
+:::
+
+## Search: `grep`
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- To find patterns in text, we can use regular expression-type matching with `grep`
+- For example, say we want to find the famous opening line to Shakespeare's [Sonnet 18](https://en.wikipedia.org/wiki/Sonnet_18).
+  - We're going to include the `-n` ("number") flag to get the line that it occurs on.
+
+```{bash, echo=TRUE}
+grep -n "Shall I compare thee" sonnets.txt
+```
+:::
+
+:::{.column width="50%"}
+- We can also use `grep` to find all lines that *don't* contain a certain pattern. For example, to find all lines that don't contain commas, periods or question marks, we can use the `-v` ("invert match") flag:
+  - We will show only the first 30 lines
+```{bash, echo=TRUE}
+grep -v "[,.?]" sonnets.txt | head -n 30
+```
+:::
+:::
+:::
+
+## Search: `grep`
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We can also use `grep` to search for patterns in multiple files 
+- This is particularly useful if you are trying to identify a file that contains, say, a function name
+
+```{bash, echo=TRUE}
+## To visualise the tree structure
+tree meals
+```
+:::
+
+:::{.column width="50%"}
+- For example, to find all lines in a folder called "meals" that contain the word "pasta", we can do:
+  - `-r` is for recursive search in all files in a directory and its subdirectories
+
+```{bash, echo=TRUE}
+grep -r "pasta" ./meals/
+```
+
+- If you just want to know which files contain the pattern, you can use the `-l` flag:
+
+```{bash, echo=TRUE}
+grep -rl "pasta" ./meals/
+```
+
+- Take a look at the `grep` man or cheat file for other useful examples and flags (e.g. `-i` for ignore case).
+:::
+:::
+:::
+
+## Try it yourself! {#sec-exercise-02}
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Now it's your turn to practice with text files!
+- Download the text file with Shakespeare's Sonnets from [our repository](https://github.com/danilofreire/datasci350/blob/main/lectures/lecture-04/sonnets.txt) or use `curl` as shown before
+- Go to the terminal and navigate to the directory where you saved the file
+- Then try to do the following:
+  - Find all lines in sonnets.txt that contain the word "time" 
+  - View the last 20 lines in sonnets.txt
+  - Count the number of lines and words in sonnets.txt
+  - [Tricky question:]{.alert} Find all lines in sonnets.txt that [start]{.alert} with "and" 
+  - [Super tricky question:]{.alert} Find all lines in sonnets.txt that start with "and" _and_ "And"  [[Appendix 02]{.button}](#sec-appendix-02)
+:::
+
+## Manipulate text: `sed`
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+- The `sed` command is a [stream editor]{.alert} that can be used to perform basic text transformations on an input stream (a file or input from a pipeline)
+- For example, to replace all instances of "Project Gutenberg" with "Project Googleberg", we can do (does not change the file):
+
+```{bash, echo=TRUE}
+sed 's/Project Gutenberg/Project Googleberg/g' sonnets.txt | head -n 5
+```
+
+- To save the changes to the file, you can use the `-i` flag:
+  - `sed -i 's/Project Gutenberg/Project Googleberg/g' sonnets.txt`
+  - [Warning]{.alert}: Be careful with this command, as it will [overwrite the original file!]{.alert}
+:::
+
+:::{.column width="50%"}
+- The `s` command is used to substitute the first occurrence of a pattern in each line of a file
+- The `g` flag is used to replace all occurrences of the pattern in each line (global substitution)
+- The `sed` command can be used to perform more complex text transformations, such as deleting lines, inserting lines, and so on
+- To delete a line, you can use the `d` command:
+
+```{bash, echo=TRUE, eval=FALSE}
+sed '/Project Gutenberg/d' sonnets.txt
+```
+
+- To read more about `sed`, check out the [GNU documentation](https://www.gnu.org/software/sed/manual/sed.html)
+:::
+:::
+:::
+
+## Do you want to know more about `sed`?
+### Make sure to master regular expressions!
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+**Good starting points are:**
+
+-   [This chapter](https://effective-shell.com/part-3-manipulating-text/regex-essentials/) discussing regex in the context of the shell
+
+-   [Regular Expression in Python](https://docs.python.org/3/howto/regex.html)
+
+-   [This base R regex intro](https://stat.ethz.ch/R-manual/R-devel/library/base/html/regex.html)
+
+-   [This vignette from the stringr package](https://cran.r-project.org/web/packages/stringr/vignettes/regular-expressions.html)
+:::
+
+::: {.column width="50%"}
+![](figures/evil-laugh.gif){width="150%"}
+:::
+:::
+:::
+
+## Nano: a CLI-based text editor
+### For when you need to make quick edits
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+-   Sometimes you need to make quick edits to a file, but you don't want to open a full-fledged text editor like `vim` or `VS Code`
+-  For this, you can use `nano`, a simple text editor that runs in the terminal
+-  To open a file in `nano`, simply type `nano filename`
+-  You can then use the arrow keys to navigate, and `Ctrl + O` to save and `Ctrl + X` to exit
+- On macOS, `nano` is not pre-installed and needs to be installed via Homebrew with `brew install nano`
+- On WSL, `nano` is (probably) already available. But if needed, you can install it with `sudo apt install nano`
+- For more information, check out the [GNU documentation](https://www.nano-editor.org/dist/v2.9/nano.html)
+:::
+
+:::{.column width="50%"}
+![](figures/nano.png)
+:::
+:::
+:::
+
+# Redirects, pipes, and loops 🔁 {background-color="#2d4563"}
+
+## Redirects, pipes, and loops
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+-   You have learned about pipes (`%>%`, `|>`) in R already
+-   Understanding the concept of pipelines in the shell, as well as how input and output work for command line programs is critical to be able to use the shell effectively
+-   Think again of the Unix philosophy of "doing one thing, but doing it well" and combining multiple of these modules
+-   Also, often you'll want to dump output in a file as part of your workflow
+-   Let's learn how all this works
+:::
+
+::: {.column width="50%"}
+![](figures/pipe.gif)
+:::
+:::
+:::
+
+## Redirect: `>`
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+-   You can send output from the shell to a file using the redirect operator `>`
+- For example, let's print a message to the shell using the `echo` command
+
+```{bash, echo=TRUE, eval=FALSE}
+echo "At first, I was afraid, I was petrified"
+```
+
+If you wanted to save this output to a file, you need simply redirect it to the filename of choice
+
+```{bash, eval=FALSE, echo=TRUE}
+echo "At first, I was afraid, I was petrified" > survive.txt
+find survive.txt ## Show that it now exists
+```
+
+```{bash, eval=TRUE, echo=FALSE}
+find survive.txt ## Show that it now exists
+```
+:::
+
+:::{.column width="50%"}
+- If you want to *append* text to an existing file, then you should use `>>`
+-   Using `>` will try to overwrite the existing file contents
+
+```{bash, eval=FALSE, echo=TRUE}
+echo "'Kept thinking I could never live without you by my side" >> survive.txt
+cat survive.txt
+```
+
+```{bash, eval=TRUE, echo=FALSE}
+cat survive.txt
+```
+:::
+:::
+:::
+
+## Pipes: `|`
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+-   The pipe operator `|` is one of the coolest features in Bash
+-   It allows us to chain (i.e. "pipe") together a sequence of simple operations and thereby implement a more complex operation
+- An example with commands we have already seen:
+
+```{bash, echo=TRUE}
+# Read the sonnet.txt file, find all lines that contain the word "time", and count the number of lines and words
+cat sonnets.txt | grep "time" | wc -lw
+```
+
+-   The `|` operator takes the output of the command on the left and uses it as input for the command on the right
+
+```{bash, echo=TRUE}
+# Another example: find all lines in sonnets.txt that contain the word "love" and print the first 5 lines
+cat sonnets.txt | grep "love" | head -n 5
+```
+:::
+
+## Iteration with *for* loops
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Sometimes you want to loop an operation over certain parameters
+-  `for` loops in Bash/Z shell work similarly to other programming languages that you are probably familiar with
+
+- **The basic syntax is:**
+
+``` {bash, eval=FALSE, echo=TRUE}
+for i in LIST
+do 
+  OPERATION $i ## the $ sign indicates a variable in bash
+done
+```
+
+- We can also condense things into a single line by using `;`.
+
+```{bash, eval=FALSE, echo=TRUE}
+for i in LIST; do OPERATION $i; done
+```
+
+Note: Using `;` isn't limited to *for loops*. Semicolons are a standard way to denote line endings in Bash/Z shell
+:::
+
+## Example 1: Create directories with a *for* loop
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- To help make things concrete, here's a simple *for* loop in action
+- We will use it to create directories with the names `dir1`, `dir2`, `dir3`, and `dir4`
+
+```{bash, echo=TRUE}
+for i in {1..4}; do mkdir dir$i; done
+ls -d dir*
+rm -rf dir*
+```
+:::
+
+:::{.column width="50%"}
+- The `{1..4}` part generates a sequence of numbers
+- The `for i in ...` loop iterates through each number in that sequence
+- For each iteration, `mkdir dir$i` creates a new directory. 
+- The `$i` is replaced with the current number in the sequence (1, 2, 3, or 4) 
+- The command creates four directories named dir1, dir2, dir3, and dir4
+:::
+:::
+:::
+
+# Scripting with the shell 📜 {background-color="#2d4563"}
+
+## Scripting with the shell
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+-   The shell is a powerful scripting language in its own right
+-   You can write shell scripts to automate tasks, such as downloading files, processing data, and generating reports
+-   Shell scripts are text files that contain a sequence of shell commands
+-   You can run a shell script by typing `bash script.sh` or `./script.sh` in the terminal
+:::
+
+:::{.column width="50%"}
+![](figures/automation.gif)
+:::
+:::
+:::
+
+## Example: Shell script
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Let's write a simple shell script that creates a new directory with three subdirectories and three files in each subdirectory, then lists the contents of the new directory, then removes the new directory
+- The same thing we did before
+- We'll call the script `create_project.sh`
+
+- In the first line of the script, we use `#!/bin/sh` to specify that the script should be run by the `sh` shell
+- This is called a "shebang" line, and it tells the shell which interpreter to use. [More information here](https://en.wikipedia.org/wiki/Shebang_(Unix))
+:::
+
+:::{.column width="50%"}
+- Paste the code above into a text editor and save it as `create_project.sh`
+- Make the script executable by running `chmod +x create_project.sh`
+- Run the script by typing `./create_project.sh`
+
+```{bash, echo=TRUE, eval=FALSE}
+#!/bin/sh
+mkdir -p project/{scripts,data,docs}
+touch project/scripts/{preprocessing,analysis,visualization}.py
+touch project/data/{raw_data,processed_data}.csv
+touch project/docs/{readme.txt,notes.txt}
+ls -alh project
+rm -rf project
+```
+
+```{bash, echo=TRUE}
+## Make the script executable
+chmod +x create_project.sh
+
+## Run the script
+./create_project.sh
+```
+:::
+:::
+:::
+
+# Next steps 🚀 {background-color="#2d4563"}
+
+## Things we didn't cover here
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+I hope that I've given you a sense of how the shell works and how powerful it is. My main goal has been to "demystify" the shell, so that you aren't intimidated when we use shell commands later on
+
+We didn't cover many things in detail:
+
+-   User roles and file permissions, environment variables, SSH, memory management (e.g. [top](https://ss64.com/bash/top.html) and [htop](https://hisham.hm/htop/)), GNU parallel, etc
+
+-   Automation: [here](https://stat545.com/automation-overview.html), [here](https://books.ropensci.org/drake/index.html), and [here](https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf) are great places to start
+:::
+
+:::{.column width="50%"}
+![](figures/next.jpg){width="80%"}
+:::
+:::
+:::
+
+## Additional materials
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+If you want to dig deeper, check out
+
+- [The Unix Shell](http://swcarpentry.github.io/shell-novice/) (Software Carpentery)
+- [The Unix Workbench](https://seankross.com/the-unix-workbench/) (Sean Kross)
+- [Data Science at the Command Line](https://www.datascienceatthecommandline.com/) (Jeroen Janssens)
+- [Effective Shell](https://effective-shell.com/) (Dave Kerr)
+- [Efficient Way To Process Large Text/Log Files Using Awk With Python](https://techblogs.42gears.com/efficient-way-to-process-large-text-log-files-usin-wpython/)
+- [Using AWK and R to parse 25tb](https://livefreeordichotomize.com/posts/2019-06-04-using-awk-and-r-to-parse-25tb/) (Nick Strayer)
+- [`./jq`](https://jqlang.github.io/jq/)
+- [`awk`](https://en.wikipedia.org/wiki/AWK)
+- [`neovim`](https://neovim.io/)
+:::
+
+## Summary
+
+:::{style="margin-top: 30px;"}
+- Shells can be used to navigate the file system, manage files, and work with text files
+- `mkdir` and `touch` create directories and files
+- `rm` and `rmdir` remove files and directories
+- `cp` and `mv` copy and move files
+- `head`, `tail`, `cat`, `wc`, and `grep` 
+- We can use `>` and `>>` to redirect output to a file
+- The pipe operator `|` allows us to chain commands together
+- Shells also allows `for` loops to iterate over a list of items
+- Shell scripts are a great tool to automate tasks (and they're quite fast too!)
+:::
+
+# And that's all for today! 🥳 {background-color="#2d4563"}
+
+# Thank you very much and see you next week! 😊 🙏🏼{background-color="#2d4563"}
+
+## Appendix 01: Solution to the exercise {#sec-appendix-01}
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+
+```{bash, echo=TRUE}
+# Create the project structure
+mkdir -p project/{scripts,data,docs}
+
+# Create the required files
+touch project/scripts/{preprocessing,analysis,visualization}.py
+touch project/data/{raw_data,processed_data}.csv
+touch project/docs/{readme.txt,notes.txt} # Extension explicit
+
+# Rename raw_data.csv to input_data.csv
+mv project/data/raw_data.csv project/data/input_data.csv
+
+# Copy all Python files in scripts to a new backup directory
+mkdir project/backup
+cp project/scripts/*.py project/backup/
+
+# Remove the notes.txt file from the docs directory
+rm project/docs/notes.txt
+
+# List all folders in the project directory in long and human-readable format
+ls -alh project
+
+## Remove all folders
+rm -rf project
+```
+
+[[Back to the main text]{.button}](#sec-exercise-01)
+:::
+
+## Appendix 02: Solution to the exercise {#sec-appendix-02}
+
+```{bash, echo=TRUE}
+# Find all lines in sonnets.txt that contain the word "time"
+grep "time" sonnets.txt
+```
+
+## Appendix 02: Solution to the exercise
+
+```{bash, echo=TRUE}
+# View the last 20 lines in sonnets.txt
+tail -n 20 sonnets.txt
+```
+
+## Appendix 02: Solution to the exercise
+
+```{bash, echo=TRUE}
+# Count the number of lines and words in sonnets.txt
+wc -lw sonnets.txt
+```
+
+## Appendix 02: Solution to the exercise
+
+```{bash, echo=TRUE}
+# Find all lines in sonnets.txt that start with "and"
+grep -n "^and" sonnets.txt
+```
+
+```{bash, echo=TRUE}
+# Find all lines in sonnets.txt that start with "and" and "And"
+# You have to include the -i flag to ignore case!
+grep -in "^and" sonnets.txt
+```
+
+[[Back to the main text]{.button}](#sec-exercise-02)

@@ -1,0 +1,914 @@
+---
+title: DATASCI 350 - Data Science Computing
+subtitle: Lecture 16 - Introduction to SQL
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: "Department of Data and Decision Sciences <br> Emory University"
+format:
+  clean-revealjs:
+    self-contained: true
+    code-overflow: wrap
+    footer: "[Introduction to SQL](https://raw.githack.com/danilofreire/datasci350/main/lectures/lecture-16/16-introduction-sql.html)"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: python3
+revealjs-plugins:
+  - multimodal
+editor:
+  render-on-save: true
+---
+
+# Hey, there! 😊 <br> I hope you're all doing well! {background-color="#2d4563"}
+
+# A quick reminder! 📢 {background-color="#2d4563"}
+
+## Check your AWS account!
+
+:::{style="margin-top: 50px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="40%"}
+- Please remember to check your AWS account and make sure you don't have any running instances that you are not using
+- Don't forget to [terminate your EC2 instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) and [delete your S3 buckets](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/delete-bucket.html)
+- Please also check if you have not been charged by going to the [AWS Billing and Cost Management Dashboard](https://console.aws.amazon.com/billing/home?#/)
+- Just log in with your AWS account and search for [Billing and Cost Management]{.alert}
+- All the charges will be listed there (and they should be zero!)
+:::
+
+:::{.column width="60%"}
+:::{style="text-align: center;"}
+![](figures/aws-billing.png){width="100%"}
+
+Billing and Cost Management Home
+:::
+:::
+:::
+:::
+
+## How to contact AWS support if you were charged by mistake
+
+:::{style="margin-top: 50px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="40%"}
+- If you were charged by mistake, you can contact AWS support to request a refund
+- Go to the [AWS Support Center](https://console.aws.amazon.com/support/home)
+- Click on `Create case`
+- Select `Account and billing support`
+- Fill in the form with your details and explain the situation
+- Submit the case and wait for a response from AWS support (it's usually pretty quick!)
+- If you need help with this, feel free to reach out to me
+:::
+
+:::{.column width="60%"}
+:::{style="text-align: center;"}
+![](figures/aws-support.png){width="100%"}
+
+AWS Support Center
+:::
+:::
+:::
+:::
+
+## Final project instructions
+
+:::{style="margin-top: 50px; font-size: 25px;"}
+- The instructions for the final project are now available on GitHub
+- Please find it here: <https://github.com/danilofreire/datasci350/blob/main/project/project-instructions.pdf>
+- The project is due on [December 8, 2025]{.alert}
+- Groups of 4-5 students
+- You will create a GitHub repository with a report based on World Bank data
+- The report should be in Quarto, the data cleaning and descriptive statistics in SQL, and the data analysis and visualisation in Python
+- Please let me know if you have any questions!
+:::
+
+# Today's lecture 📚 {background-color="#2d4563"}
+
+## Today's agenda
+### SQL essentials
+
+:::{style="margin-top: 50px; font-size: 24px;"}
+:::{.columns}
+::::{.column width="50%"}
+- [Introduction to SQL]{.alert}: We will start by learning the fundamentals of SQL, focusing on [SQLite](https://www.sqlite.org/index.html){data-modal-type="iframe"}
+- [Setup]{.alert}: You will learn how to:
+  - Install and load the SQLite3 Editor in VS Code
+  - Create a database
+  - Create a table
+  - Add and query rows
+  - View and modify the table schema
+  - Import and export data
+:::
+
+::::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/Sql_data_base_with_logo.png){width="40%"}
+
+![](figures/whats-a-relational-database.jpg){width="90%"}
+:::
+:::
+:::
+:::
+
+# Structured Query Language (SQL) {background-color="#2d4563"}
+
+## SQL: A relational database management system (RDBMS)
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [SQL](https://en.wikipedia.org/wiki/SQL){data-modal-type="iframe"} stands for **Structured Query Language** and it is used to interact with [relational databases](https://en.wikipedia.org/wiki/Relational_database){data-modal-type="iframe"}
+- What is a **relational database**?
+  - A database that stores data in tables and allows you to define relationships between tables
+  - The most common type of database
+  - Examples: PostgreSQL, MySQL, SQLite, Oracle, SQL Server
+- Here we will focus on [SQLite](https://www.sqlite.org/index.html){data-modal-type="iframe"} 
+- Why? It is open-source, powerful, and widely used in industry: phones, browsers, TVs, operating systems, and even cars use it!
+- It has several advanced features too, such as [full-text search](https://www.sqlite.org/fts5.html){data-modal-type="iframe"} and [window functions](https://www.sqlite.org/windowfunctions.html){data-modal-type="iframe"}
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+[![](figures/sqlite.jpg)](https://www.sqlite.org/index.html)
+[![](figures/stack-overflow-survey.png)](https://survey.stackoverflow.co/2024/technology/#1-databases)
+:::
+:::
+:::
+:::
+
+# Let's get started! 🤓 {background-color="#2d4563"}
+
+## What is SQLite?
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [SQLite is a serverless database]{.alert}, so it does not require a server to run
+- It is [a single file]{.alert} that you can use to store your data
+- This has several advantages, such as:
+  - Easy to install and use
+  - Lightweight and fast
+  - Perfect for small projects
+- SQLite has some cons too, such as: 
+  - Not being easy to scale 
+  - Not allowing multiple users to write to the database at the same time (although [some workarounds exist](https://fly.io/docs/litefs){data-modal-type="iframe"})
+  - Poor handling of time-series data. So far, [TimescaleDB for Postgres](https://www.timescale.com/) is the best option for this
+  - But SQLite also has [lots of extensions](https://github.com/nalgeon/sqlean) to help you with many tasks (more on that later)
+:::
+
+:::{.column width="50%"}
+- Some people argue that SQLite is not a real database because it does not have a server, or that storing the database in a single file is not suitable for large projects
+- [Both arguments are false]{.alert}: 
+  - You can use [LiteFS](https://fly.io/docs/litefs) to scale SQLite and allow multiple users to write to the database at the same time
+  - SQLite is capable of handling [databases that are an Exabyte in size](https://sqlite.org/hctree/doc/hctree/doc/hctree/index.html) (that's one million Terabytes, or one billion Gigabytes 🤯)
+  - I'm sure that this is more than enough for pretty much any project you will ever work on 😅
+- And to be honest, the difference between different SQL databases is not that big
+- [If you learn one of them, you can easily learn the others](https://www.postgresql.org/docs/current/sql-commands.html)
+:::
+:::
+:::
+
+## Installing SQLite
+### macOS and Linux
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- If you use macOS or Linux, you probably already have SQLite installed
+- To check, open a terminal and type `sqlite3` 
+  - Then type `.quit` to exit the SQLite prompt!
+- If you see the SQLite prompt, you are good to go! 😊
+- In case you don't have SQLite installed, you can download it from the [SQLite website](https://www.sqlite.org/download.html) or using [Homebrew](https://brew.sh/) (recommended)
+- To install [Homebrew](https://brew.sh/), paste the following command in your terminal
+
+```{verbatim}
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+- Then install SQLite and verify the installation with the following commands
+
+```{verbatim}
+brew install sqlite3
+sqlite3 --version
+```
+
+- On Ubuntu (WSL), you can install SQLite with:
+
+```{verbatim}
+sudo apt update
+sudo apt-get install sqlite3
+```
+:::
+
+## Installing SQLite
+### Windows
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- This is [not necessary if you use WSL]{.alert}, but in case you want to install SQLite natively on Windows...
+- ... you can download the SQLite precompiled binaries from the [SQLite website](https://www.sqlite.org/download.html). Download the files that have the `sqlite3` DLL and the command-line shell (`sqlite-dll...` and `sqlite-tools...`)
+- Then follow these steps:
+  - Create a folder `C:\>sqlite` and unzip the files in this folder, which will give you `sqlite3.def`, `sqlite3.dll` and `sqlite3.exe` files 
+  - Double-click the `sqlite3` file to open the software, and you will see the SQLite prompt
+
+```{verbatim}
+C:\>sqlite3
+SQLite version 3.7.15.2 2013-01-09 11:53:05
+Enter ".help" for instructions
+Enter SQL statements terminated with a ";"
+sqlite>
+```
+:::
+
+:::{.column width="50%"}
+- If you want to use SQLite in the command line, you can add the folder to your PATH variable
+- Search and click on `Edit the system environment variables`
+- Click on `Environment Variables...`
+- Set `C:\sqlite` to `Path` in both or either User variables and/or System variables, then you can use SQLite on terminal (command prompt)
+- [More about this here](https://stackoverflow.com/questions/7330565/how-to-install-sqlite-on-windows)
+:::
+:::
+:::
+
+## Installing SQLite3 Editor in VS Code
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="40%"}
+- To use SQLite in VS Code, you need to install the [SQLite3 Editor](https://marketplace.visualstudio.com/items?itemName=yy0931.vscode-sqlite3-editor) extension (click on the link to go to the extension page)
+- Or you can search for `SQLite3 Editor` in the extensions tab in VS Code
+- Click on `Install` to install the extension
+- As we will see later, this extension allows you to connect to your SQLite database and run SQL commands directly in VS Code, and even edit files without having to write any SQL queries (!)
+- You can use it to create tables, export data to CSV and JSON formats, run queries in the command line, and compare versions using `git diff`
+- It is a very useful extension and I highly recommend it! 😊
+- We will use this extension today to interact with our SQLite database
+:::
+
+:::{.column width="60%"}
+:::{style="text-align: center;"}
+![](figures/vscode-sqlite.png){width="100%"}
+[Download it here](https://marketplace.visualstudio.com/items?itemName=yy0931.vscode-sqlite3-editor) or search for it in the extensions tab in VS Code
+:::
+:::
+:::
+:::
+
+# Any issues with the installation? 🤔 {background-color="#2d4563"}
+
+# Let's create our first SQL table! 🚀 {background-color="#2d4563"}
+
+## Creating a database with SQLite3 Editor
+
+:::{style="margin-top: 50px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+- It is very easy to create a [SQLite database file](https://www.sqlite.org/onefile.html) using the extension
+- Simply create a file ending in `.sqlite` or `.db` and open it with the SQLite3 Editor
+- Here I will create a file called `example.db` and open it with the extension
+
+```{verbatim}
+touch example.db
+```
+
+- Then just click on the file (or right-click and select `Open to the Side` -- same thing)
+- You will see a new tab with the SQLite3 Editor
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/sqlite-editor.png){width="90%"}
+:::
+:::
+:::
+:::
+
+## Creating a table with SQLite3 Editor
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Now that you have opened the file with the extension, you will see the following screen (right)
+- You will see that there is no table in the database yet
+- Most of the time, the data come from other sources, such as APIs, JSON or CSV files
+- But in small projects, it is common to create a database to store the data
+- So let's create one right now! 😉
+- We will create a table with some information about [Formula 1](https://en.wikipedia.org/wiki/Formula_One){data-modal-type="iframe"} drivers
+- [System commands are in upper case]{.alert} and [user-defined names are in lower case]{.alert}
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/create-table.png){width="90%"}
+:::
+:::
+:::
+:::
+
+## Creating a table with SQLite3 Editor
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="40%"}
+- Now let's create our table
+- We won't write any code yet, just add the values to the editor
+- We will create four columns in the table: `driver_id`, `driver_name`, `nationality`, and `victories`:
+  - `driver_id` is an `integer`, `not null`, and `primary key` (select these options in the editor)
+  - `driver_name` is a `text` variable
+  - `nationality` is a `text` variable too
+  - `victories` is an `integer`
+- Then click on `commit` to save the changes
+:::
+
+:::{.column width="60%"}
+:::{style="text-align: center;"}
+![](figures/add-columns.png){width="100%"}
+:::
+
+- This is equivalent to the following SQL code (as you can see in the editor):
+ 
+```{sql}
+CREATE TABLE drivers (
+    driver_id INTEGER NOT NULL PRIMARY KEY,
+    driver_name TEXT,
+    nationality TEXT,
+    victories INTEGER
+);
+```
+:::
+:::
+:::
+
+## Creating a table with SQLite3 Editor
+
+:::{style="margin-top: 50px; font-size: 22px; text-align: center;"}
+![](figures/view-table.png)
+:::
+
+## Database structure and data types in SQLite
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+### Database structure
+
+- SQL works best with tabular data, so the main object in SQL is the [table]{.alert} (rows and columns)
+- SQLite (and most SQL databases) are [strongly typed]{.alert}, that is, each column has a specific data type
+- The five core data types in SQLite: 
+  - `TEXT`: Stores string values of any length using UTF-8 encoding
+  - `INTEGER`: Holds whole numbers (positive or negative)
+  - `NUMERIC`: Stores decimal numbers as floating-point values
+  - `BLOB`: Contains binary data preserved as input
+  - `NULL`: Represents missing or undefined data
+- SQLite also has [other data types]{.alert}, such as `REAL`, `BOOLEAN`, `DATE`, `TIME`, and `DATETIME`
+:::
+
+:::{.column width="50%"}
+### Primary and foreign keys
+
+- The `PRIMARY KEY` constraint is used to uniquely identify each row in a table
+- It cannot contain `NULL` values and is usually an integer
+- If you don't want to enter the numbers manually, you can use the `AUTOINCREMENT` keyword
+  - Example: `driver_id INTEGER PRIMARY KEY AUTOINCREMENT`
+- The `FOREIGN KEY` constraint is used to link two tables together
+  - It is a field in one table that refers to the `PRIMARY KEY` in another table
+- We can also use `ROWID` to uniquely identify each row in a table, [but it is not recommended]{.alert}
+  - It is a hidden column that is automatically created, but deleting and reinserting a row can change the ROWID, and it is not compatible with other SQL databases
+:::
+:::
+:::
+
+## Example of tables with primary and foreign keys
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Imagine that we have three tables, `customers`, `products`, and `orders`
+- The `customers` table will have a primary key `customer_id`
+- The `products` table will have a primary key `product_id`
+- And the `orders` table will have a primary key `order_id`
+- The `orders` table will also have two foreign keys: `customer_id` and `product_id`
+- We will see more about this in the next classes
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+Table: customers
+
+| customer_id (PK) | first_name | last_name | email                |
+|------------------|------------|-----------|----------------------|
+| 1                | John       | Doe       | john.doe@email.com   |
+| 2                | Jane       | Smith     | jane.smith@email.com |
+| 3                | Bob        | Johnson   | bob.j@email.com      |
+
+Table: products
+
+| product_id (PK) | product_name    | price |
+|-----------------|-----------------|-------|
+| 101             | Laptop          | 999.99|
+| 102             | Smartphone      | 599.99|
+| 103             | Wireless Mouse  | 29.99 |
+
+Table: orders
+
+| order_id (PK) | customer_id (FK) | product_id (FK) | quantity | total_price |
+|---------------|------------------|-----------------|----------|-------------|
+| 1             | 1                | 101             | 1        | 999.99      |
+| 2             | 2                | 102             | 2        | 1199.98     |
+| 3             | 3                | 103             | 3        | 89.97       |
+:::
+:::
+:::
+:::
+
+## Add rows to table using the editor
+
+:::{style="margin-top: 50px; text-align: center; font-size: 22px;"}
+![](figures/add-rows.png){width="90%"}
+:::
+
+## Adding rows to the table using SQL commands
+
+:::{style="margin-top: 50px; font-size: 21px;"}
+- We can add rows to a table by using the `INSERT INTO` command
+- This command adds rows with `VALUES` to the bottom of the table
+- In SQL, different commands need to be separated by a semicolon (`;`)
+- You write [system commands in capital letters]{.alert} to distinguish column names from variables and values
+- Let's add some information about the drivers
+- Click on `Query Editor` and paste the following code:
+
+```{sql}
+INSERT INTO drivers VALUES (2, 'Michael Schumacher', 'German', 53);
+INSERT INTO drivers VALUES (3, 'Sebastian Vettel', 'German', 91);
+INSERT INTO drivers VALUES (4, 'Fernando Alonso', 'Spanish', 32);
+```
+
+Or more efficiently:
+
+```{sql}
+INSERT INTO drivers (driver_id, driver_name, nationality, victories) VALUES
+(2, 'Michael Schumacher', 'German', 53),
+(3, 'Sebastian Vettel', 'German', 91),
+(4, 'Fernando Alonso', 'Spanish', 32);
+```
+
+- Now click on ` ▶️️ Execute` ️to run the code
+:::
+
+## Adding rows to the table
+
+:::{style="margin-top: 50px; font-size: 22px; text-align: center;"}
+![](figures/added-values.png)
+:::
+
+## Querying the table
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+- The editor already shows all the rows in the table, but we can also query the table using the `SELECT` command
+
+```{sql}
+SELECT * FROM drivers;
+```
+
+- This command selects all columns (`*`) from the `drivers` table
+- `SELECT` is probably the most used command in SQL and is used to extract data from a database
+- If you are running SQL in the command line, you need to type `SELECT` to see the results
+
+:::{style="text-align: center;"}
+![](figures/select-all.png){width="68%"}
+:::
+::: 
+
+## Exercise 01 {#sec:exercise01}
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+- Click on `Query Editor` and create a table called `students` with the following columns:
+- - `student_id` (integer not null primary key)
+  - `student_name` (text)
+  - `major` (text)
+  - `gpa` (numeric)
+
+- Add the following rows to the table:
+- `student_id`: 1, `student_name`: 'John Doe', `major`: 'Computer Science', `gpa`: 3.5
+- `student_id`: 2, `student_name`: 'Jane Doe', `major`: 'Mathematics', `gpa`: 3.8
+
+- Query the table to see the results
+
+- If the table already exists on your database, you can drop it with the following command:
+
+```{sql}
+DROP TABLE students;
+```
+
+- [[Appendix 01]{.button}](#sec:appendix01)
+:::
+
+# Table Schemas 📄 {background-color="#2d4563"}
+
+## What is a table schema?
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- The [table schema](https://en.wikipedia.org/wiki/Database_schema){data-modal-type="iframe"} is the structure of a table in a database
+- It defines the columns, data types, constraints, and relationships between tables
+- It is defined when the table is created but can be modified later
+- The schema is important because it ensures that the data is stored correctly and efficiently
+- Usually, there is no need to change the schema frequently, but it is possible to do so if needed
+- You can view it with the `PRAGMA table_info(table-name)` command
+:::
+
+:::{.column width="50%"}
+- The `PRAGMA table_info(table-name)` command returns one row for each column in the table
+- The columns are:
+  - `cid`: Column ID
+  - `name`: Column name
+  - `type`: Data type
+  - `notnull`: 1 if the column cannot contain `NULL` values, 0 otherwise
+  - `dflt_value`: Default value for the column
+  - `pk`: 1 if the column is part of the primary key, 0 otherwise
+:::
+:::
+:::
+
+:::{style="text-align: center;"}
+![](figures/table-info.png){width="70%"}
+:::
+
+## Creating and modifying table schemas
+
+:::{style="margin-top: 50px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+- To create a table, use the `CREATE TABLE` command, as we saw before
+- It is a good idea to use the `IF NOT EXISTS` clause to avoid errors if the table already exists
+  - Example: `CREATE TABLE IF NOT EXISTS table_name (column1_name data_type, ...);`
+- Add a column: `ALTER TABLE table_name ADD column_name data_type;`
+- Drop a column: `ALTER TABLE table_name DROP COLUMN column_name;`
+- Rename a column: `ALTER TABLE table_name RENAME COLUMN old_name TO new_name;`
+:::
+
+:::{.column width="50%"}
+- To delete a table, use the `DROP TABLE` command
+  - Example: `DROP TABLE table_name;`
+  - Be careful with this command, as it will delete all the data in the table!
+- To delete a row, use the `DELETE FROM` command
+  - Example: `DELETE FROM table_name WHERE condition;`
+  - This command deletes all rows that satisfy the condition
+- If you don't specify a condition, it will delete all rows in the table (`DELETE FROM table_name;`)
+- To commit the changes, use the `COMMIT;` command
+:::
+:::
+:::
+
+## Some examples with the `students` table
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Add a column: `ALTER TABLE students ADD COLUMN age INTEGER;`
+
+![](figures/add-column.png)
+
+- Drop a column: `ALTER TABLE students DROP COLUMN major;`
+
+![](figures/drop-column.png)
+:::
+
+:::{.column width="50%"}
+- Rename a column: `ALTER TABLE students RENAME COLUMN gpa TO grade;`
+
+![](figures/rename-column.png){width="90%"}
+
+- Delete a row with `student_id = 2`: `DELETE FROM students WHERE student_id = 2;`
+
+![](figures/delete-row.png)
+:::
+:::
+:::
+
+# Table Operations 📊 {background-color="#2d4563"}
+
+## Extracting columns from table
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+### SELECT extracts certain columns
+- The `SELECT` command is used to extract certain columns from a table
+
+```{sql}
+SELECT driver_id, nationality FROM drivers;
+```
+
+![](figures/select-columns.png)
+:::
+
+:::{.column width="50%"}
+### Subsetting rows
+
+- The `WHERE` command evaluates logical conditions to subset rows
+
+```{sql}
+SELECT * FROM drivers
+WHERE nationality = 'German';
+```
+
+![](figures/where-german.png)
+:::
+:::
+:::
+
+## AND and OR conditions
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="54%"}
+### OR conditions
+- Evaluate OR conditions
+
+```{sql}
+SELECT * FROM drivers
+WHERE (nationality = 'Spanish') OR (nationality = 'German');
+```
+
+![](figures/or-conditions.png)
+:::
+
+:::{.column width="46%"}
+### AND conditions
+- Evaluate AND conditions
+
+```{sql}
+SELECT * FROM drivers
+WHERE (nationality = 'German') AND (driver_id = 3);
+```
+
+![](figures/and-conditions.png)
+:::
+:::
+:::
+
+## Data description
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+### Aggregate
+
+- To compute aggregate statistics use a statistical function, such as `SUM()` or `AVG()`
+- The `AS` is an alias which assigns a name to the aggregate statistic
+  
+```{sql}
+SELECT SUM(victories) AS sum_victories,
+       COUNT(*) AS num_rows,
+       AVG(victories) AS mean_victories,
+       MIN(victories) AS min_victories,
+       MAX(victories) AS max_victories
+FROM drivers;
+```
+
+![](figures/aggregate.png)
+:::
+
+:::{.column width="50%"}
+### Sort
+
+- Use `ORDER BY` to sort the data
+- Order in ascending order of victories with `ASC` (`DESC` for descending)
+
+```{sql}
+SELECT driver_name, victories FROM drivers
+ORDER BY victories ASC;
+```
+
+![](figures/order-asc.png)
+:::
+:::
+:::
+
+## Exercise 02 {#sec:exercise02}
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+- List drivers who are either German or British and have victories greater than 50
+- List all drivers with victories greater than the average victories 
+  - Hint: you will have to run another `SELECT` command to get the average victories (a subquery)
+  - Aggregate functions are not allowed in the `WHERE` clause. [See the reason why here](https://stackoverflow.com/questions/42470849/why-are-aggregate-functions-not-allowed-in-where-clause). [More about subqueries here.](https://mode.com/sql-tutorial/sql-sub-queries)
+  - We will see another way to do this soon (with `HAVING`)
+- [[Appendix 02]{.button}](#sec:appendix02)
+:::
+
+## Groupby + Aggregate
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+### Groupby
+
+- Use `GROUP BY` to group data by a column
+
+```{sql}
+SELECT nationality,
+       SUM(victories) AS sum_victories,
+       AVG(victories) AS mean_victories,
+       MIN(victories) AS min_victories,
+       MAX(victories) AS max_victories
+FROM drivers
+GROUP BY nationality;
+```
+
+![](figures/groupby.png)
+:::
+
+:::{.column width="50%"}
+### Round
+
+- Use `ROUND()` to round the values
+- The first argument is the value to be rounded and the second is the number of decimal places
+- In this example, the results will be the same as the previous one
+
+```{sql}
+SELECT nationality,
+       SUM(victories) AS sum_victories,
+       ROUND(AVG(victories), 1) AS mean_victories,
+       MIN(victories) AS min_victories,
+       MAX(victories) AS max_victories
+FROM drivers
+GROUP BY nationality;
+```
+
+![](figures/round.png)
+:::
+:::
+:::
+
+## Filtering after aggregating with HAVING
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+- Use `HAVING` to filter variables [after aggregating]{.alert}
+- This differs from `WHERE`, which is used to filter variables [before aggregating]{.alert}
+
+```{sql}
+SELECT nationality,
+       SUM(victories) AS sum_victories,
+       ROUND(AVG(victories), 1) AS mean_victories,
+       MIN(victories) AS min_victories,
+       MAX(victories) AS max_victories
+FROM drivers
+GROUP BY nationality
+HAVING SUM(victories) > 50;
+```
+
+- `HAVING` must be used after `GROUP BY` and before `ORDER BY`
+- Why? Because `HAVING` is used to filter the results of the `GROUP BY` clause
+- [So please remember]{.alert}: `WHERE` is used before aggregating and `HAVING` is used after aggregating!
+
+![](figures/having.png){width="90%"}
+:::
+
+## Python vs. SQL
+
+:::{style="margin-top: 50px; font-size: 19px;"}
+- Some equivalences between Python and SQL commands
+
+| SQL Command        | Pandas Equivalent                                                                                      |
+|--------------------|--------------------------------------------------------------------------------------------------------|
+| `SELECT`           | `df[['column1', 'column2']]`                                                                           |
+| `INSERT INTO`      | `df.loc[new_index] = new_row` or `df = df.append(new_row, ignore_index=True)`                           |
+| `WHERE`            | `df[df['column'] == value]`                                                                            |
+| `GROUP BY`         | `df.groupby('column')`                                                                                 |
+| `HAVING`           | `df.groupby('column').filter(lambda x: condition)`                                                     |
+| `ROUND()`          | `df['column'].round(decimals)`                                                                         |
+| Aggregate Functions | `df.groupby('column').agg({'col1': 'sum', 'col2': 'mean', 'col3': 'min', 'col4': 'max'})`             |
+
+<br>
+
+:::{style="font-size: 20px;"}
+:::{.columns}
+:::{.column width="40%"}
+```{sql}
+-- SQL
+SELECT nationality,
+       SUM(victories) AS sum_victories
+FROM drivers
+GROUP BY nationality
+HAVING SUM(victories) > 10;
+```
+:::
+
+:::{.column width="60%"}
+```{python}
+#| echo: true
+#| eval: false
+# Python
+import pandas as pd
+
+# Group by 'nationality' and calculate 'sum_victories' using agg()
+result = (
+    drivers.groupby('nationality')
+    .agg(sum_victories=('victories', 'sum'))
+    .reset_index()
+)
+
+# Apply 'HAVING' condition
+result = result[result['sum_victories'] > 10]
+```
+:::
+:::
+:::
+:::
+
+## Importing and exporting data 
+
+:::{style="margin-top: 50px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- The SQLite3 Editor allows you to easily import and export data to many formats, including CSV and JSON
+- Just click on `Other Tools` and then `Export / Import`
+- If you want to export an XLSX file, you can choose between exporting one or all tables
+- Importing is just as easy: select the file and the table you want to import the data into
+- You can also do this with SQLite commands:
+  - Export to CSV: `sqlite3 example.db .mode csv .output example.csv SELECT * FROM drivers;`
+  - [More about exporting data here](https://www.sqlitetutorial.net/sqlite-export-csv/){data-modal-type="iframe"}
+  - Import from CSV: `sqlite3 example.db .mode csv .import example.csv drivers;`
+  - [More about importing data here](https://www.sqlitetutorial.net/sqlite-import-csv/){data-modal-type="iframe"}
+:::
+
+:::{.column width="50%"}
+![](figures/export-import.png)
+:::
+:::
+:::
+
+## Do you want to learn more? 🤓 
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+- Resources to help you learn more about SQL:
+  - [Overview of the SQLite3 Extension](https://marketplace.visualstudio.com/items?itemName=yy0931.vscode-sqlite3-editor): Worth reading to understand all the features of the extension
+  - [SQLean](https://github.com/nalgeon/sqlean): SQLite extensions. MacOS users should install the [sqlean.py](https://antonz.org/sqlean-py/) Python package, as sqlite3 is compiled without extension support
+  - [SQLBolt](https://sqlbolt.com/): Interactive SQL tutorials
+  - [W3Schools](https://www.w3schools.com/sql/): SQL tutorials
+  - [Kaggle](https://www.kaggle.com/learn/intro-to-sql): SQL course
+  - [Mode Analytics](https://mode.com/sql-tutorial/): SQL tutorial
+  - [SQLZoo](https://sqlzoo.net/): Interactive SQL tutorials
+  - [SQL for Data Science](https://www.datacamp.com/courses/sql-for-data-science): DataCamp course
+  - [SQL for Data Science](https://www.coursera.org/learn/sql-for-data-science): Coursera course
+
+- Or just come to our next class! 😊
+:::
+
+# And that's it for today! 🚀 {background-color="#2d4563"}
+
+# See you next time! 😊 {background-color="#2d4563"}
+
+## Appendix 01 {#sec:appendix01}
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+- Here is the code to create the `students` table and add the rows
+- You can paste this code into the SQL editor and execute the commands
+
+```{sql}
+DROP TABLE students;
+
+CREATE TABLE students(
+    student_id INTEGER NOT NULL PRIMARY KEY, 
+    student_name TEXT,
+    major TEXT,
+    gpa NUMERIC
+);
+
+INSERT INTO students VALUES 
+(1, 'John Doe', 'Computer Science', 3.5),
+(2, 'Jane Doe', 'Mathematics', 3.8);
+
+SELECT * FROM students;
+```
+
+- [[Back to exercise 01]{.button}](#sec:exercise01)
+:::
+
+## Appendix 02 {#sec:appendix02}
+
+:::{style="margin-top: 50px; font-size: 22px;"}
+- Here is the code to list drivers who are either German or British and have victories greater than 50
+
+```{sql}
+SELECT driver_name, nationality, victories
+FROM drivers
+WHERE (nationality = 'German' OR nationality = 'British') AND victories > 50;
+
+SELECT driver_name, victories
+FROM drivers
+WHERE victories > (SELECT AVG(victories) FROM drivers);
+```
+
+:::{.columns}
+:::{.column width="50%"}
+![](figures/app02-01.png)
+:::
+
+:::{.column width="50%"}
+![](figures/app02-02.png)
+:::
+:::
+
+- [[Back to exercise 02]{.button}](#sec:exercise02)
+:::

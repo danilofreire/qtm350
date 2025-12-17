@@ -1,0 +1,715 @@
+---
+title: DATASCI 350 - Data Science Computing
+subtitle: "Lecture 11 - Introduction to AI-Assisted Programming"
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: "Department of Data and Decision Sciences <br> Emory University"
+format:
+  clean-revealjs:
+    self-contained: true
+    footer: "[AI Programming](https://raw.githack.com/danilofreire/datasci350/main/lectures/lecture-11/11-ai-programming.html)"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: python3
+revealjs-plugins:
+  - fontawesome
+editor:
+  render-on-save: true
+---
+
+# I hope you're having a lovely day! 😊 {background-color="#2d4563"}
+
+## Emory Data Science Club: Fall Info Session
+
+:::{style="margin-top: 30px; text-align: center;"}
+![](figures/info-session01.png){width="75%"}
+:::
+
+## Emory Data Science Club: Fall Info Session
+
+:::{style="margin-top: 30px; text-align: center;"}
+![](figures/info-session02.png)
+:::
+
+## Some tips on folder and project management
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- macOS organises files and applications in a hierarchical folder structure 
+- Key system folders: `Applications`, `Library`, `System`, `Users`
+- The Users folder contains individual home folders for each user
+- Your home folder (e.g., `/Users/yourusername/`) contains personal folders such as `Documents`, `Desktop`, and `Downloads`
+- Access folders via the Terminal:
+  - Open Terminal (`Applications > Utilities > Terminal`)
+  - Use the `cd` command to navigate: `cd ~/Documents`
+  - List contents with the `ls` command
+  - View your current location with the `pwd` command
+- Common shortcuts:
+  - `~` represents your home folder
+  - `/` represents the root directory
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/folders.png)
+![](figures/home-folder.png)
+:::
+:::
+:::
+:::
+
+## Some tips on folder and project management
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- It is a good idea to create [a single `github` folder]{.alert} to download and manage all your Emory projects
+- You should put the folder in your home directory or in `Documents`
+- Inside the `github` folder, create [a folder for each course and separate folders for each project or quiz]{.alert}
+- For this course, you could have a structure like this:
+- `Documents`
+  - `github`
+    - `datasci350` (our shared repository)
+    - `datasci350-quiz01` (forked repository)
+    - `datasci350-quiz02` (forked repository)
+- If you made a mistake and would like to start over, you can always [delete the folder and clone the repository again]{.alert}
+  - That's one of the nicest things about Git and GitHub! 😊
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/github-folder.png)
+![](figures/github-folder02.png)
+:::
+:::
+:::
+:::
+
+# Today's lecture 🤖 {background-color="#2d4563"}
+
+## Introduction to AI-Assisted Programming
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Yes, we all love ChatGPT! 🤖
+- And LLMs (Large Language Models) are indeed changing the way we code
+- This new paradigm is called [AI-Assisted Programming]{.alert}
+- It is not about replacing programmers, but about making them more productive (at least for now 😅)
+- In this lecture, we will discuss the main concepts behind AI-Assisted Programming
+  - What LLMs are
+  - How they can help us write code
+  - Limits and challenges
+  - How to get started with GitHub Copilot
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/flux01.png)
+:::
+:::
+:::
+:::
+
+## What are LLMs?
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+- LLMs are a type of [neural network](https://en.wikipedia.org/wiki/Neural_network_(machine_learning)) based on the [Transformer architecture](https://arxiv.org/pdf/1706.03762) (that's the [T in GPT - Generative Pre-trained Transformer](https://arxiv.org/abs/2303.08774))
+- Many important ideas behind neural networks were developed in the 1950s and 1960s (!), but the area has recently exploded due to the availability of [large datasets and powerful GPUs]{.alert}
+- LLMs are trained on large corpora of text data (e.g., books, articles, websites, etc.), and they learn to predict [the next word in a sentence]{.alert}
+- For code, they are trained on large repositories like GitHub and use Natural Language Processing (NLP) to understand the context and generate code snippets
+- Which means that they are particularly good at writing Python or JavaScript, but they can also help with other languages
+- For a very good introduction to LLMs, I strongly recommend [this article](https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/) by [Stephen Wolfram](https://en.wikipedia.org/wiki/Stephen_Wolfram)
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/wolfram.png)
+![](figures/wolfram02.png)
+:::
+:::
+:::
+:::
+
+## What are LLMs?
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- So far, LLMs have made _tremendous_ progress in many areas in a very short time
+- They can generate text, code, music, art, and even [new scientific discoveries](https://blog.google/technology/ai/google-deepmind-isomorphic-alphafold-3-ai-model/)
+- As we all know, what is remarkable about LLMs is not only the quality of their output, but also the fact that [they can be used by anyone, including those with no background in AI or programming]{.alert}
+- Thus, LLMs are [democratising programming]{.alert} like never before
+- Remember when we talked about [low and high level programming languages](https://en.wikipedia.org/wiki/High-level_programming_language)? LLMs are taking us to a new level of abstraction
+- LLMs are the culmination of a long process of abstraction in computing, and [they are changing the way we think about programming]{.alert}
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/abstraction.png){width="80%"}
+
+Source: [Taulli (2024)](https://www.oreilly.com/library/view/ai-assisted-programming/9781098164553/).
+
+[![](figures/karpathy.png)](https://x.com/karpathy/status/1617979122625712128?lang=en)
+:::
+:::
+:::
+:::
+
+# "Delving" into LLMs 🧠 {background-color="#2d4563"}
+
+## How do LLMs work?
+### A _very_ simplified explanation: Sorry mathematicians! 😅
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+:::{.incremental}
+- The data collected by AI firms are huge and include [many languages and styles]{.alert}
+- An overlooked part of the training process is the [data cleaning and preprocessing]{.alert}: removing duplicates, correcting errors, and standardising formats
+- [Tokenisation](https://en.wikipedia.org/wiki/Tokenization_(lexical_analysis)) is the process of breaking text into smaller units called tokens, and each token is assigned a unique ID
+  - For example, "`Chatbots are helpful in 2025!`" = `["Chat", "bots", "are", "help", "ful", "in", "2025", "!"]`
+- The main objective during training is for the model to [predict the next token in a sequence]{.alert} based on the tokens that come before it
+- This allows the model to [learn language patterns without needing labelled data]{.alert}
+:::
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/tokens.png)
+
+![](figures/unsupervised.webp)
+:::
+:::
+:::
+:::
+
+## How do LLMs work?
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+:::{.incremental}
+- Models use [backpropagation](https://en.wikipedia.org/wiki/Backpropagation) to update their parameters based on the errors in their predictions
+  - Backpropagation is a [gradient descent](https://en.wikipedia.org/wiki/Gradient_descent) algorithm that adjusts the weights of the model to minimise the loss function
+- They also use several methods to prevent overfitting, such as [dropout](https://en.wikipedia.org/wiki/Dropout_(neural_networks))
+  - Dropout refers to randomly "dropping out", or omitting, units (both hidden and visible) during the training process of a neural network
+- After initial training, the model can be [fine-tuned on specific datasets]{.alert} to improve its performance in particular domains, such as programming 
+  - Often done by [poorly paid workers in developing countries](https://time.com/6247678/openai-chatgpt-kenya-workers/)
+:::
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/dropout.png)
+
+![](figures/overfitting.jpg){width="80%"}
+:::
+:::
+:::
+:::
+
+## Why was GPT-3 so special?
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Transformers changed the field by allowing models to [process text in parallel]{.alert}, which made them much faster than previous models
+- The model consists of multiple layers, each performing specific functions to process and generate text
+- GPT-3 was the first model to have [175 billion parameters]{.alert}, which made it the largest model at the time
+- Another important feature was its [zero-shot leaning](https://en.wikipedia.org/wiki/Zero-shot_learning) capability, which allowed it to perform tasks without any training data
+- GPT also uses [multi-head attention](https://en.wikipedia.org/wiki/Attention_(machine_learning)) to focus on different parts of the input text at the same time 
+  - For example, it can focus on the subject and the verb of a sentence simultaneously
+- Finally, the model also scales well with more data and more parameters
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+[![](figures/sam.png)](https://x.com/sama/status/1284315896735883264?lang=en)
+
+[![](figures/sam02.png)](https://x.com/sama/status/1284922296348454913?lang=en)
+:::
+:::
+:::
+:::
+
+
+## AI-Assisted Programming: Benefits
+
+:::{style="margin-top: 30px; font-size: 25px;"}
+- [Minimising search time]{.alert}: According to the [2022 Stack Overflow Developer Survey](https://insights.stackoverflow.com/survey/2022), 62% of the developers spent more than 30 minutes a day searching for answers, and 25% spent over an hour a day. Users of GitHub Copilot report that [they finish tasks 55% faster](https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/)
+- [A 24/7 coding advisor]{.alert}: You can ask questions and get code snippets at any time, and you can also use it to learn new languages. [Results are promising](https://www.mdpi.com/2227-7102/13/4/410)
+- [Reflecting your codebase and workspace]{.alert}: New tools allow you to train LLMs on your own codebase and search for files and functions in your workspace, which is a [huge benefit]{.alert} for newcomers to a team
+- [Assessing code integrity]{.alert}: LLMs can identify bugs, vulnerabilities, run tests, and make suggestions
+- [Language translation]{.alert}: You can write code in your language and get it translated to another language. For example, IBM's Watsonx.ai model [understands 115 coding languages based on 1.5 trillion tokens](https://www.eweek.com/it-management/modernizing-the-mainframe-ibm-introduces-watsonx-code-assistant-for-z/)
+:::
+
+## AI-Assisted Programming: Challenges
+### Hallucination
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Generative AI models can produce incorrect or misleading content
+- This can be due to errors in the model, biases or incorrect information in the training data, or the limitations of the model architecture
+- This makes it vital to check the output of these models and not take it at face value. For example, I asked Copilot (which is powered by OpenAI's GPT-4) to solve a simple quadratic equation, and [it very confidently gave me a very wrong answer]{.alert} 😅
+- It provided the answers of $\frac{1}{2}$ and $\frac{-5}{4}$ when the correct answers were 0.804 and -1.55. 
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/quadratic.png)
+:::
+:::
+:::
+:::
+
+## AI-Assisted Programming: Challenges
+### Bias
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- AI models can [amplify biases](https://www.scientificamerican.com/article/humans-absorb-bias-from-ai-and-keep-it-after-they-stop-using-the-algorithm/) present in the training data
+- For instance, I asked an AI to give me the names of famous scientists, and it came up with the following list:
+  - Albert Einstein
+  - Isaac Newton
+  - Charles Darwin
+  - Nikola Tesla
+  - Galileo Galilei
+  - Stephen Hawking
+  - Leonardo da Vinci
+  - Thomas Edison
+:::
+
+:::{.column width="50%"}
+- Can you spot the bias?
+
+:::{style="text-align: center;"}
+![](figures/biases.jpg)
+:::
+:::
+:::
+:::
+
+## AI-Assisted Programming: Challenges
+### Bias
+
+:::{style="margin-top: 30px; text-align: center;"}
+![](figures/biases02.png){width="75%"}
+
+<https://www.nature.com/articles/s41598-023-42384-8>
+:::
+
+## AI-Assisted Programming: Challenges
+### Easy to confuse
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- AI models can be [easily confused](https://www.technologyreview.com/2022/07/07/1045821/ai-bias-ethics/) by small changes in the input
+- AIs have an annoying tendency to be overpolite and [agree with you even when you are wrong]{.alert}
+- Thus, they can be easily manipulated (including by bad actors)
+- For example, I asked Copilot what the westernmost point of Europe was, and contradicted its answer
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/europe.png)
+:::
+:::
+:::
+:::
+
+## AI-Assisted Programming: Challenges
+### Intellectual property
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- AI models can generate code that is [identical to existing code]{.alert}
+- This raises questions about [intellectual property](https://apnews.com/article/ai-media-lawsuits-center-for-investigative-reporting-chatgpt-mother-jones-c48452889750479410b65a119537746c) and the [ownership of the code]{.alert}
+- This is an ongoing debate in the AI community, and it is not clear how it will be resolved
+- But it does have some important implications for open source software and the sharing of code
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/stupid.png)
+
+More here: <https://matthewbutterick.com/chron/this-copilot-is-stupid-and-wants-to-kill-me.html>
+:::
+:::
+:::
+:::
+
+## AI-Assisted Programming: Challenges
+### Security
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- AI models can be vulnerable to [adversarial attacks](https://en.wikipedia.org/wiki/Adversarial_machine_learning) and [injection attacks](https://en.wikipedia.org/wiki/Code_injection)
+- As programmers use more AI-generated code, many blindly trust the output of these models and send the code into production
+- In [Security Weaknesses of Copilot Generated Code in GitHub](https://arxiv.org/abs/2310.02059), Yujia Fu et al. highlighted the security issues with GitHub Copilot.
+- They evaluated 435 AI-generated code snippets from projects on GitHub, and 35.8% had security vulnerabilities
+- ...and this code is all going to the LLMs! 😅
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/security.png)
+
+More here: <https://www.techrepublic.com/article/ai-generated-code-outages/>
+:::
+:::
+:::
+:::
+
+# Can we prevent these issues? 🤔 {background-color="#2d4563"}
+
+## How to prevent some of these issues 
+### Better prompt engineering
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [Prompt engineering](https://platform.openai.com/docs/guides/prompt-engineering) is a new buzzword in the AI community
+- It refers to the process of designing the input to an AI model to get the desired output
+- It is, to a large extent, [a mix of art and science]{.alert} that involves _a lot_ of trial and error (at least in my experience!)
+- The idea is to [guide the model to produce the desired output]{.alert} by providing it with the right context and examples
+- Prompt engineering will never be fully exact simply because [models themselves are probabilistic](https://en.wikipedia.org/wiki/Probabilistic_model)
+- But you can think of a prompt as having [four main components]{.alert}:
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/components.png)
+
+Source: [Tulio (2024)](https://www.oreilly.com/library/view/ai-assisted-programming/9781098164553/).
+
+- [Context]{.alert}: The information you provide to the model
+- [Instructions]{.alert}: The task you want the model to perform
+- [Input of the model]{.alert}: The data you feed into the model
+- [Format]{.alert}: The structure of the prompt
+:::
+:::
+:::
+:::
+
+## Context
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- It is a good idea to begin your prompt with a sentence or two that [clearly defines the task]{.alert} you want the model to perform
+- [Creating a persona]{.alert} for the model can also help guide its output
+  - Prompt: You are an experienced software engineer specialising in debugging Python code. You are asked to write a function that takes a list of integers and returns the sum of the even numbers.
+- Personal note: I've had good results by [adopting multiple personas]{.alert} in the same prompt
+  - For example, I might ask the model to write a function as if it were a beginner, an intermediate, and an expert programmer and then compare the results
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/context.png)
+
+Source: <https://chatgpt.com/share/6e0c2115-6fd0-497d-a662-44cb0434cee2>
+:::
+:::
+:::
+:::
+
+## Instructions
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Your prompt should include at least one [clear and concise instruction]{.alert}
+- [Fewer instructions are better]{.alert} because they reduce the chances of the model getting confused
+- You can also use [examples]{.alert} to guide the model
+  - Prompt: Develop a SQL query to retrieve from our database a list of customers who made purchases above $500 in the last quarter of 2023. The query should return the customer’s full name, their email address, the total amount spent, and the date of their last purchase. The results should be sorted by the total amount spent in descending order. Please ensure that the query is optimized for performance.
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/prompt-elements.png)
+
+Source: <https://learn.microsoft.com/en-us/copilot/security/prompting-tips>
+:::
+:::
+:::
+:::
+
+## Input of the model
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- The input of the model is the data you feed into it
+- Use [keywords]{.alert} that are relevant to the task you want the model to perform
+- When it comes to coding, you can provide the model with [code snippets]{.alert} that it can use as a reference
+- Also pay attention to delimiters and separators, as they can help the model understand the structure of the input
+- For example, you can use [comments]{.alert} to provide additional information to the model
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/instructions.png)
+
+Source: <https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api>
+:::
+:::
+:::
+:::
+
+## Format
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Finally, you can also be explicit about the format you want the output to be in
+- For example, you can specify that you want the output to be in a [specific programming language]{.alert}, or you can ask the model to provide you with a [code snippet]{.alert}
+- You can also ask the model to provide you with a [list of steps]{.alert} to complete a task
+- This can be useful if you are working on a complex project or with different programming languages
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/format.png)
+:::
+:::
+:::
+:::
+
+# How to get started with GitHub Copilot 🚀 {background-color="#2d4563"}
+
+## How to get started with GitHub Copilot
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- First, it is a good idea to have [VS Code](https://code.visualstudio.com/) installed on your computer
+- Then, you can install the [GitHub Copilot extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) from the VS Code marketplace
+- You will need to [sign in with your GitHub account](https://github.com) to use Copilot
+- Copilot works in the CLI as well! We will see in the next lecture (if time permits)
+- But let's have a quick look at the VSCode extension first 🤖
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/copilot.jpeg)
+
+<https://github.com/features/copilot>
+:::
+:::
+:::
+:::
+
+## Basic components
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- There are two main components to GitHub Copilot:
+  - [GitHub Copilot]{.alert}: Code suggestions and completions in the editor window
+  - [GitHub Copilot Chat]{.alert}: Chat interface to Copilot, allowing you to ask questions and get code suggestions. It can also interact with code in the editor window. [This is by far the most powerful feature of Copilot]{.alert}
+- Copilot not only offers code suggestions, but it can also help you with writing documentation, providing explanations for code you don't know, and, more recently, retrieving code snippets and information from your whole workspace
+- In my view, it is one of the most convenient AI-assistant for programming available today
+- It is also [very easy to use](https://docs.github.com/en/copilot/getting-started-with-github-copilot)
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/unexpectedcopilot2.webp)
+:::
+:::
+:::
+:::
+
+## In-Editor Prompting
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+- In an empty file/code cell, VS Code will display a greyed-out piece of text as follows:
+
+![](figures/prompt_invitation.png)
+
+- If you press `Ctrl + I` (Windows/Linux) or `Cmd + I` (macOS), a text box will appear into which you can write a prompt
+- Copilot will suggest new code, or changes to existing code based on this prompt
+- These may be in the form of one or more proposed changes
+- You may choose to accept each of these changes by clicking the Accept or Discard buttons
+
+![](figures/bubble_sort.png)
+:::
+
+## In-Editor Prompting
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+- You can also highlight an existing piece of code and press `Ctrl + I` to ask Copilot to suggest changes to that code 
+- This can be useful if you have a piece of code that you think could be improved, or if you want to see alternative ways of writing the same code
+- When you do this, you can also click on the button next to Accept and Discard to see which code Copilot is suggesting removing for each change
+
+![](figures/relative_std.gif)
+:::
+
+## In-Editor Prompting
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- There are a few standard commands that are available for prompting Copilot to do something when you have a piece of code selected
+- You can access these in the `Ctrl + I` interface by typing a forward slash, then the name of the command. These are:
+ - `/doc`: This will ask Copilot to generate documentation for the selected code. This will suggest changes in the editor 
+ - `/explain`: This will ask Copilot to explain the selected code. It will do this in the Copilot Chat extension
+ - `/fix` will look for problems in the selected code and suggest fixes for them in the editor
+ - `/tests` will ask Copilot to generate tests for the selected code. This will suggest changes in the editor, which may include creating a new file for the tests
+
+- You can also find these options by right-clicking a highlighted piece of code, and going into the Copilot menu
+:::
+
+## Generate documentation
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+- You can ask Copilot to generate documentation for a piece of code by using the `/doc` command
+
+:::{style="text-align: center;"}
+![](figures/doc_command.png){width="100%"}
+:::
+:::
+
+## Use `/tests` to generate tests
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+- Use `/tests` on a function or snippet, and Copilot Chat will generate relevant test cases
+
+:::{style="text-align: center;"}
+![](figures/tests.png){width="100%"}
+:::
+:::
+
+## Using `@github` to get information from any repository
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Copilot also has the `@github` command that allows you to [interact with any repository online](https://github.blog/ai-and-ml/github-copilot/whats-new-with-github-copilot-july-2024/)
+- This means that you can ask questions about files, folders, structures, and functions in any repository on GitHub
+- You can use this to explore codebases, understand how functions work, and get examples of usage
+- For instance, you can try:
+
+```verbatim
+@github What is the latest commit in 
+danilofreire/datasci350 and what files 
+were changed?
+```
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; margin-top: -30px;"}
+![](figures/github_search.png){width="70%"}
+:::
+:::
+:::
+:::
+
+## Using `@websearch` to get information from the web
+### Caution: experimental and a little buggy!
+
+:::{style="margin-top: 30px; font-size: 23px; text-align: center;"}
+:::{.columns}
+:::{.column width="50%"}
+- Copilot also has a `@websearch` command that allows you to search the web for information without leaving the editor
+- This is similar to using a search engine (and what other LLMs also do), but the results are integrated directly into the editor
+- You can use this to quickly find documentation, examples, and answers to your coding questions
+- First, you need to install the [Web Search for Copilot extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-websearchforcopilot) by Microsoft
+- Then, you will need to create an API from [Tavily](https://www.tavily.com/) (1000 calls per month for free)
+- Upon first use, it will ask you for that key
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; margin-top: -30px;"}
+![](figures/websearch.png){width="70%"}
+:::
+:::
+:::
+:::
+
+# GitHub Codespaces 🖥️ {background-color="#2d4563"}
+
+## GitHub Codespaces
+### VS Code in the browser, anywhere
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+- GitHub has recently released [GitHub Codespaces](https://github.com/codespaces), which allows you to run Visual Studio Code in your browser for free (up to 60 hours or more per month, depending on your plan)
+- This is a great way to use Copilot if you don't have a powerful computer, or if you want to work on a project from a different device
+- It also integrates with GitHub, so you can easily access your repositories from Codespaces
+- You can also use Codespaces to collaborate with others on a project, as you can share a Codespace with other GitHub users
+- Codespaces is still in beta, but it works fine! 😊
+- Read more about it here: <https://docs.github.com/en/codespaces/overview>
+:::
+
+## GitHub Codespaces extension
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- As always, there’s a [VS Code extension for GitHub Codespaces](https://marketplace.visualstudio.com/items?itemName=GitHub.codespaces)
+- You can use it to easily create, manage, and connect to Codespaces from within VSCode
+- You can also use our friend `GitHub CLI` to manage Codespaces from the command line
+
+```bash
+gh codespace list
+gh codespace create -r OWNER/REPO_NAME [-b BRANCH]
+gh codespace stop -c CODESPACE-NAME
+gh codespace delete -c CODESPACE-NAME
+```
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; margin-top: -30px;"}
+![](figures/codespaces-extension.png)
+
+More information here: <https://docs.github.com/en/codespaces/developing-in-a-codespace>
+:::
+:::
+:::
+:::
+
+## GitHub Codespaces
+
+:::{style="margin-top: 30px; font-size: 26px; text-align: center;"}
+![](figures/codespaces.png){width="80%"}
+:::
+
+## GitHub Codespaces
+
+:::{style="margin-top: 30px; font-size: 26px; text-align: center;"}
+![](figures/codespaces01.png){width="80%"}
+:::
+
+## GitHub Codespaces
+
+:::{style="margin-top: 30px; font-size: 26px; text-align: center;"}
+![](figures/codespaces02.png){width="80%"}
+:::
+
+## GitHub Codespaces
+
+:::{style="margin-top: 30px; font-size: 26px; text-align: center;"}
+![](figures/codespaces03.png){width="80%"}
+:::
+
+## GitHub Codespaces
+
+:::{style="margin-top: 30px; font-size: 26px; text-align: center;"}
+![](figures/codespaces04.png){width="80%"}
+:::
+
+# That's all for today! 🎉 {background-color="#2d4563"}
+
+# Next time we will learn how to use APIs and other AI tools! 🤖 {background-color="#2d4563"}
+
+# Have a great day! 😊 {background-color="#2d4563"}
+

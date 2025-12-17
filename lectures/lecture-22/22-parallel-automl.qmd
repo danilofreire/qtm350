@@ -1,0 +1,743 @@
+---
+title: DATASCI 350 - Data Science Computing
+subtitle: Lecture 22 - Parallelising Data Analysis with Dask and AutoML
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: "Department of Data and Decision Sciences <br> Emory University"
+format:
+  clean-revealjs:
+    self-contained: true
+    code-overflow: wrap
+    footer: "[Parallel Computing II](22-parallel-automl.html)"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: python3
+revealjs-plugins:
+  - fontawesome
+  - multimodal
+editor:
+  render-on-save: true
+---
+
+# Hello again! 😊 <br> How's everything? {background-color="#2d4563"}
+
+# Brief recap of last class 📚 {background-color="#2d4563"}
+
+## Parallel computing
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+- **Parallel computing** is a type of computation in which many [calculations or processes are carried out simultaneously]{.alert}
+- Python has several libraries that allow you to parallelise your code
+  - We discussed the `joblib` library, which is a simple and effective way to parallelise your code
+  - But we spent most of our time discussing `Dask`, which is currently the _de facto_ standard for parallel computing in Python 
+- We also saw that [parallel computing is not a panacea]{.alert}: it can be hard to implement and may not always lead to performance improvements
+- But when it works, it works great! 🚀
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; margin-top: -40px;"}
+![](figures/parallel.png)
+:::
+:::
+:::
+:::
+
+# Today's agenda 📅 {background-color="#2d4563"}
+
+## Lecture outline
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="45%"}
+- Today we will continue our discussion on parallel computing
+- We will focus on parallelising data analysis tasks with [Dask ML](https://ml.dask.org/)
+- More specifically, we will discuss how to parallelise the training of machine learning models, and how to use automated machine learning (AutoML) tools to speed up the process
+- We will also learn about [Dask Clusters](https://docs.dask.org/en/stable/deploying.html), which allow you to scale your computations across multiple machines (or just one!)
+:::
+
+:::{.column width="55%"}
+:::{style="text-align: center;"}
+![](figures/meme01.png)
+:::
+:::
+:::
+:::
+
+# Dask Clients and Clusters 🌐 {background-color="#2d4563"}
+
+## What is a Dask Cluster?
+### Workers and schedulers
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- A Dask Cluster is [a collection of Dask workers]{.alert} that can be used to parallelise your computations
+- In plain English, a Dask Cluster is [a group of computational engines]{.alert} (cores, GPUs, servers, etc.) that work together to solve a problem
+- Workers provide two functions:
+  - [Compute tasks as directed by the scheduler]{.alert}, the scheduler being the brain of the cluster
+  - [Store and serve computed results]{.alert} to other workers or clients
+- Workers are the reason why lazy evaluation speeds up computations
+
+- A simple example of workers interacting with a scheduler can help explain how lazy evaluation works:
+
+```{markdown}
+Scheduler -> Eve: Compute a <- multiply(3, 5)!
+Eve -> Scheduler: I've computed a and am holding on to it! 
+Scheduler -> Frank: Compute b <- add(a, 7)!
+Frank: You will need a. Eve has a.
+Frank -> Eve: Please send me a.
+Eve -> Frank: Sure. a is 15!
+Frank -> Scheduler: I've computed b and am holding on to it!
+```
+:::
+
+## What is a Dask Cluster?
+### Workers and schedulers
+
+:::{style="margin-top: 27px; font-size: 24px;"}
+- How do workers know what to do?
+  - The scheduler [assigns tasks to workers based on their availability]{.alert}
+  - Workers can be on the same machine or on different machines
+  - Workers can be CPUs or GPUs
+- Dask workers save their data as a Python dictionary, which is then sent to the scheduler as a thread in [the `concurrent.futures` library](https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor)
+- These processes can [automatically restart and scale up without any intervention from the user]{.alert}
+- The optimal number of workers depends on the size of the data and the complexity of the computations, but often the default configuration is sufficient
+- In an adaptive cluster, you set the minimum and maximum number of workers and let the cluster add and remove workers as needed
+- [Dask also provides a dashboard to monitor the performance of your cluster]{.alert}
+:::
+
+## Setting up a Dask Cluster
+
+:::{style="margin-top: 30px; font-size: 27px;"}
+- First, we need to install Dask and the distributed scheduler. I tested this with `dask==2024.5.0` and `distributed==2024.5.0`
+
+```{verbatim}
+python -m pip install "dask==2024.5.0" "distributed==2024.5.0"
+```
+
+- The `distributed` scheduler is the default for Dask and it works great 👍
+- Conda users can install it with:
+
+```{verbatim}
+conda install dask=2024.5.0 distributed=2024.5.0 -c conda-forge
+```
+:::
+
+## Setting up a Dask Client
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- Using `dask.distributed` requires that you set up a Client 
+- This should be [the first thing you do]{.alert} if you intend to use `dask.distributed` in your analysis
+- It offers low latency, data locality, data sharing between the workers, and is easy to set up
+
+```{python}
+#| echo: true
+#| eval: true
+from dask.distributed import LocalCluster, Client
+
+# Specify a different port for the dashboard
+# Use fewer workers and threads to avoid resource issues
+cluster = LocalCluster(dashboard_address=':8789', n_workers=2, threads_per_worker=2)
+client = Client(cluster)
+
+# Print the dashboard link
+print(f"Dask dashboard is available at: {cluster.dashboard_link}")
+```
+
+- The `Client` object provides a way to interact with the cluster, submit tasks, and monitor the progress of computations
+- It is also a context manager, so you can use it in a `with` statement to ensure that the cluster is closed when you are done with it
+- You will see a screen like this in your browser:
+:::
+
+## Dask Client Dashboard
+
+:::{style="margin-top: 30px; font-size: 20px; text-align: center;"}
+![](figures/dask-dashboard01.png)
+:::
+
+## Dask Client Dashboard
+
+:::{style="margin-top: 30px; font-size: 20px; text-align: center;"}
+![](figures/dask-dashboard02.png)
+:::
+
+## Testing the Dask Client
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- You can test the Dask Client by running a simple computation
+
+```{python}
+#| echo: true
+#| eval: true
+import dask.array as da
+
+# Create a random array (smaller size for interactive use)
+# For large arrays, consider using a script or Jupyter notebook instead of terminal
+x = da.random.RandomState(42).random((5000, 5000), chunks=(1000, 1000))
+x
+```
+
+```{python}
+#| echo: true
+#| eval: true
+# Perform a simple computation
+y = (x + x.T).sum()
+
+# Compute the result
+y.compute()
+```
+
+- The `RandomState` object is used to set a seed number
+- We can inspect the client dashboard to see how the computation was distributed across the workers
+:::
+
+## Troubleshooting Common Issues
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+If you encounter errors like:
+
+- `"No buffer space available"`
+- `"Stream is closed"`
+- `"CommClosedError"`
+
+This typically happens when:
+
+- Running large Dask computations in an interactive terminal
+- System runs out of network resources for inter-worker communication
+- Array size is too large for your system's resources
+:::
+
+:::{.column width="50%"}
+**Solutions:**
+
+- Use smaller array sizes
+- Limit the number of workers and threads
+- Run code in a Python script instead of interactive terminal
+- Use Jupyter notebooks which handle resources better
+- Close and restart your Dask client if it becomes unresponsive
+
+```python
+# Better configuration for terminal use
+from dask.distributed import LocalCluster, Client
+
+# Use fewer resources for interactive terminal sessions
+cluster = LocalCluster(
+    dashboard_address=':8789',
+    n_workers=2,           # Limit workers
+    threads_per_worker=2,  # Limit threads per worker
+    memory_limit='2GB'     # Limit memory per worker
+)
+client = Client(cluster)
+```
+:::
+:::
+:::
+
+## Testing the Dask Client
+
+:::{style="margin-top: 30px; font-size: 20px; text-align: center;"}
+![](figures/dask-dashboard03.png)
+:::
+
+## Testing the Dask Client
+
+:::{style="margin-top: 30px; font-size: 20px; text-align: center;"}
+![](figures/dask-dashboard04.png)
+:::
+
+# Dask ML 🤖 {background-color="#2d4563"}
+
+## Dimensions of Scale
+
+:::{style="font-size: 22px; text-align: center;"}
+![](figures/dimensions-of-scale.png){width="55%"}
+:::
+
+## Addressing the Challenges
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+### Challenge 1: Scaling Model Size
+
+- **Model size**: the number of parameters in a model
+- If your models become more complex, you need more computational resources to train them
+- Under this scaling challenge tasks like model training, prediction, or evaluation steps will (eventually) complete, they just take too long 
+- You’ve become [compute bound]{.alert}
+- You can continue to use your current algorithms and libraries (pandas, numpy, scikit-learn, etc), but you need to scale them up
+:::
+
+:::{.column width="50%"}
+### Challenge 2: Scaling Data Size
+
+- **Data size**: the number of samples in your dataset
+- There are cases where datasets grow larger than RAM (shown along the horizontal axis) 
+- Under this scaling challenge, even loading the data into numpy or pandas becomes impossible
+- You’ve become [memory bound]{.alert}
+- In this case, you can use a different file format (parquet, Dask DataFrame, etc) together with algorithms that can handle large datasets
+:::
+:::
+:::
+
+## What is Dask ML?
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+- [Dask ML](https://ml.dask.org/) is a scalable machine learning library built on top of Dask
+- It provides parallel implementations of many popular machine learning algorithms and libraries, such as scikit-learn, XGBoost, LightGBM, TensorFlow, and PyTorch
+- Dask ML is built on top of Dask arrays and dataframes, allowing you to scale your machine learning workflows to large datasets
+- You can use Dask ML to do many tasks, such as model selection, model evaluation, and, most importantly, hyperparameter tuning
+- And you can also use it together with [automated machine learning (AutoML)](https://en.wikipedia.org/wiki/Automated_machine_learning) tools to speed up the process
+- So let's see what AutoML is and how to use it with Dask ML!
+:::
+
+# AutoML 🤖 {background-color="#2d4563"}
+
+## What is AutoML?
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- [AutoML](https://en.wikipedia.org/wiki/Automated_machine_learning) is a set of tools that, well, automate the process of applying machine learning
+- The main goal of AutoML is to make machine learning more [accessible to non-experts and to speed up the process of building machine learning models]{.alert}
+- Think about it as a more advanced version of scikit-learn (or a more realistic version of "vibe coding" 😂)
+- This allows users to focus on the problem at hand rather than the intricacies of the algorithms
+- There are [several tools available for AutoML]{.alert}, such as:
+  - [TPOT](https://epistasislab.github.io/tpot/)
+  - [Amazon SageMaker Autopilot](https://aws.amazon.com/sagemaker/autopilot/)
+  - [Auto-sklearn](https://automl.github.io/auto-sklearn/master/)
+  - [H2O.ai](https://www.h2o.ai/)
+  - [Google Cloud AutoML](https://cloud.google.com/automl)
+  - [Microsoft Azure AutoML](https://azure.microsoft.com/en-us/services/machine-learning/automated-ml/)
+- All of them are great, but they have different features and capabilities
+- Here we will use Dask ML to parallelise the training of machine learning models with scikit-learn
+:::
+
+## What is Dask ML?
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- First, let's install Dask ML (using version 2024.4.4 for this example):
+
+```{verbatim}
+pip install "dask-ml==2024.4.4" "scikit-learn==1.6.0"
+```
+
+- And then import the necessary modules, mainly scikit-learn (here I'm using version 1.6.0 for compatibility):
+
+```{python}
+#| echo: true
+#| eval: true
+import time
+import numpy as np
+from dask.distributed import LocalCluster, Client
+import joblib
+from sklearn.datasets import load_digits
+from sklearn.model_selection import RandomizedSearchCV
+from sklearn.svm import SVC
+```
+
+- The [`load_digits` dataset](https://scikit-learn.org/1.5/modules/generated/sklearn.datasets.load_digits.html) is a well-known dataset in machine learning, containing 1797 8x8 pixel images of handwritten digits
+- The main task here is to predict the digit from the image
+
+:::{style="text-align: center;"}
+![](figures/digits.png){width="65%"} 
+:::
+:::
+
+## Dask ML and scikit-learn
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+- Let's estimate the model with a simple grid search
+- `param_space`: a list of settings to try out for the model
+- `C`: controls how much to punish mistakes (regularisation, smaller values = more regularisation) to prevent overfitting
+  - This is in exponential notation, so `np.logspace(-6, 6, 13)` will create a list of 13 values between $10^{-6}$ and $10^6$ (!)
+- `gamma`: defines how far the influence of a single example reaches (smaller values = model is less sensitive to the data)
+  - This is also in exponential notation, so `np.logspace(-8, 8, 17)` will create a list of 17 values between $10^{-8}$ and $10^8$ (!!)
+- `tol`: tells the model when to stop trying to improve
+- `class_weight`: options for handling imbalanced data
+- This is pretty standard scikit-learn code, but with a twist: we are using `joblib.parallel_backend('dask')` to parallelise the search
+- This will distribute the search across the workers in the Dask cluster (and we don't have to worry about it!)
+- The `RandomizedSearchCV` object will try out 50 different combinations of hyperparameters and return the best one
+:::
+
+## Dask ML and scikit-learn
+
+:::{style="margin-top: 30px; font-size: 19px;"}
+```{python}
+#| echo: true
+#| eval: true
+# Load the digits dataset
+digits = load_digits()   
+
+# Define the parameter space to search through
+param_space = {
+    'C': np.logspace(-6, 6, 13),      
+    'gamma': np.logspace(-8, 8, 17),
+    'tol': np.logspace(-4, -1, 4),
+    'class_weight': [None, 'balanced'], 
+}
+
+# Create the model
+model = SVC()
+
+search = RandomizedSearchCV(
+    model,
+    param_space,
+    cv=3,
+    n_iter=50,
+    verbose=10
+)
+
+# Perform the search using Dask
+start_time = time.time()
+with joblib.parallel_backend('dask'):
+    search.fit(digits.data, digits.target)
+
+end_time = time.time()
+
+# Calculate the elapsed time
+elapsed_time = end_time - start_time
+
+# Print the best parameters
+print("Best parameters found: ", search.best_params_)
+print("Best score: ", search.best_score_)
+print("Best estimator: ", search.best_estimator_)
+print("Time taken: {:.2f} seconds".format(elapsed_time))
+```
+:::
+
+## Now let's tackle the problems we discussed earlier...
+### Neither compute nor memory constrained
+
+:::{style="margin-top: 30px; font-size: 30px;"}
+
+- The model was trained in just a few seconds!
+- The dataset is small, so we are not memory constrained
+- The model is not complex, so we are not compute constrained
+- So in this case we only used Dask to parallelise the search, but we could have used scikit-learn alone
+- But what if we had a larger dataset or a more complex model?
+:::
+
+## Memory constrained, but not compute constrained
+
+:::{style="margin-top: 30px; font-size: 27px;"}
+- Here we have a case where the dataset is too large to fit in memory, but there is enough compute power to train the model
+- It makes sense to use Parquet and Dask DataFrames to load the data in chunks, but this may not be enough
+- A cool solution is Dask's `dask_ml` `Incremental` class, which can train models on chunks of data
+- It starts training the model on many hyper-parameters on a small amount of data, and then only continues training those models that seem to be performing well
+- The command is `dask_ml.model_selection.IncrementalSearchCV()`
+- There are some new variations of this method that are worth checking out. [Here is the documentation](https://ml.dask.org/hyper-parameter-search.html)
+- This strategy is based on scikit-learn's `partial_fit` method. [More information here](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html#sklearn.linear_model.SGDClassifier.partial_fit)
+:::
+
+## Incremental Search
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- Let's see an example with 2 million possible hyperparameter combinations and a dataset with 10 million samples (!)
+- Combined, `X` and `y` will take up about 16 GB of memory
+- We will use the `make_classification` function from `dask_ml.datasets` to create the dataset
+
+```{python}
+#| echo: true
+#| eval: true
+from dask_ml.datasets import make_classification
+X, y = make_classification(n_samples=10000000, n_features=20,
+                           chunks=100000, random_state=0)
+
+# Create the model
+from sklearn.linear_model import SGDClassifier
+model = SGDClassifier(tol=1e-3, penalty='elasticnet', random_state=0)
+
+# Parameters we want to search through
+params = {'alpha': np.logspace(-2, 1, num=1000),
+          'l1_ratio': np.linspace(0, 1, num=1000),
+          'average': [True, False]}
+
+# Perform the search
+from dask_ml.model_selection import IncrementalSearchCV
+search = IncrementalSearchCV(model, params, random_state=0, decay_rate=None)
+
+start_time = time.time()
+search.fit(X, y, classes=[0, 1])
+end_time = time.time()
+
+# Calculate the elapsed time
+elapsed_time = end_time - start_time
+
+# Print the best parameters, best score, and the time taken
+print("Best parameters found: ", search.best_params_)
+print("Best score: ", search.best_score_)
+print("Best estimator: ", search.best_estimator_)
+print(f"Time taken: {elapsed_time:.2f} seconds")
+```
+:::
+
+## Incremental Search
+
+:::{style="margin-top: 30px; font-size: 30px;"}
+- It took [less than one minute]{.alert} to train the model, which is _pretty fast_ considering the size of the dataset
+- My computer has 16 GB of RAM, so I would not be able to load the dataset in memory
+- But the model runs fine, and I was using my computer normally
+- Now let's see another example...
+:::
+
+## Compute constrained, but not memory constrained
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+
+- Here we have a case where the model is too complex to train in a reasonable amount of time
+- Or the models require specialised hardware like GPUs
+- The best class for this case is `HyperbandSearchCV`, which is a hyperparameter search algorithm that is based on the [Hyperband algorithm](https://arxiv.org/abs/1603.06560)
+- In a nutshell, this algorithm is easy to use, has strong mathematical motivation and often performs well 
+
+```{python}
+#| echo: true
+#| eval: true
+from dask_ml.model_selection import HyperbandSearchCV
+from dask_ml.datasets import make_classification
+from sklearn.linear_model import SGDClassifier
+
+X, y = make_classification(chunks=20)
+est = SGDClassifier(tol=1e-3)
+param_dist = {'alpha': np.logspace(-2, 0, num=1000),
+              'loss': ['hinge', 'log_loss', 'modified_huber', 'squared_hinge'],
+              'average': [True, False]}
+
+start_time = time.time()
+search = HyperbandSearchCV(est, param_dist)
+search.fit(X, y, classes=np.unique(y))
+end_time = time.time()
+
+# Calculate the elapsed time
+elapsed_time = end_time - start_time
+print("Best parameters found: ", search.best_params_)
+print("Best score: ", search.best_score_)
+print("Best estimator: ", search.best_estimator_)
+print(f"Time taken: {elapsed_time:.2f} seconds")
+```
+:::
+
+## Compute and memory constrained
+
+:::{style="margin-top: 30px; font-size: 30px;"}
+- This is the worst-case scenario, where you have a large dataset and a complex model
+- In this case, you can use a combination of the strategies we discussed earlier
+  - Use Dask DataFrames to load the data in chunks
+  - Use the `HyperbandSearchCV` class to search for the best hyperparameters
+
+- Apart from this, you can always use cloud computing services like AWS, GCP, or Azure...
+- ... or pray to the machine learning gods 😂
+:::
+
+# More AutoML 🤖 {background-color="#2d4563"}
+
+## TPOT 
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Here we will use [TPOT](https://epistasislab.github.io/tpot/), which is a Python library that automatically creates and optimises machine learning pipelines using genetic programming
+- TPOT is built on top of scikit-learn and uses a similar syntax 
+- There are several articles about how to optimise AutoML algorithms and quickly find the best model for your data, so I won't go into too much detail here (but you can check out [this article](https://arxiv.org/pdf/1908.00709) for more information)
+- First, let's install TPOT:
+
+```{verbatim}
+pip install "TPOT==0.12.2"
+```
+
+- I'm using Python 3.13.2 for this example, so your mileage may vary
+:::
+
+## Using TPOT
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+- Let's see an example using the `load_digits` dataset
+
+```{python}
+#| echo: true
+#| eval: true
+import time
+from tpot import TPOTClassifier
+from sklearn.datasets import load_digits
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Load the digits dataset
+digits = load_digits()
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(digits.data, digits.target,
+                                                    train_size=0.75, test_size=0.25)
+
+# Create the TPOTClassifier object
+start_time = time.time()
+tpot = TPOTClassifier(generations=2, population_size=5, verbosity=2, random_state=42)
+
+# Fit the model
+tpot.fit(X_train, y_train)
+end_time = time.time()
+elapsed_time = end_time - start_time
+
+# Get predictions and calculate score
+y_pred = tpot.predict(X_test)
+score = accuracy_score(y_test, y_pred)
+print(f"Score: {score}")
+print(f"Time taken: {elapsed_time:.2f} seconds")
+```
+
+:::
+
+## Time series forecasting with Prophet
+
+:::{style="margin-top: 30px; font-size: 19px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Let's see another example using the `Prophet` library
+- `Prophet` is a forecasting tool that is open source and maintained by Facebook
+- It is designed for analysing time series data that display patterns on different time scales
+- It is particularly good for data that has multiple seasonality with changing trends
+- The library is built on top of `PyStan`, which is a Python interface to Stan, a probabilistic programming language
+- First, let's install the library:
+
+```{verbatim}
+pip install prophet
+```
+:::
+
+:::{.column width="50%"}
+- Large datasets are not the only type of scaling challenge teams run into
+- In this example we will focus on the third type of scaling challenge: [model complexity]{.alert}
+- In the words of [Sean Taylor and Ben Letham](https://peerj.com/preprints/3190/), the authors of the `Prophet` library:
+  - "_In most realistic settings, a large number of forecasts will be created, necessitating efficient, automated means of evaluating and comparing them, as well as detecting when they are likely to be performing poorly. When hundreds or even thousands of forecasts are made, it becomes important to let machines do the hard work of model evaluation and comparison while efficiently using human feedback to fix performance problems._"
+:::
+:::
+:::
+
+## Using Prophet
+
+:::{style="margin-top: 30px; font-size: 19px;"}
+- We will use Prophet and Dask together to parallise the diagnostics stage of research
+- It does not attempt to parallise the training of the model itself (which is actually quite fast to begin with)
+
+```{python}
+#| echo: true
+#| eval: true
+import pandas as pd
+from prophet import Prophet
+```
+
+- The values represent the log daily page views for [Peyton Manning’s Wikipedia page](https://en.wikipedia.org/wiki/Peyton_Manning)
+
+```{python}
+#| echo: true
+#| eval: true
+df = pd.read_csv(
+    'https://raw.githubusercontent.com/facebook/prophet/master/examples/example_wp_log_peyton_manning.csv',
+    parse_dates=['ds']
+)
+df.head()
+```
+:::
+
+## Using Prophet
+
+:::{style="margin-top: 30px; font-size: 19px;"}
+- Let's plot the data and fit the model
+- No Dask here, just Prophet
+
+```{python}
+#| echo: true
+#| eval: true
+df.plot(x='ds', y='y')
+
+m = Prophet(daily_seasonality=False)
+m.fit(df)
+```
+:::
+
+## Using Prophet
+
+:::{style="margin-top: 30px; font-size: 19px;"}
+- And we can make a forecast. Again, no Dask here
+
+```{python}
+#| echo: true
+#| eval: true
+future = m.make_future_dataframe(periods=365)
+forecast = m.predict(future)
+m.plot(forecast)
+```
+:::
+
+## Using Prophet with Dask
+
+:::{style="margin-top: 30px; font-size: 19px;"}
+- Now let's use Dask to parallelise the diagnostics stage of the research
+- Prophet includes a `prophet.diagnostics.cross_validation` function method, which uses simulated historical forecasts to provide some idea of a model’s quality
+- This is done by selecting cutoff points in the history, and for each of them fitting the model using data only up to that cutoff point
+- We can then compare the forecasted values to the actual values
+
+:::{style="text-align: center;"}
+![](figures/diagnostics_4_0.png){width="50%"}
+:::
+:::
+
+## Using Prophet with Dask
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- Let's then use Dask to parallelise the diagnostics stage of the research
+
+```{python}
+#| echo: true
+#| eval: false
+import prophet.diagnostics
+df_cv = prophet.diagnostics.cross_validation(
+    m, initial="730 days", period="180 days", horizon="365 days",
+    parallel="dask")
+df_cv.head()
+```
+
+:::{style="text-align: center;"}
+![](figures/prophet.png){width="65%"}
+:::
+:::
+
+# Conclusion 🎉 {background-color="#2d4563"}
+
+## Summary
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+- Today we discussed how to parallelise data analysis tasks with Dask and AutoML
+- We learnt about Dask Clusters and how to set up a Dask Client
+- We discussed the types of problems data scientists face when scaling their models and datasets
+  - No constraints
+  - Compute constrained
+  - Memory constrained
+  - Compute and memory constrained
+
+- We also saw how AutoML tools like TPOT can be used to speed up the process of model selection and hyperparameter tuning
+- And we discussed how to use Prophet and Dask together to parallelise the diagnostics stage of research
+- I hope you enjoyed the lecture and learnt something new today! 😊
+:::
+
+## Next class
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Next class we will discuss how to deal with environments and, mainly, how to use containers to manage your projects
+- We will discuss the basics of Docker and how to use it to create and manage containers
+- We will also discuss how to use Docker to create reproducible environments for your projects
+- I hope to see you there! 🚀
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/docker.png)
+:::
+:::
+:::
+:::
+
+# Thank you! 🙏 {background-color="#2d4563"}
+
+# See you next time! 🚀 {background-color="#2d4563"}

@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Danilo Freire">
+
+<title>DATASCI 350 - Data Science Computing</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="22-parallel-automl_files/libs/clipboard/clipboard.min.js"></script>
+<script src="22-parallel-automl_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="22-parallel-automl_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="22-parallel-automl_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="22-parallel-automl_files/libs/quarto-html/popper.min.js"></script>
+<script src="22-parallel-automl_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="22-parallel-automl_files/libs/quarto-html/anchor.min.js"></script>
+<link href="22-parallel-automl_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="22-parallel-automl_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="22-parallel-automl_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="22-parallel-automl_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="22-parallel-automl_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="22-parallel-automl.html"><i class="bi bi-file-slides"></i>RevealJS (clean)</a></li></ul></div></div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">DATASCI 350 - Data Science Computing</h1>
+<p class="subtitle lead">Lecture 22 - Parallelising Data Analysis with Dask and AutoML</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Danilo Freire <a href="mailto:danilo.freire@emory.edu" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Department of Data and Decision Sciences <br> Emory University
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="hello-again-hows-everything" class="level1" data-background-color="#2d4563">
+<h1 data-background-color="#2d4563">Hello again! 😊 <br> How’s everything?</h1>
+</section>
+<section id="brief-recap-of-last-class" class="level1" data-background-color="#2d4563">
+<h1 data-background-color="#2d4563">Brief recap of last class 📚</h1>
+<section id="parallel-computing" class="level2">
+<h2 class="anchored" data-anchor-id="parallel-computing">Parallel computing</h2>
+<div style="margin-top: 30px; font-size: 23px;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><strong>Parallel computing</strong> is a type of computation in which many <span class="alert">calculations or processes are carried out simultaneously</span></li>
+<li>Python has several libraries that allow you to parallelise your code
+<ul>
+<li>We discussed the <code>joblib</code> library, which is a simple and effective way to parallelise your code</li>
+<li>But we spent most of our time discussing <code>Dask</code>, which is currently the <em>de facto</em> standard for parallel computing in Python</li>
+</ul></li>
+<li>We also saw that <span class="alert">parallel computing is not a panacea</span>: it can be hard to implement and may not always lead to performance improvements</li>
+<li>But when it works, it works great! 🚀</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div style="text-align: center; margin-top: -40px;">
+<p><img src="figures/parallel.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="todays-agenda" class="level1" data-background-color="#2d4563">
+<h1 data-background-color="#2d4563">Today’s agenda 📅</h1>
+<section id="lecture-outline" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-outline">Lecture outline</h2>
+<div style="margin-top: 30px; font-size: 23px;">
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li>Today we will continue our discussion on parallel computing</li>
+<li>We will focus on parallelising data analysis tasks with <a href="https://ml.dask.org/">Dask ML</a></li>
+<li>More specifically, we will discuss how to parallelise the training of machine learning models, and how to use automated machine learning (AutoML) tools to speed up the process</li>
+<li>We will also learn about <a href="https://docs.dask.org/en/stable/deploying.html">Dask Clusters</a>, which allow you to scale your computations across multiple machines (or just one!)</li>
+</ul>
+</div><div class="column" style="width:55%;">
+<div style="text-align: center;">
+<p><img src="figures/meme01.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="dask-clients-and-clusters" class="level1" data-background-color="#2d4563">
+<h1 data-background-color="#2d4563">Dask Clients and Clusters 🌐</h1>
+<section id="what-is-a-dask-cluster" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-a-dask-cluster">What is a Dask Cluster?</h2>
+<section id="workers-and-schedulers" class="level3">
+<h3 class="anchored" data-anchor-id="workers-and-schedulers">Workers and schedulers</h3>
+<div style="margin-top: 30px; font-size: 22px;">
+<ul>
+<li><p>A Dask Cluster is <span class="alert">a collection of Dask workers</span> that can be used to parallelise your computations</p></li>
+<li><p>In plain English, a Dask Cluster is <span class="alert">a group of computational engines</span> (cores, GPUs, servers, etc.) that work together to solve a problem</p></li>
+<li><p>Workers provide two functions:</p>
+<ul>
+<li><span class="alert">Compute tasks as directed by the scheduler</span>, the scheduler being the brain of the cluster</li>
+<li><span class="alert">Store and serve computed results</span> to other workers or clients</li>
+</ul></li>
+<li><p>Workers are the reason why lazy evaluation speeds up computations</p></li>
+<li><p>A simple example of workers interacting with a scheduler can help explain how lazy evaluation works:</p></li>
+</ul>
+<pre class="{markdown}"><code>Scheduler -&gt; Eve: Compute a &lt;- multiply(3, 5)!
+Eve -&gt; Scheduler: I've computed a and am holding on to it! 
+Scheduler -&gt; Frank: Compute b &lt;- add(a, 7)!
+Frank: You will need a. Eve has a.
+Frank -&gt; Eve: Please send me a.
+Eve -&gt; Frank: Sure. a is 15!
+Frank -&gt; Scheduler: I've computed b and am holding on to it!</code></pre>
+</div>
+</section>
+</section>
+<section id="what-is-a-dask-cluster-1" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-a-dask-cluster-1">What is a Dask Cluster?</h2>
+<section id="workers-and-schedulers-1" class="level3">
+<h3 class="anchored" data-anchor-id="workers-and-schedulers-1">Workers and schedulers</h3>
+<div style="margin-top: 27px; font-size: 24px;">
+<ul>
+<li>How do workers know what to do?
+<ul>
+<li>The scheduler <span class="alert">assigns tasks to workers based on their availability</span></li>
+<li>Workers can be on the same machine or on different machines</li>
+<li>Workers can be CPUs or GPUs</li>
+</ul></li>
+<li>Dask workers save their data as a Python dictionary, which is then sent to the scheduler as a thread in <a href="https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor">the <code>concurrent.futures</code> library</a></li>
+<li>These processes can <span class="alert">automatically restart and scale up without any intervention from the user</span></li>
+<li>The optimal number of workers depends on the size of the data and the complexity of the computations, but often the default configuration is sufficient</li>
+<li>In an adaptive cluster, you set the minimum and maximum number of workers and let the cluster add and remove workers as needed</li>
+<li><span class="alert">Dask also provides a dashboard to monitor the performance of your cluster</span></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="setting-up-a-dask-cluster" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-a-dask-cluster">Setting up a Dask Cluster</h2>
+<div style="margin-top: 30px; font-size: 27px;">
+<ul>
+<li>First, we need to install Dask and the distributed scheduler. I tested this with <code>dask==2024.5.0</code> and <code>distributed==2024.5.0</code></li>
+</ul>
+<pre class="{verbatim}"><code>python -m pip install "dask==2024.5.0" "distributed==2024.5.0"</code></pre>
+<ul>
+<li>The <code>distributed</code> scheduler is the default for Dask and it works great 👍</li>
+<li>Conda users can install it with:</li>
+</ul>
+<pre class="{verbatim}"><code>conda install dask=2024.5.0 distributed=2024.5.0 -c conda-forge</code></pre>
+</div>
+</section>
+<section id="setting-up-a-dask-client" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-a-dask-client">Setting up a Dask Client</h2>
+<div style="margin-top: 30px; font-size: 22px;">
+<ul>
+<li>Using <code>dask.distributed</code> requires that you set up a Client</li>
+<li>This should be <span class="alert">the first thing you do</span> if you intend to use <code>dask.distributed</code> in your analysis</li>
+<li>It offers low latency, data locality, data sharing between the workers, and is easy to set up</li>
+</ul>
+<div id="7327f95e" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask.distributed <span class="im">import</span> LocalCluster, Client</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify a different port for the dashboard</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use fewer workers and threads to avoid resource issues</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> LocalCluster(dashboard_address<span class="op">=</span><span class="st">':8789'</span>, n_workers<span class="op">=</span><span class="dv">2</span>, threads_per_worker<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> Client(cluster)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the dashboard link</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dask dashboard is available at: </span><span class="sc">{</span>cluster<span class="sc">.</span>dashboard_link<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/miniconda3/envs/datasci185-py312/lib/python3.12/site-packages/distributed/node.py:182: UserWarning: Port 8789 is already in use.
+Perhaps you already have a cluster running?
+Hosting the HTTP server on port 50733 instead
+  warnings.warn(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dask dashboard is available at: http://127.0.0.1:50733/status</code></pre>
+</div>
+</div>
+<ul>
+<li>The <code>Client</code> object provides a way to interact with the cluster, submit tasks, and monitor the progress of computations</li>
+<li>It is also a context manager, so you can use it in a <code>with</code> statement to ensure that the cluster is closed when you are done with it</li>
+<li>You will see a screen like this in your browser:</li>
+</ul>
+</div>
+</section>
+<section id="dask-client-dashboard" class="level2">
+<h2 class="anchored" data-anchor-id="dask-client-dashboard">Dask Client Dashboard</h2>
+<div style="margin-top: 30px; font-size: 20px; text-align: center;">
+<p><img src="figures/dask-dashboard01.png" class="img-fluid"></p>
+</div>
+</section>
+<section id="dask-client-dashboard-1" class="level2">
+<h2 class="anchored" data-anchor-id="dask-client-dashboard-1">Dask Client Dashboard</h2>
+<div style="margin-top: 30px; font-size: 20px; text-align: center;">
+<p><img src="figures/dask-dashboard02.png" class="img-fluid"></p>
+</div>
+</section>
+<section id="testing-the-dask-client" class="level2">
+<h2 class="anchored" data-anchor-id="testing-the-dask-client">Testing the Dask Client</h2>
+<div style="margin-top: 30px; font-size: 22px;">
+<ul>
+<li>You can test the Dask Client by running a simple computation</li>
+</ul>
+<div id="8bac9a14" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dask.array <span class="im">as</span> da</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a random array (smaller size for interactive use)</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># For large arrays, consider using a script or Jupyter notebook instead of terminal</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> da.random.RandomState(<span class="dv">42</span>).random((<span class="dv">5000</span>, <span class="dv">5000</span>), chunks<span class="op">=</span>(<span class="dv">1000</span>, <span class="dv">1000</span>))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<td></td>
+<th data-quarto-table-cell-role="th">Array</th>
+<th data-quarto-table-cell-role="th">Chunk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Bytes</th>
+<td>190.73 MiB</td>
+<td>7.63 MiB</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Shape</th>
+<td>(5000, 5000)</td>
+<td>(1000, 1000)</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Dask graph</th>
+<td colspan="2">25 chunks in 1 graph layer</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Data type</th>
+<td colspan="2">float64 numpy.ndarray</td>
+</tr>
+</tbody>
+</table></td>
+<td><svg width="170" height="170" style="stroke:rgb(0,0,0);stroke-width:1">
+<!-- Horizontal lines --> <line x1="0" y1="0" x2="120" y2="0" style="stroke-width:2"></line> <line x1="0" y1="24" x2="120" y2="24"></line> <line x1="0" y1="48" x2="120" y2="48"></line> <line x1="0" y1="72" x2="120" y2="72"></line> <line x1="0" y1="96" x2="120" y2="96"></line> <line x1="0" y1="120" x2="120" y2="120" style="stroke-width:2"></line> <!-- Vertical lines --> <line x1="0" y1="0" x2="0" y2="120" style="stroke-width:2"></line> <line x1="24" y1="0" x2="24" y2="120"></line> <line x1="48" y1="0" x2="48" y2="120"></line> <line x1="72" y1="0" x2="72" y2="120"></line> <line x1="96" y1="0" x2="96" y2="120"></line> <line x1="120" y1="0" x2="120" y2="120" style="stroke-width:2"></line> <!-- Colored Rectangle --> <polygon points="0.0,0.0 120.0,0.0 120.0,120.0 0.0,120.0" style="fill:#ECB172A0;stroke-width:0"></polygon> <!-- Text --> <text x="60.000000" y="140.000000" font-size="1.0rem" font-weight="100" text-anchor="middle">5000</text> <text x="140.000000" y="60.000000" font-size="1.0rem" font-weight="100" text-anchor="middle" transform="rotate(-90,140.000000,60.000000)">5000</text>
+</svg></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="f6c71624" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform a simple computation</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (x <span class="op">+</span> x.T).<span class="bu">sum</span>()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the result</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>y.compute()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>24996218.234081183</code></pre>
+</div>
+</div>
+<ul>
+<li>The <code>RandomState</code> object is used to set a seed number</li>
+<li>We can inspect the client dashboard to see how the computation was distributed across the workers</li>
+</ul>
+</div>
+</section>
+<section id="troubleshooting-common-issues" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting-common-issues">Troubleshooting Common Issues</h2>
+<div style="margin-top: 30px; font-size: 21px;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>If you encounter errors like:</p>
+<ul>
+<li><code>"No buffer space available"</code></li>
+<li><code>"Stream is closed"</code></li>
+<li><code>"CommClosedError"</code></li>
+</ul>
+<p>This typically happens when:</p>
+<ul>
+<li>Running large Dask computations in an interactive terminal</li>
+<li>System runs out of network resources for inter-worker communication</li>
+<li>Array size is too large for your system’s resources</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Solutions:</strong></p>
+<ul>
+<li>Use smaller array sizes</li>
+<li>Limit the number of workers and threads</li>
+<li>Run code in a Python script instead of interactive terminal</li>
+<li>Use Jupyter notebooks which handle resources better</li>
+<li>Close and restart your Dask client if it becomes unresponsive</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Better configuration for terminal use</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask.distributed <span class="im">import</span> LocalCluster, Client</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use fewer resources for interactive terminal sessions</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> LocalCluster(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    dashboard_address<span class="op">=</span><span class="st">':8789'</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    n_workers<span class="op">=</span><span class="dv">2</span>,           <span class="co"># Limit workers</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    threads_per_worker<span class="op">=</span><span class="dv">2</span>,  <span class="co"># Limit threads per worker</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    memory_limit<span class="op">=</span><span class="st">'2GB'</span>     <span class="co"># Limit memory per worker</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> Client(cluster)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section>
+<section id="testing-the-dask-client-1" class="level2">
+<h2 class="anchored" data-anchor-id="testing-the-dask-client-1">Testing the Dask Client</h2>
+<div style="margin-top: 30px; font-size: 20px; text-align: center;">
+<p><img src="figures/dask-dashboard03.png" class="img-fluid"></p>
+</div>
+</section>
+<section id="testing-the-dask-client-2" class="level2">
+<h2 class="anchored" data-anchor-id="testing-the-dask-client-2">Testing the Dask Client</h2>
+<div style="margin-top: 30px; font-size: 20px; text-align: center;">
+<p><img src="figures/dask-dashboard04.png" class="img-fluid"></p>
+</div>
+</section>
+</section>
+<section id="dask-ml" class="level1" data-background-color="#2d4563">
+<h1 data-background-color="#2d4563">Dask ML 🤖</h1>
+<section id="dimensions-of-scale" class="level2">
+<h2 class="anchored" data-anchor-id="dimensions-of-scale">Dimensions of Scale</h2>
+<div style="font-size: 22px; text-align: center;">
+<p><img src="figures/dimensions-of-scale.png" class="img-fluid" style="width:55.0%"></p>
+</div>
+</section>
+<section id="addressing-the-challenges" class="level2">
+<h2 class="anchored" data-anchor-id="addressing-the-challenges">Addressing the Challenges</h2>
+<div style="margin-top: 30px; font-size: 22px;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<section id="challenge-1-scaling-model-size" class="level3">
+<h3 class="anchored" data-anchor-id="challenge-1-scaling-model-size">Challenge 1: Scaling Model Size</h3>
+<ul>
+<li><strong>Model size</strong>: the number of parameters in a model</li>
+<li>If your models become more complex, you need more computational resources to train them</li>
+<li>Under this scaling challenge tasks like model training, prediction, or evaluation steps will (eventually) complete, they just take too long</li>
+<li>You’ve become <span class="alert">compute bound</span></li>
+<li>You can continue to use your current algorithms and libraries (pandas, numpy, scikit-learn, etc), but you need to scale them up</li>
+</ul>
+</section>
+</div><div class="column" style="width:50%;">
+<section id="challenge-2-scaling-data-size" class="level3">
+<h3 class="anchored" data-anchor-id="challenge-2-scaling-data-size">Challenge 2: Scaling Data Size</h3>
+<ul>
+<li><strong>Data size</strong>: the number of samples in your dataset</li>
+<li>There are cases where datasets grow larger than RAM (shown along the horizontal axis)</li>
+<li>Under this scaling challenge, even loading the data into numpy or pandas becomes impossible</li>
+<li>You’ve become <span class="alert">memory bound</span></li>
+<li>In this case, you can use a different file format (parquet, Dask DataFrame, etc) together with algorithms that can handle large datasets</li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+</section>
+<section id="what-is-dask-ml" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-dask-ml">What is Dask ML?</h2>
+<div style="margin-top: 30px; font-size: 26px;">
+<ul>
+<li><a href="https://ml.dask.org/">Dask ML</a> is a scalable machine learning library built on top of Dask</li>
+<li>It provides parallel implementations of many popular machine learning algorithms and libraries, such as scikit-learn, XGBoost, LightGBM, TensorFlow, and PyTorch</li>
+<li>Dask ML is built on top of Dask arrays and dataframes, allowing you to scale your machine learning workflows to large datasets</li>
+<li>You can use Dask ML to do many tasks, such as model selection, model evaluation, and, most importantly, hyperparameter tuning</li>
+<li>And you can also use it together with <a href="https://en.wikipedia.org/wiki/Automated_machine_learning">automated machine learning (AutoML)</a> tools to speed up the process</li>
+<li>So let’s see what AutoML is and how to use it with Dask ML!</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="automl" class="level1" data-background-color="#2d4563">
+<h1 data-background-color="#2d4563">AutoML 🤖</h1>
+<section id="what-is-automl" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-automl">What is AutoML?</h2>
+<div style="margin-top: 30px; font-size: 22px;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Automated_machine_learning">AutoML</a> is a set of tools that, well, automate the process of applying machine learning</li>
+<li>The main goal of AutoML is to make machine learning more <span class="alert">accessible to non-experts and to speed up the process of building machine learning models</span></li>
+<li>Think about it as a more advanced version of scikit-learn (or a more realistic version of “vibe coding” 😂)</li>
+<li>This allows users to focus on the problem at hand rather than the intricacies of the algorithms</li>
+<li>There are <span class="alert">several tools available for AutoML</span>, such as:
+<ul>
+<li><a href="https://epistasislab.github.io/tpot/">TPOT</a></li>
+<li><a href="https://aws.amazon.com/sagemaker/autopilot/">Amazon SageMaker Autopilot</a></li>
+<li><a href="https://automl.github.io/auto-sklearn/master/">Auto-sklearn</a></li>
+<li><a href="https://www.h2o.ai/">H2O.ai</a></li>
+<li><a href="https://cloud.google.com/automl">Google Cloud AutoML</a></li>
+<li><a href="https://azure.microsoft.com/en-us/services/machine-learning/automated-ml/">Microsoft Azure AutoML</a></li>
+</ul></li>
+<li>All of them are great, but they have different features and capabilities</li>
+<li>Here we will use Dask ML to parallelise the training of machine learning models with scikit-learn</li>
+</ul>
+</div>
+</section>
+<section id="what-is-dask-ml-1" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-dask-ml-1">What is Dask ML?</h2>
+<div style="margin-top: 30px; font-size: 22px;">
+<ul>
+<li>First, let’s install Dask ML (using version 2024.4.4 for this example):</li>
+</ul>
+<pre class="{verbatim}"><code>pip install "dask-ml==2024.4.4" "scikit-learn==1.6.0"</code></pre>
+<ul>
+<li>And then import the necessary modules, mainly scikit-learn (here I’m using version 1.6.0 for compatibility):</li>
+</ul>
+<div id="7ed4f2d9" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask.distributed <span class="im">import</span> LocalCluster, Client</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> joblib</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_digits</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> RandomizedSearchCV</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>The <a href="https://scikit-learn.org/1.5/modules/generated/sklearn.datasets.load_digits.html"><code>load_digits</code> dataset</a> is a well-known dataset in machine learning, containing 1797 8x8 pixel images of handwritten digits</li>
+<li>The main task here is to predict the digit from the image</li>
+</ul>
+<div style="text-align: center;">
+<p><img src="figures/digits.png" class="img-fluid" style="width:65.0%"></p>
+</div>
+</div>
+</section>
+<section id="dask-ml-and-scikit-learn" class="level2">
+<h2 class="anchored" data-anchor-id="dask-ml-and-scikit-learn">Dask ML and scikit-learn</h2>
+<div style="margin-top: 30px; font-size: 21px;">
+<ul>
+<li>Let’s estimate the model with a simple grid search</li>
+<li><code>param_space</code>: a list of settings to try out for the model</li>
+<li><code>C</code>: controls how much to punish mistakes (regularisation, smaller values = more regularisation) to prevent overfitting
+<ul>
+<li>This is in exponential notation, so <code>np.logspace(-6, 6, 13)</code> will create a list of 13 values between <span class="math inline">\(10^{-6}\)</span> and <span class="math inline">\(10^6\)</span> (!)</li>
+</ul></li>
+<li><code>gamma</code>: defines how far the influence of a single example reaches (smaller values = model is less sensitive to the data)
+<ul>
+<li>This is also in exponential notation, so <code>np.logspace(-8, 8, 17)</code> will create a list of 17 values between <span class="math inline">\(10^{-8}\)</span> and <span class="math inline">\(10^8\)</span> (!!)</li>
+</ul></li>
+<li><code>tol</code>: tells the model when to stop trying to improve</li>
+<li><code>class_weight</code>: options for handling imbalanced data</li>
+<li>This is pretty standard scikit-learn code, but with a twist: we are using <code>joblib.parallel_backend('dask')</code> to parallelise the search</li>
+<li>This will distribute the search across the workers in the Dask cluster (and we don’t have to worry about it!)</li>
+<li>The <code>RandomizedSearchCV</code> object will try out 50 different combinations of hyperparameters and return the best one</li>
+</ul>
+</div>
+</section>
+<section id="dask-ml-and-scikit-learn-1" class="level2">
+<h2 class="anchored" data-anchor-id="dask-ml-and-scikit-learn-1">Dask ML and scikit-learn</h2>
+<div style="margin-top: 30px; font-size: 19px;">
+<div id="4dba564d" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the digits dataset</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>digits <span class="op">=</span> load_digits()   </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the parameter space to search through</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>param_space <span class="op">=</span> {</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'C'</span>: np.logspace(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">13</span>),      </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'gamma'</span>: np.logspace(<span class="op">-</span><span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">17</span>),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'tol'</span>: np.logspace(<span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">4</span>),</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'class_weight'</span>: [<span class="va">None</span>, <span class="st">'balanced'</span>], </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the model</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> SVC()</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> RandomizedSearchCV(</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    model,</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    param_space,</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    n_iter<span class="op">=</span><span class="dv">50</span>,</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span><span class="dv">10</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform the search using Dask</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> time.time()</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> joblib.parallel_backend(<span class="st">'dask'</span>):</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    search.fit(digits.data, digits.target)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> time.time()</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the elapsed time</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>elapsed_time <span class="op">=</span> end_time <span class="op">-</span> start_time</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the best parameters</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best parameters found: "</span>, search.best_params_)</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best score: "</span>, search.best_score_)</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best estimator: "</span>, search.best_estimator_)</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken: </span><span class="sc">{:.2f}</span><span class="st"> seconds"</span>.<span class="bu">format</span>(elapsed_time))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fitting 3 folds for each of 50 candidates, totalling 150 fits
+Best parameters found:  {'tol': 0.1, 'gamma': 0.001, 'class_weight': 'balanced', 'C': 1000.0}
+Best score:  0.9760712298274902
+Best estimator:  SVC(C=1000.0, class_weight='balanced', gamma=0.001, tol=0.1)
+Time taken: 4.70 seconds</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="now-lets-tackle-the-problems-we-discussed-earlier" class="level2">
+<h2 class="anchored" data-anchor-id="now-lets-tackle-the-problems-we-discussed-earlier">Now let’s tackle the problems we discussed earlier…</h2>
+<section id="neither-compute-nor-memory-constrained" class="level3">
+<h3 class="anchored" data-anchor-id="neither-compute-nor-memory-constrained">Neither compute nor memory constrained</h3>
+<div style="margin-top: 30px; font-size: 30px;">
+<ul>
+<li>The model was trained in just a few seconds!</li>
+<li>The dataset is small, so we are not memory constrained</li>
+<li>The model is not complex, so we are not compute constrained</li>
+<li>So in this case we only used Dask to parallelise the search, but we could have used scikit-learn alone</li>
+<li>But what if we had a larger dataset or a more complex model?</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="memory-constrained-but-not-compute-constrained" class="level2">
+<h2 class="anchored" data-anchor-id="memory-constrained-but-not-compute-constrained">Memory constrained, but not compute constrained</h2>
+<div style="margin-top: 30px; font-size: 27px;">
+<ul>
+<li>Here we have a case where the dataset is too large to fit in memory, but there is enough compute power to train the model</li>
+<li>It makes sense to use Parquet and Dask DataFrames to load the data in chunks, but this may not be enough</li>
+<li>A cool solution is Dask’s <code>dask_ml</code> <code>Incremental</code> class, which can train models on chunks of data</li>
+<li>It starts training the model on many hyper-parameters on a small amount of data, and then only continues training those models that seem to be performing well</li>
+<li>The command is <code>dask_ml.model_selection.IncrementalSearchCV()</code></li>
+<li>There are some new variations of this method that are worth checking out. <a href="https://ml.dask.org/hyper-parameter-search.html">Here is the documentation</a></li>
+<li>This strategy is based on scikit-learn’s <code>partial_fit</code> method. <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDClassifier.html#sklearn.linear_model.SGDClassifier.partial_fit">More information here</a></li>
+</ul>
+</div>
+</section>
+<section id="incremental-search" class="level2">
+<h2 class="anchored" data-anchor-id="incremental-search">Incremental Search</h2>
+<div style="margin-top: 30px; font-size: 22px;">
+<ul>
+<li>Let’s see an example with 2 million possible hyperparameter combinations and a dataset with 10 million samples (!)</li>
+<li>Combined, <code>X</code> and <code>y</code> will take up about 16 GB of memory</li>
+<li>We will use the <code>make_classification</code> function from <code>dask_ml.datasets</code> to create the dataset</li>
+</ul>
+<div id="becc8b0c" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask_ml.datasets <span class="im">import</span> make_classification</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_classification(n_samples<span class="op">=</span><span class="dv">10000000</span>, n_features<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                           chunks<span class="op">=</span><span class="dv">100000</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the model</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> SGDClassifier</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> SGDClassifier(tol<span class="op">=</span><span class="fl">1e-3</span>, penalty<span class="op">=</span><span class="st">'elasticnet'</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters we want to search through</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {<span class="st">'alpha'</span>: np.logspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">1</span>, num<span class="op">=</span><span class="dv">1000</span>),</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>          <span class="st">'l1_ratio'</span>: np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, num<span class="op">=</span><span class="dv">1000</span>),</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>          <span class="st">'average'</span>: [<span class="va">True</span>, <span class="va">False</span>]}</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform the search</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask_ml.model_selection <span class="im">import</span> IncrementalSearchCV</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> IncrementalSearchCV(model, params, random_state<span class="op">=</span><span class="dv">0</span>, decay_rate<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> time.time()</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>search.fit(X, y, classes<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> time.time()</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the elapsed time</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>elapsed_time <span class="op">=</span> end_time <span class="op">-</span> start_time</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the best parameters, best score, and the time taken</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best parameters found: "</span>, search.best_params_)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best score: "</span>, search.best_score_)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best estimator: "</span>, search.best_estimator_)</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Time taken: </span><span class="sc">{</span>elapsed_time<span class="sc">:.2f}</span><span class="ss"> seconds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/miniconda3/envs/datasci185-py312/lib/python3.12/site-packages/dask/base.py:1462: UserWarning: Running on a single-machine scheduler when a distributed client is active might lead to unexpected results.
+  warnings.warn(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Best parameters found:  {'l1_ratio': 0.7837837837837838, 'average': False, 'alpha': 0.03447764054734464}
+Best score:  0.70481
+Best estimator:  SGDClassifier(alpha=0.03447764054734464, l1_ratio=0.7837837837837838,
+              penalty='elasticnet', random_state=0)
+Time taken: 12.66 seconds</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="incremental-search-1" class="level2">
+<h2 class="anchored" data-anchor-id="incremental-search-1">Incremental Search</h2>
+<div style="margin-top: 30px; font-size: 30px;">
+<ul>
+<li>It took <span class="alert">less than one minute</span> to train the model, which is <em>pretty fast</em> considering the size of the dataset</li>
+<li>My computer has 16 GB of RAM, so I would not be able to load the dataset in memory</li>
+<li>But the model runs fine, and I was using my computer normally</li>
+<li>Now let’s see another example…</li>
+</ul>
+</div>
+</section>
+<section id="compute-constrained-but-not-memory-constrained" class="level2">
+<h2 class="anchored" data-anchor-id="compute-constrained-but-not-memory-constrained">Compute constrained, but not memory constrained</h2>
+<div style="margin-top: 30px; font-size: 21px;">
+<ul>
+<li>Here we have a case where the model is too complex to train in a reasonable amount of time</li>
+<li>Or the models require specialised hardware like GPUs</li>
+<li>The best class for this case is <code>HyperbandSearchCV</code>, which is a hyperparameter search algorithm that is based on the <a href="https://arxiv.org/abs/1603.06560">Hyperband algorithm</a></li>
+<li>In a nutshell, this algorithm is easy to use, has strong mathematical motivation and often performs well</li>
+</ul>
+<div id="3f8cdb2d" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask_ml.model_selection <span class="im">import</span> HyperbandSearchCV</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dask_ml.datasets <span class="im">import</span> make_classification</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> SGDClassifier</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_classification(chunks<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>est <span class="op">=</span> SGDClassifier(tol<span class="op">=</span><span class="fl">1e-3</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>param_dist <span class="op">=</span> {<span class="st">'alpha'</span>: np.logspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, num<span class="op">=</span><span class="dv">1000</span>),</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>              <span class="st">'loss'</span>: [<span class="st">'hinge'</span>, <span class="st">'log_loss'</span>, <span class="st">'modified_huber'</span>, <span class="st">'squared_hinge'</span>],</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>              <span class="st">'average'</span>: [<span class="va">True</span>, <span class="va">False</span>]}</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> time.time()</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> HyperbandSearchCV(est, param_dist)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>search.fit(X, y, classes<span class="op">=</span>np.unique(y))</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> time.time()</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the elapsed time</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>elapsed_time <span class="op">=</span> end_time <span class="op">-</span> start_time</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best parameters found: "</span>, search.best_params_)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best score: "</span>, search.best_score_)</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Best estimator: "</span>, search.best_estimator_)</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Time taken: </span><span class="sc">{</span>elapsed_time<span class="sc">:.2f}</span><span class="ss"> seconds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/miniconda3/envs/datasci185-py312/lib/python3.12/site-packages/dask/base.py:1462: UserWarning: Running on a single-machine scheduler when a distributed client is active might lead to unexpected results.
+  warnings.warn(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Best parameters found:  {'loss': 'log_loss', 'average': True, 'alpha': 0.02271728133026905}
+Best score:  0.6
+Best estimator:  SGDClassifier(alpha=0.02271728133026905, average=True, loss='log_loss')
+Time taken: 1.61 seconds</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="compute-and-memory-constrained" class="level2">
+<h2 class="anchored" data-anchor-id="compute-and-memory-constrained">Compute and memory constrained</h2>
+<div style="margin-top: 30px; font-size: 30px;">
+<ul>
+<li>This is the worst-case scenario, where you have a large dataset and a complex model</li>
+<li>In this case, you can use a combination of the strategies we discussed earlier
+<ul>
+<li>Use Dask DataFrames to load the data in chunks</li>
+<li>Use the <code>HyperbandSearchCV</code> class to search for the best hyperparameters</li>
+</ul></li>
+<li>Apart from this, you can always use cloud computing services like AWS, GCP, or Azure…</li>
+<li>… or pray to the machine learning gods 😂</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="more-automl" class="level1" data-background-color="#2d4563">
+<h1 data-background-color="#2d4563">More AutoML 🤖</h1>
+<section id="tpot" class="level2">
+<h2 class="anchored" data-anchor-id="tpot">TPOT</h2>
+<div style="margin-top: 30px; font-size: 24px;">
+<ul>
+<li>Here we will use <a href="https://epistasislab.github.io/tpot/">TPOT</a>, which is a Python library that automatically creates and optimises machine learning pipelines using genetic programming</li>
+<li>TPOT is built on top of scikit-learn and uses a similar syntax</li>
+<li>There are several articles about how to optimise AutoML algorithms and quickly find the best model for your data, so I won’t go into too much detail here (but you can check out <a href="https://arxiv.org/pdf/1908.00709">this article</a> for more information)</li>
+<li>First, let’s install TPOT:</li>
+</ul>
+<pre class="{verbatim}"><code>pip install "TPOT==0.12.2"</code></pre>
+<ul>
+<li>I’m using Python 3.13.2 for this example, so your mileage may vary</li>
+</ul>
+</div>
+</section>
+<section id="using-tpot" class="level2">
+<h2 class="anchored" data-anchor-id="using-tpot">Using TPOT</h2>
+<div style="margin-top: 30px; font-size: 21px;">
+<ul>
+<li>Let’s see an example using the <code>load_digits</code> dataset</li>
+</ul>
+<div id="563c024c" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tpot <span class="im">import</span> TPOTClassifier</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_digits</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the digits dataset</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>digits <span class="op">=</span> load_digits()</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the dataset into training and testing sets</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(digits.data, digits.target,</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>                                                    train_size<span class="op">=</span><span class="fl">0.75</span>, test_size<span class="op">=</span><span class="fl">0.25</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the TPOTClassifier object</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> time.time()</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>tpot <span class="op">=</span> TPOTClassifier(generations<span class="op">=</span><span class="dv">2</span>, population_size<span class="op">=</span><span class="dv">5</span>, verbosity<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>tpot.fit(X_train, y_train)</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> time.time()</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>elapsed_time <span class="op">=</span> end_time <span class="op">-</span> start_time</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Get predictions and calculate score</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> tpot.predict(X_test)</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Score: </span><span class="sc">{</span>score<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Time taken: </span><span class="sc">{</span>elapsed_time<span class="sc">:.2f}</span><span class="ss"> seconds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>is_classifier
+is_regressor
+is_classifier
+is_regressor
+is_classifier
+is_regressor</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/miniconda3/envs/datasci185-py312/lib/python3.12/site-packages/sklearn/base.py:1230: FutureWarning: passing a class to None is deprecated and will be removed in 1.8. Use an instance of the class instead.
+  warnings.warn(
+/opt/miniconda3/envs/datasci185-py312/lib/python3.12/site-packages/sklearn/base.py:1270: FutureWarning: passing a class to None is deprecated and will be removed in 1.8. Use an instance of the class instead.
+  warnings.warn(</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>is_classifier
+is_classifier
+is_classifier
+is_classifier
+is_regressor
+is_classifier
+is_regressor
+is_classifier
+is_regressor
+is_classifier
+is_regressor
+is_classifier
+is_regressor
+is_classifier
+is_regressor
+is_classifier
+is_regressor
+is_classifier
+is_classifier
+is_classifier
+is_classifier
+is_classifier
+is_classifier
+is_classifier
+is_classifier
+is_regressor
+is_classifier
+is_regressor
+is_classifier
+is_regressor
+is_classifier
+is_regressor
+is_classifier
+is_regressor
+is_classifier
+is_regressor
+is_classifier
+is_regressor
+is_classifier
+is_classifier
+is_classifier
+is_regressor
+is_classifier
+is_regressor
+is_classifier</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Version 0.12.2 of tpot is outdated. Version 1.1.0 was released Thursday July 03, 2025.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Optimization Progress:   0%|          | 0/15 [00:00&lt;?, ?pipeline/s]Optimization Progress:  13%|█▎        | 2/15 [00:00&lt;00:04,  3.18pipeline/s]Optimization Progress:  20%|██        | 3/15 [00:01&lt;00:05,  2.21pipeline/s]Optimization Progress:  27%|██▋       | 4/15 [00:01&lt;00:05,  2.05pipeline/s]Optimization Progress:  33%|███▎      | 5/15 [00:02&lt;00:03,  2.62pipeline/s]Optimization Progress:  40%|████      | 6/15 [00:02&lt;00:03,  2.33pipeline/s]Optimization Progress:  53%|█████▎    | 8/15 [00:03&lt;00:03,  2.01pipeline/s]Optimization Progress:  60%|██████    | 9/15 [00:07&lt;00:08,  1.47s/pipeline]                                                                           
+Generation 1 - Current best internal CV score: 0.9844031391986782
+Optimization Progress:  67%|██████▋   | 10/15 [00:07&lt;00:07,  1.47s/pipeline]Optimization Progress:  67%|██████▋   | 10/15 [00:08&lt;00:05,  1.18s/pipeline]Optimization Progress:  73%|███████▎  | 11/15 [00:08&lt;00:04,  1.00s/pipeline]Optimization Progress:  87%|████████▋ | 13/15 [00:09&lt;00:01,  1.48pipeline/s]Optimization Progress:  93%|█████████▎| 14/15 [00:12&lt;00:01,  1.18s/pipeline]Optimization Progress: 100%|██████████| 15/15 [00:16&lt;00:00,  1.98s/pipeline]                                                                            
+Generation 2 - Current best internal CV score: 0.98514663362247
+Optimization Progress: 100%|██████████| 15/15 [00:16&lt;00:00,  1.98s/pipeline]                                                                            
+Best pipeline: KNeighborsClassifier(GradientBoostingClassifier(input_matrix, learning_rate=0.01, max_depth=5, max_features=0.15000000000000002, min_samples_leaf=8, min_samples_split=5, n_estimators=100, subsample=0.45), n_neighbors=3, p=1, weights=distance)
+Score: 0.9777777777777777
+Time taken: 31.57 seconds</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="time-series-forecasting-with-prophet" class="level2">
+<h2 class="anchored" data-anchor-id="time-series-forecasting-with-prophet">Time series forecasting with Prophet</h2>
+<div style="margin-top: 30px; font-size: 19px;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Let’s see another example using the <code>Prophet</code> library</li>
+<li><code>Prophet</code> is a forecasting tool that is open source and maintained by Facebook</li>
+<li>It is designed for analysing time series data that display patterns on different time scales</li>
+<li>It is particularly good for data that has multiple seasonality with changing trends</li>
+<li>The library is built on top of <code>PyStan</code>, which is a Python interface to Stan, a probabilistic programming language</li>
+<li>First, let’s install the library:</li>
+</ul>
+<pre class="{verbatim}"><code>pip install prophet</code></pre>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Large datasets are not the only type of scaling challenge teams run into</li>
+<li>In this example we will focus on the third type of scaling challenge: <span class="alert">model complexity</span></li>
+<li>In the words of <a href="https://peerj.com/preprints/3190/">Sean Taylor and Ben Letham</a>, the authors of the <code>Prophet</code> library:
+<ul>
+<li>“<em>In most realistic settings, a large number of forecasts will be created, necessitating efficient, automated means of evaluating and comparing them, as well as detecting when they are likely to be performing poorly. When hundreds or even thousands of forecasts are made, it becomes important to let machines do the hard work of model evaluation and comparison while efficiently using human feedback to fix performance problems.</em>”</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="using-prophet" class="level2">
+<h2 class="anchored" data-anchor-id="using-prophet">Using Prophet</h2>
+<div style="margin-top: 30px; font-size: 19px;">
+<ul>
+<li>We will use Prophet and Dask together to parallise the diagnostics stage of research</li>
+<li>It does not attempt to parallise the training of the model itself (which is actually quite fast to begin with)</li>
+</ul>
+<div id="abb859b8" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prophet <span class="im">import</span> Prophet</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Importing plotly failed. Interactive plots will not work.</code></pre>
+</div>
+</div>
+<ul>
+<li>The values represent the log daily page views for <a href="https://en.wikipedia.org/wiki/Peyton_Manning">Peyton Manning’s Wikipedia page</a></li>
+</ul>
+<div id="fbe51379" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'https://raw.githubusercontent.com/facebook/prophet/master/examples/example_wp_log_peyton_manning.csv'</span>,</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    parse_dates<span class="op">=</span>[<span class="st">'ds'</span>]</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">ds</th>
+<th data-quarto-table-cell-role="th">y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>2007-12-10</td>
+<td>9.590761</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2007-12-11</td>
+<td>8.519590</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>2007-12-12</td>
+<td>8.183677</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>2007-12-13</td>
+<td>8.072467</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>2007-12-14</td>
+<td>7.893572</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-prophet-1" class="level2">
+<h2 class="anchored" data-anchor-id="using-prophet-1">Using Prophet</h2>
+<div style="margin-top: 30px; font-size: 19px;">
+<ul>
+<li>Let’s plot the data and fit the model</li>
+<li>No Dask here, just Prophet</li>
+</ul>
+<div id="69249fd6" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df.plot(x<span class="op">=</span><span class="st">'ds'</span>, y<span class="op">=</span><span class="st">'y'</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> Prophet(daily_seasonality<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>m.fit(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>00:09:25 - cmdstanpy - INFO - Chain [1] start processing
+00:09:27 - cmdstanpy - INFO - Chain [1] done processing</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="22-parallel-automl_files/figure-html/cell-12-output-2.png" width="566" height="402" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-prophet-2" class="level2">
+<h2 class="anchored" data-anchor-id="using-prophet-2">Using Prophet</h2>
+<div style="margin-top: 30px; font-size: 19px;">
+<ul>
+<li>And we can make a forecast. Again, no Dask here</li>
+</ul>
+<div id="143f42a7" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>future <span class="op">=</span> m.make_future_dataframe(periods<span class="op">=</span><span class="dv">365</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>forecast <span class="op">=</span> m.predict(future)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>m.plot(forecast)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<div>
+<figure class="figure">
+<p><img src="22-parallel-automl_files/figure-html/cell-13-output-1.png" width="949" height="564" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="22-parallel-automl_files/figure-html/cell-13-output-2.png" width="949" height="564" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-prophet-with-dask" class="level2">
+<h2 class="anchored" data-anchor-id="using-prophet-with-dask">Using Prophet with Dask</h2>
+<div style="margin-top: 30px; font-size: 19px;">
+<ul>
+<li>Now let’s use Dask to parallelise the diagnostics stage of the research</li>
+<li>Prophet includes a <code>prophet.diagnostics.cross_validation</code> function method, which uses simulated historical forecasts to provide some idea of a model’s quality</li>
+<li>This is done by selecting cutoff points in the history, and for each of them fitting the model using data only up to that cutoff point</li>
+<li>We can then compare the forecasted values to the actual values</li>
+</ul>
+<div style="text-align: center;">
+<p><img src="figures/diagnostics_4_0.png" class="img-fluid" style="width:50.0%"></p>
+</div>
+</div>
+</section>
+<section id="using-prophet-with-dask-1" class="level2">
+<h2 class="anchored" data-anchor-id="using-prophet-with-dask-1">Using Prophet with Dask</h2>
+<div style="margin-top: 30px; font-size: 22px;">
+<ul>
+<li>Let’s then use Dask to parallelise the diagnostics stage of the research</li>
+</ul>
+<div id="b05e8e68" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> prophet.diagnostics</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>df_cv <span class="op">=</span> prophet.diagnostics.cross_validation(</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    m, initial<span class="op">=</span><span class="st">"730 days"</span>, period<span class="op">=</span><span class="st">"180 days"</span>, horizon<span class="op">=</span><span class="st">"365 days"</span>,</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    parallel<span class="op">=</span><span class="st">"dask"</span>)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>df_cv.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div style="text-align: center;">
+<p><img src="figures/prophet.png" class="img-fluid" style="width:65.0%"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusion" class="level1" data-background-color="#2d4563">
+<h1 data-background-color="#2d4563">Conclusion 🎉</h1>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<div style="margin-top: 30px; font-size: 23px;">
+<ul>
+<li>Today we discussed how to parallelise data analysis tasks with Dask and AutoML</li>
+<li>We learnt about Dask Clusters and how to set up a Dask Client</li>
+<li>We discussed the types of problems data scientists face when scaling their models and datasets
+<ul>
+<li>No constraints</li>
+<li>Compute constrained</li>
+<li>Memory constrained</li>
+<li>Compute and memory constrained</li>
+</ul></li>
+<li>We also saw how AutoML tools like TPOT can be used to speed up the process of model selection and hyperparameter tuning</li>
+<li>And we discussed how to use Prophet and Dask together to parallelise the diagnostics stage of research</li>
+<li>I hope you enjoyed the lecture and learnt something new today! 😊</li>
+</ul>
+</div>
+</section>
+<section id="next-class" class="level2">
+<h2 class="anchored" data-anchor-id="next-class">Next class</h2>
+<div style="margin-top: 30px; font-size: 23px;">
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Next class we will discuss how to deal with environments and, mainly, how to use containers to manage your projects</li>
+<li>We will discuss the basics of Docker and how to use it to create and manage containers</li>
+<li>We will also discuss how to use Docker to create reproducible environments for your projects</li>
+<li>I hope to see you there! 🚀</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div style="text-align: center;">
+<p><img src="figures/docker.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="thank-you" class="level1" data-background-color="#2d4563">
+<h1 data-background-color="#2d4563">Thank you! 🙏</h1>
+</section>
+<section id="see-you-next-time" class="level1" data-background-color="#2d4563">
+<h1 data-background-color="#2d4563">See you next time! 🚀</h1>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

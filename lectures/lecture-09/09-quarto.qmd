@@ -1,0 +1,798 @@
+---
+title: DATASCI 350 - Data Science Computing
+subtitle: Lecture 09 - Reproducible Research with Quarto
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: "Department of Data and Decision Sciences <br> Emory University"
+format:
+  clean-revealjs:
+    self-contained: true
+    footer: "[Reproducible Research](https://raw.githack.com/danilofreire/datasci350/main/lectures/lecture-09/09-quarto.html)"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: knitr
+editor:
+  render-on-save: true
+---
+
+# Welcome back! 😊 {background-color="#2d4563"}
+
+## Today's plan 📅 
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Why is [reproducible research](https://en.wikipedia.org/wiki/Reproducibility) so important in data science (and elsewhere too)?
+- The idea of [literate programming](https://en.wikipedia.org/wiki/Literate_programming) and how it can help you write better code
+- An introduction to [Quarto](https://quarto.org/) and how it can help you write reproducible research
+- Using Quarto to write reports in many formats (HTML, PDF, Word, etc.)
+- How to use Quarto to write code
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/quarto.png)
+:::
+:::
+:::
+:::
+
+# Why is reproducible research so important? 🤔 {background-color="#2d4563"}
+
+## The reproducibility crisis
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [Reproducibility](https://en.wikipedia.org/wiki/Reproducibility) is the ability of an entire experiment or study to be duplicated, either by the same researcher or by someone else working independently
+- The [reproducibility crisis](https://en.wikipedia.org/wiki/Replication_crisis) is a term used to describe the inability of researchers to replicate the results of a study using the same data and methods
+- The crisis is not limited to data science, but it's particularly acute in fields like psychology and medicine
+- The crisis is caused by a combination of factors, including poor experimental design, publication bias, and the use of p-values
+- Here we will focus on the role of [code and data in reproducibility]{.alert}, which is the most relevant to us
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; font-size: 18px;"}
+![](figures/power-posing.jpg){width="50%"}
+
+Amy Cuddy demonstrating her theory of "power posing". It could never be replicated. [Ted Talk](https://www.ted.com/talks/amy_cuddy_your_body_language_may_shape_who_you_are?language=en) with 75 million views!
+:::
+:::
+:::
+:::
+
+## The reproducibility crisis in medicine
+
+:::{style="margin-top: 30px; text-align: center; font-size: 16px;"}
+![](figures/ioannidis.png){width="60%"}
+
+<https://doi.org/10.1371/journal.pmed.0020124>
+:::
+
+## The reproducibility crisis in psychology
+
+:::{style="margin-top: 30px; text-align: center; font-size: 16px;"}
+![](figures/science.png){width="60%"}
+
+<https://www.science.org/doi/10.1126/science.aac4716>
+:::
+
+## Why does it matter? We all write code, right? 🤔
+### Code is reproducible by default, isn't it?
+
+:::{style="margin-top: 30px; font-size: 22px; text-align: center;"}
+Think again...
+
+![](figures/sdata.png){width="40%"}
+
+<https://www.nature.com/articles/s41597-022-01143-6>
+:::
+
+# How to make your code reproducible? 🧑🏻‍💻 {background-color="#2d4563"}
+
+## Literate programming
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [Literate programming](https://en.wikipedia.org/wiki/Literate_programming) is a programming paradigm introduced by [Donald Knuth](https://en.wikipedia.org/wiki/Donald_Knuth) in 1984
+- The idea is to treat [code as a form of literature]{.alert}, where the code is interspersed with explanations and documentation
+- The goal is to make the code more [readable and understandable]{.alert} to humans
+- Requires two processing steps: [weaving and tangling]{.alert}
+  - Weaving: converts the literate program into a document
+  - Tangling: extracts the code from the document
+- Literate programming improves code quality by requiring programmers to articulate their reasoning, thus [showing flawed design choices]{.alert}
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/book.jpg){width="60%"}
+:::
+:::
+:::
+:::
+
+## (R)Markdown, Jupyter, and Quarto
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- [LaTeX](https://www.latex-project.org/) is a popular tool for writing scientific documents and is one of the first tools to support literate programming
+- However, LaTeX is not very user-friendly and has a steep learning curve (I know, I've been there 😅)
+- [Markdown](https://en.wikipedia.org/wiki/Markdown) is a lightweight markup language with plain text formatting syntax
+- If you use R, you probably already know [R Markdown](https://rmarkdown.rstudio.com/)
+- If you use Python, you probably already know [Jupyter](https://jupyter.org/)
+- Both are good tools, but they have some limitations
+:::
+
+## (R)Markdown, Jupyter, and Quarto
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+
+- R Markdown, as the name suggests, is more focused on R
+- Jupyter works with many languages, but it's not very good for writing reports or papers
+- [Enter Quarto](https://quarto.org/), a new tool that combines the best of both worlds
+- Quarto is language-agnostic, meaning you can use it with many languages, such as R, Python, Observable, and Julia
+- Quarto is also more powerful than R Markdown and Jupyter, as it allows you to write reports in many formats (HTML, PDF, Word, EPUBs, etc.)
+- As you may have noticed, all my slides, the website, and the course PDFs are written in Quarto
+- Programmers are lazy: [learn it once, use it everywhere!]{.alert}
+:::
+
+## Some Quarto examples
+### Company reports
+
+:::{style="margin-top: 30px; font-size: 22px; text-align: center;"}
+![](figures/report.png){width="40%"}
+:::
+
+## Some Quarto examples
+### Interactive dashboards
+
+:::{style="margin-top: 30px; font-size: 22px; text-align: center;"}
+![](figures/dashboard.png){width="70%"}
+
+<https://jjallaire.github.io/gapminder-dashboard/>
+:::
+
+## Some Quarto examples
+### Books
+
+:::{style="margin-top: 30px; font-size: 22px; text-align: center;"}
+![](figures/book-2.png){width="80%"}  
+:::
+
+## Some Quarto examples
+### Websites
+
+:::{style="margin-top: 30px; font-size: 22px; text-align: center;"}
+![](figures/website.png){width="80%"}
+:::
+
+# And everything with the same code (and version control) 🤩 {background-color="#2d4563"}
+
+# How does Quarto work? 📝 {background-color="#2d4563"}
+
+## How does Quarto work?
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+```{mermaid}
+%%| fig-width: 10
+%%| fig-height: 9
+%%{
+  init: {
+    "theme": "dark",
+    "themeCSS": ".label foreignObject, .cluster-label foreignObject { font-size: 90%; overflow: visible; }"
+  }
+}%%
+flowchart LR
+  A1[qmd] --> C{"knitr<br>(R)"}
+  A1[qmd] --> B{"Jupyter<br>(Python)"}
+  A2[ipynb] --> B{"Jupyter<br>(Python)"}
+  B --> D[md]
+  C --> D[md]
+  D --> E{Pandoc}
+  E --> F[pdf]
+  E --> G[docx]
+  E --> H[html]
+  E --> I[...]
+
+  subgraph engine [Engine]
+  B
+  C
+  end
+```
+:::
+
+:::{.column width="50%"}
+- Quarto files have the `.qmd` extension
+- You can write Python code in `.qmd` files, but you can also render Jupyter notebooks (`.ipynb`) in Quarto with [some YAML configuration](https://quarto.org/docs/tools/jupyter-lab.html)
+- Quarto files are converted to Markdown files, which are then converted to many formats using [Pandoc](https://pandoc.org/)
+- Pandoc is a universal document converter that can convert files from one format to another
+- Pandoc can convert Markdown files to PDF, Word, HTML, and many other formats
+:::
+:::
+:::
+
+## Downloading and installing Quarto
+
+:::{style="margin-top: 30px; font-size: 22px; text-align: center;"}
+![](figures/quarto-download.png){width="80%"}
+
+<https://quarto.org/docs/download/>
+:::
+
+## Downloading and installing Quarto
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+You can also download and install Quarto using:
+
+:::{.columns}
+::: {.column width="50%"}
+- [Homebrew](https://brew.sh/) (macOS/Linux)
+
+```{.bash filename="Bash"}
+brew install --cask quarto
+```
+
+![](figures/quarto-homebrew.png)
+:::
+
+:::{.column width="50%"}
+- [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) (Windows Subsystem for Linux)
+
+```{.bash filename="bash"}
+wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.8.24/quarto-1.8.24-linux-amd64.deb
+sudo dpkg -i quarto-1.8.24-linux-amd64.deb
+# If you get dependency errors, run:
+sudo apt-get install -f
+```
+
+![](figures/quarto-wsl.png)
+
+<https://simonstolarczyk.com/posts/misc/quarto_preview.html>
+:::
+:::
+:::
+
+## Writing with your favourite editor {.smaller}
+
+![](figures/editors.png){width="100%"}
+
+::: {.attribution}
+<https://quarto.org/>
+:::
+
+## Quarto: a command line interface
+### Of course, there is a CLI for that!
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+```{bash}
+#| echo: true
+#| eval: true
+#| attr-output: 'style="font-size: 50%;"'
+#| output-location: fragment
+quarto --help
+```
+:::
+
+## Checking if Quarto is installed
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+```{bash}
+#| echo: true
+#| eval: true
+#| attr-output: 'style="font-size: 50%;"'
+quarto check
+```
+:::
+
+## Installing the Quarto extension for VS Code
+
+:::{style="margin-top: 30px; font-size: 28px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [Quarto for VS Code](https://marketplace.visualstudio.com/items?itemName=quarto.quarto) extension makes it easy to create and edit Quarto documents
+- It offers features like syntax highlighting, code completion, and document rendering
+- You can install it directly from the VS Code Extensions marketplace
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; margin-top: -20px;"}
+![](figures/quarto-vscode.png)
+
+[Quarto extension for VS Code](https://marketplace.visualstudio.com/items?itemName=quarto.quarto)
+:::
+:::
+:::
+:::
+
+## Installing Pandoc and LaTeX
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Quarto comes with Pandoc, so you don't need to install it separately
+- However, if you want to render PDF files, you need to install a LaTeX distribution
+- I recommend [TinyTeX](https://yihui.org/tinytex/), which is a lightweight, portable, cross-platform, and easy-to-maintain LaTeX distribution
+
+```{bash}
+#| echo: true
+#| eval: false
+# Install TinyTeX in the terminal:
+quarto install tinytex
+```
+
+- If you have `R` installed, you can also install TinyTeX using the `tinytex` package
+- See <https://yihui.org/tinytex/#installation> for more details
+
+```{r}
+#| echo: true
+#| eval: false
+# In R:
+install.packages("tinytex")
+tinytex::install_tinytex()
+```
+
+:::
+
+## Creating a new Quarto project
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+
+```{bash}
+#| echo: true
+#| eval: false
+quarto create project
+```
+
+:::{.fragment}
+```{bash}
+#| echo: true
+#| eval: false
+ ? Type
+ ❯ default
+   website
+   blog
+   manuscript
+   book
+   confluence
+```
+:::
+:::
+
+## Quarto projects: `default`
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+
+```{bash}
+#| echo: true
+#| eval: false
+quarto create project default Default
+```
+
+```{verbatim}
+demo/Default
+├── Default.qmd
+└── _quarto.yml
+
+1 directory, 2 files
+```
+
+![](figures/quarto-project-default.png){width="80%"}
+:::
+
+## Quarto projects: `default`
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- `_quarto.yml`: project configuration file
+
+```markdown
+project:
+  title: "Default"
+```
+
+- `Default.qmd`: default Quarto document
+
+```markdown
+---
+title: "Default"
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+```
+:::
+
+## Quarto projects: `website`
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+
+```{bash}
+#| echo: true
+#| eval: false
+quarto create project website Website
+```
+
+```{verbatim}
+demo/Website
+├── _quarto.yml
+├── about.qmd
+├── index.qmd
+└── styles.css
+
+1 directory, 4 files
+```
+
+![](figures/quarto-project-website.png){width="80%"}
+:::
+
+## Quarto projects: `blog`
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+
+```{bash}
+#| echo: true
+#| eval: false
+quarto create project blog Blog
+```
+
+```{verbatim}
+demo/Blog
+├── _quarto.yml
+├── about.qmd
+├── index.qmd
+├── posts
+│   ├── _metadata.yml
+│   ├── post-with-code
+│   │   ├── image.jpg
+│   │   └── index.qmd
+│   └── welcome
+│       ├── index.qmd
+│       └── thumbnail.jpg
+├── profile.jpg
+└── styles.css
+
+4 directories, 10 files
+```
+
+![](figures/quarto-project-blog.png){width="80%"}
+:::
+
+## Quarto projects: `book`
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+
+```{bash}
+#| echo: true
+#| eval: false
+quarto create project book Book
+```
+
+```{verbatim}
+demo/Book
+├── _quarto.yml
+├── cover.png
+├── index.qmd
+├── intro.qmd
+├── references.bib
+├── references.qmd
+└── summary.qmd
+
+1 directory, 7 files
+```
+
+![](figures/quarto-project-book.png){width="80%"}
+:::
+
+## Quarto projects: `manuscript`
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+
+```{bash}
+#| echo: true
+#| eval: false
+quarto create project manuscript Manuscript
+```
+
+```{verbatim}
+demo/Manuscript
+├── _quarto.yml
+├── index.qmd
+└── references.bib
+
+1 directory, 3 files
+```
+
+![](figures/quarto-project-manuscript.png){width="80%"}
+:::
+
+## Quarto files
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Most of the time, however, you will be working with single `.qmd` files for reports or presentations
+- [You don't need to create a project for that!]{.alert}
+- You can create a new Quarto file using the command line or your favourite editor
+
+```{bash}
+#| echo: true
+#| eval: false
+touch my-report.qmd
+```
+
+- Then you can open the file in your editor and start writing
+:::
+
+# Quarto engines {background-color="#2d4563"}
+
+## knitr
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+---
+title: "ggplot2 demo"
+  format: 
+    html:
+      code-fold: true
+---
+
+## Meet Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+```{{r}}
+#| label: plot-penguins
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(palmerpenguins)
+
+ggplot(penguins, 
+       aes(x = flipper_length_mm, y = bill_length_mm)) +
+geom_point(aes(color = species, shape = species)) +
+scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(
+    title = "Flipper and bill length",
+    subtitle = "Dimensions for penguins at Palmer Station LTER",
+    x = "Flipper length (mm)", y = "Bill length (mm)",
+    color = "Penguin species", shape = "Penguin species"
+  ) +
+theme_minimal()
+```
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/knitr-plot.png){width="90%"}
+:::
+:::
+:::
+:::
+
+## Jupyter
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+```{verbatim}
+---
+title: "Palmer Penguins Demo"
+  format: 
+    html:
+      code-fold: true
+jupyter: python3
+---
+
+
+## Meet Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+```{{python}}
+#| echo: false
+#| message: false
+
+import pandas as pd
+import seaborn as sns 
+from palmerpenguins import load_penguins
+sns.set_style('whitegrid')
+
+penguins = load_penguins()
+
+g = sns.lmplot(x="flipper_length_mm",
+               y="body_mass_g",
+               hue="species",
+               height=7,
+               data=penguins,
+               palette=['#FF8C00','#159090','#A034F0']);
+g.set_xlabels('Flipper Length');
+g.set_ylabels('Body Mass');
+```
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/jupyter-plot.png){width="90%"}
+:::
+:::
+:::
+:::
+
+## Quarto tooling
+
+::: {layout-ncol="2" align="center"}
+![](https://quarto.org/docs/get-started/images/vscode-logo.png){width="160"}
+
+![](https://quarto.org/docs/get-started/images/rstudio-logo.png){width="160"}
+
+![](https://quarto.org/docs/get-started/images/jupyter-logo.png){width="160"}
+
+![](https://quarto.org/docs/get-started/images/text-editor-logo.png){width="160"}
+:::
+
+:::{style="margin-top: 10px; font-size: 20px;"}
+```{verbatim}
+quarto render my-project
+quarto render file.qmd
+quarto render file.qmd --to pdf
+quarto render file.qmd --to html
+```
+:::
+
+## Writing using the Visual Editor
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+![](figures/editor222.png)
+
+<https://quarto.org/docs/visual-editor/vscode/>
+:::
+
+## Contents of a Quarto document
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+
+- A Quarto document contains three types of content: a YAML header, code chunks, and Markdown text
+- We will cover Markdown in more detail in the next lecture
+
+::: {layout-ncol="3"}
+![](figures/yaml.png)
+
+![](figures/code-chunks.png)
+
+![](figures/markdown-text.png)
+:::
+:::
+
+## YAML
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+![](figures/yaml.png)
+:::
+
+:::{.column width="50%"}
+-   "Yet another markup language"
+-   Metadata of your document
+-   Demarcated by three dashes (`---`) at either end
+-   Uses key-value pairs in the format `key: value`
+- We include the title, format, author, and other metadata in the YAML header
+
+``` yaml
+---
+title: "Penguins, meet Quarto!"
+format: html
+editor: visual
+---
+```
+:::
+:::
+:::
+
+## Code chunks
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+![](figures/code-chunks.png)
+:::
+
+:::{.column width="50%"}
+-   Code chunks begin and end with three backticks (usually)
+-   Code chunks are identified with a programming language in between `{}`
+-   Can include optional chunk options, in YAML style, identified by `#|` at the beginning of the line
+:::
+:::
+:::
+
+## Code chunks
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+```` markdown
+```{{r}}
+#| label: plot-penguins
+#| warning: false
+#| echo: false
+
+ggplot(penguins, 
+       aes(x = flipper_length_mm, y = bill_length_mm)) +
+  geom_point(aes(color = species, shape = species)) +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(
+    title = "Flipper and bill length",
+    subtitle = "Dimensions for penguins at Palmer Station LTER",
+    x = "Flipper length (mm)", y = "Bill length (mm)",
+    color = "Penguin species", shape = "Penguin species"
+  ) +
+  theme_minimal()
+```
+````
+:::
+
+## Multiple figures
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+Put two plots side by side:
+
+````{verbatim}
+```{r}
+#| label: side-plots
+#| warning: false
+#| echo: true
+#| eval: true
+#| layout-ncol: 2
+
+ggplot(penguins, 
+       aes(x = flipper_length_mm, y = bill_length_mm)) +
+  geom_point(aes(color = species, shape = species))
+
+ggplot(data = penguins, aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity")
+
+```
+````
+:::
+
+## Multiple figures
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+Put two plots side by side:
+
+![](figures/side-plots.png)
+:::
+
+# Phew! That was a lot of information! 🤯 {background-color="#2d4563"}
+
+## In summary...
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Reproducibility is essential in data science (and elsewhere too)
+- Literate programming can help you write better code
+- Quarto is a new tool that combines the best of R Markdown and Jupyter
+- You can use it to write reports, books, websites, and more
+- We will learn how to write reports, presentations, and websites in the next lecture
+:::
+
+## Quarto resources
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- [Quarto documentation](https://quarto.org/docs/)
+- [Quarto on GitHub](https://github.com/quarto-dev/)
+- [Awesome Quarto](https://github.com/mcanouil/awesome-quarto#readme)
+- [Introduction to Quarto (Video)](https://youtu.be/_f3latmOhew?si=18Gdq9HVK-j_G0eM)
+- [Quarto for academics (video)](https://youtu.be/EbAAmrB0luA?si=7sgRwILesUKHPbiG)
+- [Beautiful reports and presentations with Quarto (video - worth watching)](https://www.youtube.com/live/hbf7Ai3jnxY?si=3LDtD38oFj8NCu21)
+:::
+
+# Have a great week! 🎉 {background-color="#2d4563"}
+
+

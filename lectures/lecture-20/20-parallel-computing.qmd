@@ -1,0 +1,1121 @@
+---
+title: DATASCI 350 - Data Science Computing
+subtitle: Lecture 20 - Parallel Computing
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: "Department of Data and Decision Sciences <br> Emory University"
+format:
+  clean-revealjs:
+    self-contained: true
+    code-overflow: wrap
+    footer: "[Parallel Computing](https://raw.githack.com/danilofreire/datasci350/main/lectures/lecture-20/20-parallel-computing.html)"
+transition: slide
+transition-speed: default
+scrollable: true
+execute: 
+  cache: true
+engine: python3
+revealjs-plugins:
+  - fontawesome
+  - multimodal
+editor:
+  render-on-save: true
+---
+
+# Hello, my friends! 😊 <br> {background-color="#2d4563"}
+
+# Today's agenda 📅 {background-color="#2d4563"}
+
+## Lecture outline
+
+:::{style="margin-top: 30px; font-size: 27px;"}
+:::{.columns}
+:::{.column width="45%"}
+- Serial vs Parallel Algorithms
+- Python implementations of parallelism 
+  - Single node 
+  - Multi-node 
+- `Joblib` and `Dask` for parallel computing
+- Tools for further exploration
+:::
+
+:::{.column width="55%"}
+:::{style="text-align: center; margin-top: -50px;"}
+![](figures/cores.webp){width="80%"}
+![](figures/dask.png){width="60%"}
+:::
+:::
+:::
+:::
+
+# Serial vs Parallel Algorithms  {background-color="#2d4563"}
+
+## Serial Execution
+
+:::{style="margin-top: 30px; font-size: 24pt;"}
+- Typical programs operate lines sequentially:
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true 
+# Import packages
+import numpy as np
+
+# Define an array of numbers
+foo = np.array([0, 1, 2, 3, 4, 5])
+
+# Define a function that squares numbers
+def bar(x):
+    return x * x
+
+# Loop over each element and perform an action on it
+for element in foo:
+
+        # Print the result of bar
+        print(bar(element))
+```
+:::
+
+## The map function
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- A key tool that we will utilise later is called `map`
+- This lets us apply a function to each element in a list or array:
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true 
+# (Very) inefficient way to define a map function
+def my_map(function, array):
+    # create a container for the results
+    output = []
+
+    # loop over each element
+    for element in array:
+        
+        # add the intermediate result to the container
+        output.append(function(element))
+    
+    # return the now-filled container
+    return output
+```
+:::
+
+:::{.column width="50%"}
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+my_map(bar, foo)
+``` 
+
+- Python helpfully provides a `map` function in the standard library:
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+list(map(bar, foo))
+```
+
+- The built-in `map` function is much more faster than mine (it's implemented in `C`), so of course you should use that one! 😂
+::: 
+:::
+:::
+
+## Using `joblib` for parallel computing
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+- In the example we showed before, [no step of the `map` call depends on the other steps]{.alert}
+- Rather than waiting for the function to loop over each value, [we could create multiple instances of the function `bar` and apply it to each value simultaneously]{.alert}
+- There are several methods to achieve this, but [we will use `joblib` for this purpose]{.alert}
+    - Install it with `pip install joblib`
+- The `Parallel` function from `joblib` is used to parallelise the task across as many jobs as we want
+- The `n_jobs` parameter specifies the number of jobs to run in parallel
+- The `delayed` function is used to delay the execution of the function `bar` until the parallelisation is ready
+- The `results` variable will contain the output of the parallel computation
+:::
+
+:::{.column width="50%"}
+- Using our `bar` function and `foo` array from before:
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+# Install joblib if you haven't done so yet
+# !pip install joblib
+
+# Import joblib functions 
+from joblib import Parallel, delayed
+
+results = Parallel(n_jobs=6)(delayed(bar)(x) for x in foo)
+results
+```
+
+- What `joblib` is doing here is creating 6 instances of the `bar` function and applying each one to a different element of the `foo` array
+- As you can see, the results are the same as before
+- The difference is that the computation is now done in parallel
+:::
+:::
+:::
+
+## Serial vs parallel execution
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Let's see another example of the difference between serial and parallel execution
+- Here, we will create a NumPy array with 10 million random numbers and perform some mathematical operations on it multiple times
+- Each call to `calculation` is independent of the others, so we call them [embarrassingly parallel]{.alert}, meaning they can be easily parallelised
+- We will use the `%timeit` magic command to measure the time it takes to run a function
+
+- Serial: 
+ 
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+def calculation(size=10000000):
+    # Create a large array and perform operations
+    arr = np.random.rand(size)
+    for _ in range(10):
+        arr = np.sqrt(arr) + np.sin(arr)
+    return np.mean(arr)
+
+# Single run
+%timeit calculation()
+```
+:::
+
+:::{.column width="50%"}
+- Let's run the same function 4 times:
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true 
+# Sequential runs (4 times)
+%timeit [calculation() for _ in range(4)]
+``` 
+
+- Now let's see the parallel version:
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true 
+# Parallel runs (4 times)
+%timeit Parallel(n_jobs=4)(delayed(calculation)() for _ in range(4))
+```
+
+- As you can see, the parallel version is much faster than the serial version
+- It is not exactly 4 times faster because there is some overhead in creating the parallel processes
+- But the difference is still significant
+:::
+:::
+:::
+
+## Another example
+### Processing multiple input files
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- Say we have a number of input files, like `.jpg` images, that we want to perform the same actions on, like rotate by 180 degrees and convert to a different format
+- We can define a function that takes a file as input and performs these actions, then map it on a list of files
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+# Import Python Image Library functions
+from PIL import Image
+```
+
+- Let's read an image file and display it:
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+im = Image.open('./data/kings_cross.jpg')
+# Display image
+im 
+```
+:::
+
+## Parallel processing of images
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Rotate the image by 180 degrees
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+im.rotate(angle=180)
+``` 
+:::
+
+:::{.column width="50%"}
+- Let's define a function that takes a file name as input, opens the file, rotates it upside down, and then saves the output as a PDF:
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+def image_flipper(file_name):
+    # extract the base file name
+    base_name = file_name[0:-4]
+    
+    # open the file
+    im = Image.open(file_name)
+
+    # rotate by 180 degrees
+    im_flipped = im.rotate(angle=180)
+    
+    # Save a PDF with a new file name
+    im_flipped.save(base_name + "_flipped.pdf", format='PDF')
+
+    return base_name + "_flipped.pdf"
+```
+:::
+:::
+:::
+
+## Parallel processing of images
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Let's see the images we have in the `data` folder:
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+import glob
+
+file_list = glob.glob('./data/*jpg')
+
+for f in file_list:
+    print(f)
+```
+:::
+
+:::{.column width="50%"}
+- Again, this is an embarrassingly parallel problem since each image can be processed independently
+- Now let's apply the `image_flipper` function to each file in the list:
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+%timeit Parallel(n_jobs=4)(delayed(image_flipper)(f) for f in file_list)
+```
+:::
+:::
+:::
+
+## Big O notation: Why it matters for parallel computing
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [Big O notation]{.alert} describes how an algorithm's runtime or space requirements grow as the input size grows
+- [O(1)]{.alert}: Constant time: runtime doesn't change with input size (e.g., accessing an array element)
+- [O(n)]{.alert}: Linear time: runtime grows proportionally with input size (e.g., looping through an array)
+- [O(n²)]{.alert}: Quadratic time: runtime grows with the square of input size (e.g., nested loops)
+- The `image_flipper` function we just defined has O(n) complexity relative to the number of images
+- If processing 1 image takes 2 seconds, processing 100 images takes about 200 seconds sequentially
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+```{python}
+#| echo: true
+#| code-fold: true
+#| eval: true
+#| cache: true
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Simulate processing times
+num_images = np.array([1, 10, 50, 100, 200])
+sequential_time = num_images * 2  # 2 seconds per image
+parallel_time = (num_images * 2) / 4  # 4 cores, ideal speedup
+
+plt.figure(figsize=(8, 5))
+plt.plot(num_images, sequential_time, 'o-', label='Serial O(n)', linewidth=2, markersize=8)
+plt.plot(num_images, parallel_time, 's-', label='Parallel O(n/4)', linewidth=2, markersize=8)
+plt.xlabel('Number of Images', fontsize=12)
+plt.ylabel('Time (seconds)', fontsize=12)
+plt.title('O(n) Scaling: Serial vs Parallel', fontsize=14, fontweight='bold')
+plt.legend(fontsize=11)
+plt.grid(True, alpha=0.3)
+plt.show()
+```
+
+:::
+:::
+:::
+:::
+
+## How parallel computing changes complexity
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [Serial complexity:]{.alert} O(n) — time grows linearly with input
+- [Parallel complexity:]{.alert} O(n/p + overhead) where p = number of cores
+  - With 4 cores: [O(n/4 + c)]{.alert} — theoretically 4× faster
+- [Parallel computing can't improve Big O complexity]{.alert}, only the constant factors
+- An O(n²) algorithm is still O(n²) when parallelised, just with a smaller constant
+
+- Parallel computing is most valuable for [embarrassingly parallel O(n) problems]{.alert} like:
+- Processing n images
+- Running n independent simulations
+- Applying a function to n data points
+:::
+
+:::{.column width="50%"}
+- When **not** to parallelise
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+# Example: O(n²) nested loop (not embarrassingly parallel)
+def inefficient_pairwise_sum(data):
+    n = len(data)
+    results = []
+    for i in range(n):
+        for j in range(n):
+            results.append(data[i] + data[j])
+    return results
+
+# This is SLOW for n=1000
+data = list(range(1000))
+
+# DON'T run this - it would take forever!
+# inefficient_pairwise_sum(data)
+```
+
+- [Bad candidates for parallelism]{.alert} include:
+  - Operations where each step depends on the previous
+  - Algorithms with shared state between iterations
+  - Memory-bound problems (limited by RAM speed, not CPU)
+
+:::
+:::
+:::
+
+## Some take-aways
+
+:::{style="margin-top: 30px; font-size: 30px;"}
+- Parallel computing can be much faster than serial computing
+- These problems are essentially independent and share no information between them
+- The `joblib` module makes it simple to run these steps together with a single command
+- This workflow is limited to running on a single computer (or compute node) since there is no mechanism to communicate outside
+:::
+
+## Try it yourself! 🧠 {#sec:exercise01}
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- Install `joblib` and `NumPy` if you haven't done so yet
+  - `!pip install joblib numpy`
+- Compare the time of the serial and parallel versions of the following function:
+
+```{python}
+#| echo: true
+#| eval: false
+def square(x):
+    return x**2
+
+# Create a large array to process
+numbers = np.arange(1000000)
+
+# Sequential version
+%timeit [square(x) for x in numbers]
+```
+
+- Then try the parallel version:
+
+```{python}
+#| echo: true
+#| eval: false
+from joblib import Parallel, delayed
+
+# Parallel version
+%timeit Parallel(n_jobs=4)(delayed(square)(x) for x in numbers)
+```
+
+- What did you find? Is the parallel version faster?
+- [[Appendix 01]{.button}](#sec:appendix01)
+:::
+
+# Dask {background-color="#2d4563"}
+
+## Dask
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [Dask](https://dask.org/) is a flexible parallel computing library for analytic computing
+- It is composed of two components:
+  - [Dynamic task scheduling]{.alert} optimised for computation
+  - ["Big Data" collections]{.alert} like parallel arrays, dataframes, and lists that extend common interfaces like NumPy, Pandas, or Python iterators to larger-than-memory or distributed environments
+- Dask emphasises the following virtues:
+  - Familiar: Provides parallelised NumPy array and Pandas DataFrame objects
+  - Flexible: Provides a task scheduling interface for more custom workloads and integration with other projects
+  - Native: Enables distributed computing in pure Python
+  - Fast: Operates with low overhead, both in small data and large data settings
+:::
+
+:::{.column width="50%"}
+- Let's import Dask and see how it works
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+import dask.dataframe as dd
+import dask.array as da
+```
+
+- Dask arrays are a parallel and distributed version of NumPy arrays
+- They are composed of many NumPy arrays, split along one or more dimensions
+- Each chunk is a separate NumPy array that can be processed in parallel
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+data = np.random.normal(size=100000).reshape(200, 500)
+a = da.from_array(data, chunks=(100, 100))
+a
+```
+:::
+:::
+:::
+
+## Dask arrays
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- Dask arrays are [lazy]{.alert}, that is, they do not compute anything until you ask for it
+- Lazy functions are useful because they allow the user to build up a computation graph (execution plan) before executing it
+- So they [optimise the computation and save memory]{.alert} before running anything
+- For example, let's slice the Dask array `a` to get the first 10 rows of the 6th column
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+a[:10, 5] # first 10 rows of the 6th column
+```
+
+- We use the `.compute()` method to compute the result
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+a[:10, 5].compute()
+```
+:::
+
+## Dask arrays
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- Dask Array supports many common NumPy operations including:
+- Basic arithmetic and scalar mathematics (`+`, `*`, `exp`, `log`, etc)
+- Reductions along axes (`sum()`, `mean()`, `std()`)
+- Tensor operations and matrix multiplication (`tensordot`)
+- Array slicing and basic indexing
+- Axis reordering and transposition
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+a.sum().compute()
+```
+
+- Let's compare a similar operation in NumPy:
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+size = 100000000
+np_arr = np.random.random(size)
+%timeit np_result = np.sqrt(np_arr) + np.sin(np_arr)
+```
+
+- And in Dask:
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+da_arr = da.random.random(size, chunks='auto') 
+%timeit da_result = da.sqrt(da_arr) + da.sin(da_arr)
+```
+:::
+
+## Dask dataframes
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Dask also provides a parallelised version of Pandas dataframes
+- They are composed of many Pandas dataframes, split along the index
+- Let's jump into an example:
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+import dask
+df = dask.datasets.timeseries()
+```
+
+- This is a small dataset of about 240 MB
+- Unlike Pandas, Dask DataFrames [also lazy]{.alert}
+- No data is printed here, instead it is replaced by ellipses (`...`)
+:::
+
+:::{.column width="50%"}
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+df
+```
+
+- Nonetheless, the column names and dtypes are known
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+df.dtypes
+```
+:::
+:::
+:::
+
+## Dask dataframes
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Dask DataFrames support a large subset of the Pandas API
+- Some operations will automatically display the data
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+import pandas as pd
+
+pd.options.display.precision = 2
+pd.options.display.max_rows = 10
+
+df.head()
+```
+:::
+
+:::{.column width="50%"}
+- This example shows how to slice the data based on a condition and then determine the standard deviation of the data in the `x` column
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+df2 = df[df.y > 0]
+df3 = df2.groupby("name").x.std()
+df3
+```
+
+- Note that `df3` is still not shown
+- We can use the `.compute()` method to display the result
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+df3.compute()
+```
+:::
+:::
+:::
+
+## Dask dataframes
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Aggregations are also supported
+- Here we aggregate the sum of the `x` column and the maximum of the `y` column by the `name` column
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+df4 = df.groupby("name").aggregate({"x": "sum", "y": "max"})
+df4.compute()
+```
+:::
+
+:::{.column width="50%"}
+- If you have the available RAM for your dataset then you can persist data in memory
+- We use the `.persist()` method to do this, and then the data will be available for future computations
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+df5 = df4.persist()
+df5.head()
+```
+:::
+:::
+:::
+
+## Time series example
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+- Since the Dask dataframe we are using has a time series structure, we can use the `resample` method to aggregate the data by a time period
+- Let's resample the data by 1 hour and calculate the mean of the `x` and `y` columns
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+df[["x", "y"]].resample("1h").mean().head(3)
+```
+
+- We can also use the `rolling()` method to calculate a rolling mean of the data
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+df[["x", "y"]].rolling(window="24h").mean().head()
+```
+:::
+
+## Try it yourself! 🧠 {#sec:exercise02}
+
+:::{style="margin-top: 30px; font-size: 18px;"}
+- Install `dask` if you haven't done so yet
+  - `!pip install dask`
+
+- [Find the right chunk size!]{.alert}
+
+- Create a Dask array with **10 million** random numbers (or less if you have memory constraints)
+- Vary the chunk size and time the following operation:
+- Calculate `mean(sqrt(x^2))` on the Dask array
+- See the code below for an example with three different chunk sizes. Which one worked best for you? Why do you think that is?
+
+```python
+import numpy as np
+import dask.array as da
+
+size = 10_000_000
+
+# Dask with SMALL chunks
+da_data_small = da.random.random(size, chunks=100_000)  # 100 chunks
+%timeit da.sqrt(da_data_small**2).mean().compute()
+
+# Dask with MEDIUM chunks
+da_data_medium = da.random.random(size, chunks=2_000_000)  # 5 chunks
+%timeit da.sqrt(da_data_medium**2).mean().compute()
+
+# Dask with LARGE chunks
+da_data_large = da.random.random(size, chunks=5_000_000)  # Only 2 chunks
+%timeit da.sqrt(da_data_large**2).mean().compute()
+```
+- [[Appendix 02]{.button}](#sec:appendix02)
+:::
+
+## Dask and SQL
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+- [dask-sql](https://dask-sql.readthedocs.io/en/stable/) is a library that allows you to run SQL queries on Dask DataFrames
+- It is built on top of [Apache Calcite](https://calcite.apache.org/), a SQL interpreter
+- It is still under development, but it already has many features
+- You can install it with `pip install dask-sql`
+- A `dask_sql.Context` is the Python equivalent to a SQL database, 
+- It serves as an interface to register all tables and functions used in SQL queries, as well as execute the queries themselves
+- A single `Context` is created and used for the duration of a Python script or notebook
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+from dask_sql import Context
+c = Context()
+```
+:::
+
+## Dask and SQL
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+- Once a `Context` has been created, there are many ways to register tables in it
+- The simplest way to do this is through the `create_table` method
+- Supported input types include Pandas DataFrames, Dask DataFrames, remote datasets (like on Amazon S3), and more
+  - More information here: <https://dask-sql.readthedocs.io/en/latest/data_input.html>
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+# Register and persist a dask table
+from dask.datasets import timeseries
+ddf = timeseries()
+c.create_table("dask", ddf, persist=True)
+```
+
+- Now we can run SQL queries on the `timeseries` table
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+c.sql("SELECT AVG(x) FROM dask").compute()
+```
+:::
+
+## Dask, SQL and Pandas
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+- You can of course combine all three libraries!
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+# Perform a multi-column sort
+res = c.sql("""
+    SELECT * FROM dask ORDER BY name ASC, id DESC, x ASC
+""")
+
+# Now do some follow groupby aggregations
+res.groupby("name").agg({"x": "sum", "y": "mean"}).compute()
+```
+:::
+
+# Read and write data with Dask {background-color="#2d4563"}
+
+## Reading and writing data
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+- `.csv` is very common in data science (and for good reasons)
+- Pandas reads and writes `.csv` files very well, but it is not the best option for large files
+- It may need several gigabytes of memory to read a large file, as it reads the entire file into memory
+- Dask provides a [much more efficient way](https://docs.dask.org/en/latest/dataframe-create.html) to read and write `.csv` files
+- Let's split our dataset
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+df = dask.datasets.timeseries()
+df
+```
+
+```{python}
+#| echo: true
+#| eval: true
+import os
+import datetime
+
+if not os.path.exists('data'):
+    os.mkdir('data')
+
+def name(i):
+    """ Provide date for filename given index
+
+    Examples
+    --------
+    >>> name(0)
+    '2000-01-01'
+    >>> name(10)
+    '2000-01-11'
+    """
+    return str(datetime.date(2000, 1, 1) + i * datetime.timedelta(days=1))
+
+df.to_csv('data/*.csv', name_function=name);
+```
+:::
+
+## Reading and writing data
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+- We now have many CSV files in our `data` directory, one for each day in the month of January 2000
+- Each CSV file holds time series data for that day
+- We can read all of them as one logical dataframe using the `dd.read_csv` function 
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+df = dd.read_csv('data/2000-*-*.csv')
+df
+```
+
+- Let's do a simple computation
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+%timeit df.groupby('name').x.mean().compute()
+```
+:::
+
+## Reading and writing data
+### Parquet files
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+- Although `.csv` files are nice, new formats like [Parquet](https://parquet.apache.org/) are gaining popularity
+- Data are [stored by column rather than by row]{.alert}, allowing for efficient querying of specific columns without reading entire rows
+- It can be used with various programming languages and data processing frameworks
+- Achieves up to [75% reduction in file size]{.alert} compared to uncompressed formats
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+df.to_parquet('data/2000-01.parquet', engine='pyarrow')
+```
+
+- Now we can read the parquet file
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+df = dd.read_parquet('data/2000-01.parquet', columns=['name', 'x'], engine='pyarrow')
+df
+```
+
+- Let's do the same computation as before
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+%timeit df.groupby('name').x.mean().compute()
+```
+:::
+
+# Dask delayed {background-color="#2d4563"}
+
+## Dask delayed
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Sometimes you don't want to use an entire Dask DataFrame or Dask Array
+- You may want to parallelise a single function, for instance, or a small part of your code
+- There is a way to do this with Dask: the `dask.delayed` function
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+def calculation(size=10000000):
+    arr = np.random.rand(size)
+    for _ in range(10):
+        arr = np.sqrt(arr) + np.sin(arr)
+    return np.mean(arr)
+
+%timeit [calculation() for _ in range(4)]
+```
+:::
+
+:::{.column width="50%"}
+- We just need to add the `@dask.delayed` decorator to the function
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+@dask.delayed
+def delayed_calculation(size=10000000):
+    arr = np.random.rand(size)
+    for _ in range(10):
+        arr = np.sqrt(arr) + np.sin(arr)
+    return np.mean(arr)
+
+results = []
+for _ in range(5):
+    results.append(delayed_calculation())
+
+# Compute all results at once
+%timeit final_results = dask.compute(*results)
+```
+
+- As you can see, the results are notably faster, and we didn't have to change the code at all!
+- Just remember to add the `.compute()` method at the end
+:::
+:::
+:::
+
+## Dask delayed
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+- We can even visualise the computation graph
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+@dask.delayed
+def generate_data(size):
+    return np.random.rand(size)
+
+@dask.delayed
+def transform_data(data):
+    return np.sqrt(data) + np.sin(data)
+
+@dask.delayed
+def aggregate_data(data):
+    return {
+        'mean': np.mean(data),
+        'std': np.std(data),
+        'max': np.max(data)
+    }
+
+# Compare execution
+sizes = [1000000, 2000000, 3000000]
+
+# Dask execution
+dask_results = []
+for size in sizes:
+    data = generate_data(size)
+    transformed = transform_data(data)
+    stats = aggregate_data(transformed)
+    dask_results.append(stats)
+
+%timeit dask.compute(*dask_results)
+```
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+dask.visualize(*dask_results)
+```
+:::
+
+# Best practices {background-color="#2d4563"}
+
+## Best practices
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+- Parallel computing can be a powerful tool, but it is not always the best solution
+- So here are some tips from the creators of Dask themselves:
+- [Start small]{.alert}:  NumPy, pandas, scikit-learn may have faster functions for what you’re trying to do. Sometimes just by changing the data format to Parquet you can get a huge speedup
+- [Sampling]{.alert}:  If you have a large dataset, try working with a sample of the data first. _Do you really need_ all those TBs of data? 
+- [Load data with Dask]{.alert}:  If you have a large dataset, load it with Dask from the start. It’s much easier to scale up than to scale down
+- [Use `.compute()` and `.persist()` sparingly]{.alert}:  These functions can be expensive, so use them only when you need to
+- [Experiment with chunk sizes]{.alert}:  The right chunk size can make a big difference in performance (or use `chunks='auto'` if you’re unsure)
+- [Break up computations into many pieces]{.alert}:  This will allow Dask to parallelise the computation faster
+- [Use `.parquet` files for large datasets]{.alert}:  They are much more efficient than `.csv` files
+- More tips can be found [here](https://docs.dask.org/en/latest/best-practices.html)
+:::
+
+# And that's all for today! 🎉 {background-color="#2d4563"}
+
+# See you next time! 😊 {background-color="#2d4563"}
+
+## Appendix 01 {#sec:appendix01}
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- Here is the solution to the exercise:
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+def square(x):
+    return x**2
+
+# Create a large array to process
+numbers = np.arange(1000000)
+
+# Sequential version
+%timeit [square(x) for x in numbers]
+```
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+from joblib import Parallel, delayed
+
+# Parallel version
+%timeit Parallel(n_jobs=4)(delayed(square)(x) for x in numbers)
+```
+
+[[Back to exercise]{.button}](#sec:exercise01)
+:::
+
+## Appendix 02 {#sec:appendix02}
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- Create an array with **10 million** random numbers and calculate: `mean(sqrt(x^2))`
+- Try different chunk sizes and see which one works best
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+size = 10000000
+
+# Dask with SMALL chunks 
+da_data_small = da.random.random(size, chunks=100000)
+%timeit da.sqrt(da_data_small**2).mean().compute()
+```
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+# Dask with MEDIUM chunks 
+da_data_medium = da.random.random(size, chunks=2000000)
+%timeit da.sqrt(da_data_medium**2).mean().compute()
+```
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+# Dask with LARGE chunks 
+da_data_large = da.random.random(size, chunks=5000000)
+%timeit da.sqrt(da_data_large**2).mean().compute()
+```
+
+```{python}
+#| echo: true
+#| eval: true
+#| cache: true
+# Dask with AUTO chunks 
+da_data_auto = da.random.random(size, chunks='auto')
+%timeit da.sqrt(da_data_auto**2).mean().compute()
+```
+
+[[Back to exercise]{.button}](#sec:exercise02)
+:::

@@ -1,0 +1,572 @@
+---
+title: DATASCI 350 - Data Science Computing
+subtitle: Lecture 07 - More Git Commands, CLI and Git Practice
+author:
+  - name: Danilo Freire
+    orcid: 0000-0002-4712-6810
+    email: danilo.freire@emory.edu
+    affiliations: "Department of Data and Decision Sciences <br> Emory University"
+format:
+  clean-revealjs:
+    self-contained: true
+    footer: "[Git Practice](https://raw.githack.com/danilofreire/datasci350/main/lectures/lecture-07/07-practice.html)"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: python3
+editor:
+  render-on-save: true
+---
+
+# Hello, everyone! 😊 {background-color="#2d4563"}
+
+# Recap and lecture overview 📚 {background-color="#2d4563"}
+
+## Recap of our last lecture
+### In our last class, we covered
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- How to `push` and `pull` changes to and from remote repositories
+- Using `.gitignore` to avoid tracking certain files
+- Creating and managing branches with `git branch` and `git checkout`
+- The difference between `clone` and `fork` repositories
+- Resolving conflicts when multiple people change the same code
+- Going back to specific commits with `git checkout` and `git reset`
+- Workflow for merging branches back to master
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/git-ref.png){width="100%"}
+
+Source: [Lodato (2010)](https://marklodato.github.io/visual-git-guide/index-en.html)
+:::
+:::
+:::
+:::
+
+## Today's lecture
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+Today we will cover:
+
+- Understanding changes with `git diff`
+- Amending commits with `git commit --amend`
+- Cherry-picking commits with, well, `git cherry-pick` 😅
+- Understanding `git rebase` and its uses
+- Installing and setting up GitHub CLI
+- GitHub CLI repository management
+- [Mock-up quiz!]{.alert}
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+![](figures/github-cli.jpeg){width="70%"}
+![](figures/cli.png){width="70%"}
+:::
+:::
+:::
+:::
+
+# Understanding changes with git diff 🔍 {background-color="#2d4563"}
+
+## What is `git diff`?
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- `git diff` shows you [what has changed]{.alert} between commits, branches, or your working directory
+- It is one of the most useful Git commands for understanding your code changes
+- Helps you review changes before committing
+- The output shows line-by-line differences with `+` for additions and `-` for deletions
+- Let's see how it works with our former `my-project` repository
+- First, let's make some changes in the `01-data-cleaning.py` file
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center;"}
+```bash
+echo "# This is a data cleaning script" >> ./01-data-cleaning.py
+git diff
+``` 
+
+![](figures/diff-01.png){width="80%"}
+:::
+
+- `diff --git a/file b/file` shows Git is comparing two versions of the same file (`a` = original, `b` = modified)
+- `--- a/file` and `+++ b/file` indicate the original file (before) and new file (after) being compared
+- `@@ -0,0 +1 @@` shows the line numbers affected, with `+` lines indicating additions and `-` lines indicating deletions. `-0,0` means that the original file had no lines, and `+1` means one line was added
+:::
+:::
+:::
+
+## Common `git diff` commands
+
+:::{style="margin-top: 30px; font-size: 18px;"}
+:::{.columns}
+:::{.column width="50%"}
+**Basic diff commands:**
+
+- `git diff`: shows unstaged changes in working directory
+- `git diff --staged`: shows staged changes ready to commit
+- `git diff HEAD`: shows all changes since last commit
+- `git diff --name-only`: shows only filenames that changed
+
+:::{style="margin-top: -20px; text-align: center;"}
+![](figures/diff-one-line.png){width="100%"}
+:::
+:::
+
+:::{.column width="50%"}
+**Comparing commits:**
+
+- `git diff commit1..commit2`: compares two specific commits
+- `git diff branch1..branch2`: compares two branches
+- `git diff --stat`: shows summary of changes (files modified, insertions, deletions)
+
+:::{style="margin-top: -20px; text-align: center;"}
+![](figures/diff-commits.png){width="100%"}
+:::
+
+- `@@ -1,4 +1,4 @@` means that in the original file, lines 1 to 4 were present, and in the new file, lines 1 to 4 are also present, but with some changes
+:::
+:::
+:::
+
+# Amending and undoing commits 📝 {background-color="#2d4563"}
+
+## What is `git commit --amend`?
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+- `git commit --amend` allows you to [modify your last commit]{.alert}
+- Useful when you forgot to add files or made a typo in the commit message
+- Can add staged changes to the previous commit
+- Can also change the commit message
+- [Use with caution!]{.alert} Only amend commits that haven't been pushed yet
+
+:::{style="text-align: center; margin-top: -20px;"}
+![](figures/amend-message.png){width="60%"}
+:::
+:::
+
+## How to amend commits
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+**Amending the commit message:**
+```bash
+git commit --amend -m "New commit message"
+```
+
+**Adding forgotten files:**
+```bash
+git add forgotten-file.txt
+git commit --amend --no-edit
+```
+
+**Both together:**
+```bash
+git add new-file.txt
+git commit --amend -m "Updated commit message"
+```
+:::
+
+:::{.column width="50%"}
+**Important rules:**
+
+- Only amend [local commits]{.alert}
+- Never amend commits that have been pushed to a shared repository
+- If you need to modify pushed commits, use `git revert` instead
+- Always communicate with your team before amending shared history
+:::
+:::
+:::
+
+## Undoing commits with `git reset`
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- If you made a mistake, git allows you to undo commits
+- `git reset` can move the HEAD pointer to a previous commit
+- `--soft` keeps changes in the staging area
+- `--hard` discards all changes after the specified commit
+- [Use with caution too!]{.alert} Hard reset will delete uncommitted changes
+
+:::{style="text-align: center; margin-top: -20px;"}
+![](figures/undo.png){width="100%"}
+:::
+:::
+
+:::{.column width="50%"}
+:::{style="margin-top: -20px;"}
+**Undo last commit but keep changes:**
+
+```bash
+git reset --soft HEAD~1
+```
+
+**Undo last commit and discard changes:**
+```bash
+git reset --hard HEAD~1
+```
+
+- You can undo as many commits as needed by changing the number after `HEAD~`, such as `HEAD~2` for the last two commits
+:::
+:::
+:::
+:::
+
+# Cherry-picking commits 🍒 {background-color="#2d4563"}
+
+## What is `git cherry-pick`?
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="50%"}
+- `git cherry-pick` allows you to [pick specific commits]{.alert} from one branch and apply them to another
+- Useful when you want to apply a bug fix or feature from one branch to another
+- Each commit is applied individually with its own commit message
+- Can be used to backport changes to older versions
+- [Creates new commits]{.alert} rather than modifying existing ones
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; margin-top: -20px;"}
+![](figures/cherry-pick.png){width="100%"}
+:::
+:::
+:::
+:::
+
+## Using `git cherry-pick`
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+**Basic cherry-pick:**
+```bash
+# Cherry-pick a single commit
+git cherry-pick abc1234
+
+# Cherry-pick multiple commits
+git cherry-pick abc1234 def5678
+
+# Cherry-pick a range of commits
+git cherry-pick abc1234..def5678
+```
+
+**After cherry-picking:**
+
+- The commit is applied to your current branch
+- It creates a new commit with the same changes
+- Original commit history is preserved
+:::
+
+:::{.column width="50%"}
+**Handling conflicts:**
+```bash
+# If conflicts occur during cherry-pick
+git cherry-pick --continue  # After resolving conflicts
+git cherry-pick --abort     # Cancel the cherry-pick
+git cherry-pick --skip      # Skip the current commit
+```
+
+**Common use cases:**
+
+- Applying hotfixes to multiple branches
+- Backporting features to release branches
+- Moving specific commits between branches
+:::
+:::
+:::
+
+# Understanding git rebase 🔄 {background-color="#2d4563"}
+
+## Understanding `git rebase`
+
+:::{style="margin-top: 30px; font-size: 24px;"}
+:::{.columns}
+:::{.column width="40%"}
+- `git rebase` allows you to [move or combine commits]{.alert} to a new base commit
+- Changes the commit history by replaying commits on top of another base
+- Creates a [linear, clean commit history]{.alert}
+- Useful for keeping feature branches up to date with main branch
+- [Rewrites commit history]{.alert} - avoid using it on shared or public branches!
+:::
+
+:::{.column width="60%"}
+:::{style="text-align: center; margin-top: -20px;"}
+![](figures/rebase.png){width="100%"}
+:::
+:::
+:::
+:::
+
+## Types of rebasing
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+**Interactive rebase:**
+```bash
+# Interactive rebase of last 3 commits
+git rebase -i HEAD~3
+
+# Interactive rebase to specific commit
+git rebase -i abc1234
+```
+
+**Rebase onto another branch:**
+```bash
+# Rebase current branch onto main
+git rebase main
+
+# Rebase feature branch onto main
+git checkout feature-branch
+git rebase main
+```
+:::
+
+:::{.column width="50%"}
+**During interactive rebase you can:**
+
+- `pick`: use the commit as-is
+- `reword`: change the commit message
+- `edit`: modify the commit contents
+- `squash`: combine with previous commit
+- `drop`: remove the commit entirely
+- `reorder`: change commit order
+:::
+:::
+:::
+
+# GitHub CLI - Installation 🖥️ {background-color="#2d4563"}
+
+## GitHub in the terminal
+
+:::{style="margin-top: 30px; font-size: 17px;"}
+:::{.columns}
+:::{.column width="50%"}
+- GitHub CLI (`gh`) is the [official command-line tool]{.alert} for GitHub
+- Allows you to work with GitHub directly from your terminal
+- No need to open a web browser for common tasks
+- Works seamlessly with Git workflows
+- Supports authentication and works with your GitHub account
+
+**WSL/Ubuntu:**
+```bash
+# Install
+(type -p wget >/dev/null || (sudo apt update && sudo apt install wget -y)) \
+	&& sudo mkdir -p -m 755 /etc/apt/keyrings \
+	&& out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+	&& cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+	&& sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+	&& sudo mkdir -p -m 755 /etc/apt/sources.list.d \
+	&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+	&& sudo apt update \
+	&& sudo apt install gh -y
+
+# Update (if already installed)
+sudo apt update && sudo apt install gh -y
+```
+
+**macOS (using Homebrew):**
+```bash
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install gh
+```
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; margin-top: -20px;"}
+![](figures/gh-cli.png){width="100%"}
+
+Website: <https://cli.github.com/>
+:::
+
+**Verify installation:**
+```bash
+gh --version
+```
+:::
+:::
+:::
+
+## How to connect your terminal to GitHub
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+**Authenticate with GitHub:**
+```bash
+gh auth login
+```
+- Select GitHub.com
+- Choose HTTPS Git operations
+- Choose `Y` to authenticate with a web browser
+- Choose `Login with a web browser` 
+- Press `Enter` to open the link in your browser and copy the one-time code
+
+:::{style="text-align: center; margin-top: -20px;"}
+![](figures/auth.png){width="100%"}
+:::
+
+- And you're all set to use GitHub CLI! 🎉
+:::
+
+## Working with repositories, pull requests, and issues
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+**Repository operations:**
+```bash
+# List your repositories
+gh repo list
+
+# Clone a repository
+gh repo clone username/repo-name
+
+# Create a new repository
+gh repo create 
+
+# View repository details
+gh repo view --web
+
+# Fork a repository
+gh repo fork
+
+# Star/unstar a repository
+gh repo star
+
+# Archive/unarchive a repository
+gh repo archive
+```
+:::
+
+:::{.column width="50%"}
+**Pull requests and issues:**
+
+```bash
+# Create a new pull request
+gh pr create --title "My PR" --body "Description of my PR"
+
+# List pull requests
+gh pr list
+
+# View pull request details
+gh pr view 123 --web
+
+# Create a new issue
+gh issue create --title "My Issue" --body "Description of my issue"
+
+# List issues
+gh issue list
+
+# View issue details
+gh issue view 456 --web
+```
+:::
+:::
+:::
+
+# GitHub CLI - Practical Examples 💡 {background-color="#2d4563"}
+
+## Real-world GitHub CLI usage
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+:::{.columns}
+:::{.column width="50%"}
+```bash
+mkdir new-project && cd new-project
+echo "# New project" > README.md
+git init && git add . && git commit -m "first commit"
+```
+
+:::{style="text-align: center; margin-top: -20px;"}
+![](figures/repo-create01.png){width="100%"}
+:::
+:::
+
+:::{.column width="50%"}
+```bash
+gh repo create
+# Follow the prompts
+gh repo view --web
+```
+
+:::{style="text-align: center; margin-top: -20px;"}
+![](figures/repo-create02.png){width="100%"}
+:::
+:::
+:::
+:::
+
+## Goodbye, GitHub Desktop! 👋 
+
+:::{style="margin-top: 30px; font-size: 23px; text-align: center;"}
+![](figures/gh-repo.png){width="100%"}
+:::
+
+# Practice Time! ⏱️ {background-color="#2d4563"}
+
+## Git and CLI Practice Quiz
+
+:::{style="margin-top: 30px; font-size: 19px;"}
+Please complete the following tasks:
+
+1. Create a new directory called `git-practice` and initialise it as a Git repository
+2. Create a file named `README.md` with the content "# Git Practice Repository"
+3. Create a subdirectory called `src` and inside it create an empty file named `main.py`
+4. Stage and commit all changes with the message "Initial commit with README and main.py"
+5. Create and switch to a new branch called `hotfix`
+6. In the `src` directory, create three files using brace expansion: `utils.js`, `utils.css`, `utils.html`
+7. Create a directory called `temp` and inside it create a file named `debug.log`
+8. Create a `.gitignore` file and add `temp/` to it
+9. Stage and commit all changes with the message "Add hotfix files and gitignore"
+10. Rename `src/main.py` to `src/app.py`
+11. Create a directory called `docs` and copy `README.md` into it as `guide.md`
+12. Delete the `temp` directory and its contents
+13. Stage and commit all changes with the message "Complete hotfix development"
+14. Switch back to the `main` branch and merge the `hotfix` branch
+15. View the commit history in a compact format
+
+After completing these tasks, verify your work by checking the commit history and file structure.
+:::
+
+# And that's a wrap! 🎉 {background-color="#2d4563"}
+
+# Appendix: Quiz answers {background-color="#2d4563"}
+
+## Solutions to practice quiz
+
+:::{style="margin-top: 30px; font-size: 18px;"}
+Here are the answers to the practice quiz. Try to complete the quiz first before checking these answers!
+
+1. `mkdir git-practice && cd git-practice && git init`
+2. `echo "# Git Practice Repository" > README.md`
+3. `mkdir src && touch src/main.py`
+4. `git add . && git commit -m "Initial commit with README and main.py"`
+5. `git checkout -b hotfix`
+6. `touch src/utils.{js,css,html}`
+7. `mkdir temp && touch temp/debug.log`
+8. `echo "temp/" > .gitignore`
+9. `git add . && git commit -m "Add hotfix files and gitignore"`
+10. `mv src/main.py src/app.py`
+11. `mkdir docs && cp README.md docs/guide.md`
+12. `rm -rf temp`
+13. `git add . && git commit -m "Complete hotfix development"`
+14. `git checkout main && git merge hotfix`
+15. `git log --oneline`
+
+**Additional verification commands:**
+
+- Check commit history: `git log --oneline`
+- View file structure: `ls -la`
+- Check branch status: `git branch`
+- View .gitignore contents: `cat .gitignore`
+:::

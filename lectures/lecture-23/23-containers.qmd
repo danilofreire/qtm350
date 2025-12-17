@@ -1,0 +1,874 @@
+---
+title: DATASCI 350 - Data Science Computing
+subtitle: Lecture 23 - Dependency Management, Virtual Environments, and Containers
+author:
+  - name: Danilo Freire
+    email: danilo.freire@emory.edu
+    affiliations: "Department of Data and Decision Sciences <br> Emory University"
+format:
+  clean-revealjs:
+    self-contained: true
+    code-overflow: wrap
+    footer: "[Containers](23-containers.html)"
+transition: slide
+transition-speed: default
+scrollable: true
+engine: python3
+revealjs-plugins:
+  - fontawesome
+editor:
+  render-on-save: true
+---
+
+# Hello again! 😊 <br> How's everything? {background-color="#2d4563"}
+
+# Brief recap of last class 📚 {background-color="#2d4563"}
+
+## Parallel computing with Dask
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- First, we learnt about [Dask Clusters](https://docs.dask.org/en/latest/setup/clusters.html), which allow you to scale your computations across multiple cores or machines
+- We saw how to parallelise the training of machine learning models
+- How to use automated machine learning (AutoML) tools to speed up the process
+- We also discussed how to implement different methods to search for the best hyperparameters using TPOT, scikit-learn, and Dask
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; margin-top: -20px;"}
+![](figures/parallel.png)
+![](figures/parallel02.png){width='80%'}
+:::
+:::
+:::
+:::
+
+# Today's agenda 📅 {background-color="#2d4563"}
+
+## Lecture outline
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="45%"}
+- Today we will talk about a different topic: [how to make sure your results are reproducible?]{.alert}
+- We will discuss the importance of [dependency management, virtual environments, and containers]{.alert}
+- [Replication has been a recurring theme]{.alert} in this course, and today we will learn how to make it easier
+- That is the main reason why we use the command line, git, Quarto, Jupyter, and other tools
+- So today we will discuss some of the [best practices to ensure computational reproducibility]{.alert}
+- We will also discuss how to use [containers]{.alert} to make your code portable, reproducible, and scalable
+- Let's get started! 🚀
+:::
+
+:::{.column width="55%"}
+:::{style="text-align: center; margin-top: -20px;"}
+![](figures/docker-meme.jpg){width='60%'}
+:::
+:::
+:::
+:::
+
+# Dependency management 📦 {background-color="#2d4563"}
+
+## Congratulations! 🎉
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [You now have a project!]{.alert}
+- Your code works great, it runs pretty fast thanks to Dask, your Quarto reports are beautiful, and your analyses (all done in the command line) are stored in a well-documented GitHub repository
+- Are you done? 🤔
+- [Not quite!]{.alert} 😅
+- What if you need to run your code on a different machine? Or share it with a colleague? Or run it again in a few months?
+- You need to [make sure your code will run in the future]{.alert}, and that's where dependency management comes in
+:::
+
+:::{.column width="50%"}
+:::{style="text-align: center; margin-top: -20px;"}
+![](figures/dependencies.png)
+:::
+:::
+:::
+:::
+
+## Why do we need dependency management? 🤔
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+### The problem
+
+- As we have seen in this course (and in many others), [libraries and packages change constantly]{.alert}
+- New versions are released, old versions are deprecated, and not all operating systems have the required libraries installed to run your code
+- Even extremely simple code can break from one version of a library to the next
+- This code written in Python 2.7:
+
+```{python}
+#| echo: true
+#| eval: false
+print "Hello, world!"
+```
+
+- will not work in Python 3.x
+
+```{python}
+#| echo: true
+#| eval: false
+print "Hello world!"
+```
+
+```{verbatim}
+  File "/var/folders/96/r1yycxlj28958p1cdynhbyzw0000gn/T/Rtmpa0OGSM/chunk-code-b08d2b78904b.txt", line 1
+    print "Hello world!"
+                       ^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print("Hello world!")?
+```
+
+:::
+
+:::{.column width="50%"}
+### Some definitions
+
+- [Dependency management]{.alert} is the process of ensuring that your code will run in the future
+- [Dependencies]{.alert} are the external components necessary to run your code, such as libraries, packages, and software
+- [Packages]{.alert} have a name, a type, a version, relevant files for the package's functionality, and potentially dependencies on other packages
+- A [package registry]{.alert} is a directory for packages and stores metadata about packages in the registry, such as [CRAN](https://cran.r-project.org/), [PyPI](https://pypi.org/), or [Conda](https://docs.conda.io/en/latest/)
+- [Dependency management tools]{.alert} help you manage your dependencies, such as [pip](https://pip.pypa.io/en/stable/) and [conda](https://docs.conda.io/en/latest/)
+:::
+:::
+:::
+
+## The reproducibility crisis 🚨
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+:::{.columns}
+:::{.column width="50%"}
+- We have already seen how important it is to ensure that your results are reproducible
+- The [reproducibility crisis]{.alert} is a term used to describe the inability of researchers to replicate the results of a study
+- This affects computer science, statistics, and many other fields
+- Apart from statistical issues such as p-hacking, publication bias, and low statistical power, one of the main reasons for the reproducibility crisis is the [lack of proper documentation and dependency management]{.alert}
+- While the statistical problems are a bit more complex, the latter [can be easily solved with tools that we already have at our disposal]{.alert}
+:::
+
+:::{.column width="50%"}
+- According to a recent [Nature survey](https://www.nature.com/articles/533452a), more than 70% of scholars have tried and failed to reproduce another scientist's research, and [more than half have failed to reproduce their own research]{.alert} 😳
+- 90% of researchers believe that there is a reproducibility crisis in science
+
+:::{style="text-align: center; margin-top: -20px;"}
+![](figures/reproducibility.webp){width='80%'}
+:::
+:::
+:::
+:::
+
+## The reproducibility trade-off 🔄
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{style="text-align: center;"}
+![](figures/trade-off.png){width='80%'}
+:::
+
+- How far should we go to ensure that our results are reproducible?
+- [Due diligence starts at declaring dependencies]{.alert}
+- You can [manage your declared dependencies]{.alert} with a package/environment manager such as `conda` or `pip`
+- You can also [package your dependencies]{.alert} with tools like `renv` (for R), or `pipenv` (for Python)
+- Online environments can be created for your work (in a relatively user-friendly way), such as [Code Ocean](https://codeocean.com/) ($$$), or [Binder](https://mybinder.org/) (free, but with several limitations)
+- [Containers are awesome]{.alert}, and container tools like [Docker](https://www.docker.com/) and [Singularity](https://sylabs.io/singularity/) can be used to package your code and dependencies in a portable way
+- Which one should you use? It depends on your needs, but the more integrated your workflow is, the better!
+:::
+
+## How to declare dependencies? 📜
+
+:::{style="margin-top: 30px; font-size: 19px;"}
+:::{.columns}
+:::{.column width="50%"}
+- Imagine that you have successfully done some analysis with Python, NumPy, pandas, and matplotlib installed, and you have to run a Python script
+- If you are the only one working on the project, you can probably just run it in your local environment. But ask yourself:
+  - What packages/libraries do I need to load?
+  - What OS am I using? (Will this work on my collaborator’s system?)
+  - What are the steps to reproduce my results?
+
+- However, it is better to use a [package manager to declare your dependencies]{.alert}
+- [It's a single file describing the necessary dependencies]{.alert}, which can be used to install all dependencies in one step
+- [Store the file in the repository root (main folder)]{.alert}
+- The file depends on the environment/package manager you want to use:
+  - For `conda` (python and R): generate an `environment.yml` file
+  - For `pip` (python only): generate a `requirements.txt` file
+:::
+
+:::{.column width="50%"}
+- `environment.yml` (for `conda`)
+  - Used by conda to create an environment populated by specific packages and languages
+  - Generate it with `conda env export -f environment.yml`
+  - `-f` is a flag for "file"
+  - If you would like to know more about conda environments, see [this quick intro](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+  - Or get the full story in the [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+
+- `requirements.txt` (for `pip`)
+  - Generate it with `pip freeze | grep -v 'file://' > requirements.txt`
+  - Install dependencies declared with `pip install -r requirements.txt`
+  - `-r` is a flag for "requirements"
+  - Let's see some examples
+:::
+:::
+:::
+
+# Virtual environments 🌐 {background-color="#2d4563"}
+
+## Conda: `environment.yml` file
+
+:::{style="margin-top: 30px; font-size: 21px;"}
+- [Conda environments](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) allow you to create isolated environments with specific versions of packages
+- [Each environment can have its own dependencies]{.alert}, and you can switch between them easily
+- As they are isolated from each other, you can have different versions of the same package in different environments, and you can share the environment file with others
+- They are probably the [most user-friendly]{.alert} way to manage dependencies in Python, and are widely used in data science
+- Here's how to create one:
+
+```{verbatim}
+conda create --name datasci350 python=3.12 -y
+conda activate datasci350
+conda install numpy matplotlib pandas -y
+
+# Or in one line:
+conda create --name datasci350 python=3.12 numpy matplotlib pandas -y
+
+# Check current environment and installed packages
+conda info --envs && conda list
+```
+
+- You can create any file in the environment, e.g., a `scripts` folder (but it won't be shared with others)
+
+```{verbatim}
+cd $(conda info --base)/envs/datasci350
+mkdir scripts
+echo "print('Hello, world!')" > scripts/hello.py
+```
+:::
+
+## Conda: `environment.yml` file
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+- To create an `environment.yml` file, you can use the following command (you can create the file in any folder, e.g., your Desktop):
+
+```{verbatim}
+conda env export --name datasci350 --file ~/Desktop/environment.yml
+```
+
+- This will create a file with the following content:
+
+```{verbatim}
+name: datasci350
+channels:
+  - defaults
+dependencies:
+  - blas=1.0=openblas
+  - bottleneck=1.4.2=py312ha86b861_0
+  - brotli=1.0.9=h80987f9_8
+  - brotli-bin=1.0.9=h80987f9_8
+  - bzip2=1.0.8=h80987f9_6
+  - ca-certificates=2024.9.24=hca03da5_0
+  - contourpy=1.2.0=py312h48ca7d4_0
+  - cycler=0.11.0=pyhd3eb1b0_0
+  - expat=2.6.3=h313beb8_0
+  - fonttools=4.51.0=py312h80987f9_0
+  - freetype=2.12.1=h1192e45_0
+  - jpeg=9e=h80987f9_3
+  - kiwisolver=1.4.4=py312h313beb8_0
+  - lcms2=2.12=hba8e193_0
+  - lerc=3.0=hc377ac9_0
+  - libbrotlicommon=1.0.9=h80987f9_8
+  - libbrotlidec=1.0.9=h80987f9_8
+  - libbrotlienc=1.0.9=h80987f9_8
+  - libcxx=14.0.6=h848a8c0_0
+  - libdeflate=1.17=h80987f9_1
+  - libffi=3.4.4=hca03da5_1
+  - libgfortran=5.0.0=11_3_0_hca03da5_28
+  - libgfortran5=11.3.0=h009349e_28
+  - libopenblas=0.3.21=h269037a_0
+  - libpng=1.6.39=h80987f9_0
+  - libtiff=4.5.1=h313beb8_0
+  - libwebp-base=1.3.2=h80987f9_1
+  - llvm-openmp=14.0.6=hc6e5704_0
+  - lz4-c=1.9.4=h313beb8_1
+  - matplotlib=3.9.2=py312hca03da5_0
+  - matplotlib-base=3.9.2=py312h2df2da3_0
+  - ncurses=6.4=h313beb8_0
+  - numexpr=2.10.1=py312h5d9532f_0
+  - numpy=1.26.4=py312h7f4fdc5_0
+  - numpy-base=1.26.4=py312he047099_0
+  - openjpeg=2.5.2=h54b8e55_0
+  - openssl=3.0.15=h80987f9_0
+  - packaging=24.1=py312hca03da5_0
+  - pandas=2.2.2=py312hd77ebd4_0
+  - pillow=11.0.0=py312hfaf4e14_0
+  - pip=24.2=py312hca03da5_0
+  - pyparsing=3.2.0=py312hca03da5_0
+  - python=3.12.7=h99e199e_0
+  - python-dateutil=2.9.0post0=py312hca03da5_2
+  - python-tzdata=2023.3=pyhd3eb1b0_0
+  - pytz=2024.1=py312hca03da5_0
+  - readline=8.2=h1a28f6b_0
+  - setuptools=75.1.0=py312hca03da5_0
+  - six=1.16.0=pyhd3eb1b0_1
+  - sqlite=3.45.3=h80987f9_0
+  - tk=8.6.14=h6ba3021_0
+  - tornado=6.4.1=py312h80987f9_0
+  - tzdata=2024b=h04d1e81_0
+  - unicodedata2=15.1.0=py312h80987f9_0
+  - wheel=0.44.0=py312hca03da5_0
+  - xz=5.4.6=h80987f9_1
+  - zlib=1.2.13=h18a0788_1
+  - zstd=1.5.6=hfb09047_0
+prefix: /opt/miniconda3/envs/datasci350
+```
+:::
+
+## What are build strings?
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- In conda, a [build](https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/build.html) refers to [a specific compiled binary version of a package]{.alert}
+- Even when software has the same version number, it can be compiled differently for different platforms, Python versions, or with different features enabled
+- A full conda package specification has four components:
+
+```{verbatim}
+numpy=1.21.5=py39h12345_0
+└──┬─┘└─┬──┘ └────┬───┘└┬┘
+   │    │         │     │
+   │    │         │     └─ Build number (0)
+   │    │         └─────── Build string (py39h12345)
+   │    └───────────────── Version (1.21.5)
+   └────────────────────── Package name (numpy)
+```
+
+- The [`--no-builds` flag]{.alert} excludes build numbers from package specifications, making environment files [more portable across different platforms and operating systems]{.alert}
+:::
+
+:::{.column width="50%"}
+- The build string (`py39h12345`) encodes important metadata:
+  - [Python version:]{.alert} `py39`, `py310`
+  - [Architecture:]{.alert} `linux_64`, `osx_arm64`
+  - [Compiler:]{.alert} `gcc9` (GNU/Linux), `clang` (macOS)
+  - [Features:]{.alert} `nomkl` (Intel), `cuda` (NVIDIA GPUs)
+
+- Why do builds exist, then?
+  - [Platform-specific compilation:]{.alert} Software must be compiled differently for different operating systems
+  - [Python version compatibility:]{.alert} Packages are compiled against specific Python versions
+  - [Optional features & dependencies:]{.alert} Different builds can enable/disable features
+  - [Compiler variations:]{.alert} Different compilers produce different binaries
+:::
+:::
+:::
+
+## Conda: `environment.yml` file
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- So far, so good! But what if you want to share your environment with someone else?
+- You can do that by simply sharing the `environment.yml` file with them (or by uploading it to your repository!)
+- They can then create the same environment on their machine by running the following command:
+
+```{verbatim}
+conda env create --file environment.yml
+
+Channels:
+ - defaults
+Platform: osx-arm64
+Collecting package metadata (repodata.json): done
+Solving environment: done
+
+Downloading and Extracting Packages:
+
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done
+#
+# To activate this environment, use
+#
+#     $ conda activate datasci350
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+(base) 
+```
+:::
+
+:::{.column width="50%"}
+- This will create a new environment called `datasci350` with the same packages and versions as the original environment
+- They can then activate the environment and run the code (if they have the necessary files) by running:
+
+```{verbatim}
+conda activate datasci350
+python scripts/hello.py
+```
+
+- To delete the environment, they can run:
+
+```{verbatim}
+conda deactivate
+conda env remove --name datasci350
+```
+
+- And you're done! 🎉
+:::
+:::
+:::
+
+## Pip: `requirements.txt` file
+
+:::{style="margin-top: 30px; font-size: 23px;"}
+- If you are using `pip` instead of `conda`, you can generate a `requirements.txt` file with the following command:
+
+```{verbatim}
+pip freeze > requirements.txt
+```
+
+- This will create a file with the following content:
+
+```{verbatim}
+Bottleneck @ file:///private/var/folders/nz/j7p8yfhx1mv_0grj5xl4650h0000gp/T/abs_55txi4fy1u/croot/bottleneck_1731058642212/work
+contourpy @ file:///Users/builder/cbouss/perseverance-python-buildout/croot/contourpy_1701814001737/work
+cycler @ file:///tmp/build/80754af9/cycler_1637851556182/work
+fonttools @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_60c8ux4mkl/croot/fonttools_1713551354374/work
+kiwisolver @ file:///Users/builder/cbouss/perseverance-python-buildout/croot/kiwisolver_1699239145780/work
+matplotlib==3.9.2
+numexpr @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_b3kvvt6tc6/croot/numexpr_1730215947700/work
+numpy @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_a51i_mbs7m/croot/numpy_and_numpy_base_1708638620867/work/dist/numpy-1.26.4-cp312-cp312-macosx_11_0_arm64.whl#sha256=37afb6b734a197702d848df93bd67c10b52f6467d56e518950d84b6b1c949d27
+packaging @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_81ri4yfpjw/croot/packaging_1720101866878/work
+pandas @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_b53hgou29t/croot/pandas_1718308972393/work/dist/pandas-2.2.2-cp312-cp312-macosx_11_0_arm64.whl#sha256=1956b71d1baac8b370fd9deac6100aadefda112447dca816a81ecbf3ea4eb3e6
+pillow @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_92egn12how/croot/pillow_1731594702114/work
+pyparsing @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_65qfw6vkxg/croot/pyparsing_1731445528142/work
+python-dateutil @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_66ud1l42_h/croot/python-dateutil_1716495741162/work
+pytz @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_a4b76c83ik/croot/pytz_1713974318928/work
+setuptools==75.1.0
+six @ file:///tmp/build/80754af9/six_1644875935023/work
+tornado @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_a4w03z48br/croot/tornado_1718740114858/work
+tzdata @ file:///croot/python-tzdata_1690578112552/work
+unicodedata2 @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_a3epjto7gs/croot/unicodedata2_1713212955584/work
+wheel==0.44.0
+```
+:::
+
+## Making `requirements.txt` more portable
+
+:::{style="margin-top: 30px; font-size: 18px;"}
+- However, `pip freeze` often includes [local file paths]{.alert} that won't work on other machines
+- To create a truly portable `requirements.txt`, we need to [remove these local paths]{.alert}
+- The easiest way is to use `grep` to filter out lines containing `file://`
+
+```{verbatim}
+# Remove local file paths from requirements.txt
+pip freeze | grep -v 'file://' > clean-requirements.txt
+
+# Or if you already have a requirements.txt with local paths:
+grep -v 'file://' requirements.txt > clean-requirements.txt
+```
+
+- What this command does:
+  - `pip freeze`: Lists all installed packages
+  - `grep -v 'file://'`: Excludes lines containing `file://`
+  - `> clean-requirements.txt`: Saves the result to a new file
+
+- Before:
+```{verbatim}
+Bottleneck @ file:///private/var/folders/.../bottleneck_1731058642212/work
+contourpy @ file:///Users/builder/.../contourpy_1701814001737/work
+matplotlib==3.9.2
+numpy @ file:///tmp/build/.../numpy-1.26.4-cp312-cp312-macosx_11_0_arm64.whl
+pandas==2.2.2
+```
+
+- After (portable):
+```{verbatim}
+matplotlib==3.9.2
+pandas==2.2.2
+```
+:::
+
+## Pip: `requirements.txt` file
+
+:::{style="margin-top: 30px; font-size: 26px;"}
+- To install the dependencies, you can run:
+
+```{verbatim}
+pip install -r clean-requirements.txt
+```
+
+- And that's all there is to it! 😊
+- It works in a similar way to `conda`, and it is also widely used in the Python community
+- However, it is not as user-friendly as `conda`, and it does not manage environments as well (it only installs packages in the current environment)
+- You can also use `pipenv` to manage your dependencies
+- Let's see how it works in the next slide 🤓
+:::
+
+## `pipenv` 🐍
+
+:::{style="margin-top: 30px; font-size: 18px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [Pipenv](https://pipenv.pypa.io/en/latest/) is a modern package manager for Python that combines `pip` and `virtualenv` into a single tool
+- It automatically creates and manages virtual environments for your projects
+
+```{verbatim}
+# Install pipenv
+pip install pipenv
+
+# Create project directory and navigate to it
+mkdir datasci350
+cd datasci350
+
+# Install packages (creates Pipfile automatically)
+pipenv install numpy pandas matplotlib
+
+# Activate the virtual environment
+pipenv shell
+
+# Run commands without activating
+pipenv run python script.py
+
+# Install development dependencies
+pipenv install pytest --dev
+```
+:::
+
+:::{.column width="50%"}
+- [`Pipfile`:]{.alert} Human-readable file with direct dependencies (TOML format)
+- [`Pipfile.lock`:]{.alert} Auto-generated with exact versions and hashes (JSON format)
+
+- Example Pipfile:
+```{toml}
+[[source]]
+url = "https://pypi.org/simple"
+
+[packages]
+numpy = ">=1.20.0"
+pandas = ">=2.0.0"
+matplotlib = "~=3.5.0"
+
+[dev-packages]
+pytest = "*"
+black = "*"
+
+[requires]
+python_version = "3.12"
+```
+
+- To share your environment with others:
+
+1. Share your project files (including `Pipfile` and `Pipfile.lock`)
+2. Run `pipenv install`, and you're done! 🎉
+
+:::
+:::
+:::
+
+# Containers 🚢 {background-color="#2d4563"}
+
+## The challenge
+
+:::{style="margin-top: 30px; font-size: 22px; text-align: center;"}
+![](figures/p01.png)
+:::
+
+## The matrix from hell
+
+:::{style="margin-top: 30px; font-size: 22px; text-align: center;"}
+![](figures/p02.png){width='80%'}
+:::
+
+## Cargo transport pre-1960
+
+:::{style="margin-top: 30px; font-size: 22px; text-align: center;"}
+![](figures/p03.png)
+:::
+
+## Also a matrix from hell
+
+:::{style="margin-top: 30px; font-size: 22px; text-align: center;"}
+![](figures/p04.png)
+:::
+
+## The solution: intermodal containers
+
+:::{style="margin-top: 30px; font-size: 22px; text-align: center;"}
+![](figures/p05.png)
+:::
+
+## Docker is a container for your code
+
+:::{style="margin-top: 30px; font-size: 22px; text-align: center;"}
+![](figures/p06.png)
+:::
+
+## Docker eliminates the matrix from hell
+
+:::{style="margin-top: 30px; font-size: 22px; text-align: center;"}
+![](figures/p07.png){width='80%'}
+:::
+
+## What are software containers?
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [Containers](https://www.docker.com/resources/what-container) are a way to package software in a format that can run on any system
+- They are similar to [virtual machines](https://www.vmware.com/topics/glossary/content/virtual-machine) (VMs), but they are more lightweight and portable
+- A virtual machine runs a full operating system, while [a container runs only the necessary libraries and dependencies](https://www.docker.com/resources/what-container) to run the application
+- They are also [one step up from virtual environments]{.alert}, as they package the entire computer environment, not just the dependencies and code
+- That means that you can run your code on [any system that has Docker installed]{.alert}, regardless of the operating system or the hardware
+- Talk about reproducibility! 😊
+:::
+
+:::{.column width="50%"}
+- Containers are created using containerisation tools such as [Docker](https://www.docker.com/) or [Singularity](https://sylabs.io/singularity/)
+- They are usually just [a stripped-down version of Linux]{.alert} with the necessary libraries and dependencies
+- Why Linux? [You already know the answer by now!]{.alert} Because it is open-source, and it is the most widely used operating system in the world (really!)
+- The Linux distribution of choice is usually our familiar [Ubuntu](https://ubuntu.com/) or [Alpine Linux](https://alpinelinux.org/), which is even more lightweight
+- Containers are usually stored in a [container registry](https://www.docker.com/resources/what-container-registry) such as [Docker Hub](https://hub.docker.com/), so you can share them with others too
+:::
+:::
+:::
+
+## What is Docker? 🐳
+
+:::{style="margin-top: 30px; font-size: 19px;"}
+:::{.columns}
+:::{.column width="50%"}
+- [Docker](https://www.docker.com/) is the leading containerisation platform, especially in industry
+- The main entities in Docker are [containers](https://www.docker.com/resources/what-container), [images](https://www.docker.com/resources/what-container), and [registries](https://www.docker.com/resources/what-container-registry)
+- [A container]{.alert}, as we have just seen, is an executable package of software that includes everything needed to run an application
+- [An image is a snapshot of a container]{.alert}. Images are created with the `build` command, and they will produce a container when started with `run`. More about the distinction [here](https://stackoverflow.com/questions/23735149/what-is-the-difference-between-a-docker-image-and-a-container)
+- [A registry]{.alert} is a collection of repositories from which you can pull images
+- Docker has very similar syntax to Git and Linux, so Docker should feel natural (though you should still read the docs!)
+:::
+
+:::{.column width="50%"}
+- To install Docker, you can follow the instructions [here](https://docs.docker.com/get-docker/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop) is the easiest way to get started with Docker on Windows and macOS, and it includes everything you need to run Docker on your machine
+- It is a good idea to create an account too, as you can use it to store your images in [Docker Hub](https://hub.docker.com/)
+- After you have installed and started Docker, you can run the following commands to check if it is working:
+
+```{verbatim}
+docker info
+docker run hello-world
+
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+478afc919002: Download complete 
+Digest: sha256:305243c734571da2d100c8c8b3c3167a098cab6049c9a5b066b6021a60fcb966
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+```
+
+```{verbatim}
+docker -v
+
+Docker version 28.5.2, build ecc6942
+```
+:::
+:::
+:::
+
+## Docker desktop
+
+:::{style="margin-top: 30px; font-size: 20px; text-align: center;"}
+![](figures/docker-desktop.png){width='85%'}
+:::
+
+## Docker architecture
+
+:::{style="margin-top: 30px; font-size: 20px; text-align: center;"}
+![](figures/docker-architecture.png){width='85%'}
+:::
+
+## Let's create our first container 🐳
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+:::{.columns}
+:::{.column width="70%"}
+- Docker can seem [a little daunting]{.alert} at first
+- We need to create and configure a `Dockerfile` to build an image, which is a [plain-text recipe that will build from scratch everything you need to recreate a project]{.alert}
+- It is just [a text file that you can put under version control]{.alert}. No extension is needed, it's usually just called `Dockerfile`
+- However, in most cases [you do not need to start from scratch]{.alert}
+- [Docker Hub](https://hub.docker.com/) has thousands of images that you can use as a base for your project, and it is very likely that someone has already created an image similar to the one you need
+- For example, as of today there are [~8,500 images of data science tools](https://hub.docker.com/search?categories=Data+Science) in Docker Hub
+- But we will build one today, just to see how it works 😊
+- Our next class will be a hands-on session on Docker, so we will have plenty of time to practice how to build containers from scratch or from existing images 😉
+:::
+
+:::{.column width="30%"}
+:::{style="text-align: center;"}
+![](figures/docker.webp)
+:::
+:::
+:::
+:::
+
+## Dockerfile
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+:::{.columns}
+:::{.column width="50%"}
+- A `Dockerfile` is a text file that contains all the commands a user could call on the command line to assemble an image
+- Using `docker build`, we can create an automated build that executes several command-line instructions in succession
+- Let's first create a directory called `docker` and a file called `Dockerfile` inside it
+
+```{verbatim}
+mkdir docker
+cd docker
+touch Dockerfile
+```
+
+- We will use an official Python image as a base, and install some packages on top of it. Here: <https://hub.docker.com/_/python>
+- Then we will write code that installs some Python packages and runs a Python script
+:::
+
+:::{.column width="50%"}
+- The syntax is quite straightforward: 
+  - `FROM <image_name>:<tag>` is the base image, `RUN` is used to run bash commands while building the image, and `CMD` is used to specify which commands to run when the container starts
+- [The full list of instructions is available here](https://docs.docker.com/reference/dockerfile/)
+
+```{verbatim}
+# Use an official Python runtime as a parent image
+FROM python:3
+
+# Install libraries
+RUN pip install numpy pandas matplotlib
+
+# Add a script
+RUN echo "print('Hello, DATASCI350!')" > hello.py
+
+# Run the script
+CMD ["python", "hello.py"]
+```
+
+- We build the image with the following command (`-t` is for "tag", which names the image `datasci350-example`, and `.` is the current directory):
+
+```{verbatim}
+docker build -t datasci350-example .
+```
+:::
+:::
+:::
+
+## Let's see how it looks like
+
+:::{style="margin-top: 30px; font-size: 20px; text-align: center;"}
+![](figures/docker-build.png){width='90%'}
+:::
+
+## Looks pretty good! 👍
+
+:::{style="margin-top: 30px; font-size: 20px; text-align: center;"}
+![](figures/docker-build02.png){width='90%'}
+:::
+
+## Looks pretty good! 👍
+
+:::{style="margin-top: 30px; font-size: 20px; text-align: center;"}
+![](figures/docker-build03.png){width='90%'}
+:::
+
+## Let's run and share the container! 🏃‍♂️
+
+:::{style="margin-top: 30px; font-size: 20px;"}
+- To run the container, we can use the following command:
+
+```{verbatim}
+docker run datasci350-example
+
+Hello, DATASCI350!
+(base)
+```
+ 
+- Woo-hoo! 🎉 😂
+- We have successfully created a container with Python, numpy, pandas, and matplotlib installed, and we have run a Python script
+- If you want to share your image with others, you can upload it to Docker Hub: <https://hub.docker.com/>
+- First, you need to log in 
+
+```{verbatim}
+docker login
+```
+
+- Then you can tag your image with your Docker Hub username:
+
+```{verbatim}
+docker tag datasci350-example danilofreire/datasci350-example:latest
+```
+
+- And finally, you can push the image to Docker Hub:
+
+```{verbatim}
+docker push danilofreire/datasci350-example:latest
+```
+:::
+
+## And here it is:
+
+:::{style="margin-top: 30px; font-size: 20px; text-align: center;"}
+Link: <https://hub.docker.com/r/danilofreire/datasci350-example>
+
+![](figures/docker-hub-image.png){width='90%'}
+:::
+
+## Docker pull
+
+:::{style="margin-top: 30px; font-size: 22px;"}
+- Now that the image is on Docker Hub, anyone can pull it and run it on their machine
+- To do that, they just need to run the following command:
+
+```{verbatim}
+docker pull danilofreire/datasci350-example:latest
+```
+
+- And then they can run the container with:
+
+```{verbatim}
+docker run danilofreire/datasci350-example:latest
+```
+
+- And that's it! 😊
+- That's how easy it is to share your work with others using Docker
+- You can also use Docker to run your code on a server, or to create a reproducible environment for your work
+- Although our example here is extremely simple, you can build [anything you can imagine with Docker!]{.alert}
+- Hopefully, one day researchers will require that all code is shared in a Docker container 🤓
+- ... and now you know how to do it!
+:::
+
+## Summary 
+
+:::{style="margin-top: 30px; font-size: 19px;"}
+:::{.columns}
+:::{.column width="30%"}
+- Dependency management is more important than people think
+- It is the first step towards reproducibility and transparency
+- You can use `conda`, `pip`, or `pipenv` to manage your dependencies in Python
+- Docker offers a more comprehensive solution to the reproducibility crisis
+- None of them are particularly difficult to use, and they can save you a lot of time and headaches in the future
+- In the next class, we will have a hands-on session on Docker, so you can practice building containers and running them on your machine
+:::
+
+:::{.column width="70%"}
+:::{style="text-align: center;"}
+:::{.columns}
+:::{.column width="50%"}
+![](figures/docker-meme02.jpg)
+:::
+:::{.column width="50%"}
+![](figures/docker-meme03.webp)
+:::
+:::
+:::
+:::
+:::
+:::
+
+# And that's all for today! 🎉 {background-color="#2d4563"}
+
+# See you next time! 🚀 {background-color="#2d4563"}
