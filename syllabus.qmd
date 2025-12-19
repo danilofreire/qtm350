@@ -116,6 +116,6 @@ Emory University welcomes students from around the country and the world, and th
 
 Each student's final grade will be based on the following after rounding up to the nearest point:
 
-| Grade | A       | A-      | B+      | B       | B-      | C       | D       | F    |
-|-------|---------|---------|---------|---------|---------|---------|---------|------|
-| Range | 91%–100%| 86%–90% | 81%–85% | 76%–80% | 71%–75% | 66%–70% | 60%–65% | <60% |
+| Grade | A       | A-      | B+      | B       | B-      | C+      | C       | C-      | D+      | D       | F    |
+|-------|---------|---------|---------|---------|---------|---------|---------|---------|---------|---------|------|
+| Range | 93\% and above | 90-92.9\%| 87-89.9\%| 83-86.9\%| 80-82.9\%| 77-79.9\%| 73-76.9\%| 70-72.9\%| 67-69.9\%| 60-66.9\%| <60\% |
