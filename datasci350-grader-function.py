@@ -5,32 +5,20 @@ class GradeCalculator:
     """
 
     def __init__(self):
-        # Grading scale
+        # Grading scale (percentage-based)
         self.grading_scale = [
-            (9.1, 10.0, "A"),
-            (8.6, 9.0, "A-"),
-            (8.1, 8.5, "B+"),
-            (7.6, 8.0, "B"),
-            (7.1, 7.5, "B-"),
-            (6.6, 7.0, "C"),
-            (6.0, 6.5, "D"),
-            (0.0, 5.9, "F"),
+            (93.0, 100.0, "A"),
+            (90.0, 92.9, "A-"),
+            (87.0, 89.9, "B+"),
+            (83.0, 86.9, "B"),
+            (80.0, 82.9, "B-"),
+            (77.0, 79.9, "C+"),
+            (73.0, 76.9, "C"),
+            (70.0, 72.9, "C-"),
+            (67.0, 69.9, "D+"),
+            (60.0, 66.9, "D"),
+            (0.0, 59.9, "F"),
         ]
-
-    def drop_lowest_grade(self, grades):
-        """
-        Drops the lowest grade from the list.
-        If the list has one grade or fewer, it returns the list as is.
-
-        Args:
-            grades (list): List of numeric grades.
-
-        Returns:
-            list: List of grades with the lowest grade removed.
-        """
-        if len(grades) <= 1:
-            return grades
-        return sorted(grades)[1:]  # Drop the lowest grade
 
     def calculate_weighted_grade(self, assignments, quizzes, final_project):
         """
@@ -44,10 +32,6 @@ class GradeCalculator:
         Returns:
             float: Weighted grade as a percentage (0–10 scale).
         """
-        # Drop the lowest grade from assignments and quizzes
-        assignments = self.drop_lowest_grade(assignments)
-        quizzes = self.drop_lowest_grade(quizzes)
-
         # Calculate averages
         assignment_avg = sum(assignments) / len(assignments) if assignments else 0
         quiz_avg = sum(quizzes) / len(quizzes) if quizzes else 0
@@ -89,14 +73,17 @@ class GradeCalculator:
         if not all(0 <= grade <= 10 for grade in assignments + quizzes + [final_project]):
             raise ValueError("All grades must be between 0 and 10.")
 
-        # Calculate percentage grade
-        percentage_grade = self.calculate_weighted_grade(assignments, quizzes, final_project)
+        # Calculate weighted grade (0-10 scale)
+        weighted_grade = self.calculate_weighted_grade(assignments, quizzes, final_project)
+        
+        # Convert to percentage (0-100 scale) for letter grade mapping
+        percentage_grade = weighted_grade * 10
 
         # Map to letter grade
         letter_grade = self.map_to_letter_grade(percentage_grade)
 
         return {
-            "percentage_grade": percentage_grade,
+            "percentage_grade": weighted_grade,  # Keep original 0-10 scale for consistency
             "letter_grade": letter_grade,
         }
 
