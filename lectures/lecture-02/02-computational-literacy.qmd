@@ -282,7 +282,7 @@ The 1970s marked the transition from mechanical to electronic:
 :::{style="font-size: 24px;"}
 - Computers represent everything by using [0s and 1s]{.alert}
 - Transistors act as [switches]{.alert}, with 1 for high voltage level and 0 for low voltage level
-- Computers use binary because transistors are [easy to fabricate]{.alert} in silicon and can be densely packed on a chip
+- Computers use binary because transistors are [easy to fabricate]{.alert} in silicon and can be densely packed on a chip (~200 billion transistors or more in modern processors, performing 4 billion calculations per second!)
 
 :::{.incremental}
 - _But how does this work?_
