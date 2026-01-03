@@ -68,7 +68,7 @@ for (package in packages) {
 
 ::: {.column}
 - [Instructor]{.alert}: Danilo Freire
-- [Lectures]{.alert}: Mondays and Wednesdays, 4:00-5:15pm
+- [Lectures]{.alert}: Mondays and Wednesdays, 5:30-6:45 PM, Psy 230
 - [Office hours]{.alert}: At any time, just send me an email in advance
 - Please remember to [check the course repository regularly](https://github.com/danilofreire/datasci350) for updates and announcements `r emo::ji('winking_face')`
 :::
